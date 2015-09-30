@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." name="IM_JAVA_SAMPLE_WSDL" default="wsimport">
+
+  <!--==================================
+Property for build tasks
+===================================-->
+  <property environment="env"/>
+  <property name="src.dir" value="${basedir}/src/main/java"/>
+  <property name="dest.dir" value="${basedir}/build"/>
+  <property name="wsdl.dir" value="${basedir}/wsdl"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V5.2"/>
+  <property name="pakcage.base" value="jp.yahooapis.ss.V5"/>
+  <!--==================================
+classpath for build
+===================================-->
+
+  <!--==================================
+target for wsimport
+===================================-->
+  <target name="wsimport">
+    <echo message="start wsimport AccountService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AccountService/AccountService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AccountService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AccountService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AdGroupAdService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AdGroupAdService/AdGroupAdService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AdGroupAdService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AdGroupAdService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AdGroupService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AdGroupService/AdGroupService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AdGroupService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AdGroupService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AdGroupBidMultiplierService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AdGroupBidMultiplierService/AdGroupBidMultiplierService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AdGroupBidMultiplierService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AdGroupBidMultiplierService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AdGroupCriterionService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AdGroupCriterionService/AdGroupCriterionService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AdGroupCriterionService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AdGroupCriterionService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AdGroupFeedService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AdGroupFeedService/AdGroupFeedService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AdGroupFeedService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AdGroupFeedService?wsdl"/>
+    </exec>
+    <echo message="start wsimport BalanceService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/BalanceService/BalanceService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.BalanceService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/BalanceService?wsdl"/>
+    </exec>
+    <echo message="start wsimport BidLandscapeService.wsdl.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/BidLandscapeService/BidLandscapeService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.BidLandscapeService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/BidLandscapeService?wsdl"/>
+    </exec>
+    <echo message="start wsimport BulkService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/BulkService/BulkService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.BulkService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/BulkService?wsdl"/>
+    </exec>
+    <echo message="start wsimport CampaignCriterionService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CampaignCriterionService/CampaignCriterionService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.CampaignCriterionService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CampaignCriterionService?wsdl"/>
+    </exec>
+    <echo message="start wsimport CampaignFeedService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CampaignFeedService/CampaignFeedService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.CampaignFeedService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CampaignFeedService?wsdl"/>
+    </exec>
+    <echo message="start wsimport CampaignService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CampaignService/CampaignService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.CampaignService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CampaignService?wsdl"/>
+    </exec>
+    <echo message="start wsimport CampaignTargetService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CampaignTargetService/CampaignTargetService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.CampaignTargetService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CampaignTargetService?wsdl"/>
+    </exec>
+    <echo message="start wsimport ConversionTrackerService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/ConversionTrackerService/ConversionTrackerService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.ConversionTrackerService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/ConversionTrackerService?wsdl"/>
+    </exec>
+    <echo message="start wsimport CustomerSyncService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CustomerSyncService/CustomerSyncService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.CustomerSyncService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CustomerSyncService?wsdl"/>
+    </exec>
+    <echo message="start wsimport DictionaryService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/DictionaryService/DictionaryService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.DictionaryService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/DictionaryService?wsdl"/>
+    </exec>
+    <echo message="start wsimport FeedFolderService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/FeedFolderService/FeedFolderService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.FeedFolderService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/FeedFolderService?wsdl"/>
+    </exec>
+    <echo message="start wsimport FeedItemService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/FeedItemService/FeedItemService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.FeedItemService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/FeedItemService?wsdl"/>
+    </exec>
+    <echo message="start wsimport KeywordEstimatorService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/KeywordEstimatorService/KeywordEstimatorService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.KeywordEstimatorService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/KeywordEstimatorService?wsdl"/>
+    </exec>
+    <echo message="start wsimport LocationService_sandbox.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/LocationService/LocationService_sandbox.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.LocationService_sandbox"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/LocationService?wsdl"/>
+    </exec>
+    <echo message="start wsimport LocationService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/LocationService/LocationService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.LocationService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/LocationService?wsdl"/>
+    </exec>
+    <echo message="start wsimport ReportDefinitionService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/ReportDefinitionService/ReportDefinitionService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.ReportDefinitionService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/ReportDefinitionService?wsdl"/>
+    </exec>
+    <echo message="start wsimport ReportService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/ReportService/ReportService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.ReportService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/ReportService?wsdl"/>
+    </exec>
+    <echo message="start wsimport TargetingIdeaService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/TargetingIdeaService/TargetingIdeaService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.TargetingIdeaService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/TargetingIdeaService?wsdl"/>
+    </exec>
+    <echo message="start wsimport TrafficEstimatorService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/TrafficEstimatorService/TrafficEstimatorService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.TrafficEstimatorService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/TrafficEstimatorService?wsdl"/>
+    </exec>
+    <echo message="start wsimport BiddingStrategyService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/BiddingStrategyService/BiddingStrategyService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.BiddingStrategyService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/BiddingStrategyService?wsdl"/>
+    </exec>
+  </target>
+</project>
