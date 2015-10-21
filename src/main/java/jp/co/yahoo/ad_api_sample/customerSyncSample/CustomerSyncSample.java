@@ -14,6 +14,7 @@ import jp.yahooapis.ss.V5.CustomerSyncService.CustomerSyncService;
 import jp.yahooapis.ss.V5.CustomerSyncService.CustomerSyncServiceInterface;
 import jp.yahooapis.ss.V5.CustomerSyncService.DateRange;
 import jp.yahooapis.ss.V5.CustomerSyncService.Error;
+import jp.yahooapis.ss.V5.CustomerSyncService.EventType;
 import jp.yahooapis.ss.V5.CustomerSyncService.IncludeUnset;
 import jp.yahooapis.ss.V5.CustomerSyncService.SourceType;
 
@@ -60,7 +61,7 @@ public class CustomerSyncSample {
 
   /**
    * Sample Program for CustomerSyncService GET.
-   * 
+   *
    * @param selector CustomerSyncSelector
    * @return ChangeDataValues
    * @throws Exception
@@ -106,9 +107,23 @@ public class CustomerSyncSample {
    * @param account account entity for display.
    */
   private static void display(Auditlog auditlog) {
-    System.out.println("accountId = " + auditlog.getAccountId());
     System.out.println("updatedTime = " + auditlog.getUpdatedTime());
     System.out.println("entityType = " + auditlog.getEntityType());
+    if (auditlog.getEventType() != null) {
+      for (EventType eventType : auditlog.getEventType()) {
+        System.out.println("eventType = " + eventType);
+      }
+    }
+    System.out.println("sourceType = " + auditlog.getSourceType());
+    System.out.println("accountId = " + auditlog.getAccountId());
+    System.out.println("campaignId = " + auditlog.getCampaignId());
+    System.out.println("adGroupId = " + auditlog.getAdGroupId());
+    System.out.println("criterionId = " + auditlog.getCriterionId());
+    System.out.println("adId = " + auditlog.getAdId());
+    System.out.println("feedItemId = " + auditlog.getFeedItemId());
+    System.out.println("biddingStrategyId = " + auditlog.getBiddingStrategyId());
+    System.out.println("feedFolderId = " + auditlog.getFeedFolderId());
+    System.out.println("targetListId = " + auditlog.getTargetListId());
     System.out.println("---------");
   }
 }

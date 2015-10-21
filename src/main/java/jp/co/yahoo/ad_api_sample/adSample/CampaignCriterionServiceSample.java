@@ -1,5 +1,6 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -41,30 +42,51 @@ public class CampaignCriterionServiceSample {
       // =================================================================
       long accountId = SoapUtils.getAccountId();
       long campaignId = SoapUtils.getCampaignId();
+      long appCampaignId = SoapUtils.getAppCampaignId();
 
       // =================================================================
       // CampaignCriterionService ADD
       // =================================================================
+      // - Standard campaign
       // Set Operation
       CampaignCriterionOperation addCampaignCriterionOperation = createSampleAddRequest(accountId, campaignId);
 
       // Run
-      List<CampaignCriterionValues> campaignCriterionValues = add(addCampaignCriterionOperation);
+      List<CampaignCriterionValues> standardCampaignCriterionValues = add(addCampaignCriterionOperation);
+
+      // - App campaign
+      // Set Operation
+      addCampaignCriterionOperation = createSampleAddRequest(accountId, appCampaignId);
+
+      // Run
+      List<CampaignCriterionValues> appCampaignCriterionValues = add(addCampaignCriterionOperation);
+
 
       // =================================================================
       // CampaignCriterionService GET
       // =================================================================
       // Set Selector
-      CampaignCriterionSelector campaignCriterionSelector = createSampleGetRequest(accountId, campaignId, campaignCriterionValues);
+      List<CampaignCriterionValues> campaignCriterionValues = new ArrayList<>();
+      campaignCriterionValues.addAll(standardCampaignCriterionValues);
+      campaignCriterionValues.addAll(appCampaignCriterionValues);
+      CampaignCriterionSelector campaignCriterionSelector = createSampleGetRequest(accountId, campaignCriterionValues);
 
       // Run
       get(campaignCriterionSelector);
 
+
       // =================================================================
       // CampaignCriterionService REMOVE
       // =================================================================
+      // - Standard campaign
       // Set Operation
-      CampaignCriterionOperation removeCampaignCriterionOperation = createSampleRemoveRequest(accountId, campaignId, campaignCriterionValues);
+      CampaignCriterionOperation removeCampaignCriterionOperation = createSampleRemoveRequest(accountId, campaignId, standardCampaignCriterionValues);
+
+      // Run
+      remove(removeCampaignCriterionOperation);
+
+      // - App campaign
+      removeCampaignCriterionOperation = createSampleRemoveRequest(accountId, appCampaignId, appCampaignCriterionValues);
 
       // Run
       remove(removeCampaignCriterionOperation);
@@ -216,7 +238,7 @@ public class CampaignCriterionServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
    * @return CampaignCriterionOperation
@@ -249,7 +271,7 @@ public class CampaignCriterionServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
    * @param campaignCriterionValues CampaignCriterionValues
@@ -282,18 +304,17 @@ public class CampaignCriterionServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
-   * @param campaignId long
    * @param campaignCriterionValues CampaignCriterionValues
    * @return CampaignCriterionSelector
    */
-  public static CampaignCriterionSelector createSampleGetRequest(long accountId, long campaignId, List<CampaignCriterionValues> campaignCriterionValues) {
+  public static CampaignCriterionSelector createSampleGetRequest(long accountId, List<CampaignCriterionValues> campaignCriterionValues) {
     // Set Selector
     CampaignCriterionSelector selector = new CampaignCriterionSelector();
     selector.setAccountId(accountId);
-    selector.getCampaignIds().add(campaignId);
     for (CampaignCriterionValues campaignCriterionValue : campaignCriterionValues) {
+      selector.getCampaignIds().add(campaignCriterionValue.getCampaignCriterion().getCampaignId());
       selector.getCriterionIds().add((campaignCriterionValue.getCampaignCriterion().getCriterion().getCriterionId()));
     }
     selector.setCriterionUse(CriterionUse.NEGATIVE);

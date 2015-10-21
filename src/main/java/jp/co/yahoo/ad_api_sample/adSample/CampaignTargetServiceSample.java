@@ -46,12 +46,13 @@ public class CampaignTargetServiceSample {
       // =================================================================
       long accountId = SoapUtils.getAccountId();
       long campaignId = SoapUtils.getCampaignId();
+      long appCampaignId = SoapUtils.getAppCampaignId();
 
       // =================================================================
       // CampaignTargetService::ADD
       // =================================================================
       // Set Operation
-      CampaignTargetOperation addCampaignTargetOperation = createSampleAddRequest(accountId, campaignId);
+      CampaignTargetOperation addCampaignTargetOperation = createSampleAddRequest(accountId, campaignId, appCampaignId);
 
       // Run
       List<CampaignTargetValues> campaignTargetValues = add(addCampaignTargetOperation);
@@ -293,62 +294,65 @@ public class CampaignTargetServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
+   * @param appCampaignId long
    * @return CampaignTargetOperation
    */
-  public static CampaignTargetOperation createSampleAddRequest(long accountId, long campaignId) {
+  public static CampaignTargetOperation createSampleAddRequest(long accountId, long campaignId, long appCampaignId) {
     // Set Operation
     CampaignTargetOperation operation = new CampaignTargetOperation();
     operation.setAccountId(accountId);
     operation.setOperator(Operator.ADD);
 
-    // Set ScheduleTarget
-    ScheduleTarget scheduleTarget = new ScheduleTarget();
-    scheduleTarget.setTargetType(TargetType.SCHEDULE);
-    scheduleTarget.setDayOfWeek(DayOfWeek.MONDAY);
-    scheduleTarget.setStartHour(10);
-    scheduleTarget.setStartMinute(MinuteOfHour.ZERO);
-    scheduleTarget.setEndHour(11);
-    scheduleTarget.setEndMinute(MinuteOfHour.THIRTY);
+    for (long targetCampaignId : Arrays.asList(campaignId, appCampaignId)) {
+      // Set ScheduleTarget
+      ScheduleTarget scheduleTarget = new ScheduleTarget();
+      scheduleTarget.setTargetType(TargetType.SCHEDULE);
+      scheduleTarget.setDayOfWeek(DayOfWeek.MONDAY);
+      scheduleTarget.setStartHour(10);
+      scheduleTarget.setStartMinute(MinuteOfHour.ZERO);
+      scheduleTarget.setEndHour(11);
+      scheduleTarget.setEndMinute(MinuteOfHour.THIRTY);
 
-    CampaignTarget campaignScheduleTarget = new CampaignTarget();
-    campaignScheduleTarget.setAccountId(accountId);
-    campaignScheduleTarget.setCampaignId(campaignId);
-    campaignScheduleTarget.setTarget(scheduleTarget);
-    campaignScheduleTarget.setBidMultiplier(1.0);
+      CampaignTarget campaignScheduleTarget = new CampaignTarget();
+      campaignScheduleTarget.setAccountId(accountId);
+      campaignScheduleTarget.setCampaignId(targetCampaignId);
+      campaignScheduleTarget.setTarget(scheduleTarget);
+      campaignScheduleTarget.setBidMultiplier(1.0);
 
-    // Set LocationTarget
-    LocationTarget locationTarget = new LocationTarget();
-    locationTarget.setTargetId("JP-13-0048");
-    locationTarget.setTargetType(TargetType.LOCATION);
-    locationTarget.setExcludedType(ExcludedType.INCLUDED);
+      // Set LocationTarget
+      LocationTarget locationTarget = new LocationTarget();
+      locationTarget.setTargetId("JP-13-0048");
+      locationTarget.setTargetType(TargetType.LOCATION);
+      locationTarget.setExcludedType(ExcludedType.INCLUDED);
 
-    CampaignTarget campaignLocationTarget = new CampaignTarget();
-    campaignLocationTarget.setAccountId(accountId);
-    campaignLocationTarget.setCampaignId(campaignId);
-    campaignLocationTarget.setTarget(locationTarget);
-    campaignLocationTarget.setBidMultiplier(0.95);
+      CampaignTarget campaignLocationTarget = new CampaignTarget();
+      campaignLocationTarget.setAccountId(accountId);
+      campaignLocationTarget.setCampaignId(targetCampaignId);
+      campaignLocationTarget.setTarget(locationTarget);
+      campaignLocationTarget.setBidMultiplier(0.95);
 
-    // Set NetworkTarget
-    NetworkTarget networkTarget = new NetworkTarget();
-    networkTarget.setTargetType(TargetType.NETWORK);
-    networkTarget.setNetworkCoverageType(NetworkCoverageType.YAHOO_SEARCH);
+      // Set NetworkTarget
+      NetworkTarget networkTarget = new NetworkTarget();
+      networkTarget.setTargetType(TargetType.NETWORK);
+      networkTarget.setNetworkCoverageType(NetworkCoverageType.YAHOO_SEARCH);
 
-    CampaignTarget campaignNetworkTarget = new CampaignTarget();
-    campaignNetworkTarget.setAccountId(accountId);
-    campaignNetworkTarget.setCampaignId(campaignId);
-    campaignNetworkTarget.setTarget(networkTarget);
+      CampaignTarget campaignNetworkTarget = new CampaignTarget();
+      campaignNetworkTarget.setAccountId(accountId);
+      campaignNetworkTarget.setCampaignId(targetCampaignId);
+      campaignNetworkTarget.setTarget(networkTarget);
 
-    operation.getOperand().addAll(Arrays.asList(campaignScheduleTarget, campaignLocationTarget, campaignNetworkTarget));
+      operation.getOperand().addAll(Arrays.asList(campaignScheduleTarget, campaignLocationTarget, campaignNetworkTarget));
+    }
 
     return operation;
   }
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignTargetValues CampaignTargetValues
    * @return CampaignTargetOperation
@@ -412,7 +416,7 @@ public class CampaignTargetServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignTargetValues CampaignTargetValues
    * @return CampaignTargetOperation
@@ -477,7 +481,7 @@ public class CampaignTargetServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignTargetValues CampaignTargetValues
    * @return CampaignTargetSelector

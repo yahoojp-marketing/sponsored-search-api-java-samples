@@ -23,6 +23,7 @@ import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionSelector;
 import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionValues;
 import jp.yahooapis.ss.V5.CampaignService.CampaignOperation;
 import jp.yahooapis.ss.V5.CampaignService.CampaignSelector;
+import jp.yahooapis.ss.V5.CampaignService.CampaignType;
 import jp.yahooapis.ss.V5.CampaignService.CampaignValues;
 import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetOperation;
 import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetSelector;
@@ -50,6 +51,8 @@ public class AdSample {
       long biddingStrategyId = 0;
       long campaignId = 0;
       long adGroupId = 0;
+      long appCampaignId = 0;
+      long appAdGroupId = 0;
 
       // =================================================================
       // BiddingStrategyService
@@ -84,8 +87,14 @@ public class AdSample {
       CampaignServiceSample.set(setCampaignOperation);
 
       for (CampaignValues value : campaignValues) {
-        if (campaignId == 0) {
-          campaignId = value.getCampaign().getCampaignId();
+        if (CampaignType.STANDARD.equals(value.getCampaign().getCampaignType())) {
+          if (campaignId == 0) {
+            campaignId = value.getCampaign().getCampaignId();
+          }
+        } else if (CampaignType.MOBILE_APP.equals(value.getCampaign().getCampaignType())) {
+          if (appCampaignId == 0) {
+            appCampaignId = value.getCampaign().getCampaignId();
+          }
         }
       }
 
@@ -93,7 +102,7 @@ public class AdSample {
       // CampaignTargetService
       // =================================================================
       // ADD
-      CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId);
+      CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
       List<CampaignTargetValues> campaignTargetValues = CampaignTargetServiceSample.add(addCampaignTargetOperation);
       // GET
       CampaignTargetSelector campaignTargetSelector = CampaignTargetServiceSample.createSampleGetRequest(accountId, campaignTargetValues);
@@ -109,25 +118,31 @@ public class AdSample {
       CampaignCriterionOperation addCampaignCriterionOperation = CampaignCriterionServiceSample.createSampleAddRequest(accountId, campaignId);
       List<CampaignCriterionValues> campaignCriterionValues = CampaignCriterionServiceSample.add(addCampaignCriterionOperation);
       // GET
-      CampaignCriterionSelector campaignCriterionSelector = CampaignCriterionServiceSample.createSampleGetRequest(accountId, campaignId, campaignCriterionValues);
+      CampaignCriterionSelector campaignCriterionSelector = CampaignCriterionServiceSample.createSampleGetRequest(accountId, campaignCriterionValues);
       CampaignCriterionServiceSample.get(campaignCriterionSelector);
 
       // =================================================================
       // AdGroupService
       // =================================================================
       // ADD
-      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
       List<AdGroupValues> adGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
       // GET
-      AdGroupSelector adGroupSelector = AdGroupServiceSample.createSampleGetRequest(accountId, campaignId, adGroupValues);
+      AdGroupSelector adGroupSelector = AdGroupServiceSample.createSampleGetRequest(accountId, adGroupValues);
       AdGroupServiceSample.get(adGroupSelector);
       // SET
-      AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, campaignId, biddingStrategyId, adGroupValues);
+      AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, biddingStrategyId, adGroupValues);
       AdGroupServiceSample.set(setAdGroupOperation);
 
       for (AdGroupValues value : adGroupValues) {
-        if (adGroupId == 0) {
-          adGroupId = value.getAdGroup().getAdGroupId();
+        if (value.getAdGroup().getCampaignId() == campaignId) {
+          if (adGroupId == 0) {
+            adGroupId = value.getAdGroup().getAdGroupId();
+          }
+        } else if (value.getAdGroup().getCampaignId() == appCampaignId) {
+          if (appAdGroupId == 0) {
+            appAdGroupId = value.getAdGroup().getAdGroupId();
+          }
         }
       }
 
@@ -158,30 +173,30 @@ public class AdSample {
       // AdGroupAdService
       // =================================================================
       // ADD
-      AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId);
+      AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
       List<AdGroupAdValues> adGroupAdValues = AdGroupAdServiceSample.add(addAdGroupAdOperation);
       // GET
-      AdGroupAdSelector adGroupAdSelector = AdGroupAdServiceSample.createSampleGetRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdSelector adGroupAdSelector = AdGroupAdServiceSample.createSampleGetRequest(accountId, adGroupAdValues);
       AdGroupAdServiceSample.get(adGroupAdSelector);
       // SET
-      AdGroupAdOperation setAdGroupAdOperation = AdGroupAdServiceSample.createSampleSetRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdOperation setAdGroupAdOperation = AdGroupAdServiceSample.createSampleSetRequest(accountId, adGroupAdValues);
       AdGroupAdServiceSample.set(setAdGroupAdOperation);
 
 
       // =================================================================
-      // remove AsGroupAdService, AsGroupCriterionService, AsGroupService,
+      // remove AdGroupAdService, AdGroupCriterionService, AdGroupService,
       // CampaignCriterionService, CampaignTarget, BiddingStrategy, Campaign
       // =================================================================
-      // AsGroupAdService
-      AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      // AdGroupAdService
+      AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, adGroupAdValues);
       AdGroupAdServiceSample.remove(removeAdGroupAdOperation);
 
       // AdGroupCriterionService
       AdGroupCriterionOperation removeAdGroupCriterionOperation = AdGroupCriterionServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
       AdGroupCriterionServiceSample.remove(removeAdGroupCriterionOperation);
 
-      // AsGroupService
-      AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupValues);
+      // AdGroupService
+      AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, adGroupValues);
       AdGroupServiceSample.remove(removeAdGroupOperation);
 
       // CampaignCriterionService

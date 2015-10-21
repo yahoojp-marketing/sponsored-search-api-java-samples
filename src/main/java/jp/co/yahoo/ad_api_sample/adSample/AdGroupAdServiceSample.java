@@ -18,7 +18,6 @@ import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdServiceInterface;
 import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdValues;
 import jp.yahooapis.ss.V5.AdGroupAdService.AdType;
 import jp.yahooapis.ss.V5.AdGroupAdService.AppAd;
-import jp.yahooapis.ss.V5.AdGroupAdService.AppStore;
 import jp.yahooapis.ss.V5.AdGroupAdService.ApprovalStatus;
 import jp.yahooapis.ss.V5.AdGroupAdService.CarrierName;
 import jp.yahooapis.ss.V5.AdGroupAdService.DevicePreference;
@@ -48,12 +47,14 @@ public class AdGroupAdServiceSample {
       long accountId = SoapUtils.getAccountId();
       long campaignId = SoapUtils.getCampaignId();
       long adGroupId = SoapUtils.getAdGroupId();
+      long appCampaignId = SoapUtils.getAppCampaignId();
+      long appAdGroupId = SoapUtils.getAppAdGroupId();
 
       // =================================================================
       // AdGroupAdService ADD
       // =================================================================
       // Set Operation
-      AdGroupAdOperation addAdGroupAdOperation = createSampleAddRequest(accountId, campaignId, adGroupId);
+      AdGroupAdOperation addAdGroupAdOperation = createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
 
       // Run
       List<AdGroupAdValues> adGroupAdValues = add(addAdGroupAdOperation);
@@ -62,7 +63,7 @@ public class AdGroupAdServiceSample {
       // AdGroupAdService GET
       // =================================================================
       // Set Selector
-      AdGroupAdSelector adGroupAdSelector = createSampleGetRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdSelector adGroupAdSelector = createSampleGetRequest(accountId, adGroupAdValues);
 
       // Run
       get(adGroupAdSelector);
@@ -71,7 +72,7 @@ public class AdGroupAdServiceSample {
       // AdGroupAdService SET
       // =================================================================
       // Set Operation
-      AdGroupAdOperation setAdGroupAdOperation = createSampleSetRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdOperation setAdGroupAdOperation = createSampleSetRequest(accountId, adGroupAdValues);
 
       // Run
       set(setAdGroupAdOperation);
@@ -80,7 +81,7 @@ public class AdGroupAdServiceSample {
       // AdGroupAdService REMOVE
       // =================================================================
       // Set Operation
-      AdGroupAdOperation removeAdGroupAdOperation = createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdOperation removeAdGroupAdOperation = createSampleRemoveRequest(accountId, adGroupAdValues);
 
       // Run
       remove(removeAdGroupAdOperation);
@@ -309,13 +310,15 @@ public class AdGroupAdServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
    * @param adGroupId long
+   * @param appCampaignId long
+   * @param appAdGroupId long
    * @return AdGroupAdOperation
    */
-  public static AdGroupAdOperation createSampleAddRequest(long accountId, long campaignId, long adGroupId) {
+  public static AdGroupAdOperation createSampleAddRequest(long accountId, long campaignId, long adGroupId, long appCampaignId, long appAdGroupId) {
     // Set Operation
     AdGroupAdOperation operation = new AdGroupAdOperation();
     operation.setOperator(Operator.ADD);
@@ -345,16 +348,12 @@ public class AdGroupAdServiceSample {
     appAd.setHeadline("sample");
     appAd.setDescription("sample ad desc");
     appAd.setDescription2("sample ad desc2");
-    appAd.setUrl("http://www.yahoo.co.jp/");
-    appAd.setDisplayUrl("www.yahoo.co.jp");
-    appAd.setAppStore(AppStore.ANDROID);
-    appAd.setAppId("99999");
     appAd.setDevicePreference(DevicePreference.SMART_PHONE);
 
     AdGroupAd appAdAdGroupAd = new AdGroupAd();
     appAdAdGroupAd.setAccountId(accountId);
-    appAdAdGroupAd.setCampaignId(campaignId);
-    appAdAdGroupAd.setAdGroupId(adGroupId);
+    appAdAdGroupAd.setCampaignId(appCampaignId);
+    appAdAdGroupAd.setAdGroupId(appAdGroupId);
     appAdAdGroupAd.setAdName("SampleAppAd_CreateOn_" + SoapUtils.getCurrentTimestamp());
     appAdAdGroupAd.setAd(appAd);
     appAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
@@ -366,14 +365,12 @@ public class AdGroupAdServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
-   * @param campaignId long
-   * @param adGroupId long
    * @param adGroupAdValues AdGroupAdValues
    * @return AdGroupAdOperation
    */
-  public static AdGroupAdOperation createSampleSetRequest(long accountId, long campaignId, long adGroupId, List<AdGroupAdValues> adGroupAdValues) {
+  public static AdGroupAdOperation createSampleSetRequest(long accountId, List<AdGroupAdValues> adGroupAdValues) {
     // Set Operation
     AdGroupAdOperation operation = new AdGroupAdOperation();
     operation.setOperator(Operator.SET);
@@ -395,11 +392,6 @@ public class AdGroupAdServiceSample {
         // Set TextAd2
         TextAd2 textAd2 = new TextAd2();
         textAd2.setType(AdType.TEXT_AD_2);
-        textAd2.setUrl("http://www.yahoo.mod.co.jp/");
-        textAd2.setDisplayUrl("www.yahoo.mod.co.jp");
-        textAd2.setHeadline("mod sample headline");
-        textAd2.setDescription("mod sample ad desc");
-        textAd2.setDescription2("mod sample ad desc2");
 
         adGroupAd.setAdName("SampleTextAd2_UpdateOn_" + SoapUtils.getCurrentTimestamp());
         adGroupAd.setAd(textAd2);
@@ -409,11 +401,6 @@ public class AdGroupAdServiceSample {
         // Set AppAd
         AppAd appAd = new AppAd();
         appAd.setType(AdType.APP_AD);
-        appAd.setHeadline("mod sample");
-        appAd.setDescription("mod sample ad desc");
-        appAd.setDescription2("mod sample ad desc2");
-        appAd.setUrl("http://www.yahoo.mod.co.jp/");
-        appAd.setDisplayUrl("www.yahoo.mod.co.jp");
 
         adGroupAd.setAdName("SampleAppAd_UpdateOn_" + SoapUtils.getCurrentTimestamp());
         adGroupAd.setAd(appAd);
@@ -427,14 +414,12 @@ public class AdGroupAdServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
-   * @param campaignId long
-   * @param adGroupId long
    * @param adGroupAdValues AdGroupAdValues
    * @return AdGroupAdOperation
    */
-  public static AdGroupAdOperation createSampleRemoveRequest(long accountId, long campaignId, long adGroupId, List<AdGroupAdValues> adGroupAdValues) {
+  public static AdGroupAdOperation createSampleRemoveRequest(long accountId, List<AdGroupAdValues> adGroupAdValues) {
     // Set Operation
     AdGroupAdOperation operation = new AdGroupAdOperation();
     operation.setOperator(Operator.REMOVE);
@@ -457,20 +442,18 @@ public class AdGroupAdServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
-   * @param campaignId long
-   * @param adGroupId long
    * @param adGroupAdValues AdGroupAdValues
    * @return AdGroupAdSelector
    */
-  public static AdGroupAdSelector createSampleGetRequest(long accountId, long campaignId, long adGroupId, List<AdGroupAdValues> adGroupAdValues) {
+  public static AdGroupAdSelector createSampleGetRequest(long accountId, List<AdGroupAdValues> adGroupAdValues) {
     // Set Selector
     AdGroupAdSelector selector = new AdGroupAdSelector();
     selector.setAccountId(accountId);
-    selector.getCampaignIds().add(campaignId);
-    selector.getAdGroupIds().add(adGroupId);
     for (AdGroupAdValues adGroupAdValue : adGroupAdValues) {
+      selector.getCampaignIds().add((adGroupAdValue.getAdGroupAd().getCampaignId()));
+      selector.getAdGroupIds().add((adGroupAdValue.getAdGroupAd().getAdGroupId()));
       selector.getAdIds().add((adGroupAdValue.getAdGroupAd().getAdId()));
     }
     selector.getUserStatuses().addAll(Arrays.asList(UserStatus.ACTIVE, UserStatus.PAUSED));

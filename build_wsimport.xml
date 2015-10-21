@@ -8,7 +8,7 @@ Property for build tasks
   <property name="src.dir" value="${basedir}/src/main/java"/>
   <property name="dest.dir" value="${basedir}/build"/>
   <property name="wsdl.dir" value="${basedir}/wsdl"/>
-  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V5.2"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V5.3"/>
   <property name="pakcage.base" value="jp.yahooapis.ss.V5"/>
   <!--==================================
 classpath for build
@@ -381,6 +381,48 @@ target for wsimport
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/BiddingStrategyService?wsdl"/>
+    </exec>
+    <echo message="start wsimport RetargetingListService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/RetargetingListService/RetargetingListService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.RetargetingListService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/RetargetingListService?wsdl"/>
+    </exec>
+    <echo message="start wsimport NegativeCampaignRetargetingListService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/NegativeCampaignRetargetingListService/NegativeCampaignRetargetingListService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.NegativeCampaignRetargetingListService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/NegativeCampaignRetargetingListService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AdGroupRetargetingListService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AdGroupRetargetingListService/AdGroupRetargetingListService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AdGroupRetargetingListService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AdGroupRetargetingListService?wsdl"/>
     </exec>
   </target>
 </project>

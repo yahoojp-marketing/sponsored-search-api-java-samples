@@ -30,6 +30,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="adId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="feedItemId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="biddingStrategyId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="feedFolderId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="targetListId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -50,7 +52,9 @@ import javax.xml.bind.annotation.XmlType;
     "criterionId",
     "adId",
     "feedItemId",
-    "biddingStrategyId"
+    "biddingStrategyId",
+    "feedFolderId",
+    "targetListId"
 })
 public class Auditlog {
 
@@ -67,6 +71,8 @@ public class Auditlog {
     protected Long adId;
     protected Long feedItemId;
     protected Long biddingStrategyId;
+    protected Long feedFolderId;
+    protected Long targetListId;
 
     /**
      * Gets the value of the updatedTime property.
@@ -335,6 +341,54 @@ public class Auditlog {
      */
     public void setBiddingStrategyId(Long value) {
         this.biddingStrategyId = value;
+    }
+
+    /**
+     * Gets the value of the feedFolderId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getFeedFolderId() {
+        return feedFolderId;
+    }
+
+    /**
+     * Sets the value of the feedFolderId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setFeedFolderId(Long value) {
+        this.feedFolderId = value;
+    }
+
+    /**
+     * Gets the value of the targetListId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getTargetListId() {
+        return targetListId;
+    }
+
+    /**
+     * Sets the value of the targetListId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setTargetListId(Long value) {
+        this.targetListId = value;
     }
 
 }

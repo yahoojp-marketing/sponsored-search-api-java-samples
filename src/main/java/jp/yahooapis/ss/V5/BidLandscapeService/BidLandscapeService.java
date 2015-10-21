@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "BidLandscapeService", targetNamespace = "http://ss.yahooapis.jp/V5", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V5.2/BidLandscapeService?wsdl")
+@WebServiceClient(name = "BidLandscapeService", targetNamespace = "http://ss.yahooapis.jp/V5", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V5.3/BidLandscapeService?wsdl")
 public class BidLandscapeService
     extends Service
 {
@@ -30,7 +30,7 @@ public class BidLandscapeService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V5.2/BidLandscapeService?wsdl");
+            url = new URL("https://sandbox.ss.yahooapis.jp/services/V5.3/BidLandscapeService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

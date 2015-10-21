@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ss.yahooapis.jp/V5}Page">
  *       &lt;sequence>
+ *         &lt;element name="totalNumConvertedClicks" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="totalNumConversionEvents" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="totalConversionValue" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="values" type="{http://ss.yahooapis.jp/V5}ConversionTrackerValues" maxOccurs="unbounded" minOccurs="0"/>
@@ -31,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ConversionTrackerPage", propOrder = {
+    "totalNumConvertedClicks",
     "totalNumConversionEvents",
     "totalConversionValue",
     "values"
@@ -39,9 +41,34 @@ public class ConversionTrackerPage
     extends Page
 {
 
+    protected Long totalNumConvertedClicks;
     protected Long totalNumConversionEvents;
     protected Long totalConversionValue;
     protected List<ConversionTrackerValues> values;
+
+    /**
+     * Gets the value of the totalNumConvertedClicks property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getTotalNumConvertedClicks() {
+        return totalNumConvertedClicks;
+    }
+
+    /**
+     * Sets the value of the totalNumConvertedClicks property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setTotalNumConvertedClicks(Long value) {
+        this.totalNumConvertedClicks = value;
+    }
 
     /**
      * Gets the value of the totalNumConversionEvents property.

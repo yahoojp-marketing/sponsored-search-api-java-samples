@@ -14,6 +14,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="AppConversionType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="DOWNLOAD"/>
+ *     &lt;enumeration value="IN_APP_PURCHASE"/>
+ *     &lt;enumeration value="FIRST_OPEN"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -23,7 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum AppConversionType {
 
-    DOWNLOAD;
+    DOWNLOAD,
+    IN_APP_PURCHASE,
+    FIRST_OPEN;
 
     public String value() {
         return name();

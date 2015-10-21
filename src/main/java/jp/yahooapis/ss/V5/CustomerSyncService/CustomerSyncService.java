@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "CustomerSyncService", targetNamespace = "http://ss.yahooapis.jp/V5", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V5.2/CustomerSyncService?wsdl")
+@WebServiceClient(name = "CustomerSyncService", targetNamespace = "http://ss.yahooapis.jp/V5", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V5.3/CustomerSyncService?wsdl")
 public class CustomerSyncService
     extends Service
 {
@@ -30,7 +30,7 @@ public class CustomerSyncService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V5.2/CustomerSyncService?wsdl");
+            url = new URL("https://sandbox.ss.yahooapis.jp/services/V5.3/CustomerSyncService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

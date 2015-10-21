@@ -19,15 +19,18 @@ import jp.yahooapis.ss.V5.AdGroupService.Bid;
 import jp.yahooapis.ss.V5.AdGroupService.BiddingStrategy;
 import jp.yahooapis.ss.V5.AdGroupService.BiddingStrategyType;
 import jp.yahooapis.ss.V5.AdGroupService.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.V5.AdGroupService.CriterionType;
 import jp.yahooapis.ss.V5.AdGroupService.EnhancedCpcBiddingScheme;
 import jp.yahooapis.ss.V5.AdGroupService.Error;
 import jp.yahooapis.ss.V5.AdGroupService.ManualCpcBiddingScheme;
 import jp.yahooapis.ss.V5.AdGroupService.Operator;
 import jp.yahooapis.ss.V5.AdGroupService.PageOnePromotedBiddingScheme;
 import jp.yahooapis.ss.V5.AdGroupService.Paging;
+import jp.yahooapis.ss.V5.AdGroupService.TargetAll;
 import jp.yahooapis.ss.V5.AdGroupService.TargetCpaBiddingScheme;
 import jp.yahooapis.ss.V5.AdGroupService.TargetRoasBiddingScheme;
 import jp.yahooapis.ss.V5.AdGroupService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.V5.AdGroupService.TargetingSetting;
 import jp.yahooapis.ss.V5.AdGroupService.UserStatus;
 
 /**
@@ -48,13 +51,14 @@ public class AdGroupServiceSample {
       // =================================================================
       long accountId = SoapUtils.getAccountId();
       long campaignId = SoapUtils.getCampaignId();
+      long appCampaignId = SoapUtils.getAppCampaignId();
       long biddingStrategyId = SoapUtils.getBiddingStrategyId();
 
       // =================================================================
       // AdGroupService ADD
       // =================================================================
       // Set Operation
-      AdGroupOperation addAdGroupOperation = createSampleAddRequest(accountId, campaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
 
       // Run
       List<AdGroupValues> adGroupValues = add(addAdGroupOperation);
@@ -63,7 +67,7 @@ public class AdGroupServiceSample {
       // AdGroupService GET
       // =================================================================
       // Set Selector
-      AdGroupSelector adGroupSelector = createSampleGetRequest(accountId, campaignId, adGroupValues);
+      AdGroupSelector adGroupSelector = createSampleGetRequest(accountId, adGroupValues);
 
       // Run
       get(adGroupSelector);
@@ -72,7 +76,7 @@ public class AdGroupServiceSample {
       // AdGroupService SET
       // =================================================================
       // Set Operation
-      AdGroupOperation setAdGroupOperation = createSampleSetRequest(accountId, campaignId, biddingStrategyId, adGroupValues);
+      AdGroupOperation setAdGroupOperation = createSampleSetRequest(accountId, biddingStrategyId, adGroupValues);
 
       // Run
       set(setAdGroupOperation);
@@ -81,7 +85,7 @@ public class AdGroupServiceSample {
       // AdGroupService REMOVE
       // =================================================================
       // Set Operation
-      AdGroupOperation removeAdGroupOperation = createSampleRemoveRequest(accountId, campaignId, adGroupValues);
+      AdGroupOperation removeAdGroupOperation = createSampleRemoveRequest(accountId, adGroupValues);
 
       // Run
       remove(removeAdGroupOperation);
@@ -219,7 +223,7 @@ public class AdGroupServiceSample {
    * @return AdGroupValues
    * @throws Exception
    */
-  public static List get(AdGroupSelector selector) throws Exception {
+  public static List<AdGroupValues> get(AdGroupSelector selector) throws Exception {
 
     // Call API
     System.out.println("############################################");
@@ -371,6 +375,11 @@ public class AdGroupServiceSample {
           }
         }
       }
+
+      if (adGroup.getSettings() != null) {
+        System.out.println("settings/criterionType = " + adGroup.getSettings().getCriterionType());
+        System.out.println("settings/targetAll = " + ((TargetingSetting)adGroup.getSettings()).getTargetAll());
+      }
     }
 
     System.out.println("---------");
@@ -378,18 +387,18 @@ public class AdGroupServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
+   * @param appCampaignId long
    * @param biddingStrategyId long
    * @return AdGroupOperation
    */
-  public static AdGroupOperation createSampleAddRequest(long accountId, long campaignId, long biddingStrategyId) {
+  public static AdGroupOperation createSampleAddRequest(long accountId, long campaignId, long appCampaignId, long biddingStrategyId) {
     // Set Operation
     AdGroupOperation operation = new AdGroupOperation();
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
-    operation.setCampaignId(campaignId);
 
     // Set Bid
     Bid bit = new Bid();
@@ -405,6 +414,11 @@ public class AdGroupServiceSample {
     manualCpcStrategy.setBiddingStrategyType(BiddingStrategyType.MANUAL_CPC);
     manualCpcStrategy.setInitialBid(bit);
 
+    // Set Settings
+    TargetingSetting targetingSetting = new TargetingSetting();
+    targetingSetting.setCriterionType(CriterionType.TARGET_LIST);
+    targetingSetting.setTargetAll(TargetAll.ACTIVE);
+
     // Set AutoBidding AdGroup
     AdGroup autoBiddingAdGroup = new AdGroup();
     autoBiddingAdGroup.setAccountId(accountId);
@@ -412,6 +426,7 @@ public class AdGroupServiceSample {
     autoBiddingAdGroup.setAdGroupName("SampleAutoBiddingAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
     autoBiddingAdGroup.setUserStatus(UserStatus.ACTIVE);
     autoBiddingAdGroup.setBiddingStrategyConfiguration(autoBiddingStrategy);
+    autoBiddingAdGroup.setSettings(targetingSetting);
 
     // Set ManualCpc AdGroup
     AdGroup manualCpcAdGroup = new AdGroup();
@@ -421,26 +436,31 @@ public class AdGroupServiceSample {
     manualCpcAdGroup.setUserStatus(UserStatus.ACTIVE);
     manualCpcAdGroup.setBiddingStrategyConfiguration(manualCpcStrategy);
 
-    operation.getOperand().addAll(Arrays.asList(autoBiddingAdGroup, manualCpcAdGroup));
+    // Set App AdGroup
+    AdGroup appAdGroup = new AdGroup();
+    appAdGroup.setAccountId(accountId);
+    appAdGroup.setCampaignId(appCampaignId);
+    appAdGroup.setAdGroupName("SampleAppAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    appAdGroup.setUserStatus(UserStatus.ACTIVE);
+
+    operation.getOperand().addAll(Arrays.asList(autoBiddingAdGroup, manualCpcAdGroup, appAdGroup));
 
     return operation;
   }
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
-   * @param campaignId long
    * @param biddingStrategyId long
    * @param adGroupValues AdGroupValues
    * @return AdGroupOperation
    */
-  public static AdGroupOperation createSampleSetRequest(long accountId, long campaignId, long biddingStrategyId, List<AdGroupValues> adGroupValues) {
+  public static AdGroupOperation createSampleSetRequest(long accountId, long biddingStrategyId, List<AdGroupValues> adGroupValues) {
     // Set Operation
     AdGroupOperation operation = new AdGroupOperation();
     operation.setOperator(Operator.SET);
     operation.setAccountId(accountId);
-    operation.setCampaignId(campaignId);
 
     // Set Operand
     for (AdGroupValues adGroupValue : adGroupValues) {
@@ -453,6 +473,11 @@ public class AdGroupServiceSample {
       BiddingStrategy autoBiddingStrategy = new BiddingStrategy();
       autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
       autoBiddingStrategy.setInitialBid(bit);
+
+      // Set Settings
+      TargetingSetting targetingSetting = new TargetingSetting();
+      targetingSetting.setCriterionType(CriterionType.TARGET_LIST);
+      targetingSetting.setTargetAll(TargetAll.DEACTIVE);
 
       // Set AutoBidding AdGroup
       AdGroup adGroup = new AdGroup();
@@ -472,18 +497,16 @@ public class AdGroupServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
-   * @param campaignId long
    * @param adGroupValues AdGroupValues
    * @return AdGroupOperation
    */
-  public static AdGroupOperation createSampleRemoveRequest(long accountId, long campaignId, List<AdGroupValues> adGroupValues) {
+  public static AdGroupOperation createSampleRemoveRequest(long accountId, List<AdGroupValues> adGroupValues) {
     // Set Operation
     AdGroupOperation operation = new AdGroupOperation();
     operation.setOperator(Operator.REMOVE);
     operation.setAccountId(accountId);
-    operation.setCampaignId(campaignId);
 
     // Set Operand
     for (AdGroupValues adGroupValue : adGroupValues) {
@@ -501,19 +524,18 @@ public class AdGroupServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
-   * @param campaignId long
    * @param adGroupValues AdGroupValues
    * @return AdGroupSelector
    */
-  public static AdGroupSelector createSampleGetRequest(long accountId, long campaignId, List<AdGroupValues> adGroupValues) {
+  public static AdGroupSelector createSampleGetRequest(long accountId, List<AdGroupValues> adGroupValues) {
     // Set Selector
     AdGroupSelector selector = new AdGroupSelector();
     selector.setAccountId(accountId);
-    selector.getCampaignIds().add(campaignId);
     for (AdGroupValues adGroupValue : adGroupValues) {
-      selector.getAdGroupIds().add((adGroupValue.getAdGroup().getAdGroupId()));
+      selector.getCampaignIds().add(adGroupValue.getAdGroup().getCampaignId());
+      selector.getAdGroupIds().add(adGroupValue.getAdGroup().getAdGroupId());
     }
     selector.getUserStatuses().addAll(Arrays.asList(UserStatus.ACTIVE, UserStatus.PAUSED));
     Paging paging = new Paging();

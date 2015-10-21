@@ -31,12 +31,16 @@ public class AdGroupAdServiceSampleTest {
   private long accountId;
   private long campaignId;
   private long adGroupId;
+  private long appCampaignId;
+  private long appAdGroupId;
 
   @Before
   public void setup() {
     accountId = SoapUtils.getAccountId();
     campaignId = SoapUtils.getCampaignId();
     adGroupId = SoapUtils.getAdGroupId();
+    appCampaignId = SoapUtils.getAppCampaignId();
+    appAdGroupId = SoapUtils.getAppAdGroupId();
   }
 
   /**
@@ -58,7 +62,7 @@ public class AdGroupAdServiceSampleTest {
   @Test
   public void testAdd() throws Exception {
     // Set Operation
-    AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId);
+    AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
 
     // Run
     List<AdGroupAdValues> addAdGroupAdValues = null;
@@ -87,7 +91,7 @@ public class AdGroupAdServiceSampleTest {
     // =================================================================
     List<AdGroupAdValues> addAdGroupAdValues = null;
     try {
-      AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId);
+      AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
       addAdGroupAdValues = AdGroupAdServiceSample.add(addAdGroupAdOperation);
     } catch (Exception e) {
       fail();
@@ -97,7 +101,7 @@ public class AdGroupAdServiceSampleTest {
     // AdGroupAdService SET
     // =================================================================
     // Set Operation
-    AdGroupAdOperation setAdGroupAdOperation = AdGroupAdServiceSample.createSampleSetRequest(accountId, campaignId, adGroupId, addAdGroupAdValues);
+    AdGroupAdOperation setAdGroupAdOperation = AdGroupAdServiceSample.createSampleSetRequest(accountId, addAdGroupAdValues);
 
     // Run
     List<AdGroupAdValues> setAdGroupAdValues = null;
@@ -126,7 +130,7 @@ public class AdGroupAdServiceSampleTest {
     // =================================================================
     List<AdGroupAdValues> addAdGroupAdValues = null;
     try {
-      AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId);
+      AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
       addAdGroupAdValues = AdGroupAdServiceSample.add(addAdGroupAdOperation);
     } catch (Exception e) {
       fail();
@@ -136,7 +140,7 @@ public class AdGroupAdServiceSampleTest {
     // AdGroupAdService REMOVE
     // =================================================================
     // Set Operation
-    AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId, addAdGroupAdValues);
+    AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, addAdGroupAdValues);
 
     // Run
     List<AdGroupAdValues> removeAdGroupAdValues = null;
@@ -194,7 +198,7 @@ public class AdGroupAdServiceSampleTest {
    */
   public void clean(List<AdGroupAdValues> adGroupAdValues) {
     try {
-      AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, adGroupAdValues);
       AdGroupAdServiceSample.remove(removeAdGroupAdOperation);
     } catch (Exception e) {
       fail();

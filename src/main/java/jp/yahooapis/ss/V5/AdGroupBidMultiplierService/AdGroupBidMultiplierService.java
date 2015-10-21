@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AdGroupBidMultiplierService", targetNamespace = "http://ss.yahooapis.jp/V5", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V5.2/AdGroupBidMultiplierService?wsdl")
+@WebServiceClient(name = "AdGroupBidMultiplierService", targetNamespace = "http://ss.yahooapis.jp/V5", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V5.3/AdGroupBidMultiplierService?wsdl")
 public class AdGroupBidMultiplierService
     extends Service
 {
@@ -30,7 +30,7 @@ public class AdGroupBidMultiplierService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V5.2/AdGroupBidMultiplierService?wsdl");
+            url = new URL("https://sandbox.ss.yahooapis.jp/services/V5.3/AdGroupBidMultiplierService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

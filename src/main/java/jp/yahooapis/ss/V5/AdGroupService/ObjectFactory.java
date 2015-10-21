@@ -172,6 +172,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TargetingSetting }
+     * 
+     */
+    public TargetingSetting createTargetingSetting() {
+        return new TargetingSetting();
+    }
+
+    /**
      * Create an instance of {@link BudgetOptimizerBiddingScheme }
      * 
      */
@@ -193,6 +201,14 @@ public class ObjectFactory {
      */
     public Bid createBid() {
         return new Bid();
+    }
+
+    /**
+     * Create an instance of {@link Settings }
+     * 
+     */
+    public Settings createSettings() {
+        return new Settings();
     }
 
     /**
