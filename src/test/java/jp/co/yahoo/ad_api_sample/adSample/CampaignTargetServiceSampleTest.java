@@ -27,11 +27,13 @@ public class CampaignTargetServiceSampleTest {
    */
   private long accountId;
   private long campaignId;
+  private long appCampaignId;
 
   @Before
   public void setup() {
     accountId = SoapUtils.getAccountId();
     campaignId = SoapUtils.getCampaignId();
+    appCampaignId = SoapUtils.getAppCampaignId();
   }
 
   /**
@@ -53,7 +55,7 @@ public class CampaignTargetServiceSampleTest {
   @Test
   public void testAdd() throws Exception {
     // Set Operation
-    CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId);
+    CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
 
     // Run
     List<CampaignTargetValues> addCampaignTargetValues = null;
@@ -82,7 +84,7 @@ public class CampaignTargetServiceSampleTest {
     // CampaignTargetService::ADD
     // =================================================================
     List<CampaignTargetValues> addCampaignTargetValues = null;
-    CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId);
+    CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
     try {
       addCampaignTargetValues = CampaignTargetServiceSample.add(addCampaignTargetOperation);
     } catch (Exception e) {
@@ -110,7 +112,7 @@ public class CampaignTargetServiceSampleTest {
     }
 
     // Clean
-    clean(setCampaignTargetValues);
+    clean(addCampaignTargetValues);
   }
 
   /**
@@ -123,7 +125,7 @@ public class CampaignTargetServiceSampleTest {
     // =================================================================
     List<CampaignTargetValues> addCampaignTargetValues = null;
     try {
-      CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId);
+      CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
       addCampaignTargetValues = CampaignTargetServiceSample.add(addCampaignTargetOperation);
     } catch (Exception e) {
       fail();

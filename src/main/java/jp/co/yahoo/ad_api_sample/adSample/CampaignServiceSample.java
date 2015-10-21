@@ -8,6 +8,7 @@ import javax.xml.ws.Holder;
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V5.CampaignService.AdServingOptimizationStatus;
+import jp.yahooapis.ss.V5.CampaignService.AppStore;
 import jp.yahooapis.ss.V5.CampaignService.BiddingStrategy;
 import jp.yahooapis.ss.V5.CampaignService.BiddingStrategyType;
 import jp.yahooapis.ss.V5.CampaignService.Budget;
@@ -21,6 +22,7 @@ import jp.yahooapis.ss.V5.CampaignService.CampaignReturnValue;
 import jp.yahooapis.ss.V5.CampaignService.CampaignSelector;
 import jp.yahooapis.ss.V5.CampaignService.CampaignService;
 import jp.yahooapis.ss.V5.CampaignService.CampaignServiceInterface;
+import jp.yahooapis.ss.V5.CampaignService.CampaignType;
 import jp.yahooapis.ss.V5.CampaignService.CampaignValues;
 import jp.yahooapis.ss.V5.CampaignService.EnhancedCpcBiddingScheme;
 import jp.yahooapis.ss.V5.CampaignService.Error;
@@ -340,12 +342,16 @@ public class CampaignServiceSample {
       }
     }
 
+    System.out.println("campaignType = " + campaign.getCampaignType());
+    System.out.println("appStore = " + campaign.getAppStore());
+    System.out.println("appId = " + campaign.getAppId());
+
     System.out.println("---------");
   }
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param biddingStrategyId long
    * @return CampaignOperation
@@ -387,6 +393,7 @@ public class CampaignServiceSample {
     autoBiddingCampaign.setBiddingStrategyConfiguration(autoBiddingStrategy);
     autoBiddingCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
     autoBiddingCampaign.getSettings().add(geoTargetTypeSetting);
+    autoBiddingCampaign.setCampaignType(CampaignType.STANDARD);
 
     // Set ManualCpc Campaign
     Campaign manualCpcCampaign = new Campaign();
@@ -399,15 +406,31 @@ public class CampaignServiceSample {
     manualCpcCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
     manualCpcCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
     manualCpcCampaign.getSettings().add(geoTargetTypeSetting);
+    manualCpcCampaign.setCampaignType(CampaignType.STANDARD);
 
-    operation.getOperand().addAll(Arrays.asList(autoBiddingCampaign, manualCpcCampaign));
+    // Set App Campaign
+    Campaign appCampaign = new Campaign();
+    appCampaign.setAccountId(accountId);
+    appCampaign.setCampaignName("SampleAppCampaign_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    appCampaign.setUserStatus(UserStatus.ACTIVE);
+    appCampaign.setStartDate("20300101");
+    appCampaign.setEndDate("20301231");
+    appCampaign.setBudget(budget);
+    appCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
+    appCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
+    appCampaign.getSettings().add(geoTargetTypeSetting);
+    appCampaign.setCampaignType(CampaignType.MOBILE_APP);
+    appCampaign.setAppStore(AppStore.ANDROID);
+    appCampaign.setAppId("SampleAppId_CreateOn_" + SoapUtils.getCurrentTimestamp());
+
+    operation.getOperand().addAll(Arrays.asList(autoBiddingCampaign, manualCpcCampaign, appCampaign));
 
     return operation;
   }
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param biddingStrategyId long
    * @param campaignValues CampaignValues
@@ -453,7 +476,7 @@ public class CampaignServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignValues CampaignValues
    * @return CampaignOperation
@@ -479,7 +502,7 @@ public class CampaignServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignValues CampaignValues
    * @return CampaignSelector

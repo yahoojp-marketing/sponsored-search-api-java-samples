@@ -20,6 +20,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="appId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="appPlatform" type="{http://ss.yahooapis.jp/V5}AppPlatform" minOccurs="0"/>
  *         &lt;element name="appConversionType" type="{http://ss.yahooapis.jp/V5}AppConversionType" minOccurs="0"/>
+ *         &lt;element name="snippetId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="snippetLabel" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="appPostbackUrl" type="{http://ss.yahooapis.jp/V5}AppPostbackUrl" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -32,7 +35,10 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "AppConversion", propOrder = {
     "appId",
     "appPlatform",
-    "appConversionType"
+    "appConversionType",
+    "snippetId",
+    "snippetLabel",
+    "appPostbackUrl"
 })
 public class AppConversion
     extends ConversionTracker
@@ -43,6 +49,9 @@ public class AppConversion
     protected AppPlatform appPlatform;
     @XmlSchemaType(name = "string")
     protected AppConversionType appConversionType;
+    protected Long snippetId;
+    protected String snippetLabel;
+    protected AppPostbackUrl appPostbackUrl;
 
     /**
      * Gets the value of the appId property.
@@ -114,6 +123,78 @@ public class AppConversion
      */
     public void setAppConversionType(AppConversionType value) {
         this.appConversionType = value;
+    }
+
+    /**
+     * Gets the value of the snippetId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getSnippetId() {
+        return snippetId;
+    }
+
+    /**
+     * Sets the value of the snippetId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setSnippetId(Long value) {
+        this.snippetId = value;
+    }
+
+    /**
+     * Gets the value of the snippetLabel property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSnippetLabel() {
+        return snippetLabel;
+    }
+
+    /**
+     * Sets the value of the snippetLabel property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSnippetLabel(String value) {
+        this.snippetLabel = value;
+    }
+
+    /**
+     * Gets the value of the appPostbackUrl property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AppPostbackUrl }
+     *     
+     */
+    public AppPostbackUrl getAppPostbackUrl() {
+        return appPostbackUrl;
+    }
+
+    /**
+     * Sets the value of the appPostbackUrl property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AppPostbackUrl }
+     *     
+     */
+    public void setAppPostbackUrl(AppPostbackUrl value) {
+        this.appPostbackUrl = value;
     }
 
 }

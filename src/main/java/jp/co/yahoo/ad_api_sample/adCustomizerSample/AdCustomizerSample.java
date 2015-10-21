@@ -28,6 +28,7 @@ import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyOperation;
 import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyValues;
 import jp.yahooapis.ss.V5.BiddingStrategyService.PageOnePromotedBiddingScheme;
 import jp.yahooapis.ss.V5.CampaignService.CampaignOperation;
+import jp.yahooapis.ss.V5.CampaignService.CampaignType;
 import jp.yahooapis.ss.V5.CampaignService.CampaignValues;
 import jp.yahooapis.ss.V5.FeedFolderService.FeedAttribute;
 import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderOperation;
@@ -55,9 +56,10 @@ public class AdCustomizerSample {
       // Setting
       // =================================================================
       long accountId = SoapUtils.getAccountId();
-      long biddingStrategyId = 0;
-      long campaignId = 0;
-      long adGroupId = 0;
+      long biddingStrategyId = SoapUtils.getBiddingStrategyId();
+      long campaignId = SoapUtils.getCampaignId();
+      long appCampaignId = SoapUtils.getAppCampaignId();
+      long adGroupId = SoapUtils.getAdGroupId();
       long feedFolderId = 0;
       Map<String, Long> feedAttributeIds = new HashMap<String, Long>();
       feedAttributeIds.put("AD_CUSTOMIZER_INTEGER", 0L);
@@ -69,7 +71,7 @@ public class AdCustomizerSample {
       // BiddingStrategyService::mutate(ADD)
       // =================================================================
       List<BiddingStrategyValues> biddingStrategyValues = null;
-      if (biddingStrategyId == 0) {
+      if (biddingStrategyId == 9999999999l) {
         BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
         biddingStrategyValues = BiddingStrategyServiceSample.add(addBiddingStrategyOperation);
         for (BiddingStrategyValues value : biddingStrategyValues) {
@@ -77,36 +79,36 @@ public class AdCustomizerSample {
             biddingStrategyId = value.getBiddingStrategy().getBiddingStrategyId();
           }
         }
-      } else {
-        biddingStrategyId = SoapUtils.getBiddingStrategyId();
       }
 
       // =================================================================
       // CampaignService::mutate(ADD)
       // =================================================================
       List<CampaignValues> campaignValues = null;
-      if (campaignId == 0) {
+      if (campaignId == 9999999999l || appCampaignId == 9999999999l) {
         CampaignOperation addCampaignOperation = CampaignServiceSample.createSampleAddRequest(accountId, biddingStrategyId);
         campaignValues = CampaignServiceSample.add(addCampaignOperation);
         for (CampaignValues value : campaignValues) {
-          campaignId = value.getCampaign().getCampaignId();
+          if (CampaignType.STANDARD.equals(value.getCampaign().getCampaignType())) {
+            campaignId = value.getCampaign().getCampaignId();
+          } else if (CampaignType.MOBILE_APP.equals(value.getCampaign().getCampaignType())) {
+            appCampaignId = value.getCampaign().getCampaignId();
+          }
         }
-      } else {
-        campaignId = SoapUtils.getCampaignId();
       }
 
       // =================================================================
       // AdGroupService::mutate(ADD)
       // =================================================================
       List<AdGroupValues> adGroupValues = null;
-      if (adGroupId == 0) {
-        AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, biddingStrategyId);
+      if (adGroupId == 9999999999l) {
+        AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
         adGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
         for (AdGroupValues value : adGroupValues) {
-          adGroupId = value.getAdGroup().getAdGroupId();
+          if (value.getAdGroup().getCampaignId() == campaignId) {
+            adGroupId = value.getAdGroup().getAdGroupId();
+          }
         }
-      } else {
-        adGroupId = SoapUtils.getAdGroupId();
       }
 
       // =================================================================
@@ -171,7 +173,7 @@ public class AdCustomizerSample {
       AdGroupAdOperation adGroupAdOperation = createSampleAdGroupAdRequest(accountId, campaignId, adGroupId, feedFolderValues);
       List<AdGroupAdValues> adGroupAdValues = AdGroupAdServiceSample.add(adGroupAdOperation);
       // GET
-      AdGroupAdSelector adGroupAdSelector = AdGroupAdServiceSample.createSampleGetRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdSelector adGroupAdSelector = AdGroupAdServiceSample.createSampleGetRequest(accountId, adGroupAdValues);
       AdGroupAdServiceSample.get(adGroupAdSelector);
 
       // =================================================================
@@ -179,7 +181,7 @@ public class AdCustomizerSample {
       // AdGroupCriterionService, AdGroupService, Campaign, BiddingStrategy
       // =================================================================
       // AdGroupAdService
-      AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupAdValues);
+      AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, adGroupAdValues);
       AdGroupAdServiceSample.remove(removeAdGroupAdOperation);
 
       // FeefItemService
@@ -196,7 +198,7 @@ public class AdCustomizerSample {
 
       // AdGroupService
       if (adGroupValues != null) {
-        AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupValues);
+        AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, adGroupValues);
         AdGroupServiceSample.remove(removeAdGroupOperation);
       }
 

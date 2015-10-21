@@ -48,7 +48,7 @@ public class AdDisplayOptionSample {
 
   /**
    * main method for AdDisplayOptionSample
-   * 
+   *
    * @param args command line arguments
    */
   public static void main(String[] args) throws Exception {
@@ -216,7 +216,6 @@ public class AdDisplayOptionSample {
       AdGroupFeed setAdGroupFeed1 = new AdGroupFeed();
       setAdGroupFeed1.setFeedItemId(feedItemId2);
       setAdGroupFeedListOperand.getAdGroupFeed().add(setAdGroupFeed1);
-      setAdGroupFeedListOperand.setDevicePlatform(jp.yahooapis.ss.V5.AdGroupFeedService.DevicePlatform.SMART_PHONE);
 
       AdGroupFeedOperation setAdGroupFeedOperation = new AdGroupFeedOperation();
       setAdGroupFeedOperation.setOperator(jp.yahooapis.ss.V5.AdGroupFeedService.Operator.SET);
@@ -400,8 +399,10 @@ public class AdDisplayOptionSample {
       // remove FeedItemService
       // =================================================================
       FeedItemOperation removeFeedItemOperation_quicklink = FeedItemServiceSample.createSampleRemoveRequest(accountId, setFeedItemValues_quicklink);
+      removeFeedItemOperation_quicklink.setPlaceholderType(PlaceholderType.QUICKLINK);
       FeedItemServiceSample.remove(removeFeedItemOperation_quicklink);
       FeedItemOperation removeFeedItemOperation_callextension = FeedItemServiceSample.createSampleRemoveRequest(accountId, setFeedItemValues_callextension);
+      removeFeedItemOperation_callextension.setPlaceholderType(PlaceholderType.CALLEXTENSION);
       FeedItemServiceSample.remove(removeFeedItemOperation_callextension);
 
     } catch (Exception e) {
@@ -412,7 +413,7 @@ public class AdDisplayOptionSample {
 
   /**
    * display CampaignFeed entity to stdout.
-   * 
+   *
    * @param campaignFeed CampaignFeed entity for display.
    */
   private static void displayCampaignFeed(CampaignFeedList campaignFeedList) {
@@ -432,7 +433,7 @@ public class AdDisplayOptionSample {
 
   /**
    * display AdGroupFeed entity to stdout.
-   * 
+   *
    * @param adGroupFeed AdGroupFeed entity for display.
    */
   private static void displayAdGroupFeed(AdGroupFeedList adGroupFeedList) {
@@ -454,7 +455,7 @@ public class AdDisplayOptionSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @return FeedItemOperation
    */
@@ -509,7 +510,7 @@ public class AdDisplayOptionSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @return FeedItemOperation
    */
@@ -553,7 +554,7 @@ public class AdDisplayOptionSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param feedItemValues FeedItemValues
    * @return FeedItemOperation
@@ -591,7 +592,7 @@ public class AdDisplayOptionSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param feedItemValues FeedItemValues
    * @return FeedItemOperation

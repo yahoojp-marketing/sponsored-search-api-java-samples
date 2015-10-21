@@ -25,12 +25,14 @@ public class AdGroupServiceSampleTest {
    */
   private long accountId;
   private long campaignId;
+  private long appCampaignId;
   private long biddingStrategyId;
 
   @Before
   public void setup() {
     accountId = SoapUtils.getAccountId();
     campaignId = SoapUtils.getCampaignId();
+    appCampaignId = SoapUtils.getAppCampaignId();
     biddingStrategyId = SoapUtils.getBiddingStrategyId();
   }
 
@@ -53,7 +55,7 @@ public class AdGroupServiceSampleTest {
   @Test
   public void testAdd() throws Exception {
     // Set Operation
-    AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, biddingStrategyId);
+    AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
 
     // Run
     List<AdGroupValues> addAdGroupValues = null;
@@ -82,7 +84,7 @@ public class AdGroupServiceSampleTest {
     // =================================================================
     List<AdGroupValues> addAdGroupValues = null;
     try {
-      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
       addAdGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
     } catch (Exception e) {
       fail();
@@ -92,7 +94,7 @@ public class AdGroupServiceSampleTest {
     // AdGroupService SET
     // =================================================================
     // Set Operation
-    AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, campaignId, biddingStrategyId, addAdGroupValues);
+    AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, biddingStrategyId, addAdGroupValues);
 
     // Run
     List<AdGroupValues> setAdGroupValues = null;
@@ -121,7 +123,7 @@ public class AdGroupServiceSampleTest {
     // =================================================================
     List<AdGroupValues> addAdGroupValues = null;
     try {
-      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
       addAdGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
     } catch (Exception e) {
       fail();
@@ -131,7 +133,7 @@ public class AdGroupServiceSampleTest {
     // AdGroupService REMOVE
     // =================================================================
     // Set Operation
-    AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, campaignId, addAdGroupValues);
+    AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, addAdGroupValues);
 
     // Run
     List<AdGroupValues> removeAdGroupValues = null;
@@ -153,7 +155,7 @@ public class AdGroupServiceSampleTest {
    */
   public void clean(List<AdGroupValues> adGroupValues) {
     try {
-      AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupValues);
+      AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, adGroupValues);
       AdGroupServiceSample.set(removeAdGroupOperation);
     } catch (Exception e) {
       fail();

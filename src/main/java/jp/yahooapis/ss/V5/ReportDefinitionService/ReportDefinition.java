@@ -26,9 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="adGroupIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="kwIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="adIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="feedFolderIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="feedItemIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="feedFolderIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="biddingStrategyIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="targetListIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="reportName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reportType" type="{http://ss.yahooapis.jp/V5}ReportType" minOccurs="0"/>
  *         &lt;element name="dateRangeType" type="{http://ss.yahooapis.jp/V5}ReportDateRangeType" minOccurs="0"/>
@@ -60,9 +61,10 @@ import javax.xml.bind.annotation.XmlType;
     "adGroupIds",
     "kwIds",
     "adIds",
-    "feedFolderIds",
     "feedItemIds",
+    "feedFolderIds",
     "biddingStrategyIds",
+    "targetListIds",
     "reportName",
     "reportType",
     "dateRangeType",
@@ -92,11 +94,13 @@ public class ReportDefinition {
     @XmlElement(type = Long.class)
     protected List<Long> adIds;
     @XmlElement(type = Long.class)
-    protected List<Long> feedFolderIds;
-    @XmlElement(type = Long.class)
     protected List<Long> feedItemIds;
     @XmlElement(type = Long.class)
+    protected List<Long> feedFolderIds;
+    @XmlElement(type = Long.class)
     protected List<Long> biddingStrategyIds;
+    @XmlElement(type = Long.class)
+    protected List<Long> targetListIds;
     protected String reportName;
     @XmlSchemaType(name = "string")
     protected ReportType reportType;
@@ -286,35 +290,6 @@ public class ReportDefinition {
     }
 
     /**
-     * Gets the value of the feedFolderIds property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the feedFolderIds property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getFeedFolderIds().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Long }
-     * 
-     * 
-     */
-    public List<Long> getFeedFolderIds() {
-        if (feedFolderIds == null) {
-            feedFolderIds = new ArrayList<Long>();
-        }
-        return this.feedFolderIds;
-    }
-
-    /**
      * Gets the value of the feedItemIds property.
      * 
      * <p>
@@ -344,6 +319,35 @@ public class ReportDefinition {
     }
 
     /**
+     * Gets the value of the feedFolderIds property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the feedFolderIds property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getFeedFolderIds().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Long }
+     * 
+     * 
+     */
+    public List<Long> getFeedFolderIds() {
+        if (feedFolderIds == null) {
+            feedFolderIds = new ArrayList<Long>();
+        }
+        return this.feedFolderIds;
+    }
+
+    /**
      * Gets the value of the biddingStrategyIds property.
      * 
      * <p>
@@ -370,6 +374,35 @@ public class ReportDefinition {
             biddingStrategyIds = new ArrayList<Long>();
         }
         return this.biddingStrategyIds;
+    }
+
+    /**
+     * Gets the value of the targetListIds property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the targetListIds property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getTargetListIds().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link Long }
+     * 
+     * 
+     */
+    public List<Long> getTargetListIds() {
+        if (targetListIds == null) {
+            targetListIds = new ArrayList<Long>();
+        }
+        return this.targetListIds;
     }
 
     /**

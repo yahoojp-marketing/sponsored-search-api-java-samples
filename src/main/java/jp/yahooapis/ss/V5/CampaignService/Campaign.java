@@ -33,6 +33,9 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="conversionOptimizerEligibility" type="{http://ss.yahooapis.jp/V5}ConversionOptimizerEligibility" minOccurs="0"/>
  *         &lt;element name="adServingOptimizationStatus" type="{http://ss.yahooapis.jp/V5}AdServingOptimizationStatus" minOccurs="0"/>
  *         &lt;element name="settings" type="{http://ss.yahooapis.jp/V5}Settings" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="campaignType" type="{http://ss.yahooapis.jp/V5}CampaignType" minOccurs="0"/>
+ *         &lt;element name="appStore" type="{http://ss.yahooapis.jp/V5}AppStore" minOccurs="0"/>
+ *         &lt;element name="appId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -56,7 +59,10 @@ import javax.xml.bind.annotation.XmlType;
     "failedBiddingStrategyConfiguration",
     "conversionOptimizerEligibility",
     "adServingOptimizationStatus",
-    "settings"
+    "settings",
+    "campaignType",
+    "appStore",
+    "appId"
 })
 public class Campaign {
 
@@ -79,6 +85,11 @@ public class Campaign {
     @XmlSchemaType(name = "string")
     protected AdServingOptimizationStatus adServingOptimizationStatus;
     protected List<Settings> settings;
+    @XmlSchemaType(name = "string")
+    protected CampaignType campaignType;
+    @XmlSchemaType(name = "string")
+    protected AppStore appStore;
+    protected String appId;
 
     /**
      * Gets the value of the accountId property.
@@ -411,6 +422,78 @@ public class Campaign {
             settings = new ArrayList<Settings>();
         }
         return this.settings;
+    }
+
+    /**
+     * Gets the value of the campaignType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CampaignType }
+     *     
+     */
+    public CampaignType getCampaignType() {
+        return campaignType;
+    }
+
+    /**
+     * Sets the value of the campaignType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CampaignType }
+     *     
+     */
+    public void setCampaignType(CampaignType value) {
+        this.campaignType = value;
+    }
+
+    /**
+     * Gets the value of the appStore property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AppStore }
+     *     
+     */
+    public AppStore getAppStore() {
+        return appStore;
+    }
+
+    /**
+     * Sets the value of the appStore property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AppStore }
+     *     
+     */
+    public void setAppStore(AppStore value) {
+        this.appStore = value;
+    }
+
+    /**
+     * Gets the value of the appId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAppId() {
+        return appId;
+    }
+
+    /**
+     * Sets the value of the appId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAppId(String value) {
+        this.appId = value;
     }
 
 }

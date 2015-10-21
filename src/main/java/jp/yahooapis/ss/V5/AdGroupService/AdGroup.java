@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="biddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V5}BiddingStrategy" minOccurs="0"/>
  *         &lt;element name="biddingStrategyFailedReason" type="{http://ss.yahooapis.jp/V5}BiddingStrategyFailedReason" minOccurs="0"/>
  *         &lt;element name="failedBiddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V5}BiddingStrategy" minOccurs="0"/>
+ *         &lt;element name="settings" type="{http://ss.yahooapis.jp/V5}Settings" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,7 +45,8 @@ import javax.xml.bind.annotation.XmlType;
     "userStatus",
     "biddingStrategyConfiguration",
     "biddingStrategyFailedReason",
-    "failedBiddingStrategyConfiguration"
+    "failedBiddingStrategyConfiguration",
+    "settings"
 })
 public class AdGroup {
 
@@ -59,6 +61,7 @@ public class AdGroup {
     @XmlSchemaType(name = "string")
     protected BiddingStrategyFailedReason biddingStrategyFailedReason;
     protected BiddingStrategy failedBiddingStrategyConfiguration;
+    protected Settings settings;
 
     /**
      * Gets the value of the accountId property.
@@ -258,6 +261,30 @@ public class AdGroup {
      */
     public void setFailedBiddingStrategyConfiguration(BiddingStrategy value) {
         this.failedBiddingStrategyConfiguration = value;
+    }
+
+    /**
+     * Gets the value of the settings property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Settings }
+     *     
+     */
+    public Settings getSettings() {
+        return settings;
+    }
+
+    /**
+     * Sets the value of the settings property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Settings }
+     *     
+     */
+    public void setSettings(Settings value) {
+        this.settings = value;
     }
 
 }

@@ -156,6 +156,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AppPostbackUrl }
+     * 
+     */
+    public AppPostbackUrl createAppPostbackUrl() {
+        return new AppPostbackUrl();
+    }
+
+    /**
      * Create an instance of {@link Paging }
      * 
      */

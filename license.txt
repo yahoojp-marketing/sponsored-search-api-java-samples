@@ -1,0 +1,18 @@
+=======
+ご注意：　Yahoo!プロモーション広告API - サンプルコードの利用に関して
+=======
+
+
+Yahoo! JAPANの提供するAPIに関するサンプルコードは、別途Yahoo! JAPANとの間で締結いただいた当該APIの提供に関する契約に基づき、APIユーザー様に提供されるものであり、Yahoo! JAPANとの間で当該契約を締結いただいていない場合は、サンプルコードをご利用いただけません。 
+また、APIユーザー様に予め通知することなく、サンプルコードの内容や仕様の変更または提供の停止もしくは中止をする場合がありますので、予めご了承のうえご利用ください。
+
+
+
+=======
+NOTICE：　Yahoo! Promotional Ads API - For use of sample code
+=======
+
+
+The sample code of Yahoo! Promotional Ads API is provided to API users only who concluded the contract of "Application to Use Yahoo! Promotional Ads API" with Yahoo Japan Corporation. 
+
+Additionally, please note before using it that Yahoo Japan Corporation may change the contents and the specification of the sample code, and may discontinue providing the sample code without any notice.

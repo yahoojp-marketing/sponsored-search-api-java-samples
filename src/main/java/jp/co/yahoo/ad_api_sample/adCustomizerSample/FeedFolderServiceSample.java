@@ -164,7 +164,7 @@ public class FeedFolderServiceSample {
 
   /**
    * Sample Program for FeedFolderService REMOVE.
-   * 
+   *
    * @param operation FeedFolderOperation
    * @return FeedFolderValues
    * @throws Exception
@@ -203,7 +203,7 @@ public class FeedFolderServiceSample {
 
   /**
    * Sample Program for FeedFolderService GET.
-   * 
+   *
    * @param feedFolderSelector FeedFolderSelector
    * @return FeedFolderValues
    * @throws Exception
@@ -243,7 +243,7 @@ public class FeedFolderServiceSample {
 
   /**
    * display FeedFolder entity to stdout.
-   * 
+   *
    * @param feedFolder FeedFolder entity for display.
    */
   public static void display(FeedFolder feedFolder) {
@@ -266,7 +266,7 @@ public class FeedFolderServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId Account ID
    * @return FeedFolderOperation
    */
@@ -304,7 +304,7 @@ public class FeedFolderServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId Account ID
    * @param feedFolderValues FeedFolderValues entity for set.
    * @return FeedFolderOperation
@@ -346,7 +346,7 @@ public class FeedFolderServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId Account ID
    * @param feedFolderValues FeedFolderValues entity for remove.
    * @return FeedFolderOperation
@@ -372,7 +372,7 @@ public class FeedFolderServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId Account ID
    * @param feedFolderValues FeedFolderValues entity for get.
    * @return FeedFolderSelector

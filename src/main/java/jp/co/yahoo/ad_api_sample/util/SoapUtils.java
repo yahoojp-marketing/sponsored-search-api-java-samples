@@ -74,9 +74,17 @@ public class SoapUtils {
    */
   private static long CAMPAIGN_ID = -1;
   /**
+   * Campaign ID (App)
+   */
+  private static long APP_CAMPAIGN_ID = -1;
+  /**
    * AdGroup ID
    */
   private static long ADGROUP_ID = -1;
+  /**
+   * AdGroup ID (App)
+   */
+  private static long APP_ADGROUP_ID = -1;
   /**
    * App ID
    */
@@ -105,6 +113,10 @@ public class SoapUtils {
    * AdGroupCriterion ID
    */
   private static List<Long> ADGROUP_CRITERION_IDS = null;
+  /**
+   * Target List ID
+   */
+  private static long TARGET_LIST_ID = -1;
   /**
    * location cache
    */
@@ -182,10 +194,20 @@ public class SoapUtils {
       } else {
         System.out.println("Warn : CAMPAIGNID does not exist in the api_config.properties.");
       }
+      if (bundle.containsKey("APPCAMPAIGNID")) {
+        APP_CAMPAIGN_ID = Long.parseLong(bundle.getString("APPCAMPAIGNID"));
+      } else {
+        System.out.println("Warn : APPCAMPAIGNID does not exist in the api_config.properties.");
+      }
       if (bundle.containsKey("ADGROUPID")) {
         ADGROUP_ID = Long.parseLong(bundle.getString("ADGROUPID"));
       } else {
         System.out.println("Warn : ADGROUPID does not exist in the api_config.properties.");
+      }
+      if (bundle.containsKey("APPADGROUPID")) {
+        APP_ADGROUP_ID = Long.parseLong(bundle.getString("APPADGROUPID"));
+      } else {
+        System.out.println("Warn : APPADGROUPID does not exist in the api_config.properties.");
       }
       if (bundle.containsKey("APPID")) {
         APP_ID = bundle.getString("APPID");
@@ -227,6 +249,12 @@ public class SoapUtils {
         }
       } else {
         System.out.println("Info : ADGROUPCRITERIONIDS does not exist in the api_config.properties.");
+      }
+
+      if (bundle.containsKey("TARGETLISTID")) {
+        TARGET_LIST_ID = Long.parseLong(bundle.getString("TARGETLISTID"));
+      } else {
+        System.out.println("Warn : TARGETLISTID does not exist in the api_config.properties.");
       }
 
       if (failed) {
@@ -277,12 +305,30 @@ public class SoapUtils {
   }
 
   /**
+   * get Campaign ID (App) from config file.
+   *
+   * @return campaign ID (App).
+   */
+  public static long getAppCampaignId() {
+    return APP_CAMPAIGN_ID;
+  }
+
+  /**
    * get AdGroup ID from config file.
    *
    * @return adGroup ID.
    */
   public static long getAdGroupId() {
     return ADGROUP_ID;
+  }
+
+  /**
+   * get AdGroup ID (App) from config file.
+   *
+   * @return adGroup ID (App).
+   */
+  public static long getAppAdGroupId() {
+    return APP_ADGROUP_ID;
   }
 
   /**
@@ -296,7 +342,7 @@ public class SoapUtils {
 
   /**
    * get FeedFolder ID from config file.
-   * 
+   *
    * @return FeedFolder ID.
    */
   public static long getFeedFolderId() {
@@ -305,7 +351,7 @@ public class SoapUtils {
 
   /**
    * get IntegerType FeedAttribute ID from config file.
-   * 
+   *
    * @return IntegerType FeedAttribute ID.
    */
   public static long getIntegerFeedAttributeId() {
@@ -314,7 +360,7 @@ public class SoapUtils {
 
   /**
    * get PriceType FeedAttribute ID from config file.
-   * 
+   *
    * @return PriceType FeedAttribute ID.
    */
   public static long getPriceFeedAttributeId() {
@@ -323,7 +369,7 @@ public class SoapUtils {
 
   /**
    * get DateType FeedAttribute ID from config file.
-   * 
+   *
    * @return DateType FeedAttribute ID.
    */
   public static long getDateFeedAttributeId() {
@@ -332,7 +378,7 @@ public class SoapUtils {
 
   /**
    * get StringType FeedAttribute ID from config file.
-   * 
+   *
    * @return StringType FeedAttribute ID.
    */
   public static long getStringFeedAttributeId() {
@@ -346,6 +392,15 @@ public class SoapUtils {
    */
   public static List<Long> getAdGroupCriterionIds() {
     return ADGROUP_CRITERION_IDS;
+  }
+
+  /**
+   * get Target List ID from config file.
+   *
+   * @return Target List ID.
+   */
+  public static long getTargetListId() {
+    return TARGET_LIST_ID;
   }
 
   /**
