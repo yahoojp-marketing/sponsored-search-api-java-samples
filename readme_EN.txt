@@ -6,21 +6,21 @@ Version 5.3.0
 [Change history]
 -----------
 2015/09/16:
-- Correspond to Version 5.3.
+- Correspond to Version 5.3.0.
 
 2015/05/20:
-- Correspond to Version 5.2.
+- Correspond to Version 5.2.0.
 - Correspond to Java 1.8.
 - Changed the project environment to Maven.
 
 2014/06/13:
-- Correspond to Version 5.1.
+- Correspond to Version 5.1.0.
 
 2013/12/15:
-- Correspond to Version 5.0.
+- Correspond to Version 5.0.0.
 
 2013/08/28:
-- Additional API from Version 4.2: Correspond to AdGroupBidMultiplierService.
+- Additional API from Version 4.2.0: Correspond to AdGroupBidMultiplierService.
 - Soap API Library is changed to JAX-WS.
 
 2013/07/22:
