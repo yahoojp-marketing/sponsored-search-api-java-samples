@@ -8,10 +8,10 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetOperation;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetSelector;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetValues;
-import jp.yahooapis.ss.V5.CampaignTargetService.Paging;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetOperation;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetSelector;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetValues;
+import jp.yahooapis.ss.V6.CampaignTargetService.Paging;
 
 import org.junit.Before;
 import org.junit.Test;

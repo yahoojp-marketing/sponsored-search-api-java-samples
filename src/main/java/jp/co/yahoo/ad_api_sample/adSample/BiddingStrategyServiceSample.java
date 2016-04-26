@@ -7,26 +7,26 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.BiddingStrategyServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BidChangesForRaisesOnly;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategy;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyPage;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyReturnValue;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategySelector;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyService;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyServiceInterface;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyType;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V5.BiddingStrategyService.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.V5.BiddingStrategyService.Error;
-import jp.yahooapis.ss.V5.BiddingStrategyService.Operator;
-import jp.yahooapis.ss.V5.BiddingStrategyService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V5.BiddingStrategyService.Paging;
-import jp.yahooapis.ss.V5.BiddingStrategyService.RaiseBidWhenBudgetConstrained;
-import jp.yahooapis.ss.V5.BiddingStrategyService.RaiseBidWhenLowQualityScore;
-import jp.yahooapis.ss.V5.BiddingStrategyService.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.V5.BiddingStrategyService.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.V5.BiddingStrategyService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BidChangesForRaisesOnly;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategy;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyPage;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyReturnValue;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategySelector;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyService;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyServiceInterface;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyType;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
+import jp.yahooapis.ss.V6.BiddingStrategyService.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.V6.BiddingStrategyService.Error;
+import jp.yahooapis.ss.V6.BiddingStrategyService.Operator;
+import jp.yahooapis.ss.V6.BiddingStrategyService.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.V6.BiddingStrategyService.Paging;
+import jp.yahooapis.ss.V6.BiddingStrategyService.RaiseBidWhenBudgetConstrained;
+import jp.yahooapis.ss.V6.BiddingStrategyService.RaiseBidWhenLowQualityScore;
+import jp.yahooapis.ss.V6.BiddingStrategyService.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.V6.BiddingStrategyService.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.V6.BiddingStrategyService.TargetSpendBiddingScheme;
 
 /**
  * Sample Program for BiddingStrategyService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

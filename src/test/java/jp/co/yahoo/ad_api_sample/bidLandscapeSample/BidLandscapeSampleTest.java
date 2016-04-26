@@ -8,9 +8,9 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscapeSelector;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscapeValues;
-import jp.yahooapis.ss.V5.BidLandscapeService.SimType;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscapeSelector;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscapeValues;
+import jp.yahooapis.ss.V6.BidLandscapeService.SimType;
 
 import org.junit.Before;
 import org.junit.Test;

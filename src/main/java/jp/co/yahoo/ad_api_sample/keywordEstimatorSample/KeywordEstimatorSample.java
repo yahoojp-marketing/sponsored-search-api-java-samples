@@ -7,19 +7,19 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.KeywordEstimatorServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.AdGroupEstimateRequest;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.CampaignEstimateRequest;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.Error;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.EstimateKeyword;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.IsNegativeBool;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordEstimateRequest;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordEstimateResult;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordEstimateValues;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordEstimatorPage;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordEstimatorSelector;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordEstimatorService;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordEstimatorServiceInterface;
-import jp.yahooapis.ss.V5.KeywordEstimatorService.KeywordMatchType;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.AdGroupEstimateRequest;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.CampaignEstimateRequest;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.Error;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.EstimateKeyword;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.IsNegativeBool;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimateRequest;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimateResult;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimateValues;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorPage;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorSelector;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorService;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorServiceInterface;
+import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordMatchType;
 
 /**
  * Sample Program for KeywordEstimatorService. Copyright (C) 2012 Yahoo Japan Corporation. All

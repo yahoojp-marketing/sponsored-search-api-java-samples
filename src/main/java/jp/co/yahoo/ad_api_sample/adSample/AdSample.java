@@ -3,31 +3,31 @@ package jp.co.yahoo.ad_api_sample.adSample;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdOperation;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdSelector;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdValues;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierOperation;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierSelector;
-import jp.yahooapis.ss.V5.AdGroupCriterionService.AdGroupCriterionOperation;
-import jp.yahooapis.ss.V5.AdGroupCriterionService.AdGroupCriterionSelector;
-import jp.yahooapis.ss.V5.AdGroupCriterionService.AdGroupCriterionValues;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupOperation;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupSelector;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupValues;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategySelector;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V5.BiddingStrategyService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionOperation;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionSelector;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionValues;
-import jp.yahooapis.ss.V5.CampaignService.CampaignOperation;
-import jp.yahooapis.ss.V5.CampaignService.CampaignSelector;
-import jp.yahooapis.ss.V5.CampaignService.CampaignType;
-import jp.yahooapis.ss.V5.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetOperation;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetSelector;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetValues;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdOperation;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdSelector;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdValues;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierOperation;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierSelector;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionOperation;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionSelector;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionValues;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupSelector;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategySelector;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
+import jp.yahooapis.ss.V6.BiddingStrategyService.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionOperation;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionSelector;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionValues;
+import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
+import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
+import jp.yahooapis.ss.V6.CampaignService.CampaignType;
+import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetOperation;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetSelector;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetValues;
 
 
 /**
@@ -60,6 +60,11 @@ public class AdSample {
       // ADD
       BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
       List<BiddingStrategyValues> biddingStrategyValues = BiddingStrategyServiceSample.add(addBiddingStrategyOperation);
+      
+      // sleep 30 second.
+      System.out.println("\n***** sleep 30 seconds *****\n");
+      Thread.sleep(30000);
+      
       // GET
       BiddingStrategySelector biddingStrategySelector = BiddingStrategyServiceSample.createSampleGetRequest(accountId, biddingStrategyValues);
       BiddingStrategyServiceSample.get(biddingStrategySelector);
@@ -73,6 +78,10 @@ public class AdSample {
         }
       }
 
+      // sleep 30 second.
+      System.out.println("\n***** sleep 30 seconds *****\n");
+      Thread.sleep(30000);
+      
       // =================================================================
       // CampaignService
       // =================================================================

@@ -7,20 +7,20 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.FeedFolderServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.FeedFolderService.Error;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedAttribute;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolder;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderOperation;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderPage;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderReturnValue;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderSelector;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderService;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderServiceInterface;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderValues;
-import jp.yahooapis.ss.V5.FeedFolderService.Operator;
-import jp.yahooapis.ss.V5.FeedFolderService.Paging;
-import jp.yahooapis.ss.V5.FeedFolderService.PlaceholderField;
-import jp.yahooapis.ss.V5.FeedFolderService.PlaceholderType;
+import jp.yahooapis.ss.V6.FeedFolderService.Error;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedAttribute;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolder;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderOperation;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderPage;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderReturnValue;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderSelector;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderService;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderServiceInterface;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderValues;
+import jp.yahooapis.ss.V6.FeedFolderService.Operator;
+import jp.yahooapis.ss.V6.FeedFolderService.Paging;
+import jp.yahooapis.ss.V6.FeedFolderService.PlaceholderField;
+import jp.yahooapis.ss.V6.FeedFolderService.PlaceholderType;
 
 /**
  * Sample Program for FeedFolderService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

@@ -6,8 +6,8 @@ import java.util.List;
 import jp.co.yahoo.ad_api_sample.error.ErrorDetailEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntityFactory;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.Error;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.ErrorDetail;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.Error;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.ErrorDetail;
 
 public class AdGroupRetargetingListServiceErrorEntityFactory implements ErrorEntityFactory {
 

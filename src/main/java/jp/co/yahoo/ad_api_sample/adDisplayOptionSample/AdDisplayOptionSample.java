@@ -9,36 +9,40 @@ import jp.co.yahoo.ad_api_sample.adCustomizerSample.FeedItemServiceSample;
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupFeedServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignFeedServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeed;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedList;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedOperation;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedPage;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedReturnValue;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedSelector;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedService;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedServiceInterface;
-import jp.yahooapis.ss.V5.AdGroupFeedService.AdGroupFeedValues;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeed;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedList;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedOperation;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedPage;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedReturnValue;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedSelector;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedService;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedServiceInterface;
-import jp.yahooapis.ss.V5.CampaignFeedService.CampaignFeedValues;
-import jp.yahooapis.ss.V5.CampaignFeedService.DevicePlatform;
-import jp.yahooapis.ss.V5.FeedItemService.DayOfWeek;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItem;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemAttribute;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemOperation;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemSchedule;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemScheduling;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemSelector;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemValues;
-import jp.yahooapis.ss.V5.FeedItemService.MinuteOfHour;
-import jp.yahooapis.ss.V5.FeedItemService.PlaceholderField;
-import jp.yahooapis.ss.V5.FeedItemService.PlaceholderType;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeed;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedList;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedOperation;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedPage;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedReturnValue;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedSelector;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedService;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedServiceInterface;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedValues;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeed;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedList;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedOperation;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedPage;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedReturnValue;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedSelector;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedService;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedServiceInterface;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedValues;
+import jp.yahooapis.ss.V6.CampaignFeedService.DevicePlatform;
+import jp.yahooapis.ss.V6.FeedItemService.Advanced;
+import jp.yahooapis.ss.V6.FeedItemService.CustomParameter;
+import jp.yahooapis.ss.V6.FeedItemService.CustomParameters;
+import jp.yahooapis.ss.V6.FeedItemService.DayOfWeek;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItem;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemAttribute;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemSchedule;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemScheduling;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
+import jp.yahooapis.ss.V6.FeedItemService.IsRemove;
+import jp.yahooapis.ss.V6.FeedItemService.MinuteOfHour;
+import jp.yahooapis.ss.V6.FeedItemService.PlaceholderField;
+import jp.yahooapis.ss.V6.FeedItemService.PlaceholderType;
 
 /**
  * Sample Program for FeedItemService,CampaignFeedService,AdGroupFeedService Copyright (C) 2013
@@ -81,6 +85,7 @@ public class AdDisplayOptionSample {
       FeedItemServiceSample.get(feedItemSelector2);
       // wait for sandbox review
       Thread.sleep(30000);
+
       // SET QUICKLINK
       FeedItemOperation setFeedItemOperation_quicklink = createSampleFeedItemServiceSetRequest_quicklink(accountId, addfeedItemValues_quicklink);
       List<FeedItemValues> setFeedItemValues_quicklink = FeedItemServiceSample.set(setFeedItemOperation_quicklink);
@@ -112,14 +117,14 @@ public class AdDisplayOptionSample {
       CampaignFeedList setCampaignFeedListOperand = new CampaignFeedList();
       setCampaignFeedListOperand.setAccountId(accountId);
       setCampaignFeedListOperand.setCampaignId(campaignId);
-      setCampaignFeedListOperand.setPlaceholderType(jp.yahooapis.ss.V5.CampaignFeedService.PlaceholderType.QUICKLINK);
+      setCampaignFeedListOperand.setPlaceholderType(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.QUICKLINK);
       CampaignFeed setCampaignFeed1 = new CampaignFeed();
       setCampaignFeed1.setFeedItemId(feedItemId1);
       setCampaignFeedListOperand.getCampaignFeed().add(setCampaignFeed1);
       setCampaignFeedListOperand.setDevicePlatform(DevicePlatform.DESKTOP);
 
       CampaignFeedOperation setCampaignFeedOperation = new CampaignFeedOperation();
-      setCampaignFeedOperation.setOperator(jp.yahooapis.ss.V5.CampaignFeedService.Operator.SET);
+      setCampaignFeedOperation.setOperator(jp.yahooapis.ss.V6.CampaignFeedService.Operator.SET);
       setCampaignFeedOperation.setAccountId(accountId);
       setCampaignFeedOperation.getOperand().add(setCampaignFeedListOperand);
 
@@ -128,7 +133,7 @@ public class AdDisplayOptionSample {
       System.out.println("CampaignFeedService::mutate(SET)");
       System.out.println("############################################");
       Holder<CampaignFeedReturnValue> setCampaignFeedReturnValueHolder = new Holder<CampaignFeedReturnValue>();
-      Holder<List<jp.yahooapis.ss.V5.CampaignFeedService.Error>> setCampaignFeedErrorHolder = new Holder<List<jp.yahooapis.ss.V5.CampaignFeedService.Error>>();
+      Holder<List<jp.yahooapis.ss.V6.CampaignFeedService.Error>> setCampaignFeedErrorHolder = new Holder<List<jp.yahooapis.ss.V6.CampaignFeedService.Error>>();
       campaignFeedService.mutate(setCampaignFeedOperation, setCampaignFeedReturnValueHolder, setCampaignFeedErrorHolder);
 
       // if error
@@ -162,10 +167,10 @@ public class AdDisplayOptionSample {
       campaignFeedSelector.setAccountId(accountId);
       campaignFeedSelector.getCampaignIds().add(campaignId);
       campaignFeedSelector.getFeedItemIds().add(feedItemId1);
-      campaignFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V5.CampaignFeedService.PlaceholderType.QUICKLINK);
-      campaignFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V5.CampaignFeedService.PlaceholderType.CALLEXTENSION);
+      campaignFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.QUICKLINK);
+      campaignFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.CALLEXTENSION);
 
-      jp.yahooapis.ss.V5.CampaignFeedService.Paging campaignFeedPaging = new jp.yahooapis.ss.V5.CampaignFeedService.Paging();
+      jp.yahooapis.ss.V6.CampaignFeedService.Paging campaignFeedPaging = new jp.yahooapis.ss.V6.CampaignFeedService.Paging();
       campaignFeedPaging.setStartIndex(1);
       campaignFeedPaging.setNumberResults(20);
       campaignFeedSelector.setPaging(campaignFeedPaging);
@@ -175,7 +180,7 @@ public class AdDisplayOptionSample {
       System.out.println("CampaignFeedService::get");
       System.out.println("############################################");
       Holder<CampaignFeedPage> campaignFeedPageHolder = new Holder<CampaignFeedPage>();
-      Holder<List<jp.yahooapis.ss.V5.CampaignFeedService.Error>> getCampaignFeedErrorArrayHolder = new Holder<List<jp.yahooapis.ss.V5.CampaignFeedService.Error>>();
+      Holder<List<jp.yahooapis.ss.V6.CampaignFeedService.Error>> getCampaignFeedErrorArrayHolder = new Holder<List<jp.yahooapis.ss.V6.CampaignFeedService.Error>>();
       campaignFeedService.get(campaignFeedSelector, campaignFeedPageHolder, getCampaignFeedErrorArrayHolder);
 
       // if error
@@ -212,13 +217,13 @@ public class AdDisplayOptionSample {
       setAdGroupFeedListOperand.setAccountId(accountId);
       setAdGroupFeedListOperand.setCampaignId(campaignId);
       setAdGroupFeedListOperand.setAdGroupId(adGroupId);
-      setAdGroupFeedListOperand.setPlaceholderType(jp.yahooapis.ss.V5.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
+      setAdGroupFeedListOperand.setPlaceholderType(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
       AdGroupFeed setAdGroupFeed1 = new AdGroupFeed();
       setAdGroupFeed1.setFeedItemId(feedItemId2);
       setAdGroupFeedListOperand.getAdGroupFeed().add(setAdGroupFeed1);
 
       AdGroupFeedOperation setAdGroupFeedOperation = new AdGroupFeedOperation();
-      setAdGroupFeedOperation.setOperator(jp.yahooapis.ss.V5.AdGroupFeedService.Operator.SET);
+      setAdGroupFeedOperation.setOperator(jp.yahooapis.ss.V6.AdGroupFeedService.Operator.SET);
       setAdGroupFeedOperation.setAccountId(accountId);
       setAdGroupFeedOperation.getOperand().add(setAdGroupFeedListOperand);
 
@@ -227,7 +232,7 @@ public class AdDisplayOptionSample {
       System.out.println("AdGroupFeedService::mutate(SET)");
       System.out.println("############################################");
       Holder<AdGroupFeedReturnValue> setAdGroupFeedReturnValueHolder = new Holder<AdGroupFeedReturnValue>();
-      Holder<List<jp.yahooapis.ss.V5.AdGroupFeedService.Error>> setAdGroupFeedErrorHolder = new Holder<List<jp.yahooapis.ss.V5.AdGroupFeedService.Error>>();
+      Holder<List<jp.yahooapis.ss.V6.AdGroupFeedService.Error>> setAdGroupFeedErrorHolder = new Holder<List<jp.yahooapis.ss.V6.AdGroupFeedService.Error>>();
       adGroupFeedService.mutate(setAdGroupFeedOperation, setAdGroupFeedReturnValueHolder, setAdGroupFeedErrorHolder);
 
       // if error
@@ -262,9 +267,9 @@ public class AdDisplayOptionSample {
       adGroupFeedSelector.setAccountId(accountId);
       adGroupFeedSelector.getCampaignIds().add(campaignId);
       adGroupFeedSelector.getFeedItemIds().add(feedItemId2);
-      adGroupFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V5.AdGroupFeedService.PlaceholderType.QUICKLINK);
-      adGroupFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V5.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
-      jp.yahooapis.ss.V5.AdGroupFeedService.Paging adGroupFeedPaging = new jp.yahooapis.ss.V5.AdGroupFeedService.Paging();
+      adGroupFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.QUICKLINK);
+      adGroupFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
+      jp.yahooapis.ss.V6.AdGroupFeedService.Paging adGroupFeedPaging = new jp.yahooapis.ss.V6.AdGroupFeedService.Paging();
       adGroupFeedPaging.setStartIndex(1);
       adGroupFeedPaging.setNumberResults(20);
       adGroupFeedSelector.setPaging(adGroupFeedPaging);
@@ -274,7 +279,7 @@ public class AdDisplayOptionSample {
       System.out.println("AdGroupFeedService::get");
       System.out.println("############################################");
       Holder<AdGroupFeedPage> adGroupFeedPageHolder = new Holder<AdGroupFeedPage>();
-      Holder<List<jp.yahooapis.ss.V5.AdGroupFeedService.Error>> getAdGroupFeedErrorArrayHolder = new Holder<List<jp.yahooapis.ss.V5.AdGroupFeedService.Error>>();
+      Holder<List<jp.yahooapis.ss.V6.AdGroupFeedService.Error>> getAdGroupFeedErrorArrayHolder = new Holder<List<jp.yahooapis.ss.V6.AdGroupFeedService.Error>>();
       adGroupFeedService.get(adGroupFeedSelector, adGroupFeedPageHolder, getAdGroupFeedErrorArrayHolder);
 
       // if error
@@ -304,13 +309,13 @@ public class AdDisplayOptionSample {
       CampaignFeedList setCampaignFeedListOperandForRemove = new CampaignFeedList();
       setCampaignFeedListOperandForRemove.setAccountId(accountId);
       setCampaignFeedListOperandForRemove.setCampaignId(campaignId);
-      setCampaignFeedListOperandForRemove.setPlaceholderType(jp.yahooapis.ss.V5.CampaignFeedService.PlaceholderType.QUICKLINK);
+      setCampaignFeedListOperandForRemove.setPlaceholderType(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.QUICKLINK);
       CampaignFeed setCampaignFeed2 = new CampaignFeed();
       setCampaignFeed2.setFeedItemId(null);
       setCampaignFeedListOperandForRemove.getCampaignFeed().add(setCampaignFeed2);
 
       CampaignFeedOperation setCampaignFeedOperationForRemove = new CampaignFeedOperation();
-      setCampaignFeedOperationForRemove.setOperator(jp.yahooapis.ss.V5.CampaignFeedService.Operator.SET);
+      setCampaignFeedOperationForRemove.setOperator(jp.yahooapis.ss.V6.CampaignFeedService.Operator.SET);
       setCampaignFeedOperationForRemove.setAccountId(accountId);
       setCampaignFeedOperationForRemove.getOperand().add(setCampaignFeedListOperandForRemove);
 
@@ -319,7 +324,7 @@ public class AdDisplayOptionSample {
       System.out.println("CampaignFeedService::mutate(SET) REMOVE");
       System.out.println("############################################");
       Holder<CampaignFeedReturnValue> setCampaignFeedReturnValueHolderForRemove = new Holder<CampaignFeedReturnValue>();
-      Holder<List<jp.yahooapis.ss.V5.CampaignFeedService.Error>> setCampaignFeedErrorHolderForRemove = new Holder<List<jp.yahooapis.ss.V5.CampaignFeedService.Error>>();
+      Holder<List<jp.yahooapis.ss.V6.CampaignFeedService.Error>> setCampaignFeedErrorHolderForRemove = new Holder<List<jp.yahooapis.ss.V6.CampaignFeedService.Error>>();
       campaignFeedService.mutate(setCampaignFeedOperationForRemove, setCampaignFeedReturnValueHolderForRemove, setCampaignFeedErrorHolderForRemove);
 
       // if error
@@ -354,13 +359,13 @@ public class AdDisplayOptionSample {
       setAdGroupFeedListOperandForRemove.setAccountId(accountId);
       setAdGroupFeedListOperandForRemove.setCampaignId(campaignId);
       setAdGroupFeedListOperandForRemove.setAdGroupId(adGroupId);
-      setAdGroupFeedListOperandForRemove.setPlaceholderType(jp.yahooapis.ss.V5.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
+      setAdGroupFeedListOperandForRemove.setPlaceholderType(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
       AdGroupFeed setAdGroupFeed2 = new AdGroupFeed();
       setAdGroupFeed2.setFeedItemId(null);
       setAdGroupFeedListOperandForRemove.getAdGroupFeed().add(setAdGroupFeed2);
 
       AdGroupFeedOperation setAdGroupFeedOperationForRemove = new AdGroupFeedOperation();
-      setAdGroupFeedOperationForRemove.setOperator(jp.yahooapis.ss.V5.AdGroupFeedService.Operator.SET);
+      setAdGroupFeedOperationForRemove.setOperator(jp.yahooapis.ss.V6.AdGroupFeedService.Operator.SET);
       setAdGroupFeedOperationForRemove.setAccountId(accountId);
       setAdGroupFeedOperationForRemove.getOperand().add(setAdGroupFeedListOperandForRemove);
 
@@ -369,7 +374,7 @@ public class AdDisplayOptionSample {
       System.out.println("AdGroupFeedService::mutate(SET) REMOVE");
       System.out.println("############################################");
       Holder<AdGroupFeedReturnValue> setAdGroupFeedReturnValueHolderForRemove = new Holder<AdGroupFeedReturnValue>();
-      Holder<List<jp.yahooapis.ss.V5.AdGroupFeedService.Error>> setAdGroupFeedErrorHolderForRemove = new Holder<List<jp.yahooapis.ss.V5.AdGroupFeedService.Error>>();
+      Holder<List<jp.yahooapis.ss.V6.AdGroupFeedService.Error>> setAdGroupFeedErrorHolderForRemove = new Holder<List<jp.yahooapis.ss.V6.AdGroupFeedService.Error>>();
       adGroupFeedService.mutate(setAdGroupFeedOperationForRemove, setAdGroupFeedReturnValueHolderForRemove, setAdGroupFeedErrorHolderForRemove);
 
       // if error
@@ -462,7 +467,7 @@ public class AdDisplayOptionSample {
   public static FeedItemOperation createSampleFeedItemServiceAddRequest_quicklink(long accountId) {
     // Set Operation
     FeedItemOperation operation = new FeedItemOperation();
-    operation.setOperator(jp.yahooapis.ss.V5.FeedItemService.Operator.ADD);
+    operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.ADD);
     operation.setAccountId(accountId);
     operation.setPlaceholderType(PlaceholderType.QUICKLINK);
 
@@ -476,12 +481,23 @@ public class AdDisplayOptionSample {
     addLinkText.setFeedAttributeValue("samplelink");
     feedItem.getFeedItemAttribute().add(addLinkText);
 
-    FeedItemAttribute addLinkUrl = new FeedItemAttribute();
-    addLinkUrl.setPlaceholderField(PlaceholderField.LINK_URL);
-    addLinkUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp");
-    feedItem.getFeedItemAttribute().add(addLinkUrl);
-    feedItem.setStartDate("20151215");
-    feedItem.setEndDate("20161215");
+    FeedItemAttribute advancedUrl = new FeedItemAttribute();
+    advancedUrl.setPlaceholderField(PlaceholderField.ADVANCED_URL);
+    advancedUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp");
+    feedItem.getFeedItemAttribute().add(advancedUrl);
+    
+    FeedItemAttribute advancedMobileUrl = new FeedItemAttribute();
+    advancedMobileUrl.setPlaceholderField(PlaceholderField.ADVANCED_MOBILE_URL);
+    advancedMobileUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp/mobile");
+    feedItem.getFeedItemAttribute().add(advancedMobileUrl);
+    
+    FeedItemAttribute trackingUrl = new FeedItemAttribute();
+    trackingUrl.setPlaceholderField(PlaceholderField.TRACKING_URL);
+    trackingUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp?url={lpurl}&amp;pid={_id1}");
+    feedItem.getFeedItemAttribute().add(trackingUrl);
+    
+    feedItem.setStartDate("20161215");
+    feedItem.setEndDate("20181215");
 
     FeedItemSchedule quickLinkSchedule1 = new FeedItemSchedule();
     quickLinkSchedule1.setDayOfWeek(DayOfWeek.SUNDAY);
@@ -501,8 +517,18 @@ public class AdDisplayOptionSample {
     scheduling.getSchedules().addAll(Arrays.asList(quickLinkSchedule1, quickLinkSchedule2));
     feedItem.setScheduling(scheduling);
 
-    feedItem.setDevicePreference(jp.yahooapis.ss.V5.FeedItemService.DevicePreference.SMART_PHONE);
+    feedItem.setDevicePreference(jp.yahooapis.ss.V6.FeedItemService.DevicePreference.SMART_PHONE);
 
+    // Set CustomParameters
+    CustomParameter customParameter = new CustomParameter();
+    customParameter.setKey("1d1");
+    customParameter.setValue("1234");
+    
+    CustomParameters customParameters = new CustomParameters();
+    customParameters.getParameters().add(customParameter);
+    feedItem.setCustomParameters(customParameters);
+    feedItem.setAdvanced(Advanced.TRUE);
+    
     operation.getOperand().add(feedItem);
 
     return operation;
@@ -517,7 +543,7 @@ public class AdDisplayOptionSample {
   public static FeedItemOperation createSampleFeedItemServiceAddRequest_callextension(long accountId) {
     // set Operation
     FeedItemOperation operation = new FeedItemOperation();
-    operation.setOperator(jp.yahooapis.ss.V5.FeedItemService.Operator.ADD);
+    operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.ADD);
     operation.setAccountId(accountId);
     operation.setPlaceholderType(PlaceholderType.CALLEXTENSION);
 
@@ -561,7 +587,7 @@ public class AdDisplayOptionSample {
    */
   private static FeedItemOperation createSampleFeedItemServiceSetRequest_quicklink(long accountId, List<FeedItemValues> feedItemValues) {
     FeedItemOperation operation = new FeedItemOperation();
-    operation.setOperator(jp.yahooapis.ss.V5.FeedItemService.Operator.SET);
+    operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.SET);
     operation.setAccountId(accountId);
     operation.setPlaceholderType(PlaceholderType.QUICKLINK);
 
@@ -578,13 +604,36 @@ public class AdDisplayOptionSample {
     setLinkText.setFeedAttributeValue("editlink");
     operand.getFeedItemAttribute().add(setLinkText);
 
-    FeedItemAttribute setLinkUrl = new FeedItemAttribute();
-    setLinkUrl.setPlaceholderField(PlaceholderField.LINK_URL);
-    setLinkUrl.setFeedAttributeValue("http://www.quicklink.edit.co.jp");
-    operand.getFeedItemAttribute().add(setLinkUrl);
+    FeedItemAttribute advancedUrl = new FeedItemAttribute();
+    advancedUrl.setPlaceholderField(PlaceholderField.ADVANCED_URL);
+    advancedUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp");
+    operand.getFeedItemAttribute().add(advancedUrl);
+    
+    FeedItemAttribute advancedMobileUrl = new FeedItemAttribute();
+    advancedMobileUrl.setPlaceholderField(PlaceholderField.ADVANCED_MOBILE_URL);
+    advancedMobileUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp/mobile");
+    operand.getFeedItemAttribute().add(advancedMobileUrl);
+    
+    FeedItemAttribute trackingUrl = new FeedItemAttribute();
+    trackingUrl.setPlaceholderField(PlaceholderField.TRACKING_URL);
+    trackingUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp?url={lpurl}&amp;pid={_id1}");
+    operand.getFeedItemAttribute().add(trackingUrl);
+    
     operand.setStartDate("");
     operand.setEndDate("");
 
+    // Set CustomParameters
+    CustomParameter customParameter = new CustomParameter();
+    customParameter.setKey("1d1");
+    customParameter.setValue("5678");
+    
+    CustomParameters customParameters = new CustomParameters();
+    customParameters.setIsRemove(IsRemove.FALSE);
+    customParameters.getParameters().add(customParameter);
+    operand.setCustomParameters(customParameters);
+    operand.setAdvanced(Advanced.TRUE);
+    
+    
     operation.getOperand().add(operand);
 
     return operation;
@@ -599,7 +648,7 @@ public class AdDisplayOptionSample {
    */
   private static FeedItemOperation createSampleFeedItemServiceAddRequest_callextension(long accountId, List<FeedItemValues> feedItemValues) {
     FeedItemOperation operation = new FeedItemOperation();
-    operation.setOperator(jp.yahooapis.ss.V5.FeedItemService.Operator.SET);
+    operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.SET);
     operation.setAccountId(accountId);
     operation.setPlaceholderType(PlaceholderType.CALLEXTENSION);
 

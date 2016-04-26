@@ -7,21 +7,20 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.TargetingIdeaServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.TargetingIdeaService.Attribute;
-import jp.yahooapis.ss.V5.TargetingIdeaService.CriterionType;
-import jp.yahooapis.ss.V5.TargetingIdeaService.Error;
-import jp.yahooapis.ss.V5.TargetingIdeaService.ExcludedKeywordSearchParameter;
-import jp.yahooapis.ss.V5.TargetingIdeaService.KeywordAttribute;
-import jp.yahooapis.ss.V5.TargetingIdeaService.KeywordMatchType;
-import jp.yahooapis.ss.V5.TargetingIdeaService.Paging;
-import jp.yahooapis.ss.V5.TargetingIdeaService.ProposalKeyword;
-import jp.yahooapis.ss.V5.TargetingIdeaService.RelatedToKeywordSearchParameter;
-import jp.yahooapis.ss.V5.TargetingIdeaService.SearchParameterUse;
-import jp.yahooapis.ss.V5.TargetingIdeaService.TargetingIdeaPage;
-import jp.yahooapis.ss.V5.TargetingIdeaService.TargetingIdeaSelector;
-import jp.yahooapis.ss.V5.TargetingIdeaService.TargetingIdeaService;
-import jp.yahooapis.ss.V5.TargetingIdeaService.TargetingIdeaServiceInterface;
-import jp.yahooapis.ss.V5.TargetingIdeaService.TargetingIdeaValues;
+import jp.yahooapis.ss.V6.TargetingIdeaService.Attribute;
+import jp.yahooapis.ss.V6.TargetingIdeaService.CriterionType;
+import jp.yahooapis.ss.V6.TargetingIdeaService.Error;
+import jp.yahooapis.ss.V6.TargetingIdeaService.KeywordAttribute;
+import jp.yahooapis.ss.V6.TargetingIdeaService.KeywordMatchType;
+import jp.yahooapis.ss.V6.TargetingIdeaService.Paging;
+import jp.yahooapis.ss.V6.TargetingIdeaService.ProposalKeyword;
+import jp.yahooapis.ss.V6.TargetingIdeaService.RelatedToKeywordSearchParameter;
+import jp.yahooapis.ss.V6.TargetingIdeaService.SearchParameterUse;
+import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaPage;
+import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaSelector;
+import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaService;
+import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaServiceInterface;
+import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaValues;
 
 /**
  * Sample Program for TargetingIdeaService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -55,16 +54,9 @@ public class TargetingIdeaSample {
       proposalKeyword1.setMatchType(KeywordMatchType.PHRASE);
       relateKewyrod.getKeywords().add(proposalKeyword1);
 
-      ExcludedKeywordSearchParameter excludedKeyword = new ExcludedKeywordSearchParameter();
-      excludedKeyword.setSearchParameterUse(SearchParameterUse.EXCLUDED_KEYWORD);
-      ProposalKeyword proposalKeyword2 = new ProposalKeyword();
-      proposalKeyword2.setType(CriterionType.KEYWORD);
-      proposalKeyword2.setText("sample2");
-      proposalKeyword2.setMatchType(KeywordMatchType.PHRASE);
-      excludedKeyword.getKeywords().add(proposalKeyword2);
 
       TargetingIdeaSelector targetingIdeaSelector = new TargetingIdeaSelector();
-      targetingIdeaSelector.getSearchParameter().addAll(Arrays.asList(relateKewyrod, excludedKeyword));
+      targetingIdeaSelector.getSearchParameter().addAll(Arrays.asList(relateKewyrod));
       Paging paging = new Paging();
       paging.setStartIndex(1);
       paging.setNumberResults(2);

@@ -6,22 +6,22 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupBidMultiplierServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplier;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierOperation;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierPage;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierReturnValue;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierSelector;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierService;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierServiceInterface;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierValues;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.BidMultiplierList;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.BidMultiplierType;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.Error;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.Operator;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.Paging;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.PlatformBidMultiplier;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.PlatformBidMultiplierList;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.PlatformType;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplier;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierOperation;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierPage;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierReturnValue;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierSelector;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierService;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierServiceInterface;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierValues;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.BidMultiplierList;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.BidMultiplierType;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.Error;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.Operator;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.Paging;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.PlatformBidMultiplier;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.PlatformBidMultiplierList;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.PlatformType;
 
 /**
  * Sample Program for AdGroupBidMultiplierService. Copyright (C) 2012 Yahoo Japan Corporation. All

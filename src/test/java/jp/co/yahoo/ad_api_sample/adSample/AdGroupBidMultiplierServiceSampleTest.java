@@ -8,9 +8,9 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierOperation;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierSelector;
-import jp.yahooapis.ss.V5.AdGroupBidMultiplierService.AdGroupBidMultiplierValues;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierOperation;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierSelector;
+import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierValues;
 
 import org.junit.Before;
 import org.junit.Test;

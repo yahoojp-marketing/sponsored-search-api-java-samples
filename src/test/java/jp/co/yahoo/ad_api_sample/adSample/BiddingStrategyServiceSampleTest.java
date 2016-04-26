@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategySelector;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyType;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V5.BiddingStrategyService.Paging;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategySelector;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyType;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
+import jp.yahooapis.ss.V6.BiddingStrategyService.Paging;
 
 import org.junit.Before;
 import org.junit.Test;

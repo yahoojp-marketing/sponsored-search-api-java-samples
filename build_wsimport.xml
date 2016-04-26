@@ -8,8 +8,8 @@ Property for build tasks
   <property name="src.dir" value="${basedir}/src/main/java"/>
   <property name="dest.dir" value="${basedir}/build"/>
   <property name="wsdl.dir" value="${basedir}/wsdl"/>
-  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V5.3"/>
-  <property name="pakcage.base" value="jp.yahooapis.ss.V5"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.0"/>
+  <property name="pakcage.base" value="jp.yahooapis.ss.V6"/>
   <!--==================================
 classpath for build
 ===================================-->
@@ -31,6 +31,20 @@ target for wsimport
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/AccountService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AccountTrackingURLService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AccountTrackingURLService/AccountTrackingURLService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AccountTrackingURLService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AccountTrackingURLService?wsdl"/>
     </exec>
     <echo message="start wsimport AdGroupAdService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">

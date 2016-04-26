@@ -6,17 +6,17 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.CustomerSyncServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.CustomerSyncService.Auditlog;
-import jp.yahooapis.ss.V5.CustomerSyncService.ChangeDataValues;
-import jp.yahooapis.ss.V5.CustomerSyncService.CustomerChangeData;
-import jp.yahooapis.ss.V5.CustomerSyncService.CustomerSyncSelector;
-import jp.yahooapis.ss.V5.CustomerSyncService.CustomerSyncService;
-import jp.yahooapis.ss.V5.CustomerSyncService.CustomerSyncServiceInterface;
-import jp.yahooapis.ss.V5.CustomerSyncService.DateRange;
-import jp.yahooapis.ss.V5.CustomerSyncService.Error;
-import jp.yahooapis.ss.V5.CustomerSyncService.EventType;
-import jp.yahooapis.ss.V5.CustomerSyncService.IncludeUnset;
-import jp.yahooapis.ss.V5.CustomerSyncService.SourceType;
+import jp.yahooapis.ss.V6.CustomerSyncService.Auditlog;
+import jp.yahooapis.ss.V6.CustomerSyncService.ChangeDataValues;
+import jp.yahooapis.ss.V6.CustomerSyncService.CustomerChangeData;
+import jp.yahooapis.ss.V6.CustomerSyncService.CustomerSyncSelector;
+import jp.yahooapis.ss.V6.CustomerSyncService.CustomerSyncService;
+import jp.yahooapis.ss.V6.CustomerSyncService.CustomerSyncServiceInterface;
+import jp.yahooapis.ss.V6.CustomerSyncService.DateRange;
+import jp.yahooapis.ss.V6.CustomerSyncService.Error;
+import jp.yahooapis.ss.V6.CustomerSyncService.EventType;
+import jp.yahooapis.ss.V6.CustomerSyncService.IncludeUnset;
+import jp.yahooapis.ss.V6.CustomerSyncService.SourceType;
 
 
 /**

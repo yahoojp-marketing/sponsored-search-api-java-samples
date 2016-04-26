@@ -9,29 +9,32 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.FeedItemServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.FeedItemService.ApprovalStatus;
-import jp.yahooapis.ss.V5.FeedItemService.DayOfWeek;
-import jp.yahooapis.ss.V5.FeedItemService.DevicePreference;
-import jp.yahooapis.ss.V5.FeedItemService.Error;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItem;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemAttribute;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemOperation;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemPage;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemReturnValue;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemSchedule;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemScheduling;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemSelector;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemService;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemServiceInterface;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemValues;
-import jp.yahooapis.ss.V5.FeedItemService.KeywordMatchType;
-import jp.yahooapis.ss.V5.FeedItemService.MinuteOfHour;
-import jp.yahooapis.ss.V5.FeedItemService.Operator;
-import jp.yahooapis.ss.V5.FeedItemService.Paging;
-import jp.yahooapis.ss.V5.FeedItemService.PlaceholderType;
-import jp.yahooapis.ss.V5.FeedItemService.TargetingAdGroup;
-import jp.yahooapis.ss.V5.FeedItemService.TargetingCampaign;
-import jp.yahooapis.ss.V5.FeedItemService.TargetingKeyword;
+import jp.yahooapis.ss.V6.FeedItemService.Advanced;
+import jp.yahooapis.ss.V6.FeedItemService.ApprovalStatus;
+import jp.yahooapis.ss.V6.FeedItemService.CustomParameter;
+import jp.yahooapis.ss.V6.FeedItemService.CustomParameters;
+import jp.yahooapis.ss.V6.FeedItemService.DayOfWeek;
+import jp.yahooapis.ss.V6.FeedItemService.DevicePreference;
+import jp.yahooapis.ss.V6.FeedItemService.Error;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItem;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemAttribute;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemPage;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemReturnValue;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemSchedule;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemScheduling;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemService;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemServiceInterface;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
+import jp.yahooapis.ss.V6.FeedItemService.KeywordMatchType;
+import jp.yahooapis.ss.V6.FeedItemService.MinuteOfHour;
+import jp.yahooapis.ss.V6.FeedItemService.Operator;
+import jp.yahooapis.ss.V6.FeedItemService.Paging;
+import jp.yahooapis.ss.V6.FeedItemService.PlaceholderType;
+import jp.yahooapis.ss.V6.FeedItemService.TargetingAdGroup;
+import jp.yahooapis.ss.V6.FeedItemService.TargetingCampaign;
+import jp.yahooapis.ss.V6.FeedItemService.TargetingKeyword;
 
 
 /**
@@ -79,6 +82,7 @@ public class FeedItemServiceSample {
       get(feedItemSelector);
 
       // wait for sandbox review
+      System.out.println("\n***** sleep 20 seconds *****\n");
       Thread.sleep(20000);
 
       // =================================================================
@@ -89,7 +93,6 @@ public class FeedItemServiceSample {
 
       // Run
       set(setFeedItemOperation);
-
       // =================================================================
       // FeefItemService REMOVE
       // =================================================================
@@ -177,7 +180,13 @@ public class FeedItemServiceSample {
       if (feedItemValues.isOperationSucceeded()) {
         display(feedItemValues.getFeedItem());
       } else {
-        SoapUtils.displayErrors(new FeedItemServiceErrorEntityFactory(feedItemValues.getError()), true);
+        if (feedItemValues.getError().get(0).getCode().equals("210104")) {
+          System.out.println("******* Skip. *******");
+          System.out.println("code = " + feedItemValues.getError().get(0).getCode());
+          System.out.println("message = " + feedItemValues.getError().get(0).getMessage());
+        } else {
+          SoapUtils.displayErrors(new FeedItemServiceErrorEntityFactory(feedItemValues.getError()), true);
+        }
       }
     }
 
@@ -275,6 +284,7 @@ public class FeedItemServiceSample {
       System.out.println("accountId = " + feedItem.getAccountId());
       System.out.println("feedFolderId = " + feedItem.getFeedFolderId());
       System.out.println("feedItemId = " + feedItem.getFeedItemId());
+      System.out.println("feedItemTrackId = " + feedItem.getFeedItemTrackId());
       System.out.println("approvalStatus = " + feedItem.getApprovalStatus());
 
       long feedAttributeIndex = 0;
@@ -282,6 +292,7 @@ public class FeedItemServiceSample {
         System.out.println("feedAttribute[" + feedAttributeIndex + "]/placeholderField = " + feedAttribute.getPlaceholderField());
         System.out.println("feedAttribute[" + feedAttributeIndex + "]/feedAttributeId = " + feedAttribute.getFeedAttributeId());
         System.out.println("feedAttribute[" + feedAttributeIndex + "]/feedAttributeValue = " + feedAttribute.getFeedAttributeValue());
+        System.out.println("feedAttribute[" + feedAttributeIndex + "]/reviewFeedAttributeValue = " + feedAttribute.getReviewFeedAttributeValue());
         feedAttributeIndex++;
       }
 
@@ -314,6 +325,39 @@ public class FeedItemServiceSample {
         System.out.println("targetingKeyword/text = " + feedItem.getTargetingKeyword().getText());
         System.out.println("targetingKeyword/matchType = " + feedItem.getTargetingKeyword().getMatchType());
       }
+
+      if (null != feedItem.getCustomParameters()) {
+        CustomParameters customParameters = feedItem.getCustomParameters();
+        System.out.println("customParameters/isRemove = " + customParameters.getIsRemove().toString());
+
+        if (null != customParameters.getParameters()) {
+          long index = 0;
+          for (CustomParameter parameter : customParameters.getParameters()) {
+            System.out.println("customParameters/parameters[" + index + "]/key = " + parameter.getKey());
+            System.out.println("customParameters/parameters[" + index + "]/value = " + parameter.getValue());
+            index++;
+          }
+        }
+      }
+
+      if (null != feedItem.getReviewCustomParameters()) {
+        CustomParameters reviewCustomParameters = feedItem.getReviewCustomParameters();
+        System.out.println("reviewCustomParameters/isRemove = " + reviewCustomParameters.getIsRemove());
+
+        if (null != reviewCustomParameters.getParameters()) {
+          long index = 0;
+          for (CustomParameter parameter : reviewCustomParameters.getParameters()) {
+            System.out.println("reviewCustomParameters/parameters[" + index + "]/key = " + parameter.getKey());
+            System.out.println("reviewCustomParameters/parameters[" + index + "]/value = " + parameter.getValue());
+            index++;
+          }
+        }
+      }
+
+      if (feedItem.getAdvanced() != null) {
+        System.out.println("advanced = " + feedItem.getAdvanced().toString());
+      }
+
       System.out.println("---------");
     } catch (Exception e) {
       e.printStackTrace();
@@ -359,8 +403,8 @@ public class FeedItemServiceSample {
     feedItem.getFeedItemAttribute().addAll(Arrays.asList(integerTypeFeedItemAttribute, priceTypeFeedItemAttribute, dateTypeFeedItemAttribute, stringTypeFeedItemAttribute));
     feedItem.setPlaceholderType(PlaceholderType.AD_CUSTOMIZER);
     feedItem.setDevicePreference(DevicePreference.SMART_PHONE);
-    feedItem.setStartDate("20151215");
-    feedItem.setEndDate("20161215");
+    feedItem.setStartDate("20161215");
+    feedItem.setEndDate("20181215");
 
     // Set Schedule
     FeedItemSchedule feedItemSchedule1 = new FeedItemSchedule();
@@ -507,6 +551,8 @@ public class FeedItemServiceSample {
     selector.getApprovalStatuses().add(ApprovalStatus.PRE_DISAPPROVED);
     selector.getApprovalStatuses().add(ApprovalStatus.APPROVED_WITH_REVIEW);
     selector.getApprovalStatuses().add(ApprovalStatus.POST_DISAPPROVED);
+    selector.setAdvanced(Advanced.FALSE);
+
     Paging feedItemPaging = new Paging();
     feedItemPaging.setStartIndex(1);
     feedItemPaging.setNumberResults(20);

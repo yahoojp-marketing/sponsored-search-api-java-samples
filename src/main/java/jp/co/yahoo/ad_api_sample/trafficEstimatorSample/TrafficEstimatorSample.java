@@ -6,27 +6,27 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.TrafficEstimatorServiceEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.CarrierName;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.CriterionType;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.DesktopEstimateResult;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.Error;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.EstimateNetwork;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.EstimateRequest;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.EstimateTarget;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.EstimateValues;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.KeywordMatchType;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.ProposalKeyword;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.ProposalPlatformTarget;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.ProposalPlatformType;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.SmartPhoneEstimateResult;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.TotalEstimateResult;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.TrafficEstimateResult;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.TrafficEstimatorPage;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.TrafficEstimatorSelector;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.TrafficEstimatorService;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.TrafficEstimatorServiceInterface;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.WapMobileEstimateResult;
-import jp.yahooapis.ss.V5.TrafficEstimatorService.WapType;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.CarrierName;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.CriterionType;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.DesktopEstimateResult;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.Error;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.EstimateNetwork;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.EstimateRequest;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.EstimateTarget;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.EstimateValues;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.KeywordMatchType;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.ProposalKeyword;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.ProposalPlatformTarget;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.ProposalPlatformType;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.SmartPhoneEstimateResult;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.TotalEstimateResult;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.TrafficEstimateResult;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.TrafficEstimatorPage;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.TrafficEstimatorSelector;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.TrafficEstimatorService;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.TrafficEstimatorServiceInterface;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.WapMobileEstimateResult;
+import jp.yahooapis.ss.V6.TrafficEstimatorService.WapType;
 
 
 /**

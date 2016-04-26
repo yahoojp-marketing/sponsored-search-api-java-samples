@@ -6,8 +6,8 @@ import java.util.List;
 import jp.co.yahoo.ad_api_sample.error.ErrorDetailEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntityFactory;
-import jp.yahooapis.ss.V5.DictionaryService.Error;
-import jp.yahooapis.ss.V5.DictionaryService.ErrorDetail;
+import jp.yahooapis.ss.V6.DictionaryService.Error;
+import jp.yahooapis.ss.V6.DictionaryService.ErrorDetail;
 
 public class DictionaryServiceErrorEntityFactory implements ErrorEntityFactory {
 

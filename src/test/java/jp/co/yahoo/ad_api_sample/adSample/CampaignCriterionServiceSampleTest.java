@@ -8,11 +8,11 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionOperation;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionSelector;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionValues;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CriterionUse;
-import jp.yahooapis.ss.V5.CampaignCriterionService.Paging;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionOperation;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionSelector;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionValues;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CriterionUse;
+import jp.yahooapis.ss.V6.CampaignCriterionService.Paging;
 
 import org.junit.Before;
 import org.junit.Test;
