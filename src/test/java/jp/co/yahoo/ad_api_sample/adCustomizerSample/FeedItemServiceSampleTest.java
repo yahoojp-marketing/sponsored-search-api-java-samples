@@ -10,12 +10,13 @@ import java.util.List;
 import java.util.Map;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.FeedItemService.ApprovalStatus;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemOperation;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemSelector;
-import jp.yahooapis.ss.V5.FeedItemService.FeedItemValues;
-import jp.yahooapis.ss.V5.FeedItemService.Paging;
-import jp.yahooapis.ss.V5.FeedItemService.PlaceholderType;
+import jp.yahooapis.ss.V6.FeedItemService.Advanced;
+import jp.yahooapis.ss.V6.FeedItemService.ApprovalStatus;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
+import jp.yahooapis.ss.V6.FeedItemService.Paging;
+import jp.yahooapis.ss.V6.FeedItemService.PlaceholderType;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -184,6 +185,7 @@ public class FeedItemServiceSampleTest {
     selector.getApprovalStatuses().add(ApprovalStatus.PRE_DISAPPROVED);
     selector.getApprovalStatuses().add(ApprovalStatus.APPROVED_WITH_REVIEW);
     selector.getApprovalStatuses().add(ApprovalStatus.POST_DISAPPROVED);
+    selector.setAdvanced(Advanced.FALSE);
     Paging feedItemPaging = new Paging();
     feedItemPaging.setStartIndex(1);
     feedItemPaging.setNumberResults(20);

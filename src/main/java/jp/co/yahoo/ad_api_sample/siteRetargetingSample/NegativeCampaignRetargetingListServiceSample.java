@@ -6,18 +6,18 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.NegativeCampaignRetargetingListServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.CriterionTargetList;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.Error;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingList;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListOperation;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListPage;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListReturnValue;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListSelector;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListService;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListServiceInterface;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListValues;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.Operator;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.Paging;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.CriterionTargetList;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.Error;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingList;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListOperation;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListPage;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListReturnValue;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListSelector;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListService;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListServiceInterface;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListValues;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.Operator;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.Paging;
 
 /**
  * Sample Program for NegativeCampaignRetargetingListService. Copyright (C) 2012 Yahoo Japan Corporation. All

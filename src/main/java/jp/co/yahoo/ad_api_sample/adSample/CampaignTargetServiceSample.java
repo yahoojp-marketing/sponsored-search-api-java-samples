@@ -7,26 +7,26 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignTargetServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTarget;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetOperation;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetPage;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetReturnValue;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetSelector;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetService;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetServiceInterface;
-import jp.yahooapis.ss.V5.CampaignTargetService.CampaignTargetValues;
-import jp.yahooapis.ss.V5.CampaignTargetService.DayOfWeek;
-import jp.yahooapis.ss.V5.CampaignTargetService.Error;
-import jp.yahooapis.ss.V5.CampaignTargetService.ExcludedType;
-import jp.yahooapis.ss.V5.CampaignTargetService.LocationTarget;
-import jp.yahooapis.ss.V5.CampaignTargetService.MinuteOfHour;
-import jp.yahooapis.ss.V5.CampaignTargetService.NetworkCoverageType;
-import jp.yahooapis.ss.V5.CampaignTargetService.NetworkTarget;
-import jp.yahooapis.ss.V5.CampaignTargetService.Operator;
-import jp.yahooapis.ss.V5.CampaignTargetService.Paging;
-import jp.yahooapis.ss.V5.CampaignTargetService.PlatformTarget;
-import jp.yahooapis.ss.V5.CampaignTargetService.ScheduleTarget;
-import jp.yahooapis.ss.V5.CampaignTargetService.TargetType;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTarget;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetOperation;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetPage;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetReturnValue;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetSelector;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetService;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetServiceInterface;
+import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetValues;
+import jp.yahooapis.ss.V6.CampaignTargetService.DayOfWeek;
+import jp.yahooapis.ss.V6.CampaignTargetService.Error;
+import jp.yahooapis.ss.V6.CampaignTargetService.ExcludedType;
+import jp.yahooapis.ss.V6.CampaignTargetService.LocationTarget;
+import jp.yahooapis.ss.V6.CampaignTargetService.MinuteOfHour;
+import jp.yahooapis.ss.V6.CampaignTargetService.NetworkCoverageType;
+import jp.yahooapis.ss.V6.CampaignTargetService.NetworkTarget;
+import jp.yahooapis.ss.V6.CampaignTargetService.Operator;
+import jp.yahooapis.ss.V6.CampaignTargetService.Paging;
+import jp.yahooapis.ss.V6.CampaignTargetService.PlatformTarget;
+import jp.yahooapis.ss.V6.CampaignTargetService.ScheduleTarget;
+import jp.yahooapis.ss.V6.CampaignTargetService.TargetType;
 
 /**
  * Sample Program for CampaignTargetService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

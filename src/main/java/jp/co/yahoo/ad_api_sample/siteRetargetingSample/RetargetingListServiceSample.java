@@ -7,33 +7,33 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.RetargetingListServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.RetargetingListService.DefaultTargetList;
-import jp.yahooapis.ss.V5.RetargetingListService.Error;
-import jp.yahooapis.ss.V5.RetargetingListService.IsAllVisitorRule;
-import jp.yahooapis.ss.V5.RetargetingListService.IsDateSpecificRule;
-import jp.yahooapis.ss.V5.RetargetingListService.LogicalCondition;
-import jp.yahooapis.ss.V5.RetargetingListService.LogicalGroup;
-import jp.yahooapis.ss.V5.RetargetingListService.LogicalRuleOperand;
-import jp.yahooapis.ss.V5.RetargetingListService.LogicalTargetList;
-import jp.yahooapis.ss.V5.RetargetingListService.Operator;
-import jp.yahooapis.ss.V5.RetargetingListService.Paging;
-import jp.yahooapis.ss.V5.RetargetingListService.ReachStorageStatus;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListOperation;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListPage;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListReturnValue;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListSelector;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListService;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListServiceInterface;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListValues;
-import jp.yahooapis.ss.V5.RetargetingListService.RuleBaseTargetList;
-import jp.yahooapis.ss.V5.RetargetingListService.RuleGroup;
-import jp.yahooapis.ss.V5.RetargetingListService.RuleItem;
-import jp.yahooapis.ss.V5.RetargetingListService.RuleOperator;
-import jp.yahooapis.ss.V5.RetargetingListService.RuleType;
-import jp.yahooapis.ss.V5.RetargetingListService.TargetListType;
-import jp.yahooapis.ss.V5.RetargetingListService.TargetingList;
-import jp.yahooapis.ss.V5.RetargetingListService.UrlRuleItem;
-import jp.yahooapis.ss.V5.RetargetingListService.UrlRuleKey;
+import jp.yahooapis.ss.V6.RetargetingListService.DefaultTargetList;
+import jp.yahooapis.ss.V6.RetargetingListService.Error;
+import jp.yahooapis.ss.V6.RetargetingListService.IsAllVisitorRule;
+import jp.yahooapis.ss.V6.RetargetingListService.IsDateSpecificRule;
+import jp.yahooapis.ss.V6.RetargetingListService.LogicalCondition;
+import jp.yahooapis.ss.V6.RetargetingListService.LogicalGroup;
+import jp.yahooapis.ss.V6.RetargetingListService.LogicalRuleOperand;
+import jp.yahooapis.ss.V6.RetargetingListService.LogicalTargetList;
+import jp.yahooapis.ss.V6.RetargetingListService.Operator;
+import jp.yahooapis.ss.V6.RetargetingListService.Paging;
+import jp.yahooapis.ss.V6.RetargetingListService.ReachStorageStatus;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListOperation;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListPage;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListReturnValue;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListSelector;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListService;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListServiceInterface;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListValues;
+import jp.yahooapis.ss.V6.RetargetingListService.RuleBaseTargetList;
+import jp.yahooapis.ss.V6.RetargetingListService.RuleGroup;
+import jp.yahooapis.ss.V6.RetargetingListService.RuleItem;
+import jp.yahooapis.ss.V6.RetargetingListService.RuleOperator;
+import jp.yahooapis.ss.V6.RetargetingListService.RuleType;
+import jp.yahooapis.ss.V6.RetargetingListService.TargetListType;
+import jp.yahooapis.ss.V6.RetargetingListService.TargetingList;
+import jp.yahooapis.ss.V6.RetargetingListService.UrlRuleItem;
+import jp.yahooapis.ss.V6.RetargetingListService.UrlRuleKey;
 
 /**
  * Sample Program for RetargetingListService. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -258,6 +258,7 @@ public class RetargetingListServiceSample {
     System.out.println("reachStorageStatus = " + targetingList.getReachStorageStatus());
     System.out.println("reachStorageSpan = " + targetingList.getReachStorageSpan());
     System.out.println("reach = " + targetingList.getReach());
+    System.out.println("targetListTrackId = " + targetingList.getTargetListTrackId());
 
     if (targetingList instanceof DefaultTargetList) {
       // DefaultTargetList

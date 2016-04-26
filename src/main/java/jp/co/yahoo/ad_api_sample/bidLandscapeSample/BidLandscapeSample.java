@@ -6,17 +6,17 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.BidLandscapeServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.BidLandscapeService.AdGroupBidLandscape;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscape;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscapePage;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscapeSelector;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscapeService;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscapeServiceInterface;
-import jp.yahooapis.ss.V5.BidLandscapeService.BidLandscapeValues;
-import jp.yahooapis.ss.V5.BidLandscapeService.CriterionBidLandscape;
-import jp.yahooapis.ss.V5.BidLandscapeService.Error;
-import jp.yahooapis.ss.V5.BidLandscapeService.LandscapePoints;
-import jp.yahooapis.ss.V5.BidLandscapeService.SimType;
+import jp.yahooapis.ss.V6.BidLandscapeService.AdGroupBidLandscape;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscape;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscapePage;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscapeSelector;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscapeService;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscapeServiceInterface;
+import jp.yahooapis.ss.V6.BidLandscapeService.BidLandscapeValues;
+import jp.yahooapis.ss.V6.BidLandscapeService.CriterionBidLandscape;
+import jp.yahooapis.ss.V6.BidLandscapeService.Error;
+import jp.yahooapis.ss.V6.BidLandscapeService.LandscapePoints;
+import jp.yahooapis.ss.V6.BidLandscapeService.SimType;
 
 /**
  * Sample Program for BidLandscapeService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

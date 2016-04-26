@@ -6,8 +6,8 @@ import java.util.List;
 import jp.co.yahoo.ad_api_sample.error.ErrorDetailEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntityFactory;
-import jp.yahooapis.ss.V5.TargetingIdeaService.Error;
-import jp.yahooapis.ss.V5.TargetingIdeaService.ErrorDetail;
+import jp.yahooapis.ss.V6.TargetingIdeaService.Error;
+import jp.yahooapis.ss.V6.TargetingIdeaService.ErrorDetail;
 
 public class TargetingIdeaServiceErrorEntityFactory implements ErrorEntityFactory {
 

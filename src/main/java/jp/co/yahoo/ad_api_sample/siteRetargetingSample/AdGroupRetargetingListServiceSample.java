@@ -7,20 +7,20 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupRetargetingListServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingList;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListOperation;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListPage;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListReturnValue;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListSelector;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListService;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListServiceInterface;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListValues;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.CriterionTargetList;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.Error;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.ExcludedType;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.Operator;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.Paging;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.TargetAll;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingList;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListOperation;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListPage;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListReturnValue;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListSelector;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListService;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListServiceInterface;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListValues;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.CriterionTargetList;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.Error;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.ExcludedType;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.Operator;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.Paging;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.TargetAll;
 
 /**
  * Sample Program for AdGroupRetargetingListServiceService. Copyright (C) 2012 Yahoo Japan Corporation. All

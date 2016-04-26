@@ -7,38 +7,41 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.CampaignService.AdServingOptimizationStatus;
-import jp.yahooapis.ss.V5.CampaignService.AppStore;
-import jp.yahooapis.ss.V5.CampaignService.BiddingStrategy;
-import jp.yahooapis.ss.V5.CampaignService.BiddingStrategyType;
-import jp.yahooapis.ss.V5.CampaignService.Budget;
-import jp.yahooapis.ss.V5.CampaignService.BudgetDeliveryMethod;
-import jp.yahooapis.ss.V5.CampaignService.BudgetOptimizerBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.BudgetPeriod;
-import jp.yahooapis.ss.V5.CampaignService.Campaign;
-import jp.yahooapis.ss.V5.CampaignService.CampaignOperation;
-import jp.yahooapis.ss.V5.CampaignService.CampaignPage;
-import jp.yahooapis.ss.V5.CampaignService.CampaignReturnValue;
-import jp.yahooapis.ss.V5.CampaignService.CampaignSelector;
-import jp.yahooapis.ss.V5.CampaignService.CampaignService;
-import jp.yahooapis.ss.V5.CampaignService.CampaignServiceInterface;
-import jp.yahooapis.ss.V5.CampaignService.CampaignType;
-import jp.yahooapis.ss.V5.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V5.CampaignService.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.Error;
-import jp.yahooapis.ss.V5.CampaignService.GeoTargetType;
-import jp.yahooapis.ss.V5.CampaignService.GeoTargetTypeSetting;
-import jp.yahooapis.ss.V5.CampaignService.KeywordMatchSetting;
-import jp.yahooapis.ss.V5.CampaignService.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.Operator;
-import jp.yahooapis.ss.V5.CampaignService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.Paging;
-import jp.yahooapis.ss.V5.CampaignService.SettingType;
-import jp.yahooapis.ss.V5.CampaignService.Settings;
-import jp.yahooapis.ss.V5.CampaignService.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.UserStatus;
+import jp.yahooapis.ss.V6.CampaignService.UrlReviewData;
+import jp.yahooapis.ss.V6.CampaignService.AdServingOptimizationStatus;
+import jp.yahooapis.ss.V6.CampaignService.AppStore;
+import jp.yahooapis.ss.V6.CampaignService.BiddingStrategy;
+import jp.yahooapis.ss.V6.CampaignService.BiddingStrategyType;
+import jp.yahooapis.ss.V6.CampaignService.Budget;
+import jp.yahooapis.ss.V6.CampaignService.BudgetDeliveryMethod;
+import jp.yahooapis.ss.V6.CampaignService.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.BudgetPeriod;
+import jp.yahooapis.ss.V6.CampaignService.Campaign;
+import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
+import jp.yahooapis.ss.V6.CampaignService.CampaignPage;
+import jp.yahooapis.ss.V6.CampaignService.CampaignReturnValue;
+import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
+import jp.yahooapis.ss.V6.CampaignService.CampaignService;
+import jp.yahooapis.ss.V6.CampaignService.CampaignServiceInterface;
+import jp.yahooapis.ss.V6.CampaignService.CampaignType;
+import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
+import jp.yahooapis.ss.V6.CampaignService.CustomParameter;
+import jp.yahooapis.ss.V6.CampaignService.CustomParameters;
+import jp.yahooapis.ss.V6.CampaignService.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.Error;
+import jp.yahooapis.ss.V6.CampaignService.GeoTargetType;
+import jp.yahooapis.ss.V6.CampaignService.GeoTargetTypeSetting;
+import jp.yahooapis.ss.V6.CampaignService.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.Operator;
+import jp.yahooapis.ss.V6.CampaignService.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.Paging;
+import jp.yahooapis.ss.V6.CampaignService.ReviewUrl;
+import jp.yahooapis.ss.V6.CampaignService.SettingType;
+import jp.yahooapis.ss.V6.CampaignService.Settings;
+import jp.yahooapis.ss.V6.CampaignService.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.UserStatus;
 
 /**
  * Sample Program for CampaignService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -270,6 +273,7 @@ public class CampaignServiceSample {
 
     System.out.println("accountId = " + campaign.getAccountId());
     System.out.println("campaignId = " + campaign.getCampaignId());
+    System.out.println("campaignTrackId = " + campaign.getCampaignTrackId());
     System.out.println("campaignName = " + campaign.getCampaignName());
     System.out.println("userStatus = " + campaign.getUserStatus());
     System.out.println("startDate = " + campaign.getStartDate());
@@ -334,10 +338,6 @@ public class CampaignServiceSample {
           System.out.println("settings(GeoTargetTypeSetting)/positiveGeoTargetType = " + geoTargetTypeSetting.getPositiveGeoTargetType());
           System.out.println("settings(GeoTargetTypeSetting)/negativeGeoTargetType = " + geoTargetTypeSetting.getNegativeGeoTargetType());
 
-        } else if (settings instanceof KeywordMatchSetting) {
-          System.out.println("settings(KeywordMatchSetting)/type = " + settings.getType());
-          KeywordMatchSetting keywordMatchSetting = (KeywordMatchSetting) settings;
-          System.out.println("settings(KeywordMatchSetting)/optIn = " + keywordMatchSetting.getOptIn());
         }
       }
     }
@@ -346,6 +346,63 @@ public class CampaignServiceSample {
     System.out.println("appStore = " + campaign.getAppStore());
     System.out.println("appId = " + campaign.getAppId());
 
+    System.out.println("trackingUrl = " + campaign.getTrackingUrl());
+    if (null != campaign.getCustomParameters()) {
+      CustomParameters customParameters = campaign.getCustomParameters();
+      System.out.println("customParameters/isRemove = " + customParameters.getIsRemove());
+
+      if (null != customParameters.getParameters()) {
+        int index = 0;
+        for (CustomParameter parameter : customParameters.getParameters()) {
+          System.out.println("customParameters/parameters[" + index + "]/key = " + parameter.getKey());
+          System.out.println("customParameters/parameters[" + index + "]/value = " + parameter.getValue());
+          index++;
+        }
+      }
+    }
+
+    if (null != campaign.getUrlReviewData()) {
+      UrlReviewData urlReviewData = campaign.getUrlReviewData();
+      if (null != urlReviewData.getInReviewUrl()) {
+        ReviewUrl inReviewUrl = urlReviewData.getInReviewUrl();
+        if (null != inReviewUrl) {
+          System.out.println("urlReviewData/inReviewUrl/trackingUrl = " + inReviewUrl.getTrackingUrl());
+          if (null != inReviewUrl.getParameters()) {
+            int index = 0;
+            for (CustomParameter parameter : inReviewUrl.getParameters()) {
+              System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
+              System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
+              index++;
+            }
+          }
+        }
+      }
+
+      if (null != urlReviewData.getInReviewUrl()) {
+        ReviewUrl disapprovalReviewUrl = urlReviewData.getDisapprovalReviewUrl();
+        if (null != disapprovalReviewUrl) {
+          System.out.println("urlReviewData/disapprovalReviewUrl/trackingUrl = " + disapprovalReviewUrl.getTrackingUrl());
+          if (null != disapprovalReviewUrl.getParameters()) {
+            int index = 0;
+            for (CustomParameter parameter : disapprovalReviewUrl.getParameters()) {
+              System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
+              System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
+              index++;
+            }
+          }
+        }
+      }
+
+      System.out.println("urlReviewData/urlApprovalStatus = " + urlReviewData.getUrlApprovalStatus());
+
+      if (null != urlReviewData.getDisapprovalReasonCodes()) {
+        for (String disapprovalReasonCode : urlReviewData.getDisapprovalReasonCodes()) {
+          System.out.println("urlReviewData/disapprovalReasonCodes = " + disapprovalReasonCode);
+        }
+      }
+
+    }
+    
     System.out.println("---------");
   }
 
@@ -361,7 +418,7 @@ public class CampaignServiceSample {
     CampaignOperation operation = new CampaignOperation();
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
-
+    
     // Set Budget
     Budget budget = new Budget();
     budget.setPeriod(BudgetPeriod.DAILY);
@@ -381,7 +438,14 @@ public class CampaignServiceSample {
     // Set ManualCpc
     BiddingStrategy manualCpcStrategy = new BiddingStrategy();
     manualCpcStrategy.setBiddingStrategyType(BiddingStrategyType.MANUAL_CPC);
-
+   
+    // Set CustomParameters
+    CustomParameters customParameters = new CustomParameters();
+    CustomParameter parameter1 = new CustomParameter();
+    parameter1.setKey("id1");
+    parameter1.setValue("1234");
+    customParameters.getParameters().addAll(Arrays.asList(parameter1));
+    
     // Set AutoBidding Campaign
     Campaign autoBiddingCampaign = new Campaign();
     autoBiddingCampaign.setAccountId(accountId);
@@ -394,7 +458,11 @@ public class CampaignServiceSample {
     autoBiddingCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
     autoBiddingCampaign.getSettings().add(geoTargetTypeSetting);
     autoBiddingCampaign.setCampaignType(CampaignType.STANDARD);
-
+    
+    autoBiddingCampaign.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    autoBiddingCampaign.setCustomParameters(customParameters);
+    
+    
     // Set ManualCpc Campaign
     Campaign manualCpcCampaign = new Campaign();
     manualCpcCampaign.setAccountId(accountId);
@@ -407,7 +475,10 @@ public class CampaignServiceSample {
     manualCpcCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
     manualCpcCampaign.getSettings().add(geoTargetTypeSetting);
     manualCpcCampaign.setCampaignType(CampaignType.STANDARD);
-
+    
+    manualCpcCampaign.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    manualCpcCampaign.setCustomParameters(customParameters);
+    
     // Set App Campaign
     Campaign appCampaign = new Campaign();
     appCampaign.setAccountId(accountId);
@@ -420,8 +491,8 @@ public class CampaignServiceSample {
     appCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
     appCampaign.getSettings().add(geoTargetTypeSetting);
     appCampaign.setCampaignType(CampaignType.MOBILE_APP);
-    appCampaign.setAppStore(AppStore.ANDROID);
-    appCampaign.setAppId("SampleAppId_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    appCampaign.setAppStore(AppStore.IOS);
+    appCampaign.setAppId(SoapUtils.getCurrentTimestamp());
 
     operation.getOperand().addAll(Arrays.asList(autoBiddingCampaign, manualCpcCampaign, appCampaign));
 
@@ -468,6 +539,16 @@ public class CampaignServiceSample {
       // Change Auto Bidding Strategy
       campaign.setBiddingStrategyConfiguration(autoBiddingStrategy);
 
+      if (CampaignType.STANDARD.equals(campaign.getCampaignType())) {
+        campaign.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id2}");
+        // Set CustomParameters
+        CustomParameters customParameters = new CustomParameters();
+        CustomParameter parameter1 = new CustomParameter();
+        parameter1.setKey("id2");
+        parameter1.setValue("5678");
+        customParameters.getParameters().addAll(Arrays.asList(parameter1));
+        campaign.setCustomParameters(customParameters);
+      }
       operation.getOperand().add(campaign);
     }
 

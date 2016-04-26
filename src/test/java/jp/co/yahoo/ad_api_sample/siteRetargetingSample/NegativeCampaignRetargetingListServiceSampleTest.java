@@ -11,9 +11,9 @@ import org.junit.Test;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListOperation;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListSelector;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListValues;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListOperation;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListSelector;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListValues;
 
 /**
  * Sample TestCase for NegativeCampaignRetargetingListServiceSample. Copyright (C) 2012 Yahoo Japan

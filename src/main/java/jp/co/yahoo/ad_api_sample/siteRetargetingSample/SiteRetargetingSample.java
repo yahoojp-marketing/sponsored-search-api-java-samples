@@ -6,22 +6,22 @@ import jp.co.yahoo.ad_api_sample.adSample.AdGroupServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.BiddingStrategyServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListOperation;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListSelector;
-import jp.yahooapis.ss.V5.AdGroupRetargetingListService.AdGroupRetargetingListValues;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupOperation;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupValues;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V5.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V5.BiddingStrategyService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V5.CampaignService.CampaignOperation;
-import jp.yahooapis.ss.V5.CampaignService.CampaignType;
-import jp.yahooapis.ss.V5.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListOperation;
-import jp.yahooapis.ss.V5.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListSelector;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListOperation;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListSelector;
-import jp.yahooapis.ss.V5.RetargetingListService.RetargetingListValues;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListOperation;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListSelector;
+import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListValues;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
+import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
+import jp.yahooapis.ss.V6.BiddingStrategyService.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
+import jp.yahooapis.ss.V6.CampaignService.CampaignType;
+import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListOperation;
+import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListSelector;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListOperation;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListSelector;
+import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListValues;
 
 /**
  * Sample Program for RetargetingListService,CampaignService,NegativeCampaignRetargetingListService

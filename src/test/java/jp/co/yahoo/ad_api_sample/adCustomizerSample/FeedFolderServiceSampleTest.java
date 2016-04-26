@@ -8,10 +8,10 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderOperation;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderSelector;
-import jp.yahooapis.ss.V5.FeedFolderService.FeedFolderValues;
-import jp.yahooapis.ss.V5.FeedFolderService.Paging;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderOperation;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderSelector;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderValues;
+import jp.yahooapis.ss.V6.FeedFolderService.Paging;
 
 import org.junit.Before;
 import org.junit.Test;

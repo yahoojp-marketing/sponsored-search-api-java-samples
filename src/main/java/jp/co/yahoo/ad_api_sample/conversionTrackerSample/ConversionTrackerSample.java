@@ -8,30 +8,30 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.ConversionTrackerServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.ConversionTrackerService.AppConversion;
-import jp.yahooapis.ss.V5.ConversionTrackerService.AppConversionType;
-import jp.yahooapis.ss.V5.ConversionTrackerService.AppPlatform;
-import jp.yahooapis.ss.V5.ConversionTrackerService.AppPostbackUrl;
-import jp.yahooapis.ss.V5.ConversionTrackerService.AppPostbackUrlClearFlag;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionDateRange;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTracker;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerCategory;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerOperation;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerPage;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerReturnValue;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerSelector;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerService;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerServiceInterface;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerStatus;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerType;
-import jp.yahooapis.ss.V5.ConversionTrackerService.ConversionTrackerValues;
-import jp.yahooapis.ss.V5.ConversionTrackerService.Error;
-import jp.yahooapis.ss.V5.ConversionTrackerService.HttpProtocol;
-import jp.yahooapis.ss.V5.ConversionTrackerService.MarkupLanguage;
-import jp.yahooapis.ss.V5.ConversionTrackerService.Operator;
-import jp.yahooapis.ss.V5.ConversionTrackerService.Paging;
-import jp.yahooapis.ss.V5.ConversionTrackerService.TrackingCodeType;
-import jp.yahooapis.ss.V5.ConversionTrackerService.WebConversion;
+import jp.yahooapis.ss.V6.ConversionTrackerService.AppConversion;
+import jp.yahooapis.ss.V6.ConversionTrackerService.AppConversionType;
+import jp.yahooapis.ss.V6.ConversionTrackerService.AppPlatform;
+import jp.yahooapis.ss.V6.ConversionTrackerService.AppPostbackUrl;
+import jp.yahooapis.ss.V6.ConversionTrackerService.AppPostbackUrlClearFlag;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionDateRange;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTracker;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerCategory;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerOperation;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerPage;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerReturnValue;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerSelector;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerService;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerServiceInterface;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerStatus;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerType;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerValues;
+import jp.yahooapis.ss.V6.ConversionTrackerService.Error;
+import jp.yahooapis.ss.V6.ConversionTrackerService.HttpProtocol;
+import jp.yahooapis.ss.V6.ConversionTrackerService.MarkupLanguage;
+import jp.yahooapis.ss.V6.ConversionTrackerService.Operator;
+import jp.yahooapis.ss.V6.ConversionTrackerService.Paging;
+import jp.yahooapis.ss.V6.ConversionTrackerService.TrackingCodeType;
+import jp.yahooapis.ss.V6.ConversionTrackerService.WebConversion;
 
 
 /**
@@ -39,7 +39,7 @@ import jp.yahooapis.ss.V5.ConversionTrackerService.WebConversion;
  * Rights Reserved.
  */
 public class ConversionTrackerSample {
-
+ 
   /**
    * main method for ConversionTrackerSample
    *
@@ -51,7 +51,7 @@ public class ConversionTrackerSample {
       // Setting
       // =================================================================
       long accountId = SoapUtils.getAccountId();
-      String appId = SoapUtils.getAppId();
+      String appId = "appid" + SoapUtils.getCurrentTimestamp();
 
       // =================================================================
       // ConversionTrackerService::mutate(ADD)
@@ -374,6 +374,7 @@ public class ConversionTrackerSample {
    * @param conversionTracker ConversionTracker entity for display.
    */
   private static void display(ConversionTracker conversionTracker) {
+    
     System.out.println("accountId = " + conversionTracker.getAccountId());
     System.out.println("conversionTrackerId = " + conversionTracker.getConversionTrackerId());
     System.out.println("conversionTrackerName = " + conversionTracker.getConversionTrackerName());

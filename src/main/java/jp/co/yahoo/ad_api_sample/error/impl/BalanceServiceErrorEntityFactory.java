@@ -6,8 +6,8 @@ import java.util.List;
 import jp.co.yahoo.ad_api_sample.error.ErrorDetailEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntityFactory;
-import jp.yahooapis.ss.V5.BalanceService.Error;
-import jp.yahooapis.ss.V5.BalanceService.ErrorDetail;
+import jp.yahooapis.ss.V6.BalanceService.Error;
+import jp.yahooapis.ss.V6.BalanceService.ErrorDetail;
 
 public class BalanceServiceErrorEntityFactory implements ErrorEntityFactory {
 

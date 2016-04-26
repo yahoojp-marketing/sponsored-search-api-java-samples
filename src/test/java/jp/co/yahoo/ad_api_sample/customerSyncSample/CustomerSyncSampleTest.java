@@ -8,12 +8,12 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.CustomerSyncService.Auditlog;
-import jp.yahooapis.ss.V5.CustomerSyncService.ChangeDataValues;
-import jp.yahooapis.ss.V5.CustomerSyncService.CustomerSyncSelector;
-import jp.yahooapis.ss.V5.CustomerSyncService.DateRange;
-import jp.yahooapis.ss.V5.CustomerSyncService.IncludeUnset;
-import jp.yahooapis.ss.V5.CustomerSyncService.SourceType;
+import jp.yahooapis.ss.V6.CustomerSyncService.Auditlog;
+import jp.yahooapis.ss.V6.CustomerSyncService.ChangeDataValues;
+import jp.yahooapis.ss.V6.CustomerSyncService.CustomerSyncSelector;
+import jp.yahooapis.ss.V6.CustomerSyncService.DateRange;
+import jp.yahooapis.ss.V6.CustomerSyncService.IncludeUnset;
+import jp.yahooapis.ss.V6.CustomerSyncService.SourceType;
 
 import org.junit.Before;
 import org.junit.Test;

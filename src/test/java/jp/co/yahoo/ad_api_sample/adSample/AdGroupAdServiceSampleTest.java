@@ -9,12 +9,13 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdOperation;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdSelector;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdValues;
-import jp.yahooapis.ss.V5.AdGroupAdService.ApprovalStatus;
-import jp.yahooapis.ss.V5.AdGroupAdService.Paging;
-import jp.yahooapis.ss.V5.AdGroupAdService.UserStatus;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdOperation;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdSelector;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdValues;
+import jp.yahooapis.ss.V6.AdGroupAdService.Advanced;
+import jp.yahooapis.ss.V6.AdGroupAdService.ApprovalStatus;
+import jp.yahooapis.ss.V6.AdGroupAdService.Paging;
+import jp.yahooapis.ss.V6.AdGroupAdService.UserStatus;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -173,6 +174,7 @@ public class AdGroupAdServiceSampleTest {
     selector.getUserStatuses().addAll(Arrays.asList(UserStatus.ACTIVE, UserStatus.PAUSED));
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
+    selector.setAdvanced(Advanced.TRUE);
     Paging paging = new Paging();
     paging.setStartIndex(1);
     paging.setNumberResults(20);

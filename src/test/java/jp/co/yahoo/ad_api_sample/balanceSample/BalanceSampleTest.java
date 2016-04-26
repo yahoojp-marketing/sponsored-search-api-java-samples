@@ -8,8 +8,8 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.BalanceService.BalanceSelector;
-import jp.yahooapis.ss.V5.BalanceService.BalanceValues;
+import jp.yahooapis.ss.V6.BalanceService.BalanceSelector;
+import jp.yahooapis.ss.V6.BalanceService.BalanceValues;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -50,7 +50,7 @@ public class BalanceSampleTest {
   public void testGet() {
     // Set Selector
     BalanceSelector selector = new BalanceSelector();
-    selector.getAccountIds().add(SoapUtils.getAccountId());
+    selector.getAccountIds().add(accountId);
 
     // Run
     List<BalanceValues> balanceValues = null;

@@ -7,22 +7,22 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignCriterionServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterion;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionOperation;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionPage;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionReturnValue;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionSelector;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionService;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionServiceInterface;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CampaignCriterionValues;
-import jp.yahooapis.ss.V5.CampaignCriterionService.Criterion;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CriterionType;
-import jp.yahooapis.ss.V5.CampaignCriterionService.CriterionUse;
-import jp.yahooapis.ss.V5.CampaignCriterionService.Error;
-import jp.yahooapis.ss.V5.CampaignCriterionService.Keyword;
-import jp.yahooapis.ss.V5.CampaignCriterionService.KeywordMatchType;
-import jp.yahooapis.ss.V5.CampaignCriterionService.Operator;
-import jp.yahooapis.ss.V5.CampaignCriterionService.Paging;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterion;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionOperation;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionPage;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionReturnValue;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionSelector;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionService;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionServiceInterface;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionValues;
+import jp.yahooapis.ss.V6.CampaignCriterionService.Criterion;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CriterionType;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CriterionUse;
+import jp.yahooapis.ss.V6.CampaignCriterionService.Error;
+import jp.yahooapis.ss.V6.CampaignCriterionService.Keyword;
+import jp.yahooapis.ss.V6.CampaignCriterionService.KeywordMatchType;
+import jp.yahooapis.ss.V6.CampaignCriterionService.Operator;
+import jp.yahooapis.ss.V6.CampaignCriterionService.Paging;
 
 /**
  * Sample Program for CampaignCriterionService. Copyright (C) 2012 Yahoo Japan Corporation. All

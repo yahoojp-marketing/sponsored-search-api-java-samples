@@ -8,10 +8,10 @@ import javax.xml.ws.Holder;
 import javax.xml.ws.Service;
 import javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder;
 
-import jp.yahooapis.ss.V5.LocationService.Error;
-import jp.yahooapis.ss.V5.LocationService.LocationReturnValue;
-import jp.yahooapis.ss.V5.LocationService.LocationService;
-import jp.yahooapis.ss.V5.LocationService.LocationServiceInterface;
+import jp.yahooapis.ss.V6.LocationService.Error;
+import jp.yahooapis.ss.V6.LocationService.LocationReturnValue;
+import jp.yahooapis.ss.V6.LocationService.LocationService;
+import jp.yahooapis.ss.V6.LocationService.LocationServiceInterface;
 
 
 

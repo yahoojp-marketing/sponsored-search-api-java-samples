@@ -7,31 +7,36 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroup;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupOperation;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupPage;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupReturnValue;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupSelector;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupService;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupServiceInterface;
-import jp.yahooapis.ss.V5.AdGroupService.AdGroupValues;
-import jp.yahooapis.ss.V5.AdGroupService.Bid;
-import jp.yahooapis.ss.V5.AdGroupService.BiddingStrategy;
-import jp.yahooapis.ss.V5.AdGroupService.BiddingStrategyType;
-import jp.yahooapis.ss.V5.AdGroupService.BudgetOptimizerBiddingScheme;
-import jp.yahooapis.ss.V5.AdGroupService.CriterionType;
-import jp.yahooapis.ss.V5.AdGroupService.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.V5.AdGroupService.Error;
-import jp.yahooapis.ss.V5.AdGroupService.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.V5.AdGroupService.Operator;
-import jp.yahooapis.ss.V5.AdGroupService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V5.AdGroupService.Paging;
-import jp.yahooapis.ss.V5.AdGroupService.TargetAll;
-import jp.yahooapis.ss.V5.AdGroupService.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.V5.AdGroupService.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.V5.AdGroupService.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.V5.AdGroupService.TargetingSetting;
-import jp.yahooapis.ss.V5.AdGroupService.UserStatus;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroup;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupPage;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupReturnValue;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupSelector;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupService;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupServiceInterface;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
+import jp.yahooapis.ss.V6.AdGroupService.Bid;
+import jp.yahooapis.ss.V6.AdGroupService.BiddingStrategy;
+import jp.yahooapis.ss.V6.AdGroupService.BiddingStrategyType;
+import jp.yahooapis.ss.V6.AdGroupService.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.V6.AdGroupService.CriterionType;
+import jp.yahooapis.ss.V6.AdGroupService.CustomParameter;
+import jp.yahooapis.ss.V6.AdGroupService.CustomParameters;
+import jp.yahooapis.ss.V6.AdGroupService.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.V6.AdGroupService.Error;
+import jp.yahooapis.ss.V6.AdGroupService.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.V6.AdGroupService.Operator;
+import jp.yahooapis.ss.V6.AdGroupService.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.V6.AdGroupService.Paging;
+import jp.yahooapis.ss.V6.AdGroupService.ReviewUrl;
+import jp.yahooapis.ss.V6.AdGroupService.TargetAll;
+import jp.yahooapis.ss.V6.AdGroupService.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.V6.AdGroupService.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.V6.AdGroupService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.V6.AdGroupService.TargetingSetting;
+import jp.yahooapis.ss.V6.AdGroupService.UrlReviewData;
+import jp.yahooapis.ss.V6.AdGroupService.UserStatus;
+
 
 /**
  * Sample Program for AdGroupService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -265,8 +270,11 @@ public class AdGroupServiceSample {
 
     System.out.println("accountId = " + adGroup.getAccountId());
     System.out.println("campaignId = " + adGroup.getCampaignId());
+    System.out.println("campaignTrackId = " + adGroup.getCampaignTrackId());
     System.out.println("campaignName = " + adGroup.getCampaignName());
     System.out.println("adGroupId = " + adGroup.getAdGroupId());
+    System.out.println("adGroupTrackId = " + adGroup.getAdGroupTrackId());
+    
     System.out.println("adGroupName = " + adGroup.getAdGroupName());
     System.out.println("userStatus = " + adGroup.getUserStatus());
 
@@ -380,6 +388,61 @@ public class AdGroupServiceSample {
         System.out.println("settings/criterionType = " + adGroup.getSettings().getCriterionType());
         System.out.println("settings/targetAll = " + ((TargetingSetting)adGroup.getSettings()).getTargetAll());
       }
+      System.out.println("trackingUrl = " + adGroup.getTrackingUrl());
+      if (null != adGroup.getCustomParameters()) {
+        CustomParameters customParameters = adGroup.getCustomParameters();
+        System.out.println("customParameters/isRemove = " + customParameters.getIsRemove());
+
+        if (null != customParameters.getParameters()) {
+          int index = 0;
+          for (CustomParameter parameter : customParameters.getParameters()) {
+            System.out.println("customParameters/parameters[" + index + "]/key = " + parameter.getKey());
+            System.out.println("customParameters/parameters[" + index + "]/value = " + parameter.getValue());
+            index++;
+          }
+        }
+      }
+
+      if (null != adGroup.getUrlReviewData()) {
+        UrlReviewData urlReviewData = adGroup.getUrlReviewData();
+        if (null != urlReviewData.getInReviewUrl()) {
+          ReviewUrl inReviewUrl = urlReviewData.getInReviewUrl();
+          if (null != inReviewUrl) {
+            System.out.println("urlReviewData/inReviewUrl/trackingUrl = " + inReviewUrl.getTrackingUrl());
+            if (null != inReviewUrl.getParameters()) {
+              int index = 0;
+              for (CustomParameter parameter : inReviewUrl.getParameters()) {
+                System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
+                System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
+                index++;
+              }
+            }
+          }
+        }
+
+        if (null != urlReviewData.getInReviewUrl()) {
+          ReviewUrl disapprovalReviewUrl = urlReviewData.getDisapprovalReviewUrl();
+          if (null != disapprovalReviewUrl) {
+            System.out.println("urlReviewData/disapprovalReviewUrl/trackingUrl = " + disapprovalReviewUrl.getTrackingUrl());
+            if (null != disapprovalReviewUrl.getParameters()) {
+              int index = 0;
+              for (CustomParameter parameter : disapprovalReviewUrl.getParameters()) {
+                System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
+                System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
+                index++;
+              }
+            }
+          }
+        }
+
+        System.out.println("urlReviewData/urlApprovalStatus = " + urlReviewData.getUrlApprovalStatus());
+
+        if (null != urlReviewData.getDisapprovalReasonCodes()) {
+          for (String disapprovalReasonCode : urlReviewData.getDisapprovalReasonCodes()) {
+            System.out.println("urlReviewData/disapprovalReasonCodes = " + disapprovalReasonCode);
+          }
+        }
+      }
     }
 
     System.out.println("---------");
@@ -419,6 +482,13 @@ public class AdGroupServiceSample {
     targetingSetting.setCriterionType(CriterionType.TARGET_LIST);
     targetingSetting.setTargetAll(TargetAll.ACTIVE);
 
+    // Set CustomParameters
+    CustomParameters customParameters = new CustomParameters();
+    CustomParameter parameter1 = new CustomParameter();
+    parameter1.setKey("id1");
+    parameter1.setValue("1234");
+    customParameters.getParameters().addAll(Arrays.asList(parameter1));
+    
     // Set AutoBidding AdGroup
     AdGroup autoBiddingAdGroup = new AdGroup();
     autoBiddingAdGroup.setAccountId(accountId);
@@ -426,7 +496,9 @@ public class AdGroupServiceSample {
     autoBiddingAdGroup.setAdGroupName("SampleAutoBiddingAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
     autoBiddingAdGroup.setUserStatus(UserStatus.ACTIVE);
     autoBiddingAdGroup.setBiddingStrategyConfiguration(autoBiddingStrategy);
-    autoBiddingAdGroup.setSettings(targetingSetting);
+    autoBiddingAdGroup.setSettings(targetingSetting);    
+    autoBiddingAdGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    autoBiddingAdGroup.setCustomParameters(customParameters);
 
     // Set ManualCpc AdGroup
     AdGroup manualCpcAdGroup = new AdGroup();
@@ -435,14 +507,15 @@ public class AdGroupServiceSample {
     manualCpcAdGroup.setAdGroupName("SampleManualCpcAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
     manualCpcAdGroup.setUserStatus(UserStatus.ACTIVE);
     manualCpcAdGroup.setBiddingStrategyConfiguration(manualCpcStrategy);
-
+    manualCpcAdGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    manualCpcAdGroup.setCustomParameters(customParameters);
+    
     // Set App AdGroup
     AdGroup appAdGroup = new AdGroup();
     appAdGroup.setAccountId(accountId);
     appAdGroup.setCampaignId(appCampaignId);
     appAdGroup.setAdGroupName("SampleAppAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
     appAdGroup.setUserStatus(UserStatus.ACTIVE);
-
     operation.getOperand().addAll(Arrays.asList(autoBiddingAdGroup, manualCpcAdGroup, appAdGroup));
 
     return operation;
@@ -489,6 +562,16 @@ public class AdGroupServiceSample {
       // Change Auto Bidding Strategy
       adGroup.setBiddingStrategyConfiguration(autoBiddingStrategy);
 
+      if (null != adGroup.getTrackingUrl() && !"".equals(adGroup.getTrackingUrl())) {
+        adGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id2}");
+        // Set CustomParameters
+        CustomParameters customParameters = new CustomParameters();
+        CustomParameter parameter1 = new CustomParameter();
+        parameter1.setKey("id2");
+        parameter1.setValue("5678");
+        customParameters.getParameters().addAll(Arrays.asList(parameter1));
+        adGroup.setCustomParameters(customParameters);
+      }
       operation.getOperand().add(adGroup);
     }
 

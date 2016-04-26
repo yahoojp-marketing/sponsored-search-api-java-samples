@@ -7,26 +7,30 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupAdServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V5.AdGroupAdService.Ad;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAd;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdOperation;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdPage;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdReturnValue;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdSelector;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdService;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdServiceInterface;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdGroupAdValues;
-import jp.yahooapis.ss.V5.AdGroupAdService.AdType;
-import jp.yahooapis.ss.V5.AdGroupAdService.AppAd;
-import jp.yahooapis.ss.V5.AdGroupAdService.ApprovalStatus;
-import jp.yahooapis.ss.V5.AdGroupAdService.CarrierName;
-import jp.yahooapis.ss.V5.AdGroupAdService.DevicePreference;
-import jp.yahooapis.ss.V5.AdGroupAdService.Error;
-import jp.yahooapis.ss.V5.AdGroupAdService.MobileAd;
-import jp.yahooapis.ss.V5.AdGroupAdService.Operator;
-import jp.yahooapis.ss.V5.AdGroupAdService.Paging;
-import jp.yahooapis.ss.V5.AdGroupAdService.TextAd2;
-import jp.yahooapis.ss.V5.AdGroupAdService.UserStatus;
+import jp.yahooapis.ss.V6.AdGroupAdService.Ad;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAd;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdOperation;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdPage;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdReturnValue;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdSelector;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdService;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdServiceInterface;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdValues;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdType;
+import jp.yahooapis.ss.V6.AdGroupAdService.Advanced;
+import jp.yahooapis.ss.V6.AdGroupAdService.AppAd;
+import jp.yahooapis.ss.V6.AdGroupAdService.ApprovalStatus;
+import jp.yahooapis.ss.V6.AdGroupAdService.CarrierName;
+import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameter;
+import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameters;
+import jp.yahooapis.ss.V6.AdGroupAdService.DevicePreference;
+import jp.yahooapis.ss.V6.AdGroupAdService.Error;
+import jp.yahooapis.ss.V6.AdGroupAdService.MobileAd;
+import jp.yahooapis.ss.V6.AdGroupAdService.Operator;
+import jp.yahooapis.ss.V6.AdGroupAdService.Paging;
+import jp.yahooapis.ss.V6.AdGroupAdService.TextAd2;
+import jp.yahooapis.ss.V6.AdGroupAdService.UserStatus;
+
 
 /**
  * Sample Program for AdGroupAdService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -261,8 +265,10 @@ public class AdGroupAdServiceSample {
 
     System.out.println("accountId = " + adGroupAd.getAccountId());
     System.out.println("campaignId = " + adGroupAd.getCampaignId());
+    System.out.println("campaignTrackId = " + adGroupAd.getCampaignTrackId());
     System.out.println("campaignName = " + adGroupAd.getCampaignName());
     System.out.println("adGroupId = " + adGroupAd.getAdGroupId());
+    System.out.println("adGroupTrackId = " + adGroupAd.getAdGroupId());
     System.out.println("adGroupName = " + adGroupAd.getAdGroupName());
     System.out.println("adId = " + adGroupAd.getAdId());
     System.out.println("adName = " + adGroupAd.getAdName());
@@ -304,6 +310,27 @@ public class AdGroupAdServiceSample {
         System.out.println("ad/appId = " + appAd.getAppId());
         System.out.println("ad/devicePreference = " + appAd.getDevicePreference());
       }
+      
+      System.out.println("ad/advancedUrl = " + ad.getAdvancedUrl());
+      System.out.println("ad/advancedMobileUrl = " + ad.getAdvancedMobileUrl());
+      System.out.println("ad/trackingUrl = " + ad.getTrackingUrl());
+      System.out.println("ad/advanced = " + ad.getAdvanced());
+
+      if (null != ad.getCustomParameters()) {
+        CustomParameters customParameters = ad.getCustomParameters();
+        System.out.println("ad/customParameters/isRemove = " + customParameters.getIsRemove());
+
+        if (null != customParameters.getParameters()) {
+          int index = 0;
+          for (CustomParameter parameter : customParameters.getParameters()) {
+            System.out.println("customParameters/parameters[" + index + "]/key = " + parameter.getKey());
+            System.out.println("customParameters/parameters[" + index + "]/value = " + parameter.getValue());
+            index++;
+          }
+        }
+      }
+      
+      
     }
     System.out.println("---------");
   }
@@ -324,15 +351,25 @@ public class AdGroupAdServiceSample {
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
 
+    // Set CustomParamaters
+    CustomParameters customParameters = new CustomParameters();
+    CustomParameter parameter1 = new CustomParameter();
+    parameter1.setKey("id1");
+    parameter1.setValue("1234");
+    customParameters.getParameters().addAll(Arrays.asList(parameter1));
+    
     // Set TextAd2
     TextAd2 textAd2 = new TextAd2();
     textAd2.setType(AdType.TEXT_AD_2);
     textAd2.setHeadline("sample headline");
     textAd2.setDescription("sample ad desc");
     textAd2.setDescription2("sample ad desc2");
-    textAd2.setUrl("http://www.yahoo.co.jp/");
     textAd2.setDisplayUrl("www.yahoo.co.jp");
     textAd2.setDevicePreference(DevicePreference.SMART_PHONE);
+    textAd2.setAdvancedUrl("http://www.yahoo.co.jp");
+    textAd2.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
+    textAd2.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    textAd2.setCustomParameters(customParameters);
 
     AdGroupAd textAd2AdGroupAd = new AdGroupAd();
     textAd2AdGroupAd.setAccountId(accountId);
@@ -349,7 +386,10 @@ public class AdGroupAdServiceSample {
     appAd.setDescription("sample ad desc");
     appAd.setDescription2("sample ad desc2");
     appAd.setDevicePreference(DevicePreference.SMART_PHONE);
-
+    appAd.setAdvancedUrl("http://www.yahoo.co.jp");
+    appAd.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    appAd.setCustomParameters(customParameters);
+    
     AdGroupAd appAdAdGroupAd = new AdGroupAd();
     appAdAdGroupAd.setAccountId(accountId);
     appAdAdGroupAd.setCampaignId(appCampaignId);
@@ -357,7 +397,7 @@ public class AdGroupAdServiceSample {
     appAdAdGroupAd.setAdName("SampleAppAd_CreateOn_" + SoapUtils.getCurrentTimestamp());
     appAdAdGroupAd.setAd(appAd);
     appAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
-
+    
     operation.getOperand().addAll(Arrays.asList(textAd2AdGroupAd, appAdAdGroupAd));
 
     return operation;
@@ -385,7 +425,7 @@ public class AdGroupAdServiceSample {
       adGroupAd.setAdGroupId(adGroupAdValue.getAdGroupAd().getAdGroupId());
       adGroupAd.setAdId(adGroupAdValue.getAdGroupAd().getAdId());
       adGroupAd.setUserStatus(UserStatus.PAUSED);
-
+      
       // Set Ad
       if (AdType.TEXT_AD_2.equals(adGroupAdValue.getAdGroupAd().getAd().getType())) {
 
@@ -459,6 +499,7 @@ public class AdGroupAdServiceSample {
     selector.getUserStatuses().addAll(Arrays.asList(UserStatus.ACTIVE, UserStatus.PAUSED));
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
+    selector.setAdvanced(Advanced.TRUE);
     Paging paging = new Paging();
     paging.setStartIndex(1);
     paging.setNumberResults(20);
