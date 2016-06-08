@@ -1,6 +1,8 @@
 
 package jp.yahooapis.ss.V6.ReportDefinitionService;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -18,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ss.yahooapis.jp/V6}Operation">
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="operand" type="{http://ss.yahooapis.jp/V6}ReportDefinition"/>
+ *         &lt;element name="operand" type="{http://ss.yahooapis.jp/V6}ReportDefinition" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -38,7 +40,7 @@ public class ReportDefinitionOperation
 
     protected long accountId;
     @XmlElement(required = true)
-    protected ReportDefinition operand;
+    protected List<ReportDefinition> operand;
 
     /**
      * Gets the value of the accountId property.
@@ -59,25 +61,30 @@ public class ReportDefinitionOperation
     /**
      * Gets the value of the operand property.
      * 
-     * @return
-     *     possible object is
-     *     {@link ReportDefinition }
-     *     
-     */
-    public ReportDefinition getOperand() {
-        return operand;
-    }
-
-    /**
-     * Sets the value of the operand property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the operand property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link ReportDefinition }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getOperand().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ReportDefinition }
+     * 
+     * 
      */
-    public void setOperand(ReportDefinition value) {
-        this.operand = value;
+    public List<ReportDefinition> getOperand() {
+        if (operand == null) {
+            operand = new ArrayList<ReportDefinition>();
+        }
+        return this.operand;
     }
 
 }

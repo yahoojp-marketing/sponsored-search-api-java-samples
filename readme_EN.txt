@@ -5,6 +5,9 @@ Version 6.0.0
 
 [Change history]
 -----------
+2016/05/13:
+- Add CampaignExportSample at Version 6.0.
+
 2016/04/13:
 - Correspond to Version 6.0.
 
@@ -76,6 +79,8 @@ The following programs are stored.
   - siteRetargetingSample/SiteRetargetingSample.java                        : Sample of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSample.java                            : Sample of Get the related keywords based on the specified value via TargetingIdeaService.
   - trafficEstimatorSample/TrafficEstimatorSample.java                      : Sample of Get the estimate keyword data of the selected keyword via KeywordEstimatorService.
+  - campaignExportSample/CampaignExportSample.java                          : Sample of Add the export job and Download via CampaignExportService.
+
 
 * The following are the class called from sample programs.
 
@@ -93,7 +98,7 @@ The following resources are stored.
 - conf directory: Property file is stored in order to describe the each setting used in the sample program execution.
   - api_config.properties: Config file to describe each ID.
 
-- download directory: Stores the download data file when ReportDownloadSample is executed.
+- download directory: Stores the download data file when ReportDownloadSample,CampaignExportService is executed.
 
 - upload directory: Currently not available.
 
@@ -132,6 +137,7 @@ The following test cases are stored.
   - siteRetargetingSample/SiteRetargetingSampleTest.java                        : Test case of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : Test case of Get the related keywords based on the specified value via TargetingIdeaService.
   - trafficEstimatorSample/TrafficEstimatorSampleTest.java                      : Test case of Get the estimate keyword data of the selected keyword via KeywordEstimatorService.
+  - campaignExportSample/CampaignExportSampleTest.java                          : Test case of Add the export job and Download via CampaignExportService.
 
 [src/test/resource directory]
 The following resources are stored.
@@ -222,6 +228,7 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingLis
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.trafficEstimatorSample.TrafficEstimatorSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
 ---------------------------------------
 
 When the operation for data download is executed, the file will be stored in the directory of download.
