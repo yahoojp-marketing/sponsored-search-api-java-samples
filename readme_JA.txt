@@ -5,6 +5,9 @@ Version 6.0.0
 
 ■変更履歴
 -----------
+2016/05/13:
+- CampaignExportSample(Version 6.0)を追加しました。
+
 2016/04/13:
 - Version 6.0に対応しました。
 
@@ -76,6 +79,7 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - siteRetargetingSample/SiteRetargetingSample.java                        : RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のサンプルです。
   - targetingIdeaSample/TargetingIdeaSample.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のサンプルです。
   - trafficEstimatorSample/TrafficEstimatorSample.java                      : TrafficEstimatorServiceによる指定キーワードのクリック単価や掲載順位などの予測値を参照する処理のサンプルです。
+  - campaignExportSample/CampaignExportSample.java                          : CampaignExportServiceによるExportジョブ登録、CSVダウンロードのサンプルです。
 
 ・以下は各サンプルプログラムから利用されるクラスです。
 
@@ -93,7 +97,7 @@ JAX-WSを使用してAPIを呼び出す形になっています。
 - confディレクトリ : サンプルプログラム実行時の各種設定を記述するプロパティファイルが格納されています。
   - api_config.properties：各種IDを記述する設定ファイルです。
 
-- downloadディレクトリ：ReportDownloadSampleを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
+- downloadディレクトリ：ReportDownloadSample,CampaignExportServiceを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
 
 - uploadディレクトリ：現在は利用しません。
 
@@ -132,6 +136,7 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - siteRetargetingSample/SiteRetargetingSampleTest.java                        : RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のテストケースです。
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のテストケースです。
   - trafficEstimatorSample/TrafficEstimatorSampleTest.java                      : TrafficEstimatorServiceによる指定キーワードのクリック単価や掲載順位などの予測値を参照する処理のテストケースです。
+  - campaignExportSample/CampaignExportSampleTest.java                          : CampaignExportServiceによるExportジョブ登録、ダウンロード処理のテストケースです。
 
 ■src/test/resourceディレクトリ
 以下の内容物が格納されています。
@@ -222,6 +227,7 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingLis
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.trafficEstimatorSample.TrafficEstimatorSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
 ---------------------------------------
 
 データをダウンロードする処理を実行した場合には、downloadディレクトリにファイルが格納されます。

@@ -27,6 +27,7 @@ import jp.co.yahoo.ad_api_sample.error.ErrorEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntityFactory;
 
 public class SoapUtils {
+
   /**
    * API Version
    */
@@ -135,41 +136,42 @@ public class SoapUtils {
        * read setting
        */
       boolean failed = false;
+      List<String> errorMessages = new ArrayList<>();
       ResourceBundle bundle = ResourceBundle.getBundle("conf/api_config");
       if (bundle.containsKey("API_VERSION")) {
         API_VERSION = bundle.getString("API_VERSION");
       } else {
-        System.out.println("Error : Fail to get API_VERSION from api_config.properties.");
+        errorMessages.add("Error : Fail to get API_VERSION from api_config.properties.");
         failed = true;
       }
       if (bundle.containsKey("API_NS")) {
         API_NAMESPACE = bundle.getString("API_NS");
       } else {
-        System.out.println("Error : Fail to get API_NS from api_config.properties.");
+        errorMessages.add("Error : Fail to get API_NS from api_config.properties.");
         failed = true;
       }
       if (bundle.containsKey("LOCATION")) {
         LOCATION = bundle.getString("LOCATION");
       } else {
-        System.out.println("Error : Fail to get LOCATION from api_config.properties.");
+        errorMessages.add("Error : Fail to get LOCATION from api_config.properties.");
         failed = true;
       }
       if (bundle.containsKey("LICENSE")) {
         API_LICENSE = bundle.getString("LICENSE");
       } else {
-        System.out.println("Error : Fail to get LICENSE from api_config.properties.");
+        errorMessages.add("Error : Fail to get LICENSE from api_config.properties.");
         failed = true;
       }
       if (bundle.containsKey("APIACCOUNTID")) {
         API_ACCOUNT = bundle.getString("APIACCOUNTID");
       } else {
-        System.out.println("Error : Fail to get APIACCOUNTID from api_config.properties.");
+        errorMessages.add("Error : Fail to get APIACCOUNTID from api_config.properties.");
         failed = true;
       }
       if (bundle.containsKey("APIACCOUNTPASSWORD")) {
         API_PASSWORD = bundle.getString("APIACCOUNTPASSWORD");
       } else {
-        System.out.println("Error : Fail to get APIACCOUNTPASSWORD from api_config.properties.");
+        errorMessages.add("Error : Fail to get APIACCOUNTPASSWORD from api_config.properties.");
         failed = true;
       }
       if (bundle.containsKey("ONBEHALFOFACCOUNTID")) {
@@ -181,7 +183,7 @@ public class SoapUtils {
       if (bundle.containsKey("ACCOUNTID")) {
         ACCOUNT_ID = Long.parseLong(bundle.getString("ACCOUNTID"));
       } else {
-        System.out.println("Error : Fail to get ACCOUNTID from api_config.properties.");
+        errorMessages.add("Error : Fail to get ACCOUNTID from api_config.properties.");
         failed = true;
       }
       if (bundle.containsKey("BIDDINGSTRATEGYID")) {
@@ -257,8 +259,9 @@ public class SoapUtils {
         System.out.println("Warn : TARGETLISTID does not exist in the api_config.properties.");
       }
 
+      // setting error
       if (failed) {
-        System.exit(0);
+        throw new ApiConfigException(String.join("\n", errorMessages));
       }
 
       /*
@@ -271,9 +274,7 @@ public class SoapUtils {
         locationCacheProp.load(new FileInputStream(locationCacheFile));
       }
     } catch (Exception e) {
-      e.printStackTrace();
-      System.out.println("Error : Fail to get api_config.properties file.");
-      System.exit(0);
+      throw new ApiConfigException("Error : Fail to get api_config.properties file.", e);
     }
   }
 
@@ -471,7 +472,6 @@ public class SoapUtils {
    *
    * @param serviceName SOAP API service name
    * @return endpoint URL
-   * @throws Exception
    */
   public static URL getServiceEndPointURL(String serviceName) throws Exception {
     URL url = new URL("https://" + getLocation(getAccountId()) + "/services/" + getAPI_VERSION() + "/" + serviceName);
@@ -483,7 +483,6 @@ public class SoapUtils {
    * get location for accountId.
    *
    * @return colocation server name for accountId.
-   * @throws Exception
    */
   public static String getLocation(long accountId) throws Exception {
     String cachedLocation = locationCacheProp.getProperty(Long.toString(accountId));
@@ -504,7 +503,6 @@ public class SoapUtils {
   /**
    * get location server url
    *
-   * @param serviceName
    * @return https://LOCATION/services/API_VERSION/serviceName
    * @see LOCATION
    * @see API_VERSION
@@ -516,7 +514,6 @@ public class SoapUtils {
   /**
    * get wsdl url
    *
-   * @param serviceName
    * @return https://LOCATION/services/API_VERSION/serviceName?wsdl
    * @see LOCATION
    * @see API_VERSION
@@ -530,8 +527,7 @@ public class SoapUtils {
    * ServiceInterface object create
    *
    * @param <T> *ServiceInterface.class
-   * @param <? extends Service> *Service.class
-   * @param serviceInterface
+   * @param <?  extends Service> *Service.class
    * @return ServiceInterface object
    * @throws Exception class type is invalid.
    */
@@ -562,13 +558,23 @@ public class SoapUtils {
   }
 
   /**
-   * display error infomation.
+   * display error infomation. throw RequestInvalidException
    *
-   * @param errors error infomation object array.
-   * @param exit if true, exit program execution.
-   * @see displayErrorDetails
+   * @param factory error infomation object array.
+   * @param exit    no use
+   * @see #displayErrorDetails(List)
    */
   public static void displayErrors(ErrorEntityFactory factory, boolean exit) {
+    displayErrors(factory);
+  }
+
+  /**
+   * display error infomation. throw RequestInvalidException
+   *
+   * @param factory error infomation object array.
+   * @see #displayErrorDetails(List)
+   */
+  public static void displayErrors(ErrorEntityFactory factory) {
     List<ErrorEntity> errors = factory.create();
     if (errors != null && errors.size() > 0) {
       for (ErrorEntity errorEntity : errors) {
@@ -577,17 +583,13 @@ public class SoapUtils {
         System.out.println("message = " + errorEntity.getMessage());
         displayErrorDetails(errorEntity.getErrorDetail());
       }
-
-      if (exit) {
-        System.exit(0);
-      }
     }
+    throw new RequestInvalidException("execution error. " + factory.getClass().getName());
   }
+
 
   /**
    * display error detail infomation.
-   *
-   * @param details
    */
   private static void displayErrorDetails(List<ErrorDetailEntity> details) {
     System.out.println(" ******* Error Detail *******");
@@ -635,7 +637,7 @@ public class SoapUtils {
    * download data from url.
    *
    * @param downloadUrlStr download url
-   * @param filename save file name(not path, file name only).
+   * @param filename       save file name(not path, file name only).
    */
   public static void download(String downloadUrlStr, String filename) throws Exception {
     File downloadDir = new File(new File(".", "download").getAbsolutePath());
@@ -679,8 +681,8 @@ public class SoapUtils {
    * upload data to url.
    *
    * @param uploadUrlStr upload url
-   * @param filename save file name(not path, file name only).
-   * @param contentType upload file Content-Type for set HTTP Header.
+   * @param filename     save file name(not path, file name only).
+   * @param contentType  upload file Content-Type for set HTTP Header.
    * @return upload BulkJob Id.
    */
   public static String upload(String uploadUrlStr, String filename, String contentType) throws Exception {

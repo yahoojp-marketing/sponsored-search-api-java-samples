@@ -116,7 +116,7 @@ public class ReportDownloadSample {
       reportDefinition.setLanguage(ReportLanguage.JA);
 
 
-      reportDefinitionOperation.setOperand(reportDefinition);
+      reportDefinitionOperation.getOperand().add(reportDefinition);
 
       // call API
       System.out.println("############################################");
@@ -300,7 +300,7 @@ public class ReportDownloadSample {
       ReportDefinitionOperation removeReportDefintionOperation = new ReportDefinitionOperation();
       removeReportDefintionOperation.setAccountId(SoapUtils.getAccountId());
       removeReportDefintionOperation.setOperator(Operator.REMOVE);
-      removeReportDefintionOperation.setOperand(removeReportDefintion);
+      removeReportDefintionOperation.getOperand().add(removeReportDefintion);
 
       // call API
       System.out.println("############################################");

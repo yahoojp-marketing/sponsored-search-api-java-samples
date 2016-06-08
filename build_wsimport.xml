@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project basedir="." name="IM_JAVA_SAMPLE_WSDL" default="wsimport">
+<project basedir="." name="SS_JAVA_SAMPLE_WSDL" default="wsimport">
 
   <!--==================================
 Property for build tasks
@@ -144,20 +144,6 @@ target for wsimport
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/BidLandscapeService?wsdl"/>
     </exec>
-    <echo message="start wsimport BulkService.wsdl...."/>
-    <exec executable="${env.JAVA_HOME}/bin/wsimport">
-      <arg value="${wsdl.dir}/BulkService/BulkService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.BulkService"/>
-      <arg value="-s"/>
-      <arg value="${src.dir}"/>
-      <arg value="-Xnocompile"/>
-      <arg value="-encoding"/>
-      <arg value="UTF-8"/>
-      <arg value="-J-Duser.language=en"/>
-      <arg value="-wsdllocation"/>
-      <arg value="${wsdl.location}/BulkService?wsdl"/>
-    </exec>
     <echo message="start wsimport CampaignCriterionService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignCriterionService/CampaignCriterionService.wsdl"/>
@@ -199,6 +185,19 @@ target for wsimport
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/CampaignService?wsdl"/>
+    </exec>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CampaignExportService/CampaignExportService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.CampaignExportService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CampaignExportService?wsdl"/>
     </exec>
     <echo message="start wsimport CampaignTargetService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
