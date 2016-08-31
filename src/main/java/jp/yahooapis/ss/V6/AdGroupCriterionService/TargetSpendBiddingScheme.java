@@ -17,6 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ss.yahooapis.jp/V6}BiddingScheme">
  *       &lt;sequence>
  *         &lt;element name="bidCeiling" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="spendTarget" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -27,13 +28,15 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TargetSpendBiddingScheme", propOrder = {
-    "bidCeiling"
+    "bidCeiling",
+    "spendTarget"
 })
 public class TargetSpendBiddingScheme
     extends BiddingScheme
 {
 
     protected Long bidCeiling;
+    protected Long spendTarget;
 
     /**
      * Gets the value of the bidCeiling property.
@@ -57,6 +60,30 @@ public class TargetSpendBiddingScheme
      */
     public void setBidCeiling(Long value) {
         this.bidCeiling = value;
+    }
+
+    /**
+     * Gets the value of the spendTarget property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getSpendTarget() {
+        return spendTarget;
+    }
+
+    /**
+     * Sets the value of the spendTarget property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setSpendTarget(Long value) {
+        this.spendTarget = value;
     }
 
 }

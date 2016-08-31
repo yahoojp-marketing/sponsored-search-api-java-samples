@@ -25,10 +25,10 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="adGroupTrackId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="adGroupName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="userStatus" type="{http://ss.yahooapis.jp/V6}UserStatus" minOccurs="0"/>
- *         &lt;element name="biddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}BiddingStrategy" minOccurs="0"/>
+ *         &lt;element name="biddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}AdGroupBiddingStrategy" minOccurs="0"/>
  *         &lt;element name="biddingStrategyFailedReason" type="{http://ss.yahooapis.jp/V6}BiddingStrategyFailedReason" minOccurs="0"/>
- *         &lt;element name="failedBiddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}BiddingStrategy" minOccurs="0"/>
- *         &lt;element name="settings" type="{http://ss.yahooapis.jp/V6}Settings" minOccurs="0"/>
+ *         &lt;element name="failedBiddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}AdGroupBiddingStrategy" minOccurs="0"/>
+ *         &lt;element name="settings" type="{http://ss.yahooapis.jp/V6}AdGroupSettings" minOccurs="0"/>
  *         &lt;element name="trackingUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="customParameters" type="{http://ss.yahooapis.jp/V6}CustomParameters" minOccurs="0"/>
  *         &lt;element name="urlReviewData" type="{http://ss.yahooapis.jp/V6}UrlReviewData" minOccurs="0"/>
@@ -69,11 +69,11 @@ public class AdGroup {
     protected String adGroupName;
     @XmlSchemaType(name = "string")
     protected UserStatus userStatus;
-    protected BiddingStrategy biddingStrategyConfiguration;
+    protected AdGroupBiddingStrategy biddingStrategyConfiguration;
     @XmlSchemaType(name = "string")
     protected BiddingStrategyFailedReason biddingStrategyFailedReason;
-    protected BiddingStrategy failedBiddingStrategyConfiguration;
-    protected Settings settings;
+    protected AdGroupBiddingStrategy failedBiddingStrategyConfiguration;
+    protected AdGroupSettings settings;
     protected String trackingUrl;
     protected CustomParameters customParameters;
     protected UrlReviewData urlReviewData;
@@ -267,10 +267,10 @@ public class AdGroup {
      * 
      * @return
      *     possible object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupBiddingStrategy }
      *     
      */
-    public BiddingStrategy getBiddingStrategyConfiguration() {
+    public AdGroupBiddingStrategy getBiddingStrategyConfiguration() {
         return biddingStrategyConfiguration;
     }
 
@@ -279,10 +279,10 @@ public class AdGroup {
      * 
      * @param value
      *     allowed object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupBiddingStrategy }
      *     
      */
-    public void setBiddingStrategyConfiguration(BiddingStrategy value) {
+    public void setBiddingStrategyConfiguration(AdGroupBiddingStrategy value) {
         this.biddingStrategyConfiguration = value;
     }
 
@@ -315,10 +315,10 @@ public class AdGroup {
      * 
      * @return
      *     possible object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupBiddingStrategy }
      *     
      */
-    public BiddingStrategy getFailedBiddingStrategyConfiguration() {
+    public AdGroupBiddingStrategy getFailedBiddingStrategyConfiguration() {
         return failedBiddingStrategyConfiguration;
     }
 
@@ -327,10 +327,10 @@ public class AdGroup {
      * 
      * @param value
      *     allowed object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupBiddingStrategy }
      *     
      */
-    public void setFailedBiddingStrategyConfiguration(BiddingStrategy value) {
+    public void setFailedBiddingStrategyConfiguration(AdGroupBiddingStrategy value) {
         this.failedBiddingStrategyConfiguration = value;
     }
 
@@ -339,10 +339,10 @@ public class AdGroup {
      * 
      * @return
      *     possible object is
-     *     {@link Settings }
+     *     {@link AdGroupSettings }
      *     
      */
-    public Settings getSettings() {
+    public AdGroupSettings getSettings() {
         return settings;
     }
 
@@ -351,10 +351,10 @@ public class AdGroup {
      * 
      * @param value
      *     allowed object is
-     *     {@link Settings }
+     *     {@link AdGroupSettings }
      *     
      */
-    public void setSettings(Settings value) {
+    public void setSettings(AdGroupSettings value) {
         this.settings = value;
     }
 

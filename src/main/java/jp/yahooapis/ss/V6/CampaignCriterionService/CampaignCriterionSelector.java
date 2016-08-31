@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="campaignIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="criterionIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}CriterionUse" minOccurs="0"/>
+ *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}CampaignCriterionUse" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,7 +49,7 @@ public class CampaignCriterionSelector {
     @XmlElement(type = Long.class)
     protected List<Long> criterionIds;
     @XmlSchemaType(name = "string")
-    protected CriterionUse criterionUse;
+    protected CampaignCriterionUse criterionUse;
     protected Paging paging;
 
     /**
@@ -131,10 +131,10 @@ public class CampaignCriterionSelector {
      * 
      * @return
      *     possible object is
-     *     {@link CriterionUse }
+     *     {@link CampaignCriterionUse }
      *     
      */
-    public CriterionUse getCriterionUse() {
+    public CampaignCriterionUse getCriterionUse() {
         return criterionUse;
     }
 
@@ -143,10 +143,10 @@ public class CampaignCriterionSelector {
      * 
      * @param value
      *     allowed object is
-     *     {@link CriterionUse }
+     *     {@link CampaignCriterionUse }
      *     
      */
-    public void setCriterionUse(CriterionUse value) {
+    public void setCriterionUse(CampaignCriterionUse value) {
         this.criterionUse = value;
     }
 

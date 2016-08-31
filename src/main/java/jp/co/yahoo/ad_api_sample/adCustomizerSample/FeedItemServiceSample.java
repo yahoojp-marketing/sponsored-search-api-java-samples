@@ -1,12 +1,5 @@
 package jp.co.yahoo.ad_api_sample.adCustomizerSample;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.FeedItemServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.FeedItemService.Advanced;
@@ -20,6 +13,7 @@ import jp.yahooapis.ss.V6.FeedItemService.FeedItem;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemAttribute;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemPage;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemPlaceholderType;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemReturnValue;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemSchedule;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemScheduling;
@@ -31,10 +25,17 @@ import jp.yahooapis.ss.V6.FeedItemService.KeywordMatchType;
 import jp.yahooapis.ss.V6.FeedItemService.MinuteOfHour;
 import jp.yahooapis.ss.V6.FeedItemService.Operator;
 import jp.yahooapis.ss.V6.FeedItemService.Paging;
-import jp.yahooapis.ss.V6.FeedItemService.PlaceholderType;
+import jp.yahooapis.ss.V6.FeedItemService.SimpleFeedItemAttribute;
 import jp.yahooapis.ss.V6.FeedItemService.TargetingAdGroup;
 import jp.yahooapis.ss.V6.FeedItemService.TargetingCampaign;
 import jp.yahooapis.ss.V6.FeedItemService.TargetingKeyword;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.xml.ws.Holder;
 
 
 /**
@@ -291,8 +292,8 @@ public class FeedItemServiceSample {
       for (FeedItemAttribute feedAttribute : feedItem.getFeedItemAttribute()) {
         System.out.println("feedAttribute[" + feedAttributeIndex + "]/placeholderField = " + feedAttribute.getPlaceholderField());
         System.out.println("feedAttribute[" + feedAttributeIndex + "]/feedAttributeId = " + feedAttribute.getFeedAttributeId());
-        System.out.println("feedAttribute[" + feedAttributeIndex + "]/feedAttributeValue = " + feedAttribute.getFeedAttributeValue());
-        System.out.println("feedAttribute[" + feedAttributeIndex + "]/reviewFeedAttributeValue = " + feedAttribute.getReviewFeedAttributeValue());
+        System.out.println("feedAttribute[" + feedAttributeIndex + "]/feedAttributeValue = " + ((SimpleFeedItemAttribute)feedAttribute).getFeedAttributeValue());
+        System.out.println("feedAttribute[" + feedAttributeIndex + "]/reviewFeedAttributeValue = " + ((SimpleFeedItemAttribute)feedAttribute).getReviewFeedAttributeValue());
         feedAttributeIndex++;
       }
 
@@ -380,19 +381,19 @@ public class FeedItemServiceSample {
     FeedItemOperation operation = new FeedItemOperation();
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
-    operation.setPlaceholderType(PlaceholderType.AD_CUSTOMIZER);
+    operation.setPlaceholderType(FeedItemPlaceholderType.AD_CUSTOMIZER);
 
     // Set FeedItemAttribute
-    FeedItemAttribute integerTypeFeedItemAttribute = new FeedItemAttribute();
+    SimpleFeedItemAttribute integerTypeFeedItemAttribute = new SimpleFeedItemAttribute();
     integerTypeFeedItemAttribute.setFeedAttributeId(feedAttributeIds.get("AD_CUSTOMIZER_INTEGER"));
     integerTypeFeedItemAttribute.setFeedAttributeValue("1234567890");
-    FeedItemAttribute priceTypeFeedItemAttribute = new FeedItemAttribute();
+    SimpleFeedItemAttribute priceTypeFeedItemAttribute = new SimpleFeedItemAttribute();
     priceTypeFeedItemAttribute.setFeedAttributeId(feedAttributeIds.get("AD_CUSTOMIZER_PRICE"));
     priceTypeFeedItemAttribute.setFeedAttributeValue("9,999,999.99");
-    FeedItemAttribute dateTypeFeedItemAttribute = new FeedItemAttribute();
+    SimpleFeedItemAttribute dateTypeFeedItemAttribute = new SimpleFeedItemAttribute();
     dateTypeFeedItemAttribute.setFeedAttributeId(feedAttributeIds.get("AD_CUSTOMIZER_DATE"));
     dateTypeFeedItemAttribute.setFeedAttributeValue("20151231 235959");
-    FeedItemAttribute stringTypeFeedItemAttribute = new FeedItemAttribute();
+    SimpleFeedItemAttribute stringTypeFeedItemAttribute = new SimpleFeedItemAttribute();
     stringTypeFeedItemAttribute.setFeedAttributeId(feedAttributeIds.get("AD_CUSTOMIZER_STRING"));
     stringTypeFeedItemAttribute.setFeedAttributeValue("sample Value");
 
@@ -401,7 +402,7 @@ public class FeedItemServiceSample {
     feedItem.setAccountId(accountId);
     feedItem.setFeedFolderId(feedFolderId);
     feedItem.getFeedItemAttribute().addAll(Arrays.asList(integerTypeFeedItemAttribute, priceTypeFeedItemAttribute, dateTypeFeedItemAttribute, stringTypeFeedItemAttribute));
-    feedItem.setPlaceholderType(PlaceholderType.AD_CUSTOMIZER);
+    feedItem.setPlaceholderType(FeedItemPlaceholderType.AD_CUSTOMIZER);
     feedItem.setDevicePreference(DevicePreference.SMART_PHONE);
     feedItem.setStartDate("20161215");
     feedItem.setEndDate("20181215");
@@ -452,7 +453,7 @@ public class FeedItemServiceSample {
     FeedItemOperation operation = new FeedItemOperation();
     operation.setOperator(Operator.SET);
     operation.setAccountId(accountId);
-    operation.setPlaceholderType(PlaceholderType.AD_CUSTOMIZER);
+    operation.setPlaceholderType(FeedItemPlaceholderType.AD_CUSTOMIZER);
 
     // Set Operand
     for (FeedItemValues feedItemValue : feedItemValues) {
@@ -463,7 +464,7 @@ public class FeedItemServiceSample {
 
       // Set FeedItemAttribute
       for (FeedItemAttribute feedItemAttribute : feedItemValue.getFeedItem().getFeedItemAttribute()) {
-        FeedItemAttribute updateFeedItemAttribute = new FeedItemAttribute();
+        SimpleFeedItemAttribute updateFeedItemAttribute = new SimpleFeedItemAttribute();
         updateFeedItemAttribute.setFeedAttributeId(feedItemAttribute.getFeedAttributeId());
         switch (feedItemAttribute.getPlaceholderField()) {
           case AD_CUSTOMIZER_INTEGER:
@@ -513,7 +514,7 @@ public class FeedItemServiceSample {
     FeedItemOperation operation = new FeedItemOperation();
     operation.setOperator(Operator.REMOVE);
     operation.setAccountId(accountId);
-    operation.setPlaceholderType(PlaceholderType.AD_CUSTOMIZER);
+    operation.setPlaceholderType(FeedItemPlaceholderType.AD_CUSTOMIZER);
 
     // Set Operand
     for (FeedItemValues feedItemValue : feedItemValues) {
@@ -543,9 +544,9 @@ public class FeedItemServiceSample {
     for (FeedItemValues feedItemValue : feedItemValues) {
       selector.getFeedItemIds().add(feedItemValue.getFeedItem().getFeedItemId());
     }
-    selector.getPlaceholderTypes().add(PlaceholderType.QUICKLINK);
-    selector.getPlaceholderTypes().add(PlaceholderType.CALLEXTENSION);
-    selector.getPlaceholderTypes().add(PlaceholderType.AD_CUSTOMIZER);
+    selector.getPlaceholderTypes().add(FeedItemPlaceholderType.QUICKLINK);
+    selector.getPlaceholderTypes().add(FeedItemPlaceholderType.CALLEXTENSION);
+    selector.getPlaceholderTypes().add(FeedItemPlaceholderType.AD_CUSTOMIZER);
     selector.getApprovalStatuses().add(ApprovalStatus.APPROVED);
     selector.getApprovalStatuses().add(ApprovalStatus.REVIEW);
     selector.getApprovalStatuses().add(ApprovalStatus.PRE_DISAPPROVED);

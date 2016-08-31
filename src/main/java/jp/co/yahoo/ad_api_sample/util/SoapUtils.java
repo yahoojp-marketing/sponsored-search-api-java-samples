@@ -230,7 +230,7 @@ public class SoapUtils {
       if (bundle.containsKey("PRICEFEEDATTRIBUTEID")) {
         PRICE_FEED_ATTRIBUTE_ID = Long.parseLong(bundle.getString("PRICEFEEDATTRIBUTEID"));
       } else {
-        System.out.println("Warn : PRICEFEEDFOLDERID does not exist in the api_config.properties.");
+        System.out.println("Warn : PRICEFEEDATTRIBUTEID does not exist in the api_config.properties.");
       }
       if (bundle.containsKey("DATEFEEDATTRIBUTEID")) {
         DATE_FEED_ATTRIBUTE_ID = Long.parseLong(bundle.getString("DATEFEEDATTRIBUTEID"));

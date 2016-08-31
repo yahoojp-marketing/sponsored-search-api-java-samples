@@ -1,6 +1,8 @@
 
 package jp.yahooapis.ss.V6.AdGroupAdService;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -20,7 +22,9 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="type" type="{http://ss.yahooapis.jp/V6}AdType" minOccurs="0"/>
  *         &lt;element name="advancedUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="additionalAdvancedUrls" type="{http://ss.yahooapis.jp/V6}AdGroupAdAdditionalAdvancedUrls" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="advancedMobileUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="additionalAdvancedMobileUrls" type="{http://ss.yahooapis.jp/V6}AdGroupAdAdditionalAdvancedMobileUrls" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="trackingUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="customParameters" type="{http://ss.yahooapis.jp/V6}CustomParameters" minOccurs="0"/>
  *         &lt;element name="advanced" type="{http://ss.yahooapis.jp/V6}Advanced" minOccurs="0"/>
@@ -40,7 +44,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "Ad", propOrder = {
     "type",
     "advancedUrl",
+    "additionalAdvancedUrls",
     "advancedMobileUrl",
+    "additionalAdvancedMobileUrls",
     "trackingUrl",
     "customParameters",
     "advanced",
@@ -59,7 +65,9 @@ public class Ad {
     @XmlSchemaType(name = "string")
     protected AdType type;
     protected String advancedUrl;
+    protected List<AdGroupAdAdditionalAdvancedUrls> additionalAdvancedUrls;
     protected String advancedMobileUrl;
+    protected List<AdGroupAdAdditionalAdvancedMobileUrls> additionalAdvancedMobileUrls;
     protected String trackingUrl;
     protected CustomParameters customParameters;
     @XmlSchemaType(name = "string")
@@ -118,6 +126,35 @@ public class Ad {
     }
 
     /**
+     * Gets the value of the additionalAdvancedUrls property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the additionalAdvancedUrls property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAdditionalAdvancedUrls().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link AdGroupAdAdditionalAdvancedUrls }
+     * 
+     * 
+     */
+    public List<AdGroupAdAdditionalAdvancedUrls> getAdditionalAdvancedUrls() {
+        if (additionalAdvancedUrls == null) {
+            additionalAdvancedUrls = new ArrayList<AdGroupAdAdditionalAdvancedUrls>();
+        }
+        return this.additionalAdvancedUrls;
+    }
+
+    /**
      * Gets the value of the advancedMobileUrl property.
      * 
      * @return
@@ -139,6 +176,35 @@ public class Ad {
      */
     public void setAdvancedMobileUrl(String value) {
         this.advancedMobileUrl = value;
+    }
+
+    /**
+     * Gets the value of the additionalAdvancedMobileUrls property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the additionalAdvancedMobileUrls property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAdditionalAdvancedMobileUrls().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link AdGroupAdAdditionalAdvancedMobileUrls }
+     * 
+     * 
+     */
+    public List<AdGroupAdAdditionalAdvancedMobileUrls> getAdditionalAdvancedMobileUrls() {
+        if (additionalAdvancedMobileUrls == null) {
+            additionalAdvancedMobileUrls = new ArrayList<AdGroupAdAdditionalAdvancedMobileUrls>();
+        }
+        return this.additionalAdvancedMobileUrls;
     }
 
     /**

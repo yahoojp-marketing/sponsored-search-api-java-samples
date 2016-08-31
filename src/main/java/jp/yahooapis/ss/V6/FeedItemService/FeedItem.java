@@ -26,7 +26,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="approvalStatus" type="{http://ss.yahooapis.jp/V6}ApprovalStatus" minOccurs="0"/>
  *         &lt;element name="disapprovalReasonCodes" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="feedItemAttribute" type="{http://ss.yahooapis.jp/V6}FeedItemAttribute" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}PlaceholderType" minOccurs="0"/>
+ *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}FeedItemPlaceholderType" minOccurs="0"/>
  *         &lt;element name="devicePreference" type="{http://ss.yahooapis.jp/V6}DevicePreference" minOccurs="0"/>
  *         &lt;element name="startDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="endDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -77,7 +77,7 @@ public class FeedItem {
     protected List<String> disapprovalReasonCodes;
     protected List<FeedItemAttribute> feedItemAttribute;
     @XmlSchemaType(name = "string")
-    protected PlaceholderType placeholderType;
+    protected FeedItemPlaceholderType placeholderType;
     @XmlSchemaType(name = "string")
     protected DevicePreference devicePreference;
     protected String startDate;
@@ -274,10 +274,10 @@ public class FeedItem {
      * 
      * @return
      *     possible object is
-     *     {@link PlaceholderType }
+     *     {@link FeedItemPlaceholderType }
      *     
      */
-    public PlaceholderType getPlaceholderType() {
+    public FeedItemPlaceholderType getPlaceholderType() {
         return placeholderType;
     }
 
@@ -286,10 +286,10 @@ public class FeedItem {
      * 
      * @param value
      *     allowed object is
-     *     {@link PlaceholderType }
+     *     {@link FeedItemPlaceholderType }
      *     
      */
-    public void setPlaceholderType(PlaceholderType value) {
+    public void setPlaceholderType(FeedItemPlaceholderType value) {
         this.placeholderType = value;
     }
 

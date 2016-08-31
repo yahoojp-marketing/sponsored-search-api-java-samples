@@ -8,7 +8,7 @@ Property for build tasks
   <property name="src.dir" value="${basedir}/src/main/java"/>
   <property name="dest.dir" value="${basedir}/build"/>
   <property name="wsdl.dir" value="${basedir}/wsdl"/>
-  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.0"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.1"/>
   <property name="pakcage.base" value="jp.yahooapis.ss.V6"/>
   <!--==================================
 classpath for build
@@ -31,6 +31,34 @@ target for wsimport
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/AccountService?wsdl"/>
+    </exec>
+    <echo message="start wsimport AccountSharedService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AccountSharedService/AccountSharedService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AccountSharedService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AccountSharedService?wsdl"/>
+    </exec>
+    <echo message="start wsimport SharedCriterionService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/SharedCriterionService/SharedCriterionService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.SharedCriterionService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/SharedCriterionService?wsdl"/>
     </exec>
     <echo message="start wsimport AccountTrackingURLService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
@@ -213,6 +241,20 @@ target for wsimport
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/CampaignTargetService?wsdl"/>
     </exec>
+    <echo message="start wsimport CampaignSharedSetService.wsdl...."/>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CampaignSharedSetService/CampaignSharedSetService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.CampaignSharedSetService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CampaignSharedSetService?wsdl"/>
+    </exec>
     <echo message="start wsimport ConversionTrackerService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/ConversionTrackerService/ConversionTrackerService.wsdl"/>
@@ -297,20 +339,6 @@ target for wsimport
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/KeywordEstimatorService?wsdl"/>
     </exec>
-    <echo message="start wsimport LocationService_sandbox.wsdl...."/>
-    <exec executable="${env.JAVA_HOME}/bin/wsimport">
-      <arg value="${wsdl.dir}/LocationService/LocationService_sandbox.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.LocationService_sandbox"/>
-      <arg value="-s"/>
-      <arg value="${src.dir}"/>
-      <arg value="-Xnocompile"/>
-      <arg value="-encoding"/>
-      <arg value="UTF-8"/>
-      <arg value="-J-Duser.language=en"/>
-      <arg value="-wsdllocation"/>
-      <arg value="${wsdl.location}/LocationService?wsdl"/>
-    </exec>
     <echo message="start wsimport LocationService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/LocationService/LocationService.wsdl"/>
@@ -366,20 +394,6 @@ target for wsimport
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/TargetingIdeaService?wsdl"/>
-    </exec>
-    <echo message="start wsimport TrafficEstimatorService.wsdl...."/>
-    <exec executable="${env.JAVA_HOME}/bin/wsimport">
-      <arg value="${wsdl.dir}/TrafficEstimatorService/TrafficEstimatorService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.TrafficEstimatorService"/>
-      <arg value="-s"/>
-      <arg value="${src.dir}"/>
-      <arg value="-Xnocompile"/>
-      <arg value="-encoding"/>
-      <arg value="UTF-8"/>
-      <arg value="-J-Duser.language=en"/>
-      <arg value="-wsdllocation"/>
-      <arg value="${wsdl.location}/TrafficEstimatorService?wsdl"/>
     </exec>
     <echo message="start wsimport BiddingStrategyService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">

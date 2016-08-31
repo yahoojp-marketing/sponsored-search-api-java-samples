@@ -124,11 +124,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BiddingStrategy }
+     * Create an instance of {@link AdGroupCriterionAdditionalUrl }
      * 
      */
-    public BiddingStrategy createBiddingStrategy() {
-        return new BiddingStrategy();
+    public AdGroupCriterionAdditionalUrl createAdGroupCriterionAdditionalUrl() {
+        return new AdGroupCriterionAdditionalUrl();
     }
 
     /**
@@ -140,11 +140,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ManualCpcBiddingScheme }
+     * Create an instance of {@link AdGroupCriterionAdditionalAdvancedUrls }
      * 
      */
-    public ManualCpcBiddingScheme createManualCpcBiddingScheme() {
-        return new ManualCpcBiddingScheme();
+    public AdGroupCriterionAdditionalAdvancedUrls createAdGroupCriterionAdditionalAdvancedUrls() {
+        return new AdGroupCriterionAdditionalAdvancedUrls();
     }
 
     /**
@@ -164,11 +164,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Criterion }
+     * Create an instance of {@link AdGroupCriterionBiddingStrategy }
      * 
      */
-    public Criterion createCriterion() {
-        return new Criterion();
+    public AdGroupCriterionBiddingStrategy createAdGroupCriterionBiddingStrategy() {
+        return new AdGroupCriterionBiddingStrategy();
     }
 
     /**
@@ -180,19 +180,75 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BudgetOptimizerBiddingScheme }
-     * 
-     */
-    public BudgetOptimizerBiddingScheme createBudgetOptimizerBiddingScheme() {
-        return new BudgetOptimizerBiddingScheme();
-    }
-
-    /**
      * Create an instance of {@link CustomParameter }
      * 
      */
     public CustomParameter createCustomParameter() {
         return new CustomParameter();
+    }
+
+    /**
+     * Create an instance of {@link Paging }
+     * 
+     */
+    public Paging createPaging() {
+        return new Paging();
+    }
+
+    /**
+     * Create an instance of {@link TargetRoasBiddingScheme }
+     * 
+     */
+    public TargetRoasBiddingScheme createTargetRoasBiddingScheme() {
+        return new TargetRoasBiddingScheme();
+    }
+
+    /**
+     * Create an instance of {@link AdGroupCriterionAdditionalAdvancedMobileUrls }
+     * 
+     */
+    public AdGroupCriterionAdditionalAdvancedMobileUrls createAdGroupCriterionAdditionalAdvancedMobileUrls() {
+        return new AdGroupCriterionAdditionalAdvancedMobileUrls();
+    }
+
+    /**
+     * Create an instance of {@link NegativeAdGroupCriterion }
+     * 
+     */
+    public NegativeAdGroupCriterion createNegativeAdGroupCriterion() {
+        return new NegativeAdGroupCriterion();
+    }
+
+    /**
+     * Create an instance of {@link TargetSpendBiddingScheme }
+     * 
+     */
+    public TargetSpendBiddingScheme createTargetSpendBiddingScheme() {
+        return new TargetSpendBiddingScheme();
+    }
+
+    /**
+     * Create an instance of {@link ManualCpcBiddingScheme }
+     * 
+     */
+    public ManualCpcBiddingScheme createManualCpcBiddingScheme() {
+        return new ManualCpcBiddingScheme();
+    }
+
+    /**
+     * Create an instance of {@link Criterion }
+     * 
+     */
+    public Criterion createCriterion() {
+        return new Criterion();
+    }
+
+    /**
+     * Create an instance of {@link BudgetOptimizerBiddingScheme }
+     * 
+     */
+    public BudgetOptimizerBiddingScheme createBudgetOptimizerBiddingScheme() {
+        return new BudgetOptimizerBiddingScheme();
     }
 
     /**
@@ -220,27 +276,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Paging }
-     * 
-     */
-    public Paging createPaging() {
-        return new Paging();
-    }
-
-    /**
      * Create an instance of {@link EnhancedCpcBiddingScheme }
      * 
      */
     public EnhancedCpcBiddingScheme createEnhancedCpcBiddingScheme() {
         return new EnhancedCpcBiddingScheme();
-    }
-
-    /**
-     * Create an instance of {@link TargetRoasBiddingScheme }
-     * 
-     */
-    public TargetRoasBiddingScheme createTargetRoasBiddingScheme() {
-        return new TargetRoasBiddingScheme();
     }
 
     /**
@@ -257,22 +297,6 @@ public class ObjectFactory {
      */
     public BiddableAdGroupCriterion createBiddableAdGroupCriterion() {
         return new BiddableAdGroupCriterion();
-    }
-
-    /**
-     * Create an instance of {@link NegativeAdGroupCriterion }
-     * 
-     */
-    public NegativeAdGroupCriterion createNegativeAdGroupCriterion() {
-        return new NegativeAdGroupCriterion();
-    }
-
-    /**
-     * Create an instance of {@link TargetSpendBiddingScheme }
-     * 
-     */
-    public TargetSpendBiddingScheme createTargetSpendBiddingScheme() {
-        return new TargetSpendBiddingScheme();
     }
 
     /**

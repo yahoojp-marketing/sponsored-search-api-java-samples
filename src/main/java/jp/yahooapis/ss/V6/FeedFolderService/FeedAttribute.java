@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="feedAttributeId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="feedAttributeName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="placeholderField" type="{http://ss.yahooapis.jp/V6}PlaceholderField" minOccurs="0"/>
+ *         &lt;element name="placeholderField" type="{http://ss.yahooapis.jp/V6}FeedFolderPlaceholderField" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,7 +39,7 @@ public class FeedAttribute {
     protected Long feedAttributeId;
     protected String feedAttributeName;
     @XmlSchemaType(name = "string")
-    protected PlaceholderField placeholderField;
+    protected FeedFolderPlaceholderField placeholderField;
 
     /**
      * Gets the value of the feedAttributeId property.
@@ -94,10 +94,10 @@ public class FeedAttribute {
      * 
      * @return
      *     possible object is
-     *     {@link PlaceholderField }
+     *     {@link FeedFolderPlaceholderField }
      *     
      */
-    public PlaceholderField getPlaceholderField() {
+    public FeedFolderPlaceholderField getPlaceholderField() {
         return placeholderField;
     }
 
@@ -106,10 +106,10 @@ public class FeedAttribute {
      * 
      * @param value
      *     allowed object is
-     *     {@link PlaceholderField }
+     *     {@link FeedFolderPlaceholderField }
      *     
      */
-    public void setPlaceholderField(PlaceholderField value) {
+    public void setPlaceholderField(FeedFolderPlaceholderField value) {
         this.placeholderField = value;
     }
 

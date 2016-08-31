@@ -1,33 +1,32 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupCriterionServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterion;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionAdditionalAdvancedMobileUrls;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionAdditionalAdvancedUrls;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionAdditionalUrl;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionBiddingStrategy;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionOperation;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionPage;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionReturnValue;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionSelector;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionService;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionServiceInterface;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionUse;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionValues;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.Advanced;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.ApprovalStatus;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.Bid;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.BiddableAdGroupCriterion;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.BiddingStrategy;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.BudgetOptimizerBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.Criterion;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.CriterionType;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.CriterionUse;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.CustomParameter;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.CustomParameters;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.EnhancedCpcBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.Error;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.IsRemove;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.Keyword;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.KeywordMatchType;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.ManualCpcBiddingScheme;
@@ -38,6 +37,13 @@ import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetCpaBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetRoasBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetSpendBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.UserStatus;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.ws.Holder;
+
+import static java.lang.Thread.sleep;
 
 
 /**
@@ -60,7 +66,6 @@ public class AdGroupCriterionServiceSample {
       long campaignId = SoapUtils.getCampaignId();
       long adGroupId = SoapUtils.getAdGroupId();
 
-
       // =================================================================
       // AdGroupCriterionService ADD
       // =================================================================
@@ -78,6 +83,10 @@ public class AdGroupCriterionServiceSample {
 
       // Run
       get(adGroupCriterionSelector);
+
+      // sleep 30 second.
+      System.out.println("\n***** sleep 30 seconds *****\n");
+      Thread.sleep(30000);
 
       // =================================================================
       // AdGroupCriterionService SET
@@ -155,7 +164,7 @@ public class AdGroupCriterionServiceSample {
     System.out.println("############################################");
     System.out.println("AdGroupCriterionService::mutate(SET)");
     System.out.println("############################################");
-    
+
     Holder<AdGroupCriterionReturnValue> adGroupCriterionReturnValueHolder = new Holder<AdGroupCriterionReturnValue>();
     Holder<List<Error>> errorHolder = new Holder<List<Error>>();
     AdGroupCriterionServiceInterface adGroupCriterionService = SoapUtils.createServiceInterface(AdGroupCriterionServiceInterface.class, AdGroupCriterionService.class);
@@ -174,7 +183,13 @@ public class AdGroupCriterionServiceSample {
       if (adGroupCriterionValues.isOperationSucceeded()) {
         display(adGroupCriterionValues.getAdGroupCriterion());
       } else {
-        SoapUtils.displayErrors(new AdGroupCriterionServiceErrorEntityFactory(adGroupCriterionValues.getError()), true);
+        if(adGroupCriterionValues.getError().get(0).getCode().equals("210508")){
+          System.out.println("******* Skip. *******");
+          System.out.println("code = " + adGroupCriterionValues.getError().get(0).getCode());
+          System.out.println("message = " + adGroupCriterionValues.getError().get(0).getMessage());
+        }else {
+          SoapUtils.displayErrors(new AdGroupCriterionServiceErrorEntityFactory(adGroupCriterionValues.getError()), true);
+        }
       }
     }
 
@@ -295,7 +310,7 @@ public class AdGroupCriterionServiceSample {
       }
       System.out.println("destinationUrl = " + biddableAdGroupCriterion.getDestinationUrl());
       System.out.println("reviewDestinationUrl = " + biddableAdGroupCriterion.getReviewDestinationUrl());
-      
+
       if (biddableAdGroupCriterion.getBiddingStrategyConfiguration() != null) {
         System.out.println("biddingStrategyConfiguration/biddingStrategyId = " + biddableAdGroupCriterion.getBiddingStrategyConfiguration().getBiddingStrategyId());
         System.out.println("biddingStrategyConfiguration/biddingStrategyName = " + biddableAdGroupCriterion.getBiddingStrategyConfiguration().getBiddingStrategyName());
@@ -324,6 +339,7 @@ public class AdGroupCriterionServiceSample {
           TargetSpendBiddingScheme targetSpendBiddingScheme = (TargetSpendBiddingScheme) biddableAdGroupCriterion.getBiddingStrategyConfiguration().getBiddingScheme();
           System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/biddingStrategyType = " + targetSpendBiddingScheme.getBiddingStrategyType());
           System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/bidCeiling = " + targetSpendBiddingScheme.getBidCeiling());
+          System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/spendTarget = " + targetSpendBiddingScheme.getSpendTarget());
         } else if (biddableAdGroupCriterion.getBiddingStrategyConfiguration().getBiddingScheme() instanceof TargetRoasBiddingScheme) {
           TargetRoasBiddingScheme targetRoasBiddingScheme = (TargetRoasBiddingScheme) biddableAdGroupCriterion.getBiddingStrategyConfiguration().getBiddingScheme();
           System.out.println("biddingStrategyConfiguration/biddingScheme(TargetRoasBiddingScheme)/biddingStrategyType = " + targetRoasBiddingScheme.getBiddingStrategyType());
@@ -348,7 +364,7 @@ public class AdGroupCriterionServiceSample {
         }
 
         if (biddableAdGroupCriterion.getBiddingStrategyConfiguration().getParentBiddingStrategyConfigurations() != null) {
-          for (BiddingStrategy biddingStrategy : biddableAdGroupCriterion.getBiddingStrategyConfiguration().getParentBiddingStrategyConfigurations()) {
+          for (AdGroupCriterionBiddingStrategy biddingStrategy : biddableAdGroupCriterion.getBiddingStrategyConfiguration().getParentBiddingStrategyConfigurations()) {
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingStrategyId = " + biddingStrategy.getBiddingStrategyId());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingStrategyName = " + biddingStrategy.getBiddingStrategyName());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingStrategyType = " + biddingStrategy.getBiddingStrategyType());
@@ -408,9 +424,40 @@ public class AdGroupCriterionServiceSample {
         System.out.println("reviewAdvancedUrl = " + biddableAdGroupCriterion.getReviewAdvancedUrl());
         System.out.println("advancedMobileUrl = " + biddableAdGroupCriterion.getAdvancedMobileUrl());
         System.out.println("reviewAdvancedMobileUrl = " + biddableAdGroupCriterion.getReviewAdvancedMobileUrl());
+
+        if(null != biddableAdGroupCriterion.getAdditionalAdvancedUrls()){
+          AdGroupCriterionAdditionalAdvancedUrls additionalAdvancedUrls = biddableAdGroupCriterion.getAdditionalAdvancedUrls();
+          System.out.println("additionalAdvancedUrls/isRemove = " + additionalAdvancedUrls.getIsRemove());
+
+          if (null != additionalAdvancedUrls.getAdditionalAdvancedUrl()) {
+            int index = 0;
+            for (AdGroupCriterionAdditionalUrl additionalAdvancedUrl : additionalAdvancedUrls.getAdditionalAdvancedUrl()) {
+              System.out.println("additionalAdvancedUrls/additionalAdvancedUrl[" + index + "]/url = " + additionalAdvancedUrl.getUrl());
+              System.out.println("additionalAdvancedUrls/additionalAdvancedUrl[" + index + "]/reviewUrl = " + additionalAdvancedUrl.getReviewUrl());
+              System.out.println("additionalAdvancedUrls/additionalAdvancedUrl[" + index + "]/disapprovalReasonCodes = " + additionalAdvancedUrl.getDisapprovalReasonCodes());
+              index++;
+            }
+          }
+        }
+
+        if(null != biddableAdGroupCriterion.getAdditionalAdvancedMobileUrls()){
+          AdGroupCriterionAdditionalAdvancedMobileUrls additionalAdvancedMobileUrls = biddableAdGroupCriterion.getAdditionalAdvancedMobileUrls();
+          System.out.println("additionalAdvancedMobileUrls/isRemove = " + additionalAdvancedMobileUrls.getIsRemove());
+
+          if (null != additionalAdvancedMobileUrls.getAdditionalAdvancedMobileUrl()) {
+            int index = 0;
+            for (AdGroupCriterionAdditionalUrl additionalAdvancedMobileUrl : additionalAdvancedMobileUrls.getAdditionalAdvancedMobileUrl()) {
+              System.out.println("additionalAdvancedMobileUrls/additionalAdvancedMobileUrl[" + index + "]/url = " + additionalAdvancedMobileUrl.getUrl());
+              System.out.println("additionalAdvancedMobileUrls/additionalAdvancedMobileUrl[" + index + "]/reviewUrl = " + additionalAdvancedMobileUrl.getReviewUrl());
+              System.out.println("additionalAdvancedMobileUrls/additionalAdvancedMobileUrl[" + index + "]/disapprovalReasonCodes = " + additionalAdvancedMobileUrl.getDisapprovalReasonCodes());
+              index++;
+            }
+          }
+        }
+
         System.out.println("trackingUrl = " + biddableAdGroupCriterion.getTrackingUrl());
         System.out.println("reviewTrackingUrl = " + biddableAdGroupCriterion.getReviewTrackingUrl());
-        
+
         if (null != biddableAdGroupCriterion.getCustomParameters()) {
           CustomParameters customParameters = biddableAdGroupCriterion.getCustomParameters();
           System.out.println("customParameters/isRemove = " + customParameters.getIsRemove());
@@ -424,7 +471,7 @@ public class AdGroupCriterionServiceSample {
             }
           }
         }
-        
+
         if (null != biddableAdGroupCriterion.getReviewCustomParameters()) {
           CustomParameters reviewCustomParameters = biddableAdGroupCriterion.getReviewCustomParameters();
           System.out.println("reviewCustomParameters/isRemove = " + reviewCustomParameters.getIsRemove());
@@ -438,7 +485,7 @@ public class AdGroupCriterionServiceSample {
             }
           }
         }
-        
+
         System.out.println("advanced = " + biddableAdGroupCriterion.getAdvanced());
       }
     }
@@ -448,7 +495,7 @@ public class AdGroupCriterionServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
    * @param adGroupId long
@@ -469,33 +516,57 @@ public class AdGroupCriterionServiceSample {
     // Set Bid
     Bid bit = new Bid();
     bit.setMaxCpc((long) 100);
-    BiddingStrategy biddingStrategy = new BiddingStrategy();
+    AdGroupCriterionBiddingStrategy biddingStrategy = new AdGroupCriterionBiddingStrategy();
     biddingStrategy.setBid(bit);
-    
+
     // Set CustomParamaters
     CustomParameters customParameters = new CustomParameters();
     CustomParameter parameter1 = new CustomParameter();
     parameter1.setKey("id1");
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));
-    
+
     // Set BiddableAdGroupCriterion
     BiddableAdGroupCriterion biddableAdGroupCriterion = new BiddableAdGroupCriterion();
     biddableAdGroupCriterion.setAccountId(accountId);
     biddableAdGroupCriterion.setCampaignId(campaignId);
     biddableAdGroupCriterion.setAdGroupId(adGroupId);
-    biddableAdGroupCriterion.setCriterionUse(CriterionUse.BIDDABLE);
+    biddableAdGroupCriterion.setCriterionUse(AdGroupCriterionUse.BIDDABLE);
     biddableAdGroupCriterion.setCriterion(keyword);
     biddableAdGroupCriterion.setDestinationUrl("http://www.yahoo.co.jp/");
     biddableAdGroupCriterion.setUserStatus(UserStatus.ACTIVE);
     biddableAdGroupCriterion.setBiddingStrategyConfiguration(biddingStrategy);
-    
+
     biddableAdGroupCriterion.setAdvancedUrl("http://www.yahoo.co.jp");
     biddableAdGroupCriterion.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
+
+    AdGroupCriterionAdditionalAdvancedUrls additionalAdvancedUrls = new AdGroupCriterionAdditionalAdvancedUrls();
+    AdGroupCriterionAdditionalUrl adGroupCriterionAdditionalUrl1 = new AdGroupCriterionAdditionalUrl();
+    AdGroupCriterionAdditionalUrl adGroupCriterionAdditionalUrl2 = new AdGroupCriterionAdditionalUrl();
+    AdGroupCriterionAdditionalUrl adGroupCriterionAdditionalUrl3 = new AdGroupCriterionAdditionalUrl();
+    adGroupCriterionAdditionalUrl1.setUrl("http://www1.yahoo.co.jp");
+    adGroupCriterionAdditionalUrl2.setUrl("http://www2.yahoo.co.jp");
+    adGroupCriterionAdditionalUrl3.setUrl("http://www3.yahoo.co.jp");
+    additionalAdvancedUrls.getAdditionalAdvancedUrl().add(adGroupCriterionAdditionalUrl1);
+    additionalAdvancedUrls.getAdditionalAdvancedUrl().add(adGroupCriterionAdditionalUrl2);
+    additionalAdvancedUrls.getAdditionalAdvancedUrl().add(adGroupCriterionAdditionalUrl3);
+    biddableAdGroupCriterion.setAdditionalAdvancedUrls(additionalAdvancedUrls);
+
+    AdGroupCriterionAdditionalAdvancedMobileUrls adGroupCriterionAdditionalAdvancedMobileUrls = new AdGroupCriterionAdditionalAdvancedMobileUrls();
+    AdGroupCriterionAdditionalUrl adGroupCriterionAdditionalMobileUrl1 = new AdGroupCriterionAdditionalUrl();
+    AdGroupCriterionAdditionalUrl adGroupCriterionAdditionalMobileUrl2 = new AdGroupCriterionAdditionalUrl();
+    AdGroupCriterionAdditionalUrl adGroupCriterionAdditionalMobileUrl3 = new AdGroupCriterionAdditionalUrl();
+    adGroupCriterionAdditionalMobileUrl1.setUrl("http://www1.yahoo.co.jp/mobile");
+    adGroupCriterionAdditionalMobileUrl2.setUrl("http://www2.yahoo.co.jp/mobile");
+    adGroupCriterionAdditionalMobileUrl3.setUrl("http://www3.yahoo.co.jp/mobile");
+    adGroupCriterionAdditionalAdvancedMobileUrls.getAdditionalAdvancedMobileUrl().add(adGroupCriterionAdditionalMobileUrl1);
+    adGroupCriterionAdditionalAdvancedMobileUrls.getAdditionalAdvancedMobileUrl().add(adGroupCriterionAdditionalMobileUrl2);
+    adGroupCriterionAdditionalAdvancedMobileUrls.getAdditionalAdvancedMobileUrl().add(adGroupCriterionAdditionalMobileUrl3);
+    biddableAdGroupCriterion.setAdditionalAdvancedMobileUrls(adGroupCriterionAdditionalAdvancedMobileUrls);
+
     biddableAdGroupCriterion.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     biddableAdGroupCriterion.setCustomParameters(customParameters);
     biddableAdGroupCriterion.setAdvanced(Advanced.TRUE);
-    
 
     operation.getOperand().add(biddableAdGroupCriterion);
 
@@ -504,7 +575,7 @@ public class AdGroupCriterionServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
    * @param adGroupId long
@@ -516,7 +587,7 @@ public class AdGroupCriterionServiceSample {
     AdGroupCriterionOperation operation = new AdGroupCriterionOperation();
     operation.setOperator(Operator.SET);
     operation.setAccountId(accountId);
-    
+
     // Set Operand
     for (AdGroupCriterionValues adGroupCriterionValue : adGroupCriterionValues) {
 
@@ -528,16 +599,16 @@ public class AdGroupCriterionServiceSample {
       // Set Bid
       Bid bit = new Bid();
       bit.setMaxCpc((long) 150);
-      BiddingStrategy biddingStrategy = new BiddingStrategy();
+      AdGroupCriterionBiddingStrategy biddingStrategy = new AdGroupCriterionBiddingStrategy();
       biddingStrategy.setBid(bit);
-      
+
       // Set CustomParamaters
       CustomParameters customParameters = new CustomParameters();
       CustomParameter parameter1 = new CustomParameter();
       parameter1.setKey("id1");
       parameter1.setValue("5678");
       customParameters.getParameters().addAll(Arrays.asList(parameter1));
-      
+
       // Set BiddableAdGroupCriterion
       BiddableAdGroupCriterion biddableAdGroupCriterion = new BiddableAdGroupCriterion();
       biddableAdGroupCriterion.setAccountId(adGroupCriterionValue.getAdGroupCriterion().getAccountId());
@@ -545,15 +616,23 @@ public class AdGroupCriterionServiceSample {
       biddableAdGroupCriterion.setAdGroupId(adGroupCriterionValue.getAdGroupCriterion().getAdGroupId());
       biddableAdGroupCriterion.setCriterion(keyword);
       biddableAdGroupCriterion.setUserStatus(UserStatus.PAUSED);
-      biddableAdGroupCriterion.setCriterionUse(CriterionUse.BIDDABLE);
+      biddableAdGroupCriterion.setCriterionUse(AdGroupCriterionUse.BIDDABLE);
       biddableAdGroupCriterion.setBiddingStrategyConfiguration(biddingStrategy);
-      
+
       biddableAdGroupCriterion.setAdvancedUrl("http://www.yahoo2.co.jp");
       biddableAdGroupCriterion.setAdvancedMobileUrl("http://www.yahoo2.co.jp/mobile");
+
+      AdGroupCriterionAdditionalAdvancedUrls additionalAdvancedUrls = new AdGroupCriterionAdditionalAdvancedUrls();
+      additionalAdvancedUrls.setIsRemove(IsRemove.TRUE);
+      biddableAdGroupCriterion.setAdditionalAdvancedUrls(additionalAdvancedUrls);
+      AdGroupCriterionAdditionalAdvancedMobileUrls adGroupCriterionAdditionalAdvancedMobileUrls = new AdGroupCriterionAdditionalAdvancedMobileUrls();
+      additionalAdvancedUrls.setIsRemove(IsRemove.TRUE);
+      biddableAdGroupCriterion.setAdditionalAdvancedMobileUrls(adGroupCriterionAdditionalAdvancedMobileUrls);
+
       biddableAdGroupCriterion.setTrackingUrl("http://www.yahoo2.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
       biddableAdGroupCriterion.setCustomParameters(customParameters);
       biddableAdGroupCriterion.setAdvanced(Advanced.TRUE);
-      
+
       operation.getOperand().add(biddableAdGroupCriterion);
     }
 
@@ -562,7 +641,7 @@ public class AdGroupCriterionServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
    * @param adGroupId long
@@ -598,7 +677,7 @@ public class AdGroupCriterionServiceSample {
 
   /**
    * create sample request.
-   * 
+   *
    * @param accountId long
    * @param campaignId long
    * @param adGroupId long
@@ -616,7 +695,7 @@ public class AdGroupCriterionServiceSample {
       selector.getCriterionIds().add((adGroupCriterionValue.getAdGroupCriterion().getCriterion().getCriterionId()));
     }
     selector.getUserStatuses().addAll(Arrays.asList(UserStatus.ACTIVE, UserStatus.PAUSED));
-    selector.setCriterionUse(CriterionUse.BIDDABLE);
+    selector.setCriterionUse(AdGroupCriterionUse.BIDDABLE);
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
     selector.setAdvanced(Advanced.TRUE);

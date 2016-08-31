@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="OPTIMIZE"/>
  *     &lt;enumeration value="ROTATE"/>
  *     &lt;enumeration value="ROTATE_INDEFINITELY"/>
+ *     &lt;enumeration value="CONVERSION_OPTIMIZE"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -27,7 +28,8 @@ public enum AdServingOptimizationStatus {
 
     OPTIMIZE,
     ROTATE,
-    ROTATE_INDEFINITELY;
+    ROTATE_INDEFINITELY,
+    CONVERSION_OPTIMIZE;
 
     public String value() {
         return name();

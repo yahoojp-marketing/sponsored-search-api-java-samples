@@ -281,6 +281,7 @@ public class BiddingStrategyServiceSample {
       TargetSpendBiddingScheme targetSpendBiddingScheme = (TargetSpendBiddingScheme) biddingStrategy.getBiddingScheme();
       System.out.println("biddingScheme(TargetSpendBiddingScheme)/biddingStrategyType = " + targetSpendBiddingScheme.getBiddingStrategyType());
       System.out.println("biddingScheme(TargetSpendBiddingScheme)/bidCeiling = " + targetSpendBiddingScheme.getBidCeiling());
+      System.out.println("biddingScheme(TargetSpendBiddingScheme)/spendTarget = " + targetSpendBiddingScheme.getSpendTarget());
     } else if (biddingStrategy.getBiddingScheme() instanceof TargetRoasBiddingScheme) {
       TargetRoasBiddingScheme targetRoasBiddingScheme = (TargetRoasBiddingScheme) biddingStrategy.getBiddingScheme();
       System.out.println("biddingScheme(TargetRoasBiddingScheme)/biddingStrategyType = " + targetRoasBiddingScheme.getBiddingStrategyType());
@@ -342,6 +343,7 @@ public class BiddingStrategyServiceSample {
     TargetSpendBiddingScheme addTargetSpendBiddingScheme = new TargetSpendBiddingScheme();
     addTargetSpendBiddingScheme.setBiddingStrategyType(BiddingStrategyType.TARGET_SPEND);
     addTargetSpendBiddingScheme.setBidCeiling((long) 700);
+    addTargetSpendBiddingScheme.setSpendTarget((long) 10);
 
     BiddingStrategy targetSpendBidding = new BiddingStrategy();
     targetSpendBidding.setAccountId(accountId);
@@ -429,6 +431,7 @@ public class BiddingStrategyServiceSample {
         TargetSpendBiddingScheme setTargetSpendBiddingScheme = new TargetSpendBiddingScheme();
         setTargetSpendBiddingScheme.setBiddingStrategyType(BiddingStrategyType.TARGET_SPEND);
         setTargetSpendBiddingScheme.setBidCeiling((long) 750);
+        setTargetSpendBiddingScheme.setSpendTarget((long) 15);
         biddingStrategy.setBiddingScheme(setTargetSpendBiddingScheme);
 
       } else if (biddingStrategyValue.getBiddingStrategy().getBiddingScheme() instanceof TargetRoasBiddingScheme) {

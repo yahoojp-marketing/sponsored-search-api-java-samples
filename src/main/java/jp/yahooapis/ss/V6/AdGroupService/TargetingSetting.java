@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="TargetingSetting">
  *   &lt;complexContent>
- *     &lt;extension base="{http://ss.yahooapis.jp/V6}Settings">
+ *     &lt;extension base="{http://ss.yahooapis.jp/V6}AdGroupSettings">
  *       &lt;sequence>
  *         &lt;element name="targetAll" type="{http://ss.yahooapis.jp/V6}TargetAll" minOccurs="0"/>
  *       &lt;/sequence>
@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlType;
     "targetAll"
 })
 public class TargetingSetting
-    extends Settings
+    extends AdGroupSettings
 {
 
     @XmlSchemaType(name = "string")

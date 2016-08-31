@@ -1,5 +1,6 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,6 +10,8 @@ import jp.co.yahoo.ad_api_sample.error.impl.AdGroupAdServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.AdGroupAdService.Ad;
 import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAd;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdAdditionalAdvancedMobileUrls;
+import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdAdditionalAdvancedUrls;
 import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdOperation;
 import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdPage;
 import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdReturnValue;
@@ -316,6 +319,24 @@ public class AdGroupAdServiceSample {
       System.out.println("ad/trackingUrl = " + ad.getTrackingUrl());
       System.out.println("ad/advanced = " + ad.getAdvanced());
 
+      if(null != ad.getAdditionalAdvancedUrls()){
+        List<AdGroupAdAdditionalAdvancedUrls> additionalAdvancedUrls = ad.getAdditionalAdvancedUrls();
+        int index = 0;
+        for (AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl : additionalAdvancedUrls){
+          System.out.println("additionalAdvancedUrls[" + index + "]/additionalAdvancedUrl/advancedUrl = " + additionalAdvancedUrl.getAdvancedUrl());
+          System.out.println("additionalAdvancedUrls[" + index + "]/additionalAdvancedUrl/disapprovalReasonCodes = " + additionalAdvancedUrl.getDisapprovalReasonCodes());
+        }
+      }
+
+      if(null != ad.getAdditionalAdvancedMobileUrls()){
+        List<AdGroupAdAdditionalAdvancedMobileUrls> additionalAdvancedMobileUrls = ad.getAdditionalAdvancedMobileUrls();
+        int index = 0;
+        for (AdGroupAdAdditionalAdvancedMobileUrls additionalAdvancedMobileUrl : additionalAdvancedMobileUrls){
+          System.out.println("additionalAdvancedMobileUrls[" + index + "]/additionalAdvancedMobileUrl/advancedMobileUrl = " + additionalAdvancedMobileUrl.getAdvancedMobileUrl());
+          System.out.println("additionalAdvancedMobileUrls[" + index + "]/additionalAdvancedMobileUrl/disapprovalReasonCodes = " + additionalAdvancedMobileUrl.getDisapprovalReasonCodes());
+        }
+      }
+
       if (null != ad.getCustomParameters()) {
         CustomParameters customParameters = ad.getCustomParameters();
         System.out.println("ad/customParameters/isRemove = " + customParameters.getIsRemove());
@@ -371,6 +392,26 @@ public class AdGroupAdServiceSample {
     textAd2.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     textAd2.setCustomParameters(customParameters);
 
+    AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl1 = new AdGroupAdAdditionalAdvancedUrls();
+    AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl2 = new AdGroupAdAdditionalAdvancedUrls();
+    AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl3 = new AdGroupAdAdditionalAdvancedUrls();
+    additionalAdvancedUrl1.setAdvancedUrl("http://www1.yahoo.co.jp");
+    additionalAdvancedUrl2.setAdvancedUrl("http://www2.yahoo.co.jp");
+    additionalAdvancedUrl3.setAdvancedUrl("http://www3.yahoo.co.jp");
+    textAd2.getAdditionalAdvancedUrls().add(additionalAdvancedUrl1);
+    textAd2.getAdditionalAdvancedUrls().add(additionalAdvancedUrl2);
+    textAd2.getAdditionalAdvancedUrls().add(additionalAdvancedUrl3);
+
+    AdGroupAdAdditionalAdvancedMobileUrls adGroupAdAdditionalAdvancedMobileUrls1 = new AdGroupAdAdditionalAdvancedMobileUrls();
+    AdGroupAdAdditionalAdvancedMobileUrls adGroupAdAdditionalAdvancedMobileUrls2 = new AdGroupAdAdditionalAdvancedMobileUrls();
+    AdGroupAdAdditionalAdvancedMobileUrls adGroupAdAdditionalAdvancedMobileUrls3 = new AdGroupAdAdditionalAdvancedMobileUrls();
+    adGroupAdAdditionalAdvancedMobileUrls1.setAdvancedMobileUrl("http://www1.yahoo.co.jp/mobile");
+    adGroupAdAdditionalAdvancedMobileUrls2.setAdvancedMobileUrl("http://www2.yahoo.co.jp/mobile");
+    adGroupAdAdditionalAdvancedMobileUrls3.setAdvancedMobileUrl("http://www3.yahoo.co.jp/mobile");
+    textAd2.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls1);
+    textAd2.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls2);
+    textAd2.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls3);
+
     AdGroupAd textAd2AdGroupAd = new AdGroupAd();
     textAd2AdGroupAd.setAccountId(accountId);
     textAd2AdGroupAd.setCampaignId(campaignId);
@@ -389,7 +430,7 @@ public class AdGroupAdServiceSample {
     appAd.setAdvancedUrl("http://www.yahoo.co.jp");
     appAd.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     appAd.setCustomParameters(customParameters);
-    
+
     AdGroupAd appAdAdGroupAd = new AdGroupAd();
     appAdAdGroupAd.setAccountId(accountId);
     appAdAdGroupAd.setCampaignId(appCampaignId);

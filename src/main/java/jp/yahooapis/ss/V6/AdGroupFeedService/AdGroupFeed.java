@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="adGroupId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="feedItemId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}PlaceholderType" minOccurs="0"/>
+ *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}AdGroupFeedPlaceholderType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -45,7 +45,7 @@ public class AdGroupFeed {
     protected Long adGroupId;
     protected Long feedItemId;
     @XmlSchemaType(name = "string")
-    protected PlaceholderType placeholderType;
+    protected AdGroupFeedPlaceholderType placeholderType;
 
     /**
      * Gets the value of the accountId property.
@@ -148,10 +148,10 @@ public class AdGroupFeed {
      * 
      * @return
      *     possible object is
-     *     {@link PlaceholderType }
+     *     {@link AdGroupFeedPlaceholderType }
      *     
      */
-    public PlaceholderType getPlaceholderType() {
+    public AdGroupFeedPlaceholderType getPlaceholderType() {
         return placeholderType;
     }
 
@@ -160,10 +160,10 @@ public class AdGroupFeed {
      * 
      * @param value
      *     allowed object is
-     *     {@link PlaceholderType }
+     *     {@link AdGroupFeedPlaceholderType }
      *     
      */
-    public void setPlaceholderType(PlaceholderType value) {
+    public void setPlaceholderType(AdGroupFeedPlaceholderType value) {
         this.placeholderType = value;
     }
 

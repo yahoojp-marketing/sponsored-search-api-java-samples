@@ -1,10 +1,5 @@
 package jp.co.yahoo.ad_api_sample.reportDownloadSample;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.ReportDefinitionServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.error.impl.ReportServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
@@ -37,6 +32,11 @@ import jp.yahooapis.ss.V6.ReportService.ReportSelector;
 import jp.yahooapis.ss.V6.ReportService.ReportService;
 import jp.yahooapis.ss.V6.ReportService.ReportServiceInterface;
 import jp.yahooapis.ss.V6.ReportService.ReportValues;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 /**
  * Sample Program for Report Download. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

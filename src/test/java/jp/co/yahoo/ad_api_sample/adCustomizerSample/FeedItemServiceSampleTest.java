@@ -1,25 +1,25 @@
 package jp.co.yahoo.ad_api_sample.adCustomizerSample;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import jp.co.yahoo.ad_api_sample.util.SoapUtils;
+import jp.yahooapis.ss.V6.FeedItemService.Advanced;
+import jp.yahooapis.ss.V6.FeedItemService.ApprovalStatus;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemPlaceholderType;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
+import jp.yahooapis.ss.V6.FeedItemService.Paging;
+
+import org.junit.Before;
+import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.FeedItemService.Advanced;
-import jp.yahooapis.ss.V6.FeedItemService.ApprovalStatus;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
-import jp.yahooapis.ss.V6.FeedItemService.Paging;
-import jp.yahooapis.ss.V6.FeedItemService.PlaceholderType;
-
-import org.junit.Before;
-import org.junit.Test;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * Sample TestCase for FeedItemServiceSampleTest. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -177,9 +177,9 @@ public class FeedItemServiceSampleTest {
     // Set Selector
     FeedItemSelector selector = new FeedItemSelector();
     selector.setAccountId(accountId);
-    selector.getPlaceholderTypes().add(PlaceholderType.QUICKLINK);
-    selector.getPlaceholderTypes().add(PlaceholderType.CALLEXTENSION);
-    selector.getPlaceholderTypes().add(PlaceholderType.AD_CUSTOMIZER);
+    selector.getPlaceholderTypes().add(FeedItemPlaceholderType.QUICKLINK);
+    selector.getPlaceholderTypes().add(FeedItemPlaceholderType.CALLEXTENSION);
+    selector.getPlaceholderTypes().add(FeedItemPlaceholderType.AD_CUSTOMIZER);
     selector.getApprovalStatuses().add(ApprovalStatus.APPROVED);
     selector.getApprovalStatuses().add(ApprovalStatus.REVIEW);
     selector.getApprovalStatuses().add(ApprovalStatus.PRE_DISAPPROVED);

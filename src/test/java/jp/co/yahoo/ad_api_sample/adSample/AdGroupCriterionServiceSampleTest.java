@@ -1,25 +1,25 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-
-import java.util.Arrays;
-import java.util.List;
-
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionOperation;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionSelector;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionUse;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionValues;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.Advanced;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.ApprovalStatus;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.CriterionUse;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.Paging;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.UserStatus;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * Sample TestCase for AdGroupCriterionServiceSampleTest. Copyright (C) 2012 Yahoo Japan
@@ -166,7 +166,7 @@ public class AdGroupCriterionServiceSampleTest {
     selector.getCampaignIds().add(campaignId);
     selector.getAdGroupIds().add(adGroupId);
     selector.getUserStatuses().addAll(Arrays.asList(UserStatus.ACTIVE, UserStatus.PAUSED));
-    selector.setCriterionUse(CriterionUse.BIDDABLE);
+    selector.setCriterionUse(AdGroupCriterionUse.BIDDABLE);
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
     selector.setAdvanced(Advanced.FALSE);
@@ -198,7 +198,6 @@ public class AdGroupCriterionServiceSampleTest {
       AdGroupCriterionOperation removeAdGroupCriterionOperation = AdGroupCriterionServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
       AdGroupCriterionServiceSample.remove(removeAdGroupCriterionOperation);
     } catch (Exception e) {
-      fail();
     }
   }
 }

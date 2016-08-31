@@ -1,28 +1,23 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.CampaignService.UrlReviewData;
 import jp.yahooapis.ss.V6.CampaignService.AdServingOptimizationStatus;
 import jp.yahooapis.ss.V6.CampaignService.AppStore;
-import jp.yahooapis.ss.V6.CampaignService.BiddingStrategy;
 import jp.yahooapis.ss.V6.CampaignService.BiddingStrategyType;
 import jp.yahooapis.ss.V6.CampaignService.Budget;
 import jp.yahooapis.ss.V6.CampaignService.BudgetDeliveryMethod;
 import jp.yahooapis.ss.V6.CampaignService.BudgetOptimizerBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.BudgetPeriod;
 import jp.yahooapis.ss.V6.CampaignService.Campaign;
+import jp.yahooapis.ss.V6.CampaignService.CampaignBiddingStrategy;
 import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
 import jp.yahooapis.ss.V6.CampaignService.CampaignPage;
 import jp.yahooapis.ss.V6.CampaignService.CampaignReturnValue;
 import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
 import jp.yahooapis.ss.V6.CampaignService.CampaignService;
 import jp.yahooapis.ss.V6.CampaignService.CampaignServiceInterface;
+import jp.yahooapis.ss.V6.CampaignService.CampaignSettings;
 import jp.yahooapis.ss.V6.CampaignService.CampaignType;
 import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
 import jp.yahooapis.ss.V6.CampaignService.CustomParameter;
@@ -37,11 +32,16 @@ import jp.yahooapis.ss.V6.CampaignService.PageOnePromotedBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.Paging;
 import jp.yahooapis.ss.V6.CampaignService.ReviewUrl;
 import jp.yahooapis.ss.V6.CampaignService.SettingType;
-import jp.yahooapis.ss.V6.CampaignService.Settings;
 import jp.yahooapis.ss.V6.CampaignService.TargetCpaBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.TargetRoasBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.UrlReviewData;
 import jp.yahooapis.ss.V6.CampaignService.UserStatus;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 /**
  * Sample Program for CampaignService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -311,6 +311,7 @@ public class CampaignServiceSample {
         TargetSpendBiddingScheme targetSpendBiddingScheme = (TargetSpendBiddingScheme) campaign.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/biddingStrategyType = " + targetSpendBiddingScheme.getBiddingStrategyType());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/bidCeiling = " + targetSpendBiddingScheme.getBidCeiling());
+        System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/spendTarget = " + targetSpendBiddingScheme.getSpendTarget());
       } else if (campaign.getBiddingStrategyConfiguration().getBiddingScheme() instanceof TargetRoasBiddingScheme) {
         TargetRoasBiddingScheme targetRoasBiddingScheme = (TargetRoasBiddingScheme) campaign.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetRoasBiddingScheme)/biddingStrategyType = " + targetRoasBiddingScheme.getBiddingStrategyType());
@@ -331,7 +332,7 @@ public class CampaignServiceSample {
     System.out.println("adServingOptimizationStatus = " + campaign.getAdServingOptimizationStatus());
 
     if (campaign.getSettings() != null) {
-      for (Settings settings : campaign.getSettings()) {
+      for (CampaignSettings settings : campaign.getSettings()) {
         if (settings instanceof GeoTargetTypeSetting) {
           System.out.println("settings(GeoTargetTypeSetting)/type = " + settings.getType());
           GeoTargetTypeSetting geoTargetTypeSetting = (GeoTargetTypeSetting) settings;
@@ -432,11 +433,11 @@ public class CampaignServiceSample {
     geoTargetTypeSetting.setNegativeGeoTargetType(GeoTargetType.LOCATION_OF_PRESENCE);
 
     // Set AutoBidding
-    BiddingStrategy autoBiddingStrategy = new BiddingStrategy();
+    CampaignBiddingStrategy autoBiddingStrategy = new CampaignBiddingStrategy();
     autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
 
     // Set ManualCpc
-    BiddingStrategy manualCpcStrategy = new BiddingStrategy();
+    CampaignBiddingStrategy manualCpcStrategy = new CampaignBiddingStrategy();
     manualCpcStrategy.setBiddingStrategyType(BiddingStrategyType.MANUAL_CPC);
    
     // Set CustomParameters
@@ -455,7 +456,7 @@ public class CampaignServiceSample {
     autoBiddingCampaign.setEndDate("20301231");
     autoBiddingCampaign.setBudget(budget);
     autoBiddingCampaign.setBiddingStrategyConfiguration(autoBiddingStrategy);
-    autoBiddingCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
+    autoBiddingCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     autoBiddingCampaign.getSettings().add(geoTargetTypeSetting);
     autoBiddingCampaign.setCampaignType(CampaignType.STANDARD);
     
@@ -472,7 +473,7 @@ public class CampaignServiceSample {
     manualCpcCampaign.setEndDate("20301231");
     manualCpcCampaign.setBudget(budget);
     manualCpcCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
-    manualCpcCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
+    manualCpcCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     manualCpcCampaign.getSettings().add(geoTargetTypeSetting);
     manualCpcCampaign.setCampaignType(CampaignType.STANDARD);
     
@@ -488,7 +489,7 @@ public class CampaignServiceSample {
     appCampaign.setEndDate("20301231");
     appCampaign.setBudget(budget);
     appCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
-    appCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.ROTATE_INDEFINITELY);
+    appCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     appCampaign.getSettings().add(geoTargetTypeSetting);
     appCampaign.setCampaignType(CampaignType.MOBILE_APP);
     appCampaign.setAppStore(AppStore.IOS);
@@ -523,7 +524,7 @@ public class CampaignServiceSample {
       budget.setDeliveryMethod(BudgetDeliveryMethod.STANDARD);
 
       // Set AutoBidding
-      BiddingStrategy autoBiddingStrategy = new BiddingStrategy();
+      CampaignBiddingStrategy autoBiddingStrategy = new CampaignBiddingStrategy();
       autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
 
       Campaign campaign = new Campaign();

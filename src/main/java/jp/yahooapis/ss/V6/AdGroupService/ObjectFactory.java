@@ -132,14 +132,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BiddingStrategy }
-     * 
-     */
-    public BiddingStrategy createBiddingStrategy() {
-        return new BiddingStrategy();
-    }
-
-    /**
      * Create an instance of {@link AdGroup }
      * 
      */
@@ -228,14 +220,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Settings }
-     * 
-     */
-    public Settings createSettings() {
-        return new Settings();
-    }
-
-    /**
      * Create an instance of {@link CustomParameters }
      * 
      */
@@ -249,6 +233,22 @@ public class ObjectFactory {
      */
     public Paging createPaging() {
         return new Paging();
+    }
+
+    /**
+     * Create an instance of {@link AdGroupBiddingStrategy }
+     * 
+     */
+    public AdGroupBiddingStrategy createAdGroupBiddingStrategy() {
+        return new AdGroupBiddingStrategy();
+    }
+
+    /**
+     * Create an instance of {@link AdGroupSettings }
+     * 
+     */
+    public AdGroupSettings createAdGroupSettings() {
+        return new AdGroupSettings();
     }
 
     /**

@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="campaignIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="adGroupIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="criterionIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}CriterionUse"/>
+ *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}AdGroupCriterionUse"/>
  *         &lt;element name="userStatuses" type="{http://ss.yahooapis.jp/V6}UserStatus" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="biddingStrategyIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="approvalStatuses" type="{http://ss.yahooapis.jp/V6}ApprovalStatus" maxOccurs="unbounded" minOccurs="0"/>
@@ -62,7 +62,7 @@ public class AdGroupCriterionSelector {
     protected List<Long> criterionIds;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
-    protected CriterionUse criterionUse;
+    protected AdGroupCriterionUse criterionUse;
     @XmlSchemaType(name = "string")
     protected List<UserStatus> userStatuses;
     @XmlElement(type = Long.class)
@@ -181,10 +181,10 @@ public class AdGroupCriterionSelector {
      * 
      * @return
      *     possible object is
-     *     {@link CriterionUse }
+     *     {@link AdGroupCriterionUse }
      *     
      */
-    public CriterionUse getCriterionUse() {
+    public AdGroupCriterionUse getCriterionUse() {
         return criterionUse;
     }
 
@@ -193,10 +193,10 @@ public class AdGroupCriterionSelector {
      * 
      * @param value
      *     allowed object is
-     *     {@link CriterionUse }
+     *     {@link AdGroupCriterionUse }
      *     
      */
-    public void setCriterionUse(CriterionUse value) {
+    public void setCriterionUse(AdGroupCriterionUse value) {
         this.criterionUse = value;
     }
 

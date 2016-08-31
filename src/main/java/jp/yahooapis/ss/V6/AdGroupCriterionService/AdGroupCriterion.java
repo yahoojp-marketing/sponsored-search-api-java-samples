@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="adGroupId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="adGroupTrackId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="adGroupName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}CriterionUse" minOccurs="0"/>
+ *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}AdGroupCriterionUse" minOccurs="0"/>
  *         &lt;element name="criterion" type="{http://ss.yahooapis.jp/V6}Criterion" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -48,8 +48,8 @@ import javax.xml.bind.annotation.XmlType;
     "criterion"
 })
 @XmlSeeAlso({
-    BiddableAdGroupCriterion.class,
-    NegativeAdGroupCriterion.class
+    NegativeAdGroupCriterion.class,
+    BiddableAdGroupCriterion.class
 })
 public class AdGroupCriterion {
 
@@ -61,7 +61,7 @@ public class AdGroupCriterion {
     protected Long adGroupTrackId;
     protected String adGroupName;
     @XmlSchemaType(name = "string")
-    protected CriterionUse criterionUse;
+    protected AdGroupCriterionUse criterionUse;
     protected Criterion criterion;
 
     /**
@@ -237,10 +237,10 @@ public class AdGroupCriterion {
      * 
      * @return
      *     possible object is
-     *     {@link CriterionUse }
+     *     {@link AdGroupCriterionUse }
      *     
      */
-    public CriterionUse getCriterionUse() {
+    public AdGroupCriterionUse getCriterionUse() {
         return criterionUse;
     }
 
@@ -249,10 +249,10 @@ public class AdGroupCriterion {
      * 
      * @param value
      *     allowed object is
-     *     {@link CriterionUse }
+     *     {@link AdGroupCriterionUse }
      *     
      */
-    public void setCriterionUse(CriterionUse value) {
+    public void setCriterionUse(AdGroupCriterionUse value) {
         this.criterionUse = value;
     }
 
