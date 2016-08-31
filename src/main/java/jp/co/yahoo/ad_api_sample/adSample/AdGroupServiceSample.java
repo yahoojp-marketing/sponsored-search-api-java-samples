@@ -1,13 +1,9 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroup;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupBiddingStrategy;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupPage;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupReturnValue;
@@ -16,7 +12,6 @@ import jp.yahooapis.ss.V6.AdGroupService.AdGroupService;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupServiceInterface;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
 import jp.yahooapis.ss.V6.AdGroupService.Bid;
-import jp.yahooapis.ss.V6.AdGroupService.BiddingStrategy;
 import jp.yahooapis.ss.V6.AdGroupService.BiddingStrategyType;
 import jp.yahooapis.ss.V6.AdGroupService.BudgetOptimizerBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupService.CriterionType;
@@ -36,6 +31,11 @@ import jp.yahooapis.ss.V6.AdGroupService.TargetSpendBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupService.TargetingSetting;
 import jp.yahooapis.ss.V6.AdGroupService.UrlReviewData;
 import jp.yahooapis.ss.V6.AdGroupService.UserStatus;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 
 /**
@@ -306,6 +306,7 @@ public class AdGroupServiceSample {
         TargetSpendBiddingScheme targetSpendBiddingScheme = (TargetSpendBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/biddingStrategyType = " + targetSpendBiddingScheme.getBiddingStrategyType());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/bidCeiling = " + targetSpendBiddingScheme.getBidCeiling());
+        System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/spendTarget = " + targetSpendBiddingScheme.getSpendTarget());
       } else if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof TargetRoasBiddingScheme) {
         TargetRoasBiddingScheme targetRoasBiddingScheme = (TargetRoasBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetRoasBiddingScheme)/biddingStrategyType = " + targetRoasBiddingScheme.getBiddingStrategyType());
@@ -327,7 +328,7 @@ public class AdGroupServiceSample {
       }
 
       if (adGroup.getBiddingStrategyConfiguration().getParentBiddingStrategyConfigurations() != null) {
-        for (BiddingStrategy biddingStrategy : adGroup.getBiddingStrategyConfiguration().getParentBiddingStrategyConfigurations()) {
+        for (AdGroupBiddingStrategy biddingStrategy : adGroup.getBiddingStrategyConfiguration().getParentBiddingStrategyConfigurations()) {
           System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingStrategyId = " + biddingStrategy.getBiddingStrategyId());
           System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingStrategyName = " + biddingStrategy.getBiddingStrategyName());
           System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingStrategyType = " + biddingStrategy.getBiddingStrategyType());
@@ -468,12 +469,12 @@ public class AdGroupServiceSample {
     bit.setMaxCpc((long) 120);
 
     // Set AutoBidding
-    BiddingStrategy autoBiddingStrategy = new BiddingStrategy();
+    AdGroupBiddingStrategy autoBiddingStrategy = new AdGroupBiddingStrategy();
     autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
     autoBiddingStrategy.setInitialBid(bit);
 
     // Set ManualCpc
-    BiddingStrategy manualCpcStrategy = new BiddingStrategy();
+    AdGroupBiddingStrategy manualCpcStrategy = new AdGroupBiddingStrategy();
     manualCpcStrategy.setBiddingStrategyType(BiddingStrategyType.MANUAL_CPC);
     manualCpcStrategy.setInitialBid(bit);
 
@@ -543,7 +544,7 @@ public class AdGroupServiceSample {
       bit.setMaxCpc((long) 200);
 
       // Set AutoBidding
-      BiddingStrategy autoBiddingStrategy = new BiddingStrategy();
+      AdGroupBiddingStrategy autoBiddingStrategy = new AdGroupBiddingStrategy();
       autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
       autoBiddingStrategy.setInitialBid(bit);
 

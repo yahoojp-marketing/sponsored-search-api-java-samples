@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="feedItemIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="placeholderTypes" type="{http://ss.yahooapis.jp/V6}PlaceholderType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="placeholderTypes" type="{http://ss.yahooapis.jp/V6}FeedItemPlaceholderType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="approvalStatuses" type="{http://ss.yahooapis.jp/V6}ApprovalStatus" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="advanced" type="{http://ss.yahooapis.jp/V6}Advanced" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
@@ -49,7 +49,7 @@ public class FeedItemSelector {
     @XmlElement(type = Long.class)
     protected List<Long> feedItemIds;
     @XmlSchemaType(name = "string")
-    protected List<PlaceholderType> placeholderTypes;
+    protected List<FeedItemPlaceholderType> placeholderTypes;
     @XmlSchemaType(name = "string")
     protected List<ApprovalStatus> approvalStatuses;
     @XmlSchemaType(name = "string")
@@ -119,13 +119,13 @@ public class FeedItemSelector {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link PlaceholderType }
+     * {@link FeedItemPlaceholderType }
      * 
      * 
      */
-    public List<PlaceholderType> getPlaceholderTypes() {
+    public List<FeedItemPlaceholderType> getPlaceholderTypes() {
         if (placeholderTypes == null) {
-            placeholderTypes = new ArrayList<PlaceholderType>();
+            placeholderTypes = new ArrayList<FeedItemPlaceholderType>();
         }
         return this.placeholderTypes;
     }

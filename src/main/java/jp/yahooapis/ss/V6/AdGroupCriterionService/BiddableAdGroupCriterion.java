@@ -24,13 +24,15 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="disapprovalReasonCodes" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="destinationUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reviewDestinationUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="biddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}BiddingStrategy" minOccurs="0"/>
+ *         &lt;element name="biddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}AdGroupCriterionBiddingStrategy" minOccurs="0"/>
  *         &lt;element name="biddingStrategyFailedReason" type="{http://ss.yahooapis.jp/V6}BiddingStrategyFailedReason" minOccurs="0"/>
- *         &lt;element name="failedBiddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}BiddingStrategy" minOccurs="0"/>
+ *         &lt;element name="failedBiddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}AdGroupCriterionBiddingStrategy" minOccurs="0"/>
  *         &lt;element name="advancedUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reviewAdvancedUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="additionalAdvancedUrls" type="{http://ss.yahooapis.jp/V6}AdGroupCriterionAdditionalAdvancedUrls" minOccurs="0"/>
  *         &lt;element name="advancedMobileUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reviewAdvancedMobileUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="additionalAdvancedMobileUrls" type="{http://ss.yahooapis.jp/V6}AdGroupCriterionAdditionalAdvancedMobileUrls" minOccurs="0"/>
  *         &lt;element name="trackingUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reviewTrackingUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="customParameters" type="{http://ss.yahooapis.jp/V6}CustomParameters" minOccurs="0"/>
@@ -56,8 +58,10 @@ import javax.xml.bind.annotation.XmlType;
     "failedBiddingStrategyConfiguration",
     "advancedUrl",
     "reviewAdvancedUrl",
+    "additionalAdvancedUrls",
     "advancedMobileUrl",
     "reviewAdvancedMobileUrl",
+    "additionalAdvancedMobileUrls",
     "trackingUrl",
     "reviewTrackingUrl",
     "customParameters",
@@ -75,14 +79,16 @@ public class BiddableAdGroupCriterion
     protected List<String> disapprovalReasonCodes;
     protected String destinationUrl;
     protected String reviewDestinationUrl;
-    protected BiddingStrategy biddingStrategyConfiguration;
+    protected AdGroupCriterionBiddingStrategy biddingStrategyConfiguration;
     @XmlSchemaType(name = "string")
     protected BiddingStrategyFailedReason biddingStrategyFailedReason;
-    protected BiddingStrategy failedBiddingStrategyConfiguration;
+    protected AdGroupCriterionBiddingStrategy failedBiddingStrategyConfiguration;
     protected String advancedUrl;
     protected String reviewAdvancedUrl;
+    protected AdGroupCriterionAdditionalAdvancedUrls additionalAdvancedUrls;
     protected String advancedMobileUrl;
     protected String reviewAdvancedMobileUrl;
+    protected AdGroupCriterionAdditionalAdvancedMobileUrls additionalAdvancedMobileUrls;
     protected String trackingUrl;
     protected String reviewTrackingUrl;
     protected CustomParameters customParameters;
@@ -220,10 +226,10 @@ public class BiddableAdGroupCriterion
      * 
      * @return
      *     possible object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupCriterionBiddingStrategy }
      *     
      */
-    public BiddingStrategy getBiddingStrategyConfiguration() {
+    public AdGroupCriterionBiddingStrategy getBiddingStrategyConfiguration() {
         return biddingStrategyConfiguration;
     }
 
@@ -232,10 +238,10 @@ public class BiddableAdGroupCriterion
      * 
      * @param value
      *     allowed object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupCriterionBiddingStrategy }
      *     
      */
-    public void setBiddingStrategyConfiguration(BiddingStrategy value) {
+    public void setBiddingStrategyConfiguration(AdGroupCriterionBiddingStrategy value) {
         this.biddingStrategyConfiguration = value;
     }
 
@@ -268,10 +274,10 @@ public class BiddableAdGroupCriterion
      * 
      * @return
      *     possible object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupCriterionBiddingStrategy }
      *     
      */
-    public BiddingStrategy getFailedBiddingStrategyConfiguration() {
+    public AdGroupCriterionBiddingStrategy getFailedBiddingStrategyConfiguration() {
         return failedBiddingStrategyConfiguration;
     }
 
@@ -280,10 +286,10 @@ public class BiddableAdGroupCriterion
      * 
      * @param value
      *     allowed object is
-     *     {@link BiddingStrategy }
+     *     {@link AdGroupCriterionBiddingStrategy }
      *     
      */
-    public void setFailedBiddingStrategyConfiguration(BiddingStrategy value) {
+    public void setFailedBiddingStrategyConfiguration(AdGroupCriterionBiddingStrategy value) {
         this.failedBiddingStrategyConfiguration = value;
     }
 
@@ -336,6 +342,30 @@ public class BiddableAdGroupCriterion
     }
 
     /**
+     * Gets the value of the additionalAdvancedUrls property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AdGroupCriterionAdditionalAdvancedUrls }
+     *     
+     */
+    public AdGroupCriterionAdditionalAdvancedUrls getAdditionalAdvancedUrls() {
+        return additionalAdvancedUrls;
+    }
+
+    /**
+     * Sets the value of the additionalAdvancedUrls property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AdGroupCriterionAdditionalAdvancedUrls }
+     *     
+     */
+    public void setAdditionalAdvancedUrls(AdGroupCriterionAdditionalAdvancedUrls value) {
+        this.additionalAdvancedUrls = value;
+    }
+
+    /**
      * Gets the value of the advancedMobileUrl property.
      * 
      * @return
@@ -381,6 +411,30 @@ public class BiddableAdGroupCriterion
      */
     public void setReviewAdvancedMobileUrl(String value) {
         this.reviewAdvancedMobileUrl = value;
+    }
+
+    /**
+     * Gets the value of the additionalAdvancedMobileUrls property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AdGroupCriterionAdditionalAdvancedMobileUrls }
+     *     
+     */
+    public AdGroupCriterionAdditionalAdvancedMobileUrls getAdditionalAdvancedMobileUrls() {
+        return additionalAdvancedMobileUrls;
+    }
+
+    /**
+     * Sets the value of the additionalAdvancedMobileUrls property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AdGroupCriterionAdditionalAdvancedMobileUrls }
+     *     
+     */
+    public void setAdditionalAdvancedMobileUrls(AdGroupCriterionAdditionalAdvancedMobileUrls value) {
+        this.additionalAdvancedMobileUrls = value;
     }
 
     /**

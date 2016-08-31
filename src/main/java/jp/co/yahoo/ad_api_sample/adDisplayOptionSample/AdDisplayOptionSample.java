@@ -1,10 +1,5 @@
 package jp.co.yahoo.ad_api_sample.adDisplayOptionSample;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.adCustomizerSample.FeedItemServiceSample;
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupFeedServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignFeedServiceErrorEntityFactory;
@@ -13,6 +8,7 @@ import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeed;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedList;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedOperation;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedPage;
+import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedPlaceholderType;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedReturnValue;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedSelector;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedService;
@@ -22,6 +18,7 @@ import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeed;
 import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedList;
 import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedOperation;
 import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedPage;
+import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedPlaceholderType;
 import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedReturnValue;
 import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedSelector;
 import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedService;
@@ -33,16 +30,21 @@ import jp.yahooapis.ss.V6.FeedItemService.CustomParameter;
 import jp.yahooapis.ss.V6.FeedItemService.CustomParameters;
 import jp.yahooapis.ss.V6.FeedItemService.DayOfWeek;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItem;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemAttribute;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemPlaceholderField;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemPlaceholderType;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemSchedule;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemScheduling;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
 import jp.yahooapis.ss.V6.FeedItemService.IsRemove;
 import jp.yahooapis.ss.V6.FeedItemService.MinuteOfHour;
-import jp.yahooapis.ss.V6.FeedItemService.PlaceholderField;
-import jp.yahooapis.ss.V6.FeedItemService.PlaceholderType;
+import jp.yahooapis.ss.V6.FeedItemService.SimpleFeedItemAttribute;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 /**
  * Sample Program for FeedItemService,CampaignFeedService,AdGroupFeedService Copyright (C) 2013
@@ -117,7 +119,7 @@ public class AdDisplayOptionSample {
       CampaignFeedList setCampaignFeedListOperand = new CampaignFeedList();
       setCampaignFeedListOperand.setAccountId(accountId);
       setCampaignFeedListOperand.setCampaignId(campaignId);
-      setCampaignFeedListOperand.setPlaceholderType(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.QUICKLINK);
+      setCampaignFeedListOperand.setPlaceholderType(CampaignFeedPlaceholderType.QUICKLINK);
       CampaignFeed setCampaignFeed1 = new CampaignFeed();
       setCampaignFeed1.setFeedItemId(feedItemId1);
       setCampaignFeedListOperand.getCampaignFeed().add(setCampaignFeed1);
@@ -167,8 +169,8 @@ public class AdDisplayOptionSample {
       campaignFeedSelector.setAccountId(accountId);
       campaignFeedSelector.getCampaignIds().add(campaignId);
       campaignFeedSelector.getFeedItemIds().add(feedItemId1);
-      campaignFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.QUICKLINK);
-      campaignFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.CALLEXTENSION);
+      campaignFeedSelector.getPlaceholderTypes().add(CampaignFeedPlaceholderType.QUICKLINK);
+      campaignFeedSelector.getPlaceholderTypes().add(CampaignFeedPlaceholderType.CALLEXTENSION);
 
       jp.yahooapis.ss.V6.CampaignFeedService.Paging campaignFeedPaging = new jp.yahooapis.ss.V6.CampaignFeedService.Paging();
       campaignFeedPaging.setStartIndex(1);
@@ -217,7 +219,7 @@ public class AdDisplayOptionSample {
       setAdGroupFeedListOperand.setAccountId(accountId);
       setAdGroupFeedListOperand.setCampaignId(campaignId);
       setAdGroupFeedListOperand.setAdGroupId(adGroupId);
-      setAdGroupFeedListOperand.setPlaceholderType(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
+      setAdGroupFeedListOperand.setPlaceholderType(AdGroupFeedPlaceholderType.CALLEXTENSION);
       AdGroupFeed setAdGroupFeed1 = new AdGroupFeed();
       setAdGroupFeed1.setFeedItemId(feedItemId2);
       setAdGroupFeedListOperand.getAdGroupFeed().add(setAdGroupFeed1);
@@ -267,8 +269,8 @@ public class AdDisplayOptionSample {
       adGroupFeedSelector.setAccountId(accountId);
       adGroupFeedSelector.getCampaignIds().add(campaignId);
       adGroupFeedSelector.getFeedItemIds().add(feedItemId2);
-      adGroupFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.QUICKLINK);
-      adGroupFeedSelector.getPlaceholderTypes().add(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
+      adGroupFeedSelector.getPlaceholderTypes().add(AdGroupFeedPlaceholderType.QUICKLINK);
+      adGroupFeedSelector.getPlaceholderTypes().add(AdGroupFeedPlaceholderType.CALLEXTENSION);
       jp.yahooapis.ss.V6.AdGroupFeedService.Paging adGroupFeedPaging = new jp.yahooapis.ss.V6.AdGroupFeedService.Paging();
       adGroupFeedPaging.setStartIndex(1);
       adGroupFeedPaging.setNumberResults(20);
@@ -309,7 +311,7 @@ public class AdDisplayOptionSample {
       CampaignFeedList setCampaignFeedListOperandForRemove = new CampaignFeedList();
       setCampaignFeedListOperandForRemove.setAccountId(accountId);
       setCampaignFeedListOperandForRemove.setCampaignId(campaignId);
-      setCampaignFeedListOperandForRemove.setPlaceholderType(jp.yahooapis.ss.V6.CampaignFeedService.PlaceholderType.QUICKLINK);
+      setCampaignFeedListOperandForRemove.setPlaceholderType(CampaignFeedPlaceholderType.QUICKLINK);
       CampaignFeed setCampaignFeed2 = new CampaignFeed();
       setCampaignFeed2.setFeedItemId(null);
       setCampaignFeedListOperandForRemove.getCampaignFeed().add(setCampaignFeed2);
@@ -359,7 +361,7 @@ public class AdDisplayOptionSample {
       setAdGroupFeedListOperandForRemove.setAccountId(accountId);
       setAdGroupFeedListOperandForRemove.setCampaignId(campaignId);
       setAdGroupFeedListOperandForRemove.setAdGroupId(adGroupId);
-      setAdGroupFeedListOperandForRemove.setPlaceholderType(jp.yahooapis.ss.V6.AdGroupFeedService.PlaceholderType.CALLEXTENSION);
+      setAdGroupFeedListOperandForRemove.setPlaceholderType(AdGroupFeedPlaceholderType.CALLEXTENSION);
       AdGroupFeed setAdGroupFeed2 = new AdGroupFeed();
       setAdGroupFeed2.setFeedItemId(null);
       setAdGroupFeedListOperandForRemove.getAdGroupFeed().add(setAdGroupFeed2);
@@ -404,10 +406,10 @@ public class AdDisplayOptionSample {
       // remove FeedItemService
       // =================================================================
       FeedItemOperation removeFeedItemOperation_quicklink = FeedItemServiceSample.createSampleRemoveRequest(accountId, setFeedItemValues_quicklink);
-      removeFeedItemOperation_quicklink.setPlaceholderType(PlaceholderType.QUICKLINK);
+      removeFeedItemOperation_quicklink.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
       FeedItemServiceSample.remove(removeFeedItemOperation_quicklink);
       FeedItemOperation removeFeedItemOperation_callextension = FeedItemServiceSample.createSampleRemoveRequest(accountId, setFeedItemValues_callextension);
-      removeFeedItemOperation_callextension.setPlaceholderType(PlaceholderType.CALLEXTENSION);
+      removeFeedItemOperation_callextension.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
       FeedItemServiceSample.remove(removeFeedItemOperation_callextension);
 
     } catch (Exception e) {
@@ -419,7 +421,7 @@ public class AdDisplayOptionSample {
   /**
    * display CampaignFeed entity to stdout.
    *
-   * @param campaignFeed CampaignFeed entity for display.
+   * @param campaignFeedList CampaignFeed entity for display.
    */
   private static void displayCampaignFeed(CampaignFeedList campaignFeedList) {
     System.out.println("accountId = " + campaignFeedList.getAccountId());
@@ -439,7 +441,7 @@ public class AdDisplayOptionSample {
   /**
    * display AdGroupFeed entity to stdout.
    *
-   * @param adGroupFeed AdGroupFeed entity for display.
+   * @param adGroupFeedList AdGroupFeed entity for display.
    */
   private static void displayAdGroupFeed(AdGroupFeedList adGroupFeedList) {
     System.out.println("accountId = " + adGroupFeedList.getAccountId());
@@ -469,30 +471,30 @@ public class AdDisplayOptionSample {
     FeedItemOperation operation = new FeedItemOperation();
     operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.ADD);
     operation.setAccountId(accountId);
-    operation.setPlaceholderType(PlaceholderType.QUICKLINK);
+    operation.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
 
     // Set Operand
     FeedItem feedItem = new FeedItem();
     feedItem.setAccountId(accountId);
-    feedItem.setPlaceholderType(PlaceholderType.QUICKLINK);
+    feedItem.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
 
-    FeedItemAttribute addLinkText = new FeedItemAttribute();
-    addLinkText.setPlaceholderField(PlaceholderField.LINK_TEXT);
+    SimpleFeedItemAttribute addLinkText = new SimpleFeedItemAttribute();
+    addLinkText.setPlaceholderField(FeedItemPlaceholderField.LINK_TEXT);
     addLinkText.setFeedAttributeValue("samplelink");
     feedItem.getFeedItemAttribute().add(addLinkText);
 
-    FeedItemAttribute advancedUrl = new FeedItemAttribute();
-    advancedUrl.setPlaceholderField(PlaceholderField.ADVANCED_URL);
+    SimpleFeedItemAttribute advancedUrl = new SimpleFeedItemAttribute();
+    advancedUrl.setPlaceholderField(FeedItemPlaceholderField.ADVANCED_URL);
     advancedUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp");
     feedItem.getFeedItemAttribute().add(advancedUrl);
-    
-    FeedItemAttribute advancedMobileUrl = new FeedItemAttribute();
-    advancedMobileUrl.setPlaceholderField(PlaceholderField.ADVANCED_MOBILE_URL);
+
+    SimpleFeedItemAttribute advancedMobileUrl = new SimpleFeedItemAttribute();
+    advancedMobileUrl.setPlaceholderField(FeedItemPlaceholderField.ADVANCED_MOBILE_URL);
     advancedMobileUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp/mobile");
     feedItem.getFeedItemAttribute().add(advancedMobileUrl);
-    
-    FeedItemAttribute trackingUrl = new FeedItemAttribute();
-    trackingUrl.setPlaceholderField(PlaceholderField.TRACKING_URL);
+
+    SimpleFeedItemAttribute trackingUrl = new SimpleFeedItemAttribute();
+    trackingUrl.setPlaceholderField(FeedItemPlaceholderField.TRACKING_URL);
     trackingUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp?url={lpurl}&amp;pid={_id1}");
     feedItem.getFeedItemAttribute().add(trackingUrl);
     
@@ -545,13 +547,13 @@ public class AdDisplayOptionSample {
     FeedItemOperation operation = new FeedItemOperation();
     operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.ADD);
     operation.setAccountId(accountId);
-    operation.setPlaceholderType(PlaceholderType.CALLEXTENSION);
+    operation.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
 
     FeedItem operand = new FeedItem();
     operand.setAccountId(accountId);
-    operand.setPlaceholderType(PlaceholderType.CALLEXTENSION);
-    FeedItemAttribute addCallExtension = new FeedItemAttribute();
-    addCallExtension.setPlaceholderField(PlaceholderField.CALL_PHONE_NUMBER);
+    operand.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
+    SimpleFeedItemAttribute addCallExtension = new SimpleFeedItemAttribute();
+    addCallExtension.setPlaceholderField(FeedItemPlaceholderField.CALL_PHONE_NUMBER);
     addCallExtension.setFeedAttributeValue("0120-123-556");
     operand.getFeedItemAttribute().add(addCallExtension);
 
@@ -589,7 +591,7 @@ public class AdDisplayOptionSample {
     FeedItemOperation operation = new FeedItemOperation();
     operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.SET);
     operation.setAccountId(accountId);
-    operation.setPlaceholderType(PlaceholderType.QUICKLINK);
+    operation.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
 
     FeedItem operand = new FeedItem();
     operand.setAccountId(accountId);
@@ -597,25 +599,25 @@ public class AdDisplayOptionSample {
       operand.setFeedItemId(feedItemValue.getFeedItem().getFeedItemId());
       break;
     }
-    operand.setPlaceholderType(PlaceholderType.QUICKLINK);
+    operand.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
 
-    FeedItemAttribute setLinkText = new FeedItemAttribute();
-    setLinkText.setPlaceholderField(PlaceholderField.LINK_TEXT);
+    SimpleFeedItemAttribute setLinkText = new SimpleFeedItemAttribute();
+    setLinkText.setPlaceholderField(FeedItemPlaceholderField.LINK_TEXT);
     setLinkText.setFeedAttributeValue("editlink");
     operand.getFeedItemAttribute().add(setLinkText);
 
-    FeedItemAttribute advancedUrl = new FeedItemAttribute();
-    advancedUrl.setPlaceholderField(PlaceholderField.ADVANCED_URL);
+    SimpleFeedItemAttribute advancedUrl = new SimpleFeedItemAttribute();
+    advancedUrl.setPlaceholderField(FeedItemPlaceholderField.ADVANCED_URL);
     advancedUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp");
     operand.getFeedItemAttribute().add(advancedUrl);
-    
-    FeedItemAttribute advancedMobileUrl = new FeedItemAttribute();
-    advancedMobileUrl.setPlaceholderField(PlaceholderField.ADVANCED_MOBILE_URL);
+
+    SimpleFeedItemAttribute advancedMobileUrl = new SimpleFeedItemAttribute();
+    advancedMobileUrl.setPlaceholderField(FeedItemPlaceholderField.ADVANCED_MOBILE_URL);
     advancedMobileUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp/mobile");
     operand.getFeedItemAttribute().add(advancedMobileUrl);
-    
-    FeedItemAttribute trackingUrl = new FeedItemAttribute();
-    trackingUrl.setPlaceholderField(PlaceholderField.TRACKING_URL);
+
+    SimpleFeedItemAttribute trackingUrl = new SimpleFeedItemAttribute();
+    trackingUrl.setPlaceholderField(FeedItemPlaceholderField.TRACKING_URL);
     trackingUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp?url={lpurl}&amp;pid={_id1}");
     operand.getFeedItemAttribute().add(trackingUrl);
     
@@ -650,7 +652,7 @@ public class AdDisplayOptionSample {
     FeedItemOperation operation = new FeedItemOperation();
     operation.setOperator(jp.yahooapis.ss.V6.FeedItemService.Operator.SET);
     operation.setAccountId(accountId);
-    operation.setPlaceholderType(PlaceholderType.CALLEXTENSION);
+    operation.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
 
     FeedItem operand = new FeedItem();
     operand.setAccountId(accountId);
@@ -658,10 +660,10 @@ public class AdDisplayOptionSample {
       operand.setFeedItemId(feedItemValue.getFeedItem().getFeedItemId());
       break;
     }
-    operand.setPlaceholderType(PlaceholderType.CALLEXTENSION);
+    operand.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
 
-    FeedItemAttribute setCallExtension = new FeedItemAttribute();
-    setCallExtension.setPlaceholderField(PlaceholderField.CALL_PHONE_NUMBER);
+    SimpleFeedItemAttribute setCallExtension = new SimpleFeedItemAttribute();
+    setCallExtension.setPlaceholderField(FeedItemPlaceholderField.CALL_PHONE_NUMBER);
     setCallExtension.setFeedAttributeValue("0120-556-789");
     operand.getFeedItemAttribute().add(setCallExtension);
     operand.setScheduling(new FeedItemScheduling());

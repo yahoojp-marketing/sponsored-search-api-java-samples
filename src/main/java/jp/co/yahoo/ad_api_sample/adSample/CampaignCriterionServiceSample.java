@@ -1,10 +1,5 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignCriterionServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterion;
@@ -14,15 +9,20 @@ import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionReturnValue;
 import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionSelector;
 import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionService;
 import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionServiceInterface;
+import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionUse;
 import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionValues;
 import jp.yahooapis.ss.V6.CampaignCriterionService.Criterion;
 import jp.yahooapis.ss.V6.CampaignCriterionService.CriterionType;
-import jp.yahooapis.ss.V6.CampaignCriterionService.CriterionUse;
 import jp.yahooapis.ss.V6.CampaignCriterionService.Error;
 import jp.yahooapis.ss.V6.CampaignCriterionService.Keyword;
 import jp.yahooapis.ss.V6.CampaignCriterionService.KeywordMatchType;
 import jp.yahooapis.ss.V6.CampaignCriterionService.Operator;
 import jp.yahooapis.ss.V6.CampaignCriterionService.Paging;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 /**
  * Sample Program for CampaignCriterionService. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -231,6 +231,7 @@ public class CampaignCriterionServiceSample {
     if (campaignCriterion.getCriterion() != null) {
       Criterion criterion = campaignCriterion.getCriterion();
       System.out.println("criterion/criterionId = " + criterion.getCriterionId());
+      System.out.println("criterion/criterionTrackId = " + criterion.getCriterionTrackId());
       System.out.println("criterion/type = " + criterion.getType());
     }
     System.out.println("---------");
@@ -249,7 +250,7 @@ public class CampaignCriterionServiceSample {
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
     operation.setCampaignId(campaignId);
-    operation.setCriterionUse(CriterionUse.NEGATIVE);
+    operation.setCriterionUse(CampaignCriterionUse.NEGATIVE);
 
     // Set Keyword
     Keyword keyword = new Keyword();
@@ -261,7 +262,7 @@ public class CampaignCriterionServiceSample {
     CampaignCriterion campaignCriterion = new CampaignCriterion();
     campaignCriterion.setAccountId(accountId);
     campaignCriterion.setCampaignId(campaignId);
-    campaignCriterion.setCriterionUse(CriterionUse.NEGATIVE);
+    campaignCriterion.setCriterionUse(CampaignCriterionUse.NEGATIVE);
     campaignCriterion.setCriterion(keyword);
 
     operation.getOperand().add(campaignCriterion);
@@ -317,7 +318,7 @@ public class CampaignCriterionServiceSample {
       selector.getCampaignIds().add(campaignCriterionValue.getCampaignCriterion().getCampaignId());
       selector.getCriterionIds().add((campaignCriterionValue.getCampaignCriterion().getCriterion().getCriterionId()));
     }
-    selector.setCriterionUse(CriterionUse.NEGATIVE);
+    selector.setCriterionUse(CampaignCriterionUse.NEGATIVE);
 
     // Set Paging
     Paging paging = new Paging();

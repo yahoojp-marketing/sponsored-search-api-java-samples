@@ -132,14 +132,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BiddingStrategy }
-     * 
-     */
-    public BiddingStrategy createBiddingStrategy() {
-        return new BiddingStrategy();
-    }
-
-    /**
      * Create an instance of {@link TargetCpaBiddingScheme }
      * 
      */
@@ -225,6 +217,14 @@ public class ObjectFactory {
      */
     public ManualCpcBiddingScheme createManualCpcBiddingScheme() {
         return new ManualCpcBiddingScheme();
+    }
+
+    /**
+     * Create an instance of {@link CampaignBiddingStrategy }
+     * 
+     */
+    public CampaignBiddingStrategy createCampaignBiddingStrategy() {
+        return new CampaignBiddingStrategy();
     }
 
     /**

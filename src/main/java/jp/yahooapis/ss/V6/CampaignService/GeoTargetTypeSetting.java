@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;complexType name="GeoTargetTypeSetting">
  *   &lt;complexContent>
- *     &lt;extension base="{http://ss.yahooapis.jp/V6}Settings">
+ *     &lt;extension base="{http://ss.yahooapis.jp/V6}CampaignSettings">
  *       &lt;sequence>
  *         &lt;element name="positiveGeoTargetType" type="{http://ss.yahooapis.jp/V6}GeoTargetType" minOccurs="0"/>
  *         &lt;element name="negativeGeoTargetType" type="{http://ss.yahooapis.jp/V6}GeoTargetType" minOccurs="0"/>
@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
     "negativeGeoTargetType"
 })
 public class GeoTargetTypeSetting
-    extends Settings
+    extends CampaignSettings
 {
 
     @XmlSchemaType(name = "string")

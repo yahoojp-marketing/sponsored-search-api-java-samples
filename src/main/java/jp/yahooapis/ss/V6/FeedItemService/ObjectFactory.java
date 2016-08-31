@@ -140,11 +140,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link SimpleFeedItemAttribute }
+     * 
+     */
+    public SimpleFeedItemAttribute createSimpleFeedItemAttribute() {
+        return new SimpleFeedItemAttribute();
+    }
+
+    /**
      * Create an instance of {@link ErrorDetail }
      * 
      */
     public ErrorDetail createErrorDetail() {
         return new ErrorDetail();
+    }
+
+    /**
+     * Create an instance of {@link FeedAttributeValue }
+     * 
+     */
+    public FeedAttributeValue createFeedAttributeValue() {
+        return new FeedAttributeValue();
     }
 
     /**
@@ -188,14 +204,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link FeedItemAttribute }
-     * 
-     */
-    public FeedItemAttribute createFeedItemAttribute() {
-        return new FeedItemAttribute();
-    }
-
-    /**
      * Create an instance of {@link Paging }
      * 
      */
@@ -217,6 +225,14 @@ public class ObjectFactory {
      */
     public FeedItemScheduling createFeedItemScheduling() {
         return new FeedItemScheduling();
+    }
+
+    /**
+     * Create an instance of {@link MultipleFeedItemAttribute }
+     * 
+     */
+    public MultipleFeedItemAttribute createMultipleFeedItemAttribute() {
+        return new MultipleFeedItemAttribute();
     }
 
     /**

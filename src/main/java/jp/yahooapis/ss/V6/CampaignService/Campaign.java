@@ -28,12 +28,12 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="startDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="endDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="budget" type="{http://ss.yahooapis.jp/V6}Budget" minOccurs="0"/>
- *         &lt;element name="biddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}BiddingStrategy" minOccurs="0"/>
+ *         &lt;element name="biddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}CampaignBiddingStrategy" minOccurs="0"/>
  *         &lt;element name="biddingStrategyFailedReason" type="{http://ss.yahooapis.jp/V6}BiddingStrategyFailedReason" minOccurs="0"/>
- *         &lt;element name="failedBiddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}BiddingStrategy" minOccurs="0"/>
+ *         &lt;element name="failedBiddingStrategyConfiguration" type="{http://ss.yahooapis.jp/V6}CampaignBiddingStrategy" minOccurs="0"/>
  *         &lt;element name="conversionOptimizerEligibility" type="{http://ss.yahooapis.jp/V6}ConversionOptimizerEligibility" minOccurs="0"/>
  *         &lt;element name="adServingOptimizationStatus" type="{http://ss.yahooapis.jp/V6}AdServingOptimizationStatus" minOccurs="0"/>
- *         &lt;element name="settings" type="{http://ss.yahooapis.jp/V6}Settings" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="settings" type="{http://ss.yahooapis.jp/V6}CampaignSettings" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="campaignType" type="{http://ss.yahooapis.jp/V6}CampaignType" minOccurs="0"/>
  *         &lt;element name="appStore" type="{http://ss.yahooapis.jp/V6}AppStore" minOccurs="0"/>
  *         &lt;element name="appId" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -85,15 +85,15 @@ public class Campaign {
     protected String startDate;
     protected String endDate;
     protected Budget budget;
-    protected BiddingStrategy biddingStrategyConfiguration;
+    protected CampaignBiddingStrategy biddingStrategyConfiguration;
     @XmlSchemaType(name = "string")
     protected BiddingStrategyFailedReason biddingStrategyFailedReason;
-    protected BiddingStrategy failedBiddingStrategyConfiguration;
+    protected CampaignBiddingStrategy failedBiddingStrategyConfiguration;
     @XmlSchemaType(name = "string")
     protected ConversionOptimizerEligibility conversionOptimizerEligibility;
     @XmlSchemaType(name = "string")
     protected AdServingOptimizationStatus adServingOptimizationStatus;
-    protected List<Settings> settings;
+    protected List<CampaignSettings> settings;
     @XmlSchemaType(name = "string")
     protected CampaignType campaignType;
     @XmlSchemaType(name = "string")
@@ -324,10 +324,10 @@ public class Campaign {
      * 
      * @return
      *     possible object is
-     *     {@link BiddingStrategy }
+     *     {@link CampaignBiddingStrategy }
      *     
      */
-    public BiddingStrategy getBiddingStrategyConfiguration() {
+    public CampaignBiddingStrategy getBiddingStrategyConfiguration() {
         return biddingStrategyConfiguration;
     }
 
@@ -336,10 +336,10 @@ public class Campaign {
      * 
      * @param value
      *     allowed object is
-     *     {@link BiddingStrategy }
+     *     {@link CampaignBiddingStrategy }
      *     
      */
-    public void setBiddingStrategyConfiguration(BiddingStrategy value) {
+    public void setBiddingStrategyConfiguration(CampaignBiddingStrategy value) {
         this.biddingStrategyConfiguration = value;
     }
 
@@ -372,10 +372,10 @@ public class Campaign {
      * 
      * @return
      *     possible object is
-     *     {@link BiddingStrategy }
+     *     {@link CampaignBiddingStrategy }
      *     
      */
-    public BiddingStrategy getFailedBiddingStrategyConfiguration() {
+    public CampaignBiddingStrategy getFailedBiddingStrategyConfiguration() {
         return failedBiddingStrategyConfiguration;
     }
 
@@ -384,10 +384,10 @@ public class Campaign {
      * 
      * @param value
      *     allowed object is
-     *     {@link BiddingStrategy }
+     *     {@link CampaignBiddingStrategy }
      *     
      */
-    public void setFailedBiddingStrategyConfiguration(BiddingStrategy value) {
+    public void setFailedBiddingStrategyConfiguration(CampaignBiddingStrategy value) {
         this.failedBiddingStrategyConfiguration = value;
     }
 
@@ -457,13 +457,13 @@ public class Campaign {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Settings }
+     * {@link CampaignSettings }
      * 
      * 
      */
-    public List<Settings> getSettings() {
+    public List<CampaignSettings> getSettings() {
         if (settings == null) {
-            settings = new ArrayList<Settings>();
+            settings = new ArrayList<CampaignSettings>();
         }
         return this.settings;
     }

@@ -140,6 +140,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AdGroupAdAdditionalAdvancedMobileUrls }
+     * 
+     */
+    public AdGroupAdAdditionalAdvancedMobileUrls createAdGroupAdAdditionalAdvancedMobileUrls() {
+        return new AdGroupAdAdditionalAdvancedMobileUrls();
+    }
+
+    /**
      * Create an instance of {@link AppAd }
      * 
      */
@@ -153,6 +161,14 @@ public class ObjectFactory {
      */
     public ErrorDetail createErrorDetail() {
         return new ErrorDetail();
+    }
+
+    /**
+     * Create an instance of {@link AdGroupAdAdditionalAdvancedUrls }
+     * 
+     */
+    public AdGroupAdAdditionalAdvancedUrls createAdGroupAdAdditionalAdvancedUrls() {
+        return new AdGroupAdAdditionalAdvancedUrls();
     }
 
     /**

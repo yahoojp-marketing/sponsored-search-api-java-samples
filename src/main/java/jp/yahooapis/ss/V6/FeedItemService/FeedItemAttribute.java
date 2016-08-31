@@ -4,6 +4,7 @@ package jp.yahooapis.ss.V6.FeedItemService;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlSeeAlso;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -17,10 +18,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="placeholderField" type="{http://ss.yahooapis.jp/V6}PlaceholderField" minOccurs="0"/>
+ *         &lt;element name="placeholderField" type="{http://ss.yahooapis.jp/V6}FeedItemPlaceholderField" minOccurs="0"/>
  *         &lt;element name="feedAttributeId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="feedAttributeValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="reviewFeedAttributeValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -32,27 +31,27 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "FeedItemAttribute", propOrder = {
     "placeholderField",
-    "feedAttributeId",
-    "feedAttributeValue",
-    "reviewFeedAttributeValue"
+    "feedAttributeId"
 })
-public class FeedItemAttribute {
+@XmlSeeAlso({
+    SimpleFeedItemAttribute.class,
+    MultipleFeedItemAttribute.class
+})
+public abstract class FeedItemAttribute {
 
     @XmlSchemaType(name = "string")
-    protected PlaceholderField placeholderField;
+    protected FeedItemPlaceholderField placeholderField;
     protected Long feedAttributeId;
-    protected String feedAttributeValue;
-    protected String reviewFeedAttributeValue;
 
     /**
      * Gets the value of the placeholderField property.
      * 
      * @return
      *     possible object is
-     *     {@link PlaceholderField }
+     *     {@link FeedItemPlaceholderField }
      *     
      */
-    public PlaceholderField getPlaceholderField() {
+    public FeedItemPlaceholderField getPlaceholderField() {
         return placeholderField;
     }
 
@@ -61,10 +60,10 @@ public class FeedItemAttribute {
      * 
      * @param value
      *     allowed object is
-     *     {@link PlaceholderField }
+     *     {@link FeedItemPlaceholderField }
      *     
      */
-    public void setPlaceholderField(PlaceholderField value) {
+    public void setPlaceholderField(FeedItemPlaceholderField value) {
         this.placeholderField = value;
     }
 
@@ -90,54 +89,6 @@ public class FeedItemAttribute {
      */
     public void setFeedAttributeId(Long value) {
         this.feedAttributeId = value;
-    }
-
-    /**
-     * Gets the value of the feedAttributeValue property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getFeedAttributeValue() {
-        return feedAttributeValue;
-    }
-
-    /**
-     * Sets the value of the feedAttributeValue property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setFeedAttributeValue(String value) {
-        this.feedAttributeValue = value;
-    }
-
-    /**
-     * Gets the value of the reviewFeedAttributeValue property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getReviewFeedAttributeValue() {
-        return reviewFeedAttributeValue;
-    }
-
-    /**
-     * Sets the value of the reviewFeedAttributeValue property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setReviewFeedAttributeValue(String value) {
-        this.reviewFeedAttributeValue = value;
     }
 
 }

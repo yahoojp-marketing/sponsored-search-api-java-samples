@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}PlaceholderType" minOccurs="0"/>
+ *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}CampaignFeedPlaceholderType" minOccurs="0"/>
  *         &lt;element name="campaignFeed" type="{http://ss.yahooapis.jp/V6}CampaignFeed" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="devicePlatform" type="{http://ss.yahooapis.jp/V6}DevicePlatform" minOccurs="0"/>
  *       &lt;/sequence>
@@ -45,7 +45,7 @@ public class CampaignFeedList {
     protected long accountId;
     protected Long campaignId;
     @XmlSchemaType(name = "string")
-    protected PlaceholderType placeholderType;
+    protected CampaignFeedPlaceholderType placeholderType;
     protected List<CampaignFeed> campaignFeed;
     @XmlSchemaType(name = "string")
     protected DevicePlatform devicePlatform;
@@ -95,10 +95,10 @@ public class CampaignFeedList {
      * 
      * @return
      *     possible object is
-     *     {@link PlaceholderType }
+     *     {@link CampaignFeedPlaceholderType }
      *     
      */
-    public PlaceholderType getPlaceholderType() {
+    public CampaignFeedPlaceholderType getPlaceholderType() {
         return placeholderType;
     }
 
@@ -107,10 +107,10 @@ public class CampaignFeedList {
      * 
      * @param value
      *     allowed object is
-     *     {@link PlaceholderType }
+     *     {@link CampaignFeedPlaceholderType }
      *     
      */
-    public void setPlaceholderType(PlaceholderType value) {
+    public void setPlaceholderType(CampaignFeedPlaceholderType value) {
         this.placeholderType = value;
     }
 

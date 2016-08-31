@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ss.yahooapis.jp/V6}Operation">
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}PlaceholderType"/>
+ *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}FeedItemPlaceholderType"/>
  *         &lt;element name="operand" type="{http://ss.yahooapis.jp/V6}FeedItem" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -44,7 +44,7 @@ public class FeedItemOperation
     protected long accountId;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
-    protected PlaceholderType placeholderType;
+    protected FeedItemPlaceholderType placeholderType;
     @XmlElement(required = true)
     protected List<FeedItem> operand;
 
@@ -69,10 +69,10 @@ public class FeedItemOperation
      * 
      * @return
      *     possible object is
-     *     {@link PlaceholderType }
+     *     {@link FeedItemPlaceholderType }
      *     
      */
-    public PlaceholderType getPlaceholderType() {
+    public FeedItemPlaceholderType getPlaceholderType() {
         return placeholderType;
     }
 
@@ -81,10 +81,10 @@ public class FeedItemOperation
      * 
      * @param value
      *     allowed object is
-     *     {@link PlaceholderType }
+     *     {@link FeedItemPlaceholderType }
      *     
      */
-    public void setPlaceholderType(PlaceholderType value) {
+    public void setPlaceholderType(FeedItemPlaceholderType value) {
         this.placeholderType = value;
     }
 

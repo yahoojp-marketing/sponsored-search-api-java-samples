@@ -23,7 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="campaignIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="feedItemIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="placeholderTypes" type="{http://ss.yahooapis.jp/V6}PlaceholderType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="placeholderTypes" type="{http://ss.yahooapis.jp/V6}CampaignFeedPlaceholderType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,7 +49,7 @@ public class CampaignFeedSelector {
     @XmlElement(type = Long.class)
     protected List<Long> feedItemIds;
     @XmlSchemaType(name = "string")
-    protected List<PlaceholderType> placeholderTypes;
+    protected List<CampaignFeedPlaceholderType> placeholderTypes;
     protected Paging paging;
 
     /**
@@ -144,13 +144,13 @@ public class CampaignFeedSelector {
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link PlaceholderType }
+     * {@link CampaignFeedPlaceholderType }
      * 
      * 
      */
-    public List<PlaceholderType> getPlaceholderTypes() {
+    public List<CampaignFeedPlaceholderType> getPlaceholderTypes() {
         if (placeholderTypes == null) {
-            placeholderTypes = new ArrayList<PlaceholderType>();
+            placeholderTypes = new ArrayList<CampaignFeedPlaceholderType>();
         }
         return this.placeholderTypes;
     }

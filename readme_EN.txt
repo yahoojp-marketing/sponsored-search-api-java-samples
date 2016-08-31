@@ -1,10 +1,13 @@
 --------------------------------
 <<Version>>
 --------------------------------
-Version 6.0.0
+Version 6.1.0
 
 [Change history]
 -----------
+2016/08/31:
+- Correspond to Version 6.1.
+
 2016/05/13:
 - Add CampaignExportSample at Version 6.0.
 
@@ -78,7 +81,6 @@ The following programs are stored.
   - siteRetargetingSample/RetargetingListServiceSample.java                 : Sample of Get and Mutate operation for retargeting list via RetargetingListService.
   - siteRetargetingSample/SiteRetargetingSample.java                        : Sample of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSample.java                            : Sample of Get the related keywords based on the specified value via TargetingIdeaService.
-  - trafficEstimatorSample/TrafficEstimatorSample.java                      : Sample of Get the estimate keyword data of the selected keyword via KeywordEstimatorService.
   - campaignExportSample/CampaignExportSample.java                          : Sample of Add the export job and Download via CampaignExportService.
 
 
@@ -136,7 +138,6 @@ The following test cases are stored.
   - siteRetargetingSample/RetargetingListServiceSampleTest.java                 : Test case of Get and Mutate operation for retargeting list via RetargetingListService.
   - siteRetargetingSample/SiteRetargetingSampleTest.java                        : Test case of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : Test case of Get the related keywords based on the specified value via TargetingIdeaService.
-  - trafficEstimatorSample/TrafficEstimatorSampleTest.java                      : Test case of Get the estimate keyword data of the selected keyword via KeywordEstimatorService.
   - campaignExportSample/CampaignExportSampleTest.java                          : Test case of Add the export job and Download via CampaignExportService.
 
 [src/test/resource directory]
@@ -173,18 +174,18 @@ ONBEHALFOFPASSWORD  : Application account password (Optional)
 ACCOUNTID           : Account ID (Required)
 
 The following ID is required to use BidLandscapeSample.
-BIDDINGSTRATEGYID	 : Bidding Strategy ID (Required)
-CAMPAIGNID,APPCAMPAIGNID : Campaign ID (Required)
-ADGROUPID,APPADGROUPID   : Ad group ID (Required)
-ADGROUPCRITERIONIDS	 : Ad group criterion ID (Optional)
-			   *Can set multiple ID by using comma.
+BIDDINGSTRATEGYID         : Bidding Strategy ID (Required)
+CAMPAIGNID,APPCAMPAIGNID  : Campaign ID (Required)
+ADGROUPID,APPADGROUPID    : Ad group ID (Required)
+ADGROUPCRITERIONIDS       : Ad group criterion ID (Optional)
+                            *Can set multiple ID by using comma.
 
 The following ID is required to use AdCustomizerSample.
-FEEDFOLDERID		 : Feed Folder ID (Required)
-INTEGERFEEDATTRIBUTEID	 : Feed attribute ID from registered AD_CUSTOMIZER_INTEGER in PlaceholderField (Required)
-PRICEFEEDFOLDERID	 : Feed attribute ID from registered AD_CUSTOMIZER_PRICE in PlaceholderField (Required)
-DATEFEEDFOLDERID	 : Feed attribute ID from registered AD_CUSTOMIZER_DATE in PlaceholderField (Required)
-STRINGFEEDFOLDERID	 : Feed attribute ID from registered AD_CUSTOMIZER_STRING in PlaceholderField (Required)
+FEEDFOLDERID            : Feed Folder ID (Required)
+INTEGERFEEDATTRIBUTEID  : Feed attribute ID from registered AD_CUSTOMIZER_INTEGER in PlaceholderField (Required)
+PRICEFEEDFOLDERID       : Feed attribute ID from registered AD_CUSTOMIZER_PRICE in PlaceholderField (Required)
+DATEFEEDFOLDERID        : Feed attribute ID from registered AD_CUSTOMIZER_DATE in PlaceholderField (Required)
+STRINGFEEDFOLDERID      : Feed attribute ID from registered AD_CUSTOMIZER_STRING in PlaceholderField (Required)
 
 The following ID is required to use SiteRetargetingSample.
 TARGETLISTID	: Target list ID (Optional/New list created if it does not exist)
@@ -227,7 +228,6 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.NegativeCampai
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.trafficEstimatorSample.TrafficEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
 ---------------------------------------
 

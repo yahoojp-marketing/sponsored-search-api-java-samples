@@ -22,8 +22,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="feedFolderId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="feedFolderName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}FeedFolderPlaceholderType" minOccurs="0"/>
  *         &lt;element name="feedAttribute" type="{http://ss.yahooapis.jp/V6}FeedAttribute" maxOccurs="unbounded" minOccurs="0"/>
- *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}PlaceholderType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,17 +37,17 @@ import javax.xml.bind.annotation.XmlType;
     "accountId",
     "feedFolderId",
     "feedFolderName",
-    "feedAttribute",
-    "placeholderType"
+    "placeholderType",
+    "feedAttribute"
 })
 public class FeedFolder {
 
     protected long accountId;
     protected Long feedFolderId;
     protected String feedFolderName;
-    protected List<FeedAttribute> feedAttribute;
     @XmlSchemaType(name = "string")
-    protected PlaceholderType placeholderType;
+    protected FeedFolderPlaceholderType placeholderType;
+    protected List<FeedAttribute> feedAttribute;
 
     /**
      * Gets the value of the accountId property.
@@ -114,6 +114,30 @@ public class FeedFolder {
     }
 
     /**
+     * Gets the value of the placeholderType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link FeedFolderPlaceholderType }
+     *     
+     */
+    public FeedFolderPlaceholderType getPlaceholderType() {
+        return placeholderType;
+    }
+
+    /**
+     * Sets the value of the placeholderType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link FeedFolderPlaceholderType }
+     *     
+     */
+    public void setPlaceholderType(FeedFolderPlaceholderType value) {
+        this.placeholderType = value;
+    }
+
+    /**
      * Gets the value of the feedAttribute property.
      * 
      * <p>
@@ -140,30 +164,6 @@ public class FeedFolder {
             feedAttribute = new ArrayList<FeedAttribute>();
         }
         return this.feedAttribute;
-    }
-
-    /**
-     * Gets the value of the placeholderType property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PlaceholderType }
-     *     
-     */
-    public PlaceholderType getPlaceholderType() {
-        return placeholderType;
-    }
-
-    /**
-     * Sets the value of the placeholderType property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PlaceholderType }
-     *     
-     */
-    public void setPlaceholderType(PlaceholderType value) {
-        this.placeholderType = value;
     }
 
 }

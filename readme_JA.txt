@@ -1,10 +1,13 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version 6.0.0
+Version 6.1.0
 
 ■変更履歴
 -----------
+2016/08/31:
+- Version 6.1に対応しました。
+
 2016/05/13:
 - CampaignExportSample(Version 6.0)を追加しました。
 
@@ -40,7 +43,6 @@ Version 6.0.0
 このサンプルプログラムは、Javaを使用して各APIを呼び出す処理サンプルです。
 JAX-WSを使用してAPIを呼び出す形になっています。
 
-
 --------------------------------
 【内容物】
 --------------------------------
@@ -73,12 +75,14 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - dictionarySample/DictionarySample.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のサンプルです。
   - keywordEstimatorSample/KeywordEstimatorSample.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のサンプルです。
   - reportDownloadSample/ReportDownloadSample.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のサンプルです。
+  - sharedCriterionSample/AccountSharedServiceSample.java                   : AccountSharedServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、更新、削除処理のサンプルです。
+  - sharedCriterionSample/CampaignSharedSetServiceSample.java               : AccountSharedService/CampaignService/CampaignSharedSetServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のサンプルです。
+  - sharedCriterionSample/SharedCriterionServiceSample.java                 : AccountSharedService/SharedCriterionServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のサンプルです。
   - siteRetargetingSample/AdGroupRetargetingListServiceSample.java          : AdGroupRetargetingListServiceによる広告グループ用リターゲティングリストの登録、参照、更新、削除処理のサンプルです。
   - siteRetargetingSample/NegativeCampaignRetargetingListServiceSample.java : NegativeCampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のサンプルです。
   - siteRetargetingSample/RetargetingListServiceSample.java                 : RetargetingListServiceによるリターゲティングリストの登録、参照、更新処理のサンプルです。
   - siteRetargetingSample/SiteRetargetingSample.java                        : RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のサンプルです。
   - targetingIdeaSample/TargetingIdeaSample.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のサンプルです。
-  - trafficEstimatorSample/TrafficEstimatorSample.java                      : TrafficEstimatorServiceによる指定キーワードのクリック単価や掲載順位などの予測値を参照する処理のサンプルです。
   - campaignExportSample/CampaignExportSample.java                          : CampaignExportServiceによるExportジョブ登録、CSVダウンロードのサンプルです。
 
 ・以下は各サンプルプログラムから利用されるクラスです。
@@ -130,12 +134,14 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - dictionarySample/DictionarySampleTest.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のテストケースです。
   - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のテストケースです。
   - reportDownloadSample/ReportDownloadSampleTest.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のテストケースです。
+  - sharedCriterionSample/AccountSharedServiceSampleTest.java                   : AccountSharedServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、更新、削除処理のテストケースです。
+  - sharedCriterionSample/CampaignSharedSetServiceSampleTest.java               : AccountSharedService/CampaignService/CampaignSharedSetServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のテストケースです。
+  - sharedCriterionSample/SharedCriterionServiceSampleTest.java                 : AccountSharedService/SharedCriterionServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のテストケースです。
   - siteRetargetingSample/AdGroupRetargetingListServiceSampleTest.java          : AdGroupRetargetingListServiceによる広告グループ用リターゲティングリストの登録、参照、更新、削除処理のテストケースです。
   - siteRetargetingSample/NegativeCampaignRetargetingListServiceSampleTest.java : NegativeCampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のテストケースです。
   - siteRetargetingSample/RetargetingListServiceSampleTest.java                 : RetargetingListServiceによるリターゲティングリストの登録、参照、更新処理のテストケースです。
   - siteRetargetingSample/SiteRetargetingSampleTest.java                        : RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のテストケースです。
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のテストケースです。
-  - trafficEstimatorSample/TrafficEstimatorSampleTest.java                      : TrafficEstimatorServiceによる指定キーワードのクリック単価や掲載順位などの予測値を参照する処理のテストケースです。
   - campaignExportSample/CampaignExportSampleTest.java                          : CampaignExportServiceによるExportジョブ登録、ダウンロード処理のテストケースです。
 
 ■src/test/resourceディレクトリ
@@ -179,14 +185,14 @@ ADGROUPCRITERIONIDS      : 広告グループのクライテリアIDを記述（
                            ※カンマ区切りで複数IDを指定することができます。
 
 以下、IDはAdCustomizerSampleを動作させる際に必要となります。
-FEEDFOLDERID		: フィードフォルダーIDを記述（必須）
-INTEGERFEEDATTRIBUTEID	: PlaceholderFieldがAD_CUSTOMIZER_INTEGERで登録されたフィードアトリビュートIDを記述（必須）
-PRICEFEEDFOLDERID	: PlaceholderFieldがAD_CUSTOMIZER_PRICEで登録されたフィードアトリビュートIDを記述（必須）
-DATEFEEDFOLDERID	: PlaceholderFieldがAD_CUSTOMIZER_DATEで登録されたフィードアトリビュートIDを記述（必須）
-STRINGFEEDFOLDERID	: PlaceholderFieldがAD_CUSTOMIZER_STRINGで登録されたフィードアトリビュートIDを記述（必須）
+FEEDFOLDERID            : フィードフォルダーIDを記述（必須）
+INTEGERFEEDATTRIBUTEID  : PlaceholderFieldがAD_CUSTOMIZER_INTEGERで登録されたフィードアトリビュートIDを記述（必須）
+PRICEFEEDFOLDERID       : PlaceholderFieldがAD_CUSTOMIZER_PRICEで登録されたフィードアトリビュートIDを記述（必須）
+DATEFEEDFOLDERID        : PlaceholderFieldがAD_CUSTOMIZER_DATEで登録されたフィードアトリビュートIDを記述（必須）
+STRINGFEEDFOLDERID      : PlaceholderFieldがAD_CUSTOMIZER_STRINGで登録されたフィードアトリビュートIDを記述（必須）
 
 以下、IDはSiteRetargetingSampleを動作させる際に必要となります。
-TARGETLISTID	: ターゲットリストID（任意、存在しない場合は新規作成を試みます）
+TARGETLISTID  : ターゲットリストID（任意、存在しない場合は新規作成を試みます）
 
 
 --------------------------------
@@ -221,12 +227,14 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.customerSyncSample.CustomerSyncSampl
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/AccountSharedServiceSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/CampaignSharedSetServiceSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/SharedCriterionServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.AdGroupRetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.NegativeCampaignRetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.trafficEstimatorSample.TrafficEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
 ---------------------------------------
 

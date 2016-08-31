@@ -1,10 +1,5 @@
 package jp.co.yahoo.ad_api_sample.adCustomizerSample;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import jp.co.yahoo.ad_api_sample.adSample.AdGroupAdServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.AdGroupCriterionServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.AdGroupServiceSample;
@@ -35,12 +30,17 @@ import jp.yahooapis.ss.V6.CampaignService.CampaignType;
 import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
 import jp.yahooapis.ss.V6.FeedFolderService.FeedAttribute;
 import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderOperation;
+import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderPlaceholderField;
 import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderSelector;
 import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderValues;
-import jp.yahooapis.ss.V6.FeedFolderService.PlaceholderField;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Sample Program for AdCustomizerSample. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -308,7 +308,7 @@ public class AdCustomizerSample {
     for (FeedFolderValues feedFolderValue : feedFolderValues) {
       feedFolderName1 = feedFolderValue.getFeedFolder().getFeedFolderName();
       for (FeedAttribute feedAttribute : feedFolderValue.getFeedFolder().getFeedAttribute()) {
-        if (feedAttribute.getPlaceholderField() == PlaceholderField.AD_CUSTOMIZER_DATE) {
+        if (feedAttribute.getPlaceholderField() == FeedFolderPlaceholderField.AD_CUSTOMIZER_DATE) {
           feedAttributeName1 = feedAttribute.getFeedAttributeName();
         }
       }
@@ -340,7 +340,7 @@ public class AdCustomizerSample {
     for (FeedFolderValues feedFolderValue : feedFolderValues) {
       feedFolderName2 = feedFolderValue.getFeedFolder().getFeedFolderName();
       for (FeedAttribute feedAttribute : feedFolderValue.getFeedFolder().getFeedAttribute()) {
-        if (feedAttribute.getPlaceholderField() == PlaceholderField.AD_CUSTOMIZER_STRING) {
+        if (feedAttribute.getPlaceholderField() == FeedFolderPlaceholderField.AD_CUSTOMIZER_STRING) {
           feedAttributeName2 = feedAttribute.getFeedAttributeName();
         }
       }

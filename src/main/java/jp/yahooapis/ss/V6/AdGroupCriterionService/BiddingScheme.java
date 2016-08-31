@@ -33,12 +33,12 @@ import javax.xml.bind.annotation.XmlType;
 })
 @XmlSeeAlso({
     TargetCpaBiddingScheme.class,
-    ManualCpcBiddingScheme.class,
     PageOnePromotedBiddingScheme.class,
-    BudgetOptimizerBiddingScheme.class,
-    EnhancedCpcBiddingScheme.class,
     TargetRoasBiddingScheme.class,
-    TargetSpendBiddingScheme.class
+    TargetSpendBiddingScheme.class,
+    ManualCpcBiddingScheme.class,
+    BudgetOptimizerBiddingScheme.class,
+    EnhancedCpcBiddingScheme.class
 })
 public abstract class BiddingScheme {
 

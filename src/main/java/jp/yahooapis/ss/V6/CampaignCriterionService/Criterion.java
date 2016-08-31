@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="criterionId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="criterionTrackId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="type" type="{http://ss.yahooapis.jp/V6}CriterionType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -31,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Criterion", propOrder = {
     "criterionId",
+    "criterionTrackId",
     "type"
 })
 @XmlSeeAlso({
@@ -39,6 +41,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Criterion {
 
     protected Long criterionId;
+    protected Long criterionTrackId;
     @XmlSchemaType(name = "string")
     protected CriterionType type;
 
@@ -64,6 +67,30 @@ public class Criterion {
      */
     public void setCriterionId(Long value) {
         this.criterionId = value;
+    }
+
+    /**
+     * Gets the value of the criterionTrackId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getCriterionTrackId() {
+        return criterionTrackId;
+    }
+
+    /**
+     * Sets the value of the criterionTrackId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setCriterionTrackId(Long value) {
+        this.criterionTrackId = value;
     }
 
     /**

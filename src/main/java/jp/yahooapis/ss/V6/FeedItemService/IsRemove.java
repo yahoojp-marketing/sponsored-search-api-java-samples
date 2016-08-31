@@ -13,8 +13,8 @@ import javax.xml.bind.annotation.XmlType;
  * <pre>
  * &lt;simpleType name="IsRemove">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="FALSE"/>
  *     &lt;enumeration value="TRUE"/>
+ *     &lt;enumeration value="FALSE"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum IsRemove {
 
-    FALSE,
-    TRUE;
+    TRUE,
+    FALSE;
 
     public String value() {
         return name();

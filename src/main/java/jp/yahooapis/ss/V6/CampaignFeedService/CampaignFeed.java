@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="feedItemId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}PlaceholderType" minOccurs="0"/>
+ *         &lt;element name="placeholderType" type="{http://ss.yahooapis.jp/V6}CampaignFeedPlaceholderType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -42,7 +42,7 @@ public class CampaignFeed {
     protected Long campaignId;
     protected Long feedItemId;
     @XmlSchemaType(name = "string")
-    protected PlaceholderType placeholderType;
+    protected CampaignFeedPlaceholderType placeholderType;
 
     /**
      * Gets the value of the accountId property.
@@ -121,10 +121,10 @@ public class CampaignFeed {
      * 
      * @return
      *     possible object is
-     *     {@link PlaceholderType }
+     *     {@link CampaignFeedPlaceholderType }
      *     
      */
-    public PlaceholderType getPlaceholderType() {
+    public CampaignFeedPlaceholderType getPlaceholderType() {
         return placeholderType;
     }
 
@@ -133,10 +133,10 @@ public class CampaignFeed {
      * 
      * @param value
      *     allowed object is
-     *     {@link PlaceholderType }
+     *     {@link CampaignFeedPlaceholderType }
      *     
      */
-    public void setPlaceholderType(PlaceholderType value) {
+    public void setPlaceholderType(CampaignFeedPlaceholderType value) {
         this.placeholderType = value;
     }
 
