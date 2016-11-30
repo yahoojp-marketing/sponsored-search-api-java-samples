@@ -132,14 +132,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link MobileAd }
-     * 
-     */
-    public MobileAd createMobileAd() {
-        return new MobileAd();
-    }
-
-    /**
      * Create an instance of {@link AdGroupAdAdditionalAdvancedMobileUrls }
      * 
      */
@@ -209,6 +201,14 @@ public class ObjectFactory {
      */
     public Paging createPaging() {
         return new Paging();
+    }
+
+    /**
+     * Create an instance of {@link ExtendedTextAd }
+     * 
+     */
+    public ExtendedTextAd createExtendedTextAd() {
+        return new ExtendedTextAd();
     }
 
     /**

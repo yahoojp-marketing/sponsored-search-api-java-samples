@@ -1,10 +1,13 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version 6.1.0
+Version 6.2.0
 
 ■変更履歴
 -----------
+2016/11/24:
+- Version 6.2に対応しました。
+
 2016/08/31:
 - Version 6.1に対応しました。
 
@@ -181,7 +184,7 @@ ACCOUNTID           : アカウントIDを記述(必須)
 BIDDINGSTRATEGYID        : 自動入札IDを記述（必須）
 CAMPAIGNID,APPCAMPAIGNID : キャンペーンIDを記述（必須）
 ADGROUPID,APPADGROUPID   : 広告グループIDを記述（必須）
-ADGROUPCRITERIONIDS      : 広告グループのクライテリアIDを記述（任意）
+ADGROUPCRITERIONIDS      : 広告グループのクライテリアIDを記述（必須）
                            ※カンマ区切りで複数IDを指定することができます。
 
 以下、IDはAdCustomizerSampleを動作させる際に必要となります。

@@ -37,6 +37,9 @@ import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetCpaBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetRoasBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetSpendBiddingScheme;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.UserStatus;
+import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
+import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
+import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,36 +78,69 @@ public class AdGroupCriterionServiceSample {
       // Run
       List<AdGroupCriterionValues> adGroupCriterionValues = add(addAdGroupCriterionOperation);
 
-      // =================================================================
-      // AdGroupCriterionService GET
-      // =================================================================
-      // Set Selector
-      AdGroupCriterionSelector adGroupCriterionSelector = createSampleGetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
+      boolean allApproved = true;
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds *****\n");
+        Thread.sleep(30000);
 
-      // Run
-      get(adGroupCriterionSelector);
+        // =================================================================
+        // AdGroupCriterionService GET
+        // =================================================================
+        // Set Selector
+        AdGroupCriterionSelector adGroupCriterionSelector = createSampleGetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
 
-      // sleep 30 second.
-      System.out.println("\n***** sleep 30 seconds *****\n");
-      Thread.sleep(30000);
+        // Run
+        List<AdGroupCriterionValues> getAdGroupCriterionValues = get(adGroupCriterionSelector);
 
-      // =================================================================
-      // AdGroupCriterionService SET
-      // =================================================================
-      // Set Operation
-      AdGroupCriterionOperation setAdGroupCriterionOperation = createSampleSetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
+        allApproved = true;
+        for (AdGroupCriterionValues adGroupCriterionValue : getAdGroupCriterionValues) {
+            if (!ApprovalStatus.APPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+              allApproved = false;
+            } else if (ApprovalStatus.POST_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())
+                || ApprovalStatus.PRE_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+              System.out.println("Error : This AdGroupCriterion was denied.");
+              ((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getDisapprovalReasonCodes().stream().forEach(
+                  disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+              );
+            }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
 
-      // Run
-      set(setAdGroupCriterionOperation);
+      if (!allApproved) {
+        System.out.println("Error : The review did not end.");
+        // =================================================================
+        // AdGroupCriterionService REMOVE
+        // =================================================================
+        // Set Operation
+        AdGroupCriterionOperation removeAdGroupCriterionOperation = createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
 
-      // =================================================================
-      // AdGroupCriterionService REMOVE
-      // =================================================================
-      // Set Operation
-      AdGroupCriterionOperation removeAdGroupCriterionOperation = createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
+        // Run
+        remove(removeAdGroupCriterionOperation);
+        System.exit(1);
+      } else {
+        // =================================================================
+        // AdGroupCriterionService SET
+        // =================================================================
+        // Set Operation
+        AdGroupCriterionOperation setAdGroupCriterionOperation = createSampleSetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
 
-      // Run
-      remove(removeAdGroupCriterionOperation);
+        // Run
+        set(setAdGroupCriterionOperation);
+
+        // =================================================================
+        // AdGroupCriterionService REMOVE
+        // =================================================================
+        // Set Operation
+        AdGroupCriterionOperation removeAdGroupCriterionOperation = createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
+
+        // Run
+        remove(removeAdGroupCriterionOperation);
+      }
 
     } catch (Exception ex) {
       ex.printStackTrace();

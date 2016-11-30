@@ -5,19 +5,21 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.ConversionTrackerService.AppConversion;
 import jp.yahooapis.ss.V6.ConversionTrackerService.AppConversionType;
 import jp.yahooapis.ss.V6.ConversionTrackerService.AppPlatform;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionCountingType;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerCategory;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerOperation;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerSelector;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerStatus;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerType;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerValues;
-import jp.yahooapis.ss.V6.ConversionTrackerService.HttpProtocol;
+import jp.yahooapis.ss.V6.ConversionTrackerService.ExcludeFromBidding;
 import jp.yahooapis.ss.V6.ConversionTrackerService.MarkupLanguage;
 import jp.yahooapis.ss.V6.ConversionTrackerService.Operator;
 import jp.yahooapis.ss.V6.ConversionTrackerService.Paging;
@@ -73,11 +75,13 @@ public class ConversionTrackerSampleTest {
     appConversion.setCategory(ConversionTrackerCategory.DOWNLOAD);
     appConversion.setConversionTrackerType(ConversionTrackerType.APP_CONVERSION);
     appConversion.setUserRevenueValue("100");
+    appConversion.setCountingType(ConversionCountingType.ONE_PER_CLICK);
+    appConversion.setExcludeFromBidding(ExcludeFromBidding.FALSE);
+    appConversion.setMeasurementPeriod(30);
 
     // WebConversionTracker
     WebConversion webConversion = new WebConversion();
     webConversion.setMarkupLanguage(MarkupLanguage.HTML);
-    webConversion.setHttpProtocol(HttpProtocol.HTTPS);
     webConversion.setTrackingCodeType(TrackingCodeType.CLICK_TO_CALL);
     webConversion.setAccountId(accountId);
     webConversion.setConversionTrackerName("SampleWebConversionTracker_CreateOn_" + SoapUtils.getCurrentTimestamp());
@@ -85,6 +89,9 @@ public class ConversionTrackerSampleTest {
     webConversion.setCategory(ConversionTrackerCategory.DEFAULT);
     webConversion.setConversionTrackerType(ConversionTrackerType.WEB_CONVERSION);
     webConversion.setUserRevenueValue("100");
+    webConversion.setCountingType(ConversionCountingType.MANY_PER_CLICK);
+    webConversion.setExcludeFromBidding(ExcludeFromBidding.FALSE);
+    webConversion.setMeasurementPeriod(7);
 
     ConversionTrackerOperation operation = new ConversionTrackerOperation();
     operation.setOperator(Operator.ADD);
@@ -131,7 +138,6 @@ public class ConversionTrackerSampleTest {
     // WebConversionTracker
     WebConversion webConversion = new WebConversion();
     webConversion.setMarkupLanguage(MarkupLanguage.HTML);
-    webConversion.setHttpProtocol(HttpProtocol.HTTPS);
     webConversion.setTrackingCodeType(TrackingCodeType.CLICK_TO_CALL);
     webConversion.setAccountId(accountId);
     webConversion.setConversionTrackerName("SampleWebConversionTracker_CreateOn_" + SoapUtils.getCurrentTimestamp());
@@ -165,6 +171,7 @@ public class ConversionTrackerSampleTest {
     setAppConversion.setCategory(ConversionTrackerCategory.DOWNLOAD);
     setAppConversion.setStatus(ConversionTrackerStatus.DISABLED);
     setAppConversion.setConversionTrackerType(ConversionTrackerType.APP_CONVERSION);
+    setAppConversion.setCountingType(ConversionCountingType.MANY_PER_CLICK);
 
     // WebConversionTracker
     WebConversion setWebConversion = new WebConversion();
@@ -173,6 +180,8 @@ public class ConversionTrackerSampleTest {
     setWebConversion.setCategory(ConversionTrackerCategory.DEFAULT);
     setWebConversion.setStatus(ConversionTrackerStatus.DISABLED);
     setWebConversion.setConversionTrackerType(ConversionTrackerType.WEB_CONVERSION);
+    setWebConversion.setCountingType(ConversionCountingType.ONE_PER_CLICK);
+    setWebConversion.setMeasurementPeriod(17);
 
     // set conversionTrackerId
     for (ConversionTrackerValues conversionTrackerValues : addResponse) {
@@ -232,7 +241,6 @@ public class ConversionTrackerSampleTest {
     // WebConversionTracker
     WebConversion webConversion = new WebConversion();
     webConversion.setMarkupLanguage(MarkupLanguage.HTML);
-    webConversion.setHttpProtocol(HttpProtocol.HTTPS);
     webConversion.setTrackingCodeType(TrackingCodeType.CLICK_TO_CALL);
     webConversion.setAccountId(accountId);
     webConversion.setConversionTrackerName("SampleWebConversionTracker_CreateOn_" + SoapUtils.getCurrentTimestamp());
@@ -266,6 +274,8 @@ public class ConversionTrackerSampleTest {
     }
     selector.getStatuses().add(ConversionTrackerStatus.ENABLED);
     selector.getCategories().add(ConversionTrackerCategory.DEFAULT);
+    selector.getCountingTypes().addAll(Arrays.asList(ConversionCountingType.MANY_PER_CLICK,ConversionCountingType.ONE_PER_CLICK));
+    selector.getExcludeFromBiddings().addAll(Arrays.asList(ExcludeFromBidding.TRUE, ExcludeFromBidding.FALSE));
     selector.setDateRange(ConversionTrackerSample.createConversionDateRange());
     Paging paging = new Paging();
     paging.setStartIndex(1);

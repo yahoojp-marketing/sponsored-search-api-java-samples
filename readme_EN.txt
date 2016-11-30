@@ -1,10 +1,13 @@
 --------------------------------
 <<Version>>
 --------------------------------
-Version 6.1.0
+Version 6.2.0
 
 [Change history]
 -----------
+2016/11/24:
+- Correspond to Version 6.2.
+
 2016/08/31:
 - Correspond to Version 6.1.
 
@@ -177,7 +180,7 @@ The following ID is required to use BidLandscapeSample.
 BIDDINGSTRATEGYID         : Bidding Strategy ID (Required)
 CAMPAIGNID,APPCAMPAIGNID  : Campaign ID (Required)
 ADGROUPID,APPADGROUPID    : Ad group ID (Required)
-ADGROUPCRITERIONIDS       : Ad group criterion ID (Optional)
+ADGROUPCRITERIONIDS       : Ad group criterion ID (Required)
                             *Can set multiple ID by using comma.
 
 The following ID is required to use AdCustomizerSample.

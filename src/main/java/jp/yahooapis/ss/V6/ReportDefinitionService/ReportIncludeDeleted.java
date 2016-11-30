@@ -1,39 +1,37 @@
 
-package jp.yahooapis.ss.V6.AdGroupBidMultiplierService;
+package jp.yahooapis.ss.V6.ReportDefinitionService;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for PlatformType.
+ * <p>Java class for ReportIncludeDeleted.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="PlatformType">
+ * &lt;simpleType name="ReportIncludeDeleted">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="SMART_PHONE"/>
- *     &lt;enumeration value="TABLET"/>
- *     &lt;enumeration value="DESKTOP"/>
+ *     &lt;enumeration value="TRUE"/>
+ *     &lt;enumeration value="FALSE"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "PlatformType")
+@XmlType(name = "ReportIncludeDeleted")
 @XmlEnum
-public enum PlatformType {
+public enum ReportIncludeDeleted {
 
-    SMART_PHONE,
-    TABLET,
-    DESKTOP;
+    TRUE,
+    FALSE;
 
     public String value() {
         return name();
     }
 
-    public static PlatformType fromValue(String v) {
+    public static ReportIncludeDeleted fromValue(String v) {
         return valueOf(v);
     }
 

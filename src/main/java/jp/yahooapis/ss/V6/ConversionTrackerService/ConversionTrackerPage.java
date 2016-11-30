@@ -18,9 +18,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;extension base="{http://ss.yahooapis.jp/V6}Page">
  *       &lt;sequence>
- *         &lt;element name="totalNumConvertedClicks" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="totalNumConversionEvents" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="totalConversionValue" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="totalConversions" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="totalAllConversions" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="totalConversionValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="totalAllConversionValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="values" type="{http://ss.yahooapis.jp/V6}ConversionTrackerValues" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -32,66 +33,68 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "ConversionTrackerPage", propOrder = {
-    "totalNumConvertedClicks",
-    "totalNumConversionEvents",
+    "totalConversions",
+    "totalAllConversions",
     "totalConversionValue",
+    "totalAllConversionValue",
     "values"
 })
 public class ConversionTrackerPage
     extends Page
 {
 
-    protected Long totalNumConvertedClicks;
-    protected Long totalNumConversionEvents;
-    protected Long totalConversionValue;
+    protected Long totalConversions;
+    protected Long totalAllConversions;
+    protected String totalConversionValue;
+    protected String totalAllConversionValue;
     protected List<ConversionTrackerValues> values;
 
     /**
-     * Gets the value of the totalNumConvertedClicks property.
+     * Gets the value of the totalConversions property.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getTotalNumConvertedClicks() {
-        return totalNumConvertedClicks;
+    public Long getTotalConversions() {
+        return totalConversions;
     }
 
     /**
-     * Sets the value of the totalNumConvertedClicks property.
+     * Sets the value of the totalConversions property.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setTotalNumConvertedClicks(Long value) {
-        this.totalNumConvertedClicks = value;
+    public void setTotalConversions(Long value) {
+        this.totalConversions = value;
     }
 
     /**
-     * Gets the value of the totalNumConversionEvents property.
+     * Gets the value of the totalAllConversions property.
      * 
      * @return
      *     possible object is
      *     {@link Long }
      *     
      */
-    public Long getTotalNumConversionEvents() {
-        return totalNumConversionEvents;
+    public Long getTotalAllConversions() {
+        return totalAllConversions;
     }
 
     /**
-     * Sets the value of the totalNumConversionEvents property.
+     * Sets the value of the totalAllConversions property.
      * 
      * @param value
      *     allowed object is
      *     {@link Long }
      *     
      */
-    public void setTotalNumConversionEvents(Long value) {
-        this.totalNumConversionEvents = value;
+    public void setTotalAllConversions(Long value) {
+        this.totalAllConversions = value;
     }
 
     /**
@@ -99,10 +102,10 @@ public class ConversionTrackerPage
      * 
      * @return
      *     possible object is
-     *     {@link Long }
+     *     {@link String }
      *     
      */
-    public Long getTotalConversionValue() {
+    public String getTotalConversionValue() {
         return totalConversionValue;
     }
 
@@ -111,11 +114,35 @@ public class ConversionTrackerPage
      * 
      * @param value
      *     allowed object is
-     *     {@link Long }
+     *     {@link String }
      *     
      */
-    public void setTotalConversionValue(Long value) {
+    public void setTotalConversionValue(String value) {
         this.totalConversionValue = value;
+    }
+
+    /**
+     * Gets the value of the totalAllConversionValue property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getTotalAllConversionValue() {
+        return totalAllConversionValue;
+    }
+
+    /**
+     * Sets the value of the totalAllConversionValue property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setTotalAllConversionValue(String value) {
+        this.totalAllConversionValue = value;
     }
 
     /**

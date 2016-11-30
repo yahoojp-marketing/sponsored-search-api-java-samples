@@ -1,20 +1,25 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-
-import java.util.List;
-
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
+import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
+import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
+import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
+import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
 import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetOperation;
 import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetSelector;
 import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetValues;
 import jp.yahooapis.ss.V6.CampaignTargetService.Paging;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.List;
+
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 /**
  * Sample TestCase for CampaignTargetServiceSampleTest. Copyright (C) 2012 Yahoo Japan Corporation.
@@ -28,12 +33,78 @@ public class CampaignTargetServiceSampleTest {
   private long accountId;
   private long campaignId;
   private long appCampaignId;
+  private List<CampaignValues> addCampaignValues;
 
   @Before
   public void setup() {
     accountId = SoapUtils.getAccountId();
-    campaignId = SoapUtils.getCampaignId();
-    appCampaignId = SoapUtils.getAppCampaignId();
+    long biddingStrategyId = SoapUtils.getBiddingStrategyId();
+
+    // Create Campaign
+    CampaignOperation campaignOperation = CampaignServiceSample.createSampleAddRequest(accountId, biddingStrategyId);
+
+    // Run
+    addCampaignValues = null;
+    try {
+      addCampaignValues = CampaignServiceSample.add(campaignOperation);
+
+      boolean allApproved = true;
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds for Get Campaign  *****\n");
+        Thread.sleep(30000);
+
+        // =================================================================
+        // CampaignService::GET
+        // =================================================================
+        // Set Selector
+        CampaignSelector campaignSelector = CampaignServiceSample.createSampleGetRequest(accountId, addCampaignValues);
+
+        // Run
+        List<CampaignValues> getCampaignValues = CampaignServiceSample.get(campaignSelector);
+
+        allApproved = true;
+        for (CampaignValues campaignValues : getCampaignValues) {
+          if (!UrlApprovalStatus.APPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())
+              && !UrlApprovalStatus.NONE.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())) {
+            allApproved = false;
+          } else if (UrlApprovalStatus.DISAPPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())) {
+            System.out.println("Error : This campaign was denied.");
+            campaignValues.getCampaign().getUrlReviewData().getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+          }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
+    } catch (Exception e) {
+      fail();
+    }
+
+    // get AutoBidding CampaignId
+    campaignId = addCampaignValues.get(0).getCampaign().getCampaignId();
+    // get App Campaign
+    appCampaignId = addCampaignValues.get(2).getCampaign().getCampaignId();
+
+  }
+
+  @After
+  public void teardown() {
+    try {
+      // =================================================================
+      // CampaignService::REMOVE
+      // =================================================================
+      // Set Operation
+      CampaignOperation removeCampaignOperation = CampaignServiceSample.createSampleRemoveRequest(accountId, addCampaignValues);
+
+      // Run
+      CampaignServiceSample.remove(removeCampaignOperation);
+    } catch (Exception e) {
+      fail();
+    }
   }
 
   /**
@@ -43,7 +114,7 @@ public class CampaignTargetServiceSampleTest {
   public void testMain() throws Exception {
     // Run
     try {
-      CampaignTargetServiceSample.main(null);
+      CampaignTargetServiceSample.main(new String[]{String.valueOf(campaignId), String.valueOf(appCampaignId)});
     } catch (Exception e) {
       fail();
     }
@@ -54,6 +125,8 @@ public class CampaignTargetServiceSampleTest {
    */
   @Test
   public void testAdd() throws Exception {
+
+
     // Set Operation
     CampaignTargetOperation addCampaignTargetOperation = CampaignTargetServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
 
@@ -71,8 +144,6 @@ public class CampaignTargetServiceSampleTest {
       assertThat(campaignTargetValue.getCampaignTarget().getAccountId(), is(notNullValue()));
     }
 
-    // Clean
-    clean(addCampaignTargetValues);
   }
 
   /**
@@ -110,9 +181,6 @@ public class CampaignTargetServiceSampleTest {
       assertThat(campaignTargetValue.isOperationSucceeded(), is(true));
       assertThat(campaignTargetValue.getCampaignTarget().getAccountId(), is(notNullValue()));
     }
-
-    // Clean
-    clean(addCampaignTargetValues);
   }
 
   /**
@@ -160,6 +228,7 @@ public class CampaignTargetServiceSampleTest {
     // Set Selector
     CampaignTargetSelector campaignTargetSelector = new CampaignTargetSelector();
     campaignTargetSelector.setAccountId(accountId);
+
     Paging paging = new Paging();
     paging.setStartIndex(1);
     paging.setNumberResults(20);
@@ -177,18 +246,6 @@ public class CampaignTargetServiceSampleTest {
     for (CampaignTargetValues campaignTargetValue : getCampaignTargetValues) {
       assertThat(campaignTargetValue.isOperationSucceeded(), is(true));
       assertThat(campaignTargetValue.getCampaignTarget().getAccountId(), is(notNullValue()));
-    }
-  }
-
-  /**
-   * clean
-   */
-  public void clean(List<CampaignTargetValues> campaignTargetValues) {
-    try {
-      CampaignTargetOperation removeCampaignTargetOperation = CampaignTargetServiceSample.createSampleRemoveRequest(accountId, campaignTargetValues);
-      CampaignTargetServiceSample.remove(removeCampaignTargetOperation);
-    } catch (Exception e) {
-      fail();
     }
   }
 }

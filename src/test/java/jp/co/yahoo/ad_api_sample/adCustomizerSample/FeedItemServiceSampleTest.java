@@ -12,6 +12,7 @@ import jp.yahooapis.ss.V6.FeedItemService.Paging;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -103,8 +104,65 @@ public class FeedItemServiceSampleTest {
       fail();
     }
 
-    // wait for sandbox review
-    Thread.sleep(20000);
+    // =================================================================
+    // FeedItemService GET
+    // =================================================================
+    // Run
+    try {
+      boolean allApproved = true;
+      List<Long> feedItemIds = new ArrayList<>();
+      addFeedItemValues.stream().forEach(feedItemValues -> feedItemIds.add(feedItemValues.getFeedItem().getFeedItemId()));
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds for Get FeedItem  *****\n");
+        Thread.sleep(30000);
+
+        // Set Selector
+        FeedItemSelector selector = new FeedItemSelector();
+        selector.setAccountId(accountId);
+        selector.getFeedItemIds().addAll(feedItemIds);
+        selector.getPlaceholderTypes().add(FeedItemPlaceholderType.QUICKLINK);
+        selector.getPlaceholderTypes().add(FeedItemPlaceholderType.CALLEXTENSION);
+        selector.getPlaceholderTypes().add(FeedItemPlaceholderType.AD_CUSTOMIZER);
+        selector.getApprovalStatuses().add(ApprovalStatus.APPROVED);
+        selector.getApprovalStatuses().add(ApprovalStatus.REVIEW);
+        selector.getApprovalStatuses().add(ApprovalStatus.PRE_DISAPPROVED);
+        selector.getApprovalStatuses().add(ApprovalStatus.APPROVED_WITH_REVIEW);
+        selector.getApprovalStatuses().add(ApprovalStatus.POST_DISAPPROVED);
+        selector.setAdvanced(Advanced.FALSE);
+        Paging feedItemPaging = new Paging();
+        feedItemPaging.setStartIndex(1);
+        feedItemPaging.setNumberResults(20);
+        selector.setPaging(feedItemPaging);
+
+        // Run
+        List<FeedItemValues> getFeedItemValues = null;
+        try {
+          getFeedItemValues = FeedItemServiceSample.get(selector);
+        } catch (Exception e) {
+          fail();
+        }
+
+        allApproved = true;
+        for (FeedItemValues feedItemValue : getFeedItemValues) {
+          if (!ApprovalStatus.APPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            allApproved = false;
+          } else if (ApprovalStatus.PRE_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())
+              || ApprovalStatus.POST_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            System.out.println("Error : This FeedItem was denied.");
+            feedItemValue.getFeedItem().getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+          }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
+    } catch (Exception e) {
+      fail();
+    }
 
     // =================================================================
     // FeefItemService SET

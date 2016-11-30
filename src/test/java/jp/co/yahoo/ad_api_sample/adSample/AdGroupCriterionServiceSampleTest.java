@@ -169,7 +169,7 @@ public class AdGroupCriterionServiceSampleTest {
     selector.setCriterionUse(AdGroupCriterionUse.BIDDABLE);
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
-    selector.setAdvanced(Advanced.FALSE);
+    selector.setAdvanced(Advanced.TRUE);
     Paging paging = new Paging();
     paging.setStartIndex(1);
     paging.setNumberResults(20);

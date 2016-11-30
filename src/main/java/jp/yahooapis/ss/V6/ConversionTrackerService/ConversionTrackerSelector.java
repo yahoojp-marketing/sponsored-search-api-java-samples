@@ -26,6 +26,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="categories" type="{http://ss.yahooapis.jp/V6}ConversionTrackerCategory" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="conversionTrackerTypes" type="{http://ss.yahooapis.jp/V6}ConversionTrackerType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="trackingCodeTypes" type="{http://ss.yahooapis.jp/V6}TrackingCodeType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="countingTypes" type="{http://ss.yahooapis.jp/V6}ConversionCountingType" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="excludeFromBiddings" type="{http://ss.yahooapis.jp/V6}ExcludeFromBidding" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="dateRange" type="{http://ss.yahooapis.jp/V6}ConversionDateRange" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
  *       &lt;/sequence>
@@ -44,6 +46,8 @@ import javax.xml.bind.annotation.XmlType;
     "categories",
     "conversionTrackerTypes",
     "trackingCodeTypes",
+    "countingTypes",
+    "excludeFromBiddings",
     "dateRange",
     "paging"
 })
@@ -60,6 +64,10 @@ public class ConversionTrackerSelector {
     protected List<ConversionTrackerType> conversionTrackerTypes;
     @XmlSchemaType(name = "string")
     protected List<TrackingCodeType> trackingCodeTypes;
+    @XmlSchemaType(name = "string")
+    protected List<ConversionCountingType> countingTypes;
+    @XmlSchemaType(name = "string")
+    protected List<ExcludeFromBidding> excludeFromBiddings;
     protected ConversionDateRange dateRange;
     protected Paging paging;
 
@@ -222,6 +230,64 @@ public class ConversionTrackerSelector {
             trackingCodeTypes = new ArrayList<TrackingCodeType>();
         }
         return this.trackingCodeTypes;
+    }
+
+    /**
+     * Gets the value of the countingTypes property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the countingTypes property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCountingTypes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ConversionCountingType }
+     * 
+     * 
+     */
+    public List<ConversionCountingType> getCountingTypes() {
+        if (countingTypes == null) {
+            countingTypes = new ArrayList<ConversionCountingType>();
+        }
+        return this.countingTypes;
+    }
+
+    /**
+     * Gets the value of the excludeFromBiddings property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the excludeFromBiddings property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getExcludeFromBiddings().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link ExcludeFromBidding }
+     * 
+     * 
+     */
+    public List<ExcludeFromBidding> getExcludeFromBiddings() {
+        if (excludeFromBiddings == null) {
+            excludeFromBiddings = new ArrayList<ExcludeFromBidding>();
+        }
+        return this.excludeFromBiddings;
     }
 
     /**

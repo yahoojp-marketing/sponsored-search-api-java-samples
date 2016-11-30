@@ -26,6 +26,7 @@ import jp.yahooapis.ss.V6.AdGroupBidMultiplierService.AdGroupBidMultiplierSelect
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionOperation;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionSelector;
 import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionValues;
+import jp.yahooapis.ss.V6.AdGroupCriterionService.BiddableAdGroupCriterion;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeed;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedList;
 import jp.yahooapis.ss.V6.AdGroupFeedService.AdGroupFeedOperation;
@@ -221,9 +222,36 @@ public class AdvancedUrlSample {
       // ADD
       AdGroupCriterionOperation addAdGroupCriterionOperation = AdGroupCriterionServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId);
       List<AdGroupCriterionValues> adGroupCriterionValues = AdGroupCriterionServiceSample.add(addAdGroupCriterionOperation);
-      // GET
-      AdGroupCriterionSelector adGroupCriterionSelector = AdGroupCriterionServiceSample.createSampleGetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
-      AdGroupCriterionServiceSample.get(adGroupCriterionSelector);
+
+
+      boolean allApproved = true;
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds *****\n");
+        Thread.sleep(30000);
+
+        // GET
+        AdGroupCriterionSelector adGroupCriterionSelector = AdGroupCriterionServiceSample.createSampleGetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
+        List<AdGroupCriterionValues> getAdGroupCriterionValues = AdGroupCriterionServiceSample.get(adGroupCriterionSelector);
+
+        allApproved = true;
+        for (AdGroupCriterionValues adGroupCriterionValue : getAdGroupCriterionValues) {
+          if (!jp.yahooapis.ss.V6.AdGroupCriterionService.ApprovalStatus.APPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+            allApproved = false;
+          } else if (jp.yahooapis.ss.V6.AdGroupCriterionService.ApprovalStatus.POST_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())
+              || jp.yahooapis.ss.V6.AdGroupCriterionService.ApprovalStatus.PRE_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+            System.out.println("Error : This AdGroupCriterion was denied.");
+            ((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+          }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
+
       // SET
       AdGroupCriterionOperation setAdGroupCriterionOperation = AdGroupCriterionServiceSample.createSampleSetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
       AdGroupCriterionServiceSample.set(setAdGroupCriterionOperation);
@@ -258,13 +286,41 @@ public class AdvancedUrlSample {
       // ADD QUICKLINK
       FeedItemOperation addFeedItemOperation_quicklink = createSampleFeedItemServiceAddRequest_quicklink(accountId);
       List<FeedItemValues> addfeedItemValues_quicklink = FeedItemServiceSample.add(addFeedItemOperation_quicklink);
-      // GET QUICKLINK
-      FeedItemSelector feedItemSelector1 = createFeedItemSampleGetRequest(accountId, addfeedItemValues_quicklink);
-      FeedItemServiceSample.get(feedItemSelector1);
-      // wait for sandbox review
-      Thread.sleep(30000);
 
-//      // SET QUICKLINK
+
+      // =================================================================
+      // FeedItemService GET
+      // =================================================================
+      // Run
+      boolean feedItemAllApproved = true;
+
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds for Get FeedItem  *****\n");
+        Thread.sleep(30000);
+
+        // GET QUICKLINK
+        FeedItemSelector feedItemSelector1 = createFeedItemSampleGetRequest(accountId, addfeedItemValues_quicklink);
+        List<FeedItemValues> getFeedItemValues = FeedItemServiceSample.get(feedItemSelector1);
+
+        feedItemAllApproved = true;
+        for (FeedItemValues feedItemValue : getFeedItemValues) {
+          if (!ApprovalStatus.APPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            feedItemAllApproved = false;
+          } else if (ApprovalStatus.PRE_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())
+              || ApprovalStatus.POST_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            System.out.println("Error : This FeedItem was denied.");
+            feedItemValue.getFeedItem().getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+          }
+        }
+        if (feedItemAllApproved) {
+          break;
+        }
+      }
+      // SET QUICKLINK
       FeedItemOperation setFeedItemOperation_quicklink = createSampleFeedItemServiceSetRequest_quicklink(accountId, addfeedItemValues_quicklink);
       List<FeedItemValues> setFeedItemValues_quicklink = FeedItemServiceSample.set(setFeedItemOperation_quicklink);
       for (FeedItemValues feedItemValues : setFeedItemValues_quicklink) {

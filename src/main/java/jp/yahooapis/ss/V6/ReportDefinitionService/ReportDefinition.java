@@ -35,6 +35,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="encode" type="{http://ss.yahooapis.jp/V6}ReportDownloadEncode" minOccurs="0"/>
  *         &lt;element name="language" type="{http://ss.yahooapis.jp/V6}ReportLanguage" minOccurs="0"/>
  *         &lt;element name="compress" type="{http://ss.yahooapis.jp/V6}ReportCompressType" minOccurs="0"/>
+ *         &lt;element name="includeZeroImpressions" type="{http://ss.yahooapis.jp/V6}ReportIncludeZeroImpressions" minOccurs="0"/>
+ *         &lt;element name="includeDeleted" type="{http://ss.yahooapis.jp/V6}ReportIncludeDeleted" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -60,7 +62,9 @@ import javax.xml.bind.annotation.XmlType;
     "format",
     "encode",
     "language",
-    "compress"
+    "compress",
+    "includeZeroImpressions",
+    "includeDeleted"
 })
 public class ReportDefinition {
 
@@ -88,6 +92,10 @@ public class ReportDefinition {
     protected ReportLanguage language;
     @XmlSchemaType(name = "string")
     protected ReportCompressType compress;
+    @XmlSchemaType(name = "string")
+    protected ReportIncludeZeroImpressions includeZeroImpressions;
+    @XmlSchemaType(name = "string")
+    protected ReportIncludeDeleted includeDeleted;
 
     /**
      * Gets the value of the accountId property.
@@ -481,6 +489,54 @@ public class ReportDefinition {
      */
     public void setCompress(ReportCompressType value) {
         this.compress = value;
+    }
+
+    /**
+     * Gets the value of the includeZeroImpressions property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ReportIncludeZeroImpressions }
+     *     
+     */
+    public ReportIncludeZeroImpressions getIncludeZeroImpressions() {
+        return includeZeroImpressions;
+    }
+
+    /**
+     * Sets the value of the includeZeroImpressions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ReportIncludeZeroImpressions }
+     *     
+     */
+    public void setIncludeZeroImpressions(ReportIncludeZeroImpressions value) {
+        this.includeZeroImpressions = value;
+    }
+
+    /**
+     * Gets the value of the includeDeleted property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ReportIncludeDeleted }
+     *     
+     */
+    public ReportIncludeDeleted getIncludeDeleted() {
+        return includeDeleted;
+    }
+
+    /**
+     * Sets the value of the includeDeleted property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ReportIncludeDeleted }
+     *     
+     */
+    public void setIncludeDeleted(ReportIncludeDeleted value) {
+        this.includeDeleted = value;
     }
 
 }

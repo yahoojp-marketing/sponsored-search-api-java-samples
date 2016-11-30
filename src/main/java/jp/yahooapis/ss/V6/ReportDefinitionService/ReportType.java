@@ -23,7 +23,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;enumeration value="FEED_ITEM"/>
  *     &lt;enumeration value="GEO_TARGET"/>
  *     &lt;enumeration value="SCHEDULE_TARGET"/>
- *     &lt;enumeration value="DEVICE_TARGET"/>
  *     &lt;enumeration value="BID_STRATEGY"/>
  *     &lt;enumeration value="AD_CUSTOMIZERS"/>
  *     &lt;enumeration value="TARGET_LIST"/>
@@ -47,7 +46,6 @@ public enum ReportType {
     FEED_ITEM,
     GEO_TARGET,
     SCHEDULE_TARGET,
-    DEVICE_TARGET,
     BID_STRATEGY,
     AD_CUSTOMIZERS,
     TARGET_LIST,

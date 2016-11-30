@@ -23,12 +23,16 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="conversionTrackerName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="status" type="{http://ss.yahooapis.jp/V6}ConversionTrackerStatus" minOccurs="0"/>
  *         &lt;element name="category" type="{http://ss.yahooapis.jp/V6}ConversionTrackerCategory" minOccurs="0"/>
- *         &lt;element name="numConversionEvents" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="conversionValue" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="conversions" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="conversionValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="allConversions" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="allConversionValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="mostRecentConversionDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="numConvertedClicks" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *         &lt;element name="conversionTrackerType" type="{http://ss.yahooapis.jp/V6}ConversionTrackerType" minOccurs="0"/>
  *         &lt;element name="userRevenueValue" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="countingType" type="{http://ss.yahooapis.jp/V6}ConversionCountingType" minOccurs="0"/>
+ *         &lt;element name="excludeFromBidding" type="{http://ss.yahooapis.jp/V6}ExcludeFromBidding" minOccurs="0"/>
+ *         &lt;element name="measurementPeriod" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,12 +48,16 @@ import javax.xml.bind.annotation.XmlType;
     "conversionTrackerName",
     "status",
     "category",
-    "numConversionEvents",
+    "conversions",
     "conversionValue",
+    "allConversions",
+    "allConversionValue",
     "mostRecentConversionDate",
-    "numConvertedClicks",
     "conversionTrackerType",
-    "userRevenueValue"
+    "userRevenueValue",
+    "countingType",
+    "excludeFromBidding",
+    "measurementPeriod"
 })
 @XmlSeeAlso({
     AppConversion.class,
@@ -64,13 +72,19 @@ public class ConversionTracker {
     protected ConversionTrackerStatus status;
     @XmlSchemaType(name = "string")
     protected ConversionTrackerCategory category;
-    protected Integer numConversionEvents;
-    protected Long conversionValue;
+    protected Long conversions;
+    protected String conversionValue;
+    protected Long allConversions;
+    protected String allConversionValue;
     protected String mostRecentConversionDate;
-    protected Integer numConvertedClicks;
     @XmlSchemaType(name = "string")
     protected ConversionTrackerType conversionTrackerType;
     protected String userRevenueValue;
+    @XmlSchemaType(name = "string")
+    protected ConversionCountingType countingType;
+    @XmlSchemaType(name = "string")
+    protected ExcludeFromBidding excludeFromBidding;
+    protected Integer measurementPeriod;
 
     /**
      * Gets the value of the accountId property.
@@ -193,27 +207,27 @@ public class ConversionTracker {
     }
 
     /**
-     * Gets the value of the numConversionEvents property.
+     * Gets the value of the conversions property.
      * 
      * @return
      *     possible object is
-     *     {@link Integer }
+     *     {@link Long }
      *     
      */
-    public Integer getNumConversionEvents() {
-        return numConversionEvents;
+    public Long getConversions() {
+        return conversions;
     }
 
     /**
-     * Sets the value of the numConversionEvents property.
+     * Sets the value of the conversions property.
      * 
      * @param value
      *     allowed object is
-     *     {@link Integer }
+     *     {@link Long }
      *     
      */
-    public void setNumConversionEvents(Integer value) {
-        this.numConversionEvents = value;
+    public void setConversions(Long value) {
+        this.conversions = value;
     }
 
     /**
@@ -221,10 +235,10 @@ public class ConversionTracker {
      * 
      * @return
      *     possible object is
-     *     {@link Long }
+     *     {@link String }
      *     
      */
-    public Long getConversionValue() {
+    public String getConversionValue() {
         return conversionValue;
     }
 
@@ -233,11 +247,59 @@ public class ConversionTracker {
      * 
      * @param value
      *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setConversionValue(String value) {
+        this.conversionValue = value;
+    }
+
+    /**
+     * Gets the value of the allConversions property.
+     * 
+     * @return
+     *     possible object is
      *     {@link Long }
      *     
      */
-    public void setConversionValue(Long value) {
-        this.conversionValue = value;
+    public Long getAllConversions() {
+        return allConversions;
+    }
+
+    /**
+     * Sets the value of the allConversions property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setAllConversions(Long value) {
+        this.allConversions = value;
+    }
+
+    /**
+     * Gets the value of the allConversionValue property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getAllConversionValue() {
+        return allConversionValue;
+    }
+
+    /**
+     * Sets the value of the allConversionValue property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setAllConversionValue(String value) {
+        this.allConversionValue = value;
     }
 
     /**
@@ -262,30 +324,6 @@ public class ConversionTracker {
      */
     public void setMostRecentConversionDate(String value) {
         this.mostRecentConversionDate = value;
-    }
-
-    /**
-     * Gets the value of the numConvertedClicks property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public Integer getNumConvertedClicks() {
-        return numConvertedClicks;
-    }
-
-    /**
-     * Sets the value of the numConvertedClicks property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setNumConvertedClicks(Integer value) {
-        this.numConvertedClicks = value;
     }
 
     /**
@@ -334,6 +372,78 @@ public class ConversionTracker {
      */
     public void setUserRevenueValue(String value) {
         this.userRevenueValue = value;
+    }
+
+    /**
+     * Gets the value of the countingType property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ConversionCountingType }
+     *     
+     */
+    public ConversionCountingType getCountingType() {
+        return countingType;
+    }
+
+    /**
+     * Sets the value of the countingType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ConversionCountingType }
+     *     
+     */
+    public void setCountingType(ConversionCountingType value) {
+        this.countingType = value;
+    }
+
+    /**
+     * Gets the value of the excludeFromBidding property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link ExcludeFromBidding }
+     *     
+     */
+    public ExcludeFromBidding getExcludeFromBidding() {
+        return excludeFromBidding;
+    }
+
+    /**
+     * Sets the value of the excludeFromBidding property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link ExcludeFromBidding }
+     *     
+     */
+    public void setExcludeFromBidding(ExcludeFromBidding value) {
+        this.excludeFromBidding = value;
+    }
+
+    /**
+     * Gets the value of the measurementPeriod property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public Integer getMeasurementPeriod() {
+        return measurementPeriod;
+    }
+
+    /**
+     * Sets the value of the measurementPeriod property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setMeasurementPeriod(Integer value) {
+        this.measurementPeriod = value;
     }
 
 }

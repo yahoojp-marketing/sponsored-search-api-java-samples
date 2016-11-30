@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -22,6 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="campaignIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="adGroupIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="platformTypes" type="{http://ss.yahooapis.jp/V6}PlatformType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -36,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
     "accountId",
     "campaignIds",
     "adGroupIds",
+    "platformTypes",
     "paging"
 })
 public class AdGroupBidMultiplierSelector {
@@ -45,6 +48,8 @@ public class AdGroupBidMultiplierSelector {
     protected List<Long> campaignIds;
     @XmlElement(type = Long.class)
     protected List<Long> adGroupIds;
+    @XmlSchemaType(name = "string")
+    protected List<PlatformType> platformTypes;
     protected Paging paging;
 
     /**
@@ -119,6 +124,35 @@ public class AdGroupBidMultiplierSelector {
             adGroupIds = new ArrayList<Long>();
         }
         return this.adGroupIds;
+    }
+
+    /**
+     * Gets the value of the platformTypes property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the platformTypes property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPlatformTypes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PlatformType }
+     * 
+     * 
+     */
+    public List<PlatformType> getPlatformTypes() {
+        if (platformTypes == null) {
+            platformTypes = new ArrayList<PlatformType>();
+        }
+        return this.platformTypes;
     }
 
     /**

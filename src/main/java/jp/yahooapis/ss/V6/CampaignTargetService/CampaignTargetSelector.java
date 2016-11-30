@@ -25,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="targetIds" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="targetTypes" type="{http://ss.yahooapis.jp/V6}TargetType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="excludedType" type="{http://ss.yahooapis.jp/V6}ExcludedType" minOccurs="0"/>
+ *         &lt;element name="platformTypes" type="{http://ss.yahooapis.jp/V6}PlatformType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -41,6 +42,7 @@ import javax.xml.bind.annotation.XmlType;
     "targetIds",
     "targetTypes",
     "excludedType",
+    "platformTypes",
     "paging"
 })
 public class CampaignTargetSelector {
@@ -53,6 +55,8 @@ public class CampaignTargetSelector {
     protected List<TargetType> targetTypes;
     @XmlSchemaType(name = "string")
     protected ExcludedType excludedType;
+    @XmlSchemaType(name = "string")
+    protected List<PlatformType> platformTypes;
     protected Paging paging;
 
     /**
@@ -180,6 +184,35 @@ public class CampaignTargetSelector {
      */
     public void setExcludedType(ExcludedType value) {
         this.excludedType = value;
+    }
+
+    /**
+     * Gets the value of the platformTypes property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the platformTypes property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getPlatformTypes().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link PlatformType }
+     * 
+     * 
+     */
+    public List<PlatformType> getPlatformTypes() {
+        if (platformTypes == null) {
+            platformTypes = new ArrayList<PlatformType>();
+        }
+        return this.platformTypes;
     }
 
     /**

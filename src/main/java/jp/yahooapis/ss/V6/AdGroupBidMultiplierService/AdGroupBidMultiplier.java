@@ -1,10 +1,9 @@
 
 package jp.yahooapis.ss.V6.AdGroupBidMultiplierService;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -21,7 +20,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="adGroupId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="bidMultipliers" type="{http://ss.yahooapis.jp/V6}BidMultiplierList" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="platformType" type="{http://ss.yahooapis.jp/V6}PlatformType" minOccurs="0"/>
+ *         &lt;element name="bidMultiplier" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,14 +35,17 @@ import javax.xml.bind.annotation.XmlType;
     "accountId",
     "campaignId",
     "adGroupId",
-    "bidMultipliers"
+    "platformType",
+    "bidMultiplier"
 })
 public class AdGroupBidMultiplier {
 
     protected Long accountId;
     protected Long campaignId;
     protected Long adGroupId;
-    protected List<BidMultiplierList> bidMultipliers;
+    @XmlSchemaType(name = "string")
+    protected PlatformType platformType;
+    protected Double bidMultiplier;
 
     /**
      * Gets the value of the accountId property.
@@ -117,32 +120,51 @@ public class AdGroupBidMultiplier {
     }
 
     /**
-     * Gets the value of the bidMultipliers property.
+     * Gets the value of the platformType property.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the bidMultipliers property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getBidMultipliers().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link BidMultiplierList }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link PlatformType }
+     *     
      */
-    public List<BidMultiplierList> getBidMultipliers() {
-        if (bidMultipliers == null) {
-            bidMultipliers = new ArrayList<BidMultiplierList>();
-        }
-        return this.bidMultipliers;
+    public PlatformType getPlatformType() {
+        return platformType;
+    }
+
+    /**
+     * Sets the value of the platformType property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link PlatformType }
+     *     
+     */
+    public void setPlatformType(PlatformType value) {
+        this.platformType = value;
+    }
+
+    /**
+     * Gets the value of the bidMultiplier property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Double }
+     *     
+     */
+    public Double getBidMultiplier() {
+        return bidMultiplier;
+    }
+
+    /**
+     * Sets the value of the bidMultiplier property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Double }
+     *     
+     */
+    public void setBidMultiplier(Double value) {
+        this.bidMultiplier = value;
     }
 
 }

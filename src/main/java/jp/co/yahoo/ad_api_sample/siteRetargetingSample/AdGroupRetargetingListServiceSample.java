@@ -20,7 +20,6 @@ import jp.yahooapis.ss.V6.AdGroupRetargetingListService.Error;
 import jp.yahooapis.ss.V6.AdGroupRetargetingListService.ExcludedType;
 import jp.yahooapis.ss.V6.AdGroupRetargetingListService.Operator;
 import jp.yahooapis.ss.V6.AdGroupRetargetingListService.Paging;
-import jp.yahooapis.ss.V6.AdGroupRetargetingListService.TargetAll;
 
 /**
  * Sample Program for AdGroupRetargetingListServiceService. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -262,7 +261,7 @@ public class AdGroupRetargetingListServiceSample {
     System.out.println("criterionTargetList/targetListName = " + adGroupRetargetingList.getCriterionTargetList().getTargetListName());
     System.out.println("excludedType = " + adGroupRetargetingList.getExcludedType());
     System.out.println("bidMultiplier = " + adGroupRetargetingList.getBidMultiplier());
-    System.out.println("targetAll = " + adGroupRetargetingList.getTargetAll());
+
     System.out.println("---------");
   }
 
@@ -284,15 +283,13 @@ public class AdGroupRetargetingListServiceSample {
     adGroupRetargetingList1.setAdGroupId(adGroupId);
     adGroupRetargetingList1.setCriterionTargetList(criterionTargetList);
     adGroupRetargetingList1.setExcludedType(ExcludedType.INCLUDED);
-    adGroupRetargetingList1.setBidMultiplier(Double.valueOf(1.00));
-    adGroupRetargetingList1.setTargetAll(TargetAll.ACTIVE);
+    adGroupRetargetingList1.setBidMultiplier(1.00);
 
     AdGroupRetargetingList adGroupRetargetingList2 = new AdGroupRetargetingList();
     adGroupRetargetingList2.setCampaignId(campaignId);
     adGroupRetargetingList2.setAdGroupId(adGroupId);
     adGroupRetargetingList2.setCriterionTargetList(criterionTargetList);
     adGroupRetargetingList2.setExcludedType(ExcludedType.EXCLUDED);
-    adGroupRetargetingList2.setTargetAll(TargetAll.DEACTIVE);
 
     AdGroupRetargetingListOperation addOperation = new AdGroupRetargetingListOperation();
     addOperation.setOperator(Operator.ADD);
