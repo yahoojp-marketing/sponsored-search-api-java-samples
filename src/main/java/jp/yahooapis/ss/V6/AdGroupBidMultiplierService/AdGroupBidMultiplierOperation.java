@@ -20,7 +20,6 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ss.yahooapis.jp/V6}Operation">
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="operand" type="{http://ss.yahooapis.jp/V6}AdGroupBidMultiplier" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -33,7 +32,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "AdGroupBidMultiplierOperation", propOrder = {
     "accountId",
-    "campaignId",
     "operand"
 })
 public class AdGroupBidMultiplierOperation
@@ -41,7 +39,6 @@ public class AdGroupBidMultiplierOperation
 {
 
     protected long accountId;
-    protected long campaignId;
     @XmlElement(required = true)
     protected List<AdGroupBidMultiplier> operand;
 
@@ -59,22 +56,6 @@ public class AdGroupBidMultiplierOperation
      */
     public void setAccountId(long value) {
         this.accountId = value;
-    }
-
-    /**
-     * Gets the value of the campaignId property.
-     * 
-     */
-    public long getCampaignId() {
-        return campaignId;
-    }
-
-    /**
-     * Sets the value of the campaignId property.
-     * 
-     */
-    public void setCampaignId(long value) {
-        this.campaignId = value;
     }
 
     /**

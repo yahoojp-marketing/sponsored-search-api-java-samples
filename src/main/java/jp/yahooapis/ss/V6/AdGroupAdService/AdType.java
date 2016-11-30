@@ -15,8 +15,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="AdType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="TEXT_AD2"/>
- *     &lt;enumeration value="MOBILE_AD"/>
  *     &lt;enumeration value="APP_AD"/>
+ *     &lt;enumeration value="EXTENDED_TEXT_AD"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -28,8 +28,8 @@ public enum AdType {
 
     @XmlEnumValue("TEXT_AD2")
     TEXT_AD_2("TEXT_AD2"),
-    MOBILE_AD("MOBILE_AD"),
-    APP_AD("APP_AD");
+    APP_AD("APP_AD"),
+    EXTENDED_TEXT_AD("EXTENDED_TEXT_AD");
     private final String value;
 
     AdType(String v) {

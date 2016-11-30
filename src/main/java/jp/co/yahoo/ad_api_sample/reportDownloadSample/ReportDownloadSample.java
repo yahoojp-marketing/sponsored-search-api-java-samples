@@ -17,6 +17,7 @@ import jp.yahooapis.ss.V6.ReportDefinitionService.ReportDefinitionValues;
 import jp.yahooapis.ss.V6.ReportDefinitionService.ReportDownloadEncode;
 import jp.yahooapis.ss.V6.ReportDefinitionService.ReportDownloadFormat;
 import jp.yahooapis.ss.V6.ReportDefinitionService.ReportFieldAttribute;
+import jp.yahooapis.ss.V6.ReportDefinitionService.ReportIncludeZeroImpressions;
 import jp.yahooapis.ss.V6.ReportDefinitionService.ReportIntervalType;
 import jp.yahooapis.ss.V6.ReportDefinitionService.ReportIsTemplate;
 import jp.yahooapis.ss.V6.ReportDefinitionService.ReportLanguage;
@@ -94,14 +95,30 @@ public class ReportDownloadSample {
 
       ReportDefinition reportDefinition = new ReportDefinition();
       reportDefinition.setAccountId(SoapUtils.getAccountId()); // accountId
-      reportDefinition.setReportType(ReportType.ACCOUNT); // reportType
-      reportDefinition.setReportName("TEST_ACCOUNT_REPORT"); // reportName
+      reportDefinition.setReportType(ReportType.CAMPAIGN); // reportType
+      reportDefinition.setReportName("TEST_CAMPAIGN_REPORT"); // reportName
       reportDefinition.setDateRangeType(ReportDateRangeType.YESTERDAY); // dateRangeType
       // fields
-      String[] fieldNames = new String[] { "REVENUE", "UNIQUE_CONVERSION",
-          "REVENUE_UNIQUE_CONVERSION", "REVENUE_CONVERSION", "CONVERSION", 
-          "TRACKING_URL", "NETWORK", "CLICK_TYPE", "DEVICE", "DAY", "DAY_OF_WEEK", "QUARTER", "YEAR",
-          "MONTH", "MONTH_OF_YEAR", "WEEK", "HOUR_OF_DAY", "OBJECT_OF_CONVERSION_TRACKING", "CONVERSION_NAME"};
+      String[] fieldNames = new String[]{
+          "CAMPAIGN_ID",
+          "CAMPAIGN_NAME",
+          "CAMPAIGN_DISTRIBUTION_SETTINGS",
+          "CAMPAIGN_DISTRIBUTION_STATUS",
+          "DAILY_SPENDING_LIMIT",
+          "CAMPAIGN_START_DATE",
+          "CAMPAIGN_END_DATE",
+          "REVENUE",
+          "REVENUE_CONVERSION",
+          "CONVERSION",
+          "TRACKING_URL",
+          "CUSTOM_PARAMETERS",
+          "CAMPAIGN_TRACKING_ID",
+          "CONVERSIONS",
+          "CONV_VALUE",
+          "VALUE_PER_CONV",
+          "CAMPAIGN_MOBILE_BID_MODIFIER",
+          "NETWORK",
+      };
 
       ReportSortField reportSortField = new ReportSortField();
       reportSortField.setField(fieldNames[0]);
@@ -114,6 +131,7 @@ public class ReportDownloadSample {
       reportDefinition.setFormat(ReportDownloadFormat.CSV); // format
       reportDefinition.setEncode(ReportDownloadEncode.SJIS);// encode
       reportDefinition.setLanguage(ReportLanguage.JA);
+      reportDefinition.setIncludeZeroImpressions(ReportIncludeZeroImpressions.TRUE);
 
 
       reportDefinitionOperation.getOperand().add(reportDefinition);

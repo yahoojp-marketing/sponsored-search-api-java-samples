@@ -1,12 +1,11 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignTargetServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
+import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
+import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
+import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
+import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
 import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTarget;
 import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetOperation;
 import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetPage;
@@ -25,14 +24,23 @@ import jp.yahooapis.ss.V6.CampaignTargetService.NetworkTarget;
 import jp.yahooapis.ss.V6.CampaignTargetService.Operator;
 import jp.yahooapis.ss.V6.CampaignTargetService.Paging;
 import jp.yahooapis.ss.V6.CampaignTargetService.PlatformTarget;
+import jp.yahooapis.ss.V6.CampaignTargetService.PlatformType;
 import jp.yahooapis.ss.V6.CampaignTargetService.ScheduleTarget;
 import jp.yahooapis.ss.V6.CampaignTargetService.TargetType;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 /**
  * Sample Program for CampaignTargetService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
  * Reserved.
  */
 public class CampaignTargetServiceSample {
+
+  private long campaignId;
+  private long appCampaignId;
 
   /**
    * main method for CampaignTargetServiceSample
@@ -45,8 +53,71 @@ public class CampaignTargetServiceSample {
       // Setting
       // =================================================================
       long accountId = SoapUtils.getAccountId();
-      long campaignId = SoapUtils.getCampaignId();
-      long appCampaignId = SoapUtils.getAppCampaignId();
+      long biddingStrategyId = SoapUtils.getBiddingStrategyId();
+
+      // =================================================================
+      // CampaignTargetService::ADD
+      // =================================================================
+      CampaignOperation campaignOperation = CampaignServiceSample.createSampleAddRequest(accountId, biddingStrategyId);
+      boolean allApproved = true;
+
+      // Run
+      List<CampaignValues> addCampaignValues = null;
+      try {
+        addCampaignValues = CampaignServiceSample.add(campaignOperation);
+
+        // call 30sec sleep * 30 = 15minute
+        for (int i = 0; i < 30; i++) {
+          // sleep 30 second.
+          System.out.println("\n***** sleep 30 seconds for Get Campaign  *****\n");
+          Thread.sleep(30000);
+
+          // =================================================================
+          // CampaignService::GET
+          // =================================================================
+          // Set Selector
+          CampaignSelector campaignSelector = CampaignServiceSample.createSampleGetRequest(accountId, addCampaignValues);
+
+          // Run
+          List<CampaignValues> getCampaignValues = CampaignServiceSample.get(campaignSelector);
+
+          allApproved = true;
+          for (CampaignValues campaignValues : getCampaignValues) {
+            if (!UrlApprovalStatus.APPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())
+                && !UrlApprovalStatus.NONE.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())) {
+              allApproved = false;
+            } else if (UrlApprovalStatus.DISAPPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())) {
+              System.out.println("Error : This campaign was denied.");
+              campaignValues.getCampaign().getUrlReviewData().getDisapprovalReasonCodes().stream().forEach(
+                  disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+              );
+            }
+          }
+          if (allApproved) {
+            break;
+          }
+        }
+      } catch (Exception e) {
+        throw e;
+      }
+
+      if(!allApproved){
+        System.out.println("Error : The review did not end.");
+        // =================================================================
+        // CampaignService::REMOVE
+        // =================================================================
+        // Set Operation
+        CampaignOperation removeCampaignOperation = CampaignServiceSample.createSampleRemoveRequest(accountId, addCampaignValues);
+        // Run
+        CampaignServiceSample.remove(removeCampaignOperation);
+
+        System.exit(1);
+      }
+
+      // get AutoBidding CampaignId
+      long campaignId = addCampaignValues.get(0).getCampaign().getCampaignId();
+      // get App Campaign
+      long appCampaignId = addCampaignValues.get(2).getCampaign().getCampaignId();
 
       // =================================================================
       // CampaignTargetService::ADD
@@ -84,6 +155,15 @@ public class CampaignTargetServiceSample {
       // Run
       remove(removeCampaignTargetOperation);
 
+      // =================================================================
+      // CampaignService::REMOVE
+      // =================================================================
+      // Set Operation
+      CampaignOperation removeCampaignOperation = CampaignServiceSample.createSampleRemoveRequest(accountId, addCampaignValues);
+
+      // Run
+      CampaignServiceSample.remove(removeCampaignOperation);
+
     } catch (Exception e) {
       e.printStackTrace();
       throw e;
@@ -95,7 +175,6 @@ public class CampaignTargetServiceSample {
    *
    * @param operation CampaignTargetOperation
    * @return CampaignTargetValues
-   * @throws Exception
    */
   public static List<CampaignTargetValues> add(CampaignTargetOperation operation) throws Exception {
 
@@ -135,7 +214,6 @@ public class CampaignTargetServiceSample {
    *
    * @param operation CampaignTargetOperation
    * @return CampaignTargetValues
-   * @throws Exception
    */
   public static List<CampaignTargetValues> set(CampaignTargetOperation operation) throws Exception {
 
@@ -175,7 +253,6 @@ public class CampaignTargetServiceSample {
    *
    * @param operation CampaignTargetOperation
    * @return CampaignTargetValues
-   * @throws Exception
    */
   public static List<CampaignTargetValues> remove(CampaignTargetOperation operation) throws Exception {
 
@@ -215,7 +292,6 @@ public class CampaignTargetServiceSample {
    *
    * @param selector CampaignTargetSelector
    * @return CampaignTargetValues
-   * @throws Exception
    */
   public static List<CampaignTargetValues> get(CampaignTargetSelector selector) throws Exception {
 
@@ -295,8 +371,8 @@ public class CampaignTargetServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
-   * @param campaignId long
+   * @param accountId     long
+   * @param campaignId    long
    * @param appCampaignId long
    * @return CampaignTargetOperation
    */
@@ -310,7 +386,7 @@ public class CampaignTargetServiceSample {
       // Set ScheduleTarget
       ScheduleTarget scheduleTarget = new ScheduleTarget();
       scheduleTarget.setTargetType(TargetType.SCHEDULE);
-      scheduleTarget.setDayOfWeek(DayOfWeek.MONDAY);
+      scheduleTarget.setDayOfWeek(DayOfWeek.SATURDAY);
       scheduleTarget.setStartHour(10);
       scheduleTarget.setStartMinute(MinuteOfHour.ZERO);
       scheduleTarget.setEndHour(11);
@@ -353,7 +429,7 @@ public class CampaignTargetServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId            long
    * @param campaignTargetValues CampaignTargetValues
    * @return CampaignTargetOperation
    */
@@ -376,9 +452,8 @@ public class CampaignTargetServiceSample {
 
         // Set ScheduleTarget
         ScheduleTarget scheduleTarget = new ScheduleTarget();
-        scheduleTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         scheduleTarget.setTargetType(TargetType.SCHEDULE);
-
+        scheduleTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         campaignTarget.setTarget(scheduleTarget);
         campaignTarget.setBidMultiplier(0.5);
 
@@ -386,21 +461,31 @@ public class CampaignTargetServiceSample {
 
         // Set LocationTarget
         LocationTarget locationTarget = new LocationTarget();
-        locationTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         locationTarget.setTargetType(TargetType.LOCATION);
-
+        locationTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         campaignTarget.setTarget(locationTarget);
         campaignTarget.setBidMultiplier(0.5);
 
       } else if (TargetType.PLATFORM.equals(campaignTargetValue.getCampaignTarget().getTarget().getTargetType())) {
 
+        PlatformTarget oldPlatformTarget = (PlatformTarget) campaignTargetValue.getCampaignTarget().getTarget();
+
         // Set PlatformTarget
         PlatformTarget platformTarget = new PlatformTarget();
-        platformTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         platformTarget.setTargetType(TargetType.PLATFORM);
+        if (PlatformType.DESKTOP.equals(oldPlatformTarget.getPlatformType())) {
 
-        campaignTarget.setTarget(platformTarget);
+          platformTarget.setPlatformType(PlatformType.DESKTOP);
+          campaignTarget.setBidMultiplier(0.3);
+          campaignTarget.setTarget(platformTarget);
 
+        } else if (PlatformType.TABLET.equals(oldPlatformTarget.getPlatformType())) {
+
+          platformTarget.setPlatformType(PlatformType.TABLET);
+          campaignTarget.setBidMultiplier(0.2);
+          campaignTarget.setTarget(platformTarget);
+
+        }
       } else if (TargetType.NETWORK.equals(campaignTargetValue.getCampaignTarget().getTarget().getTargetType())) {
         // Can not update NetworkTarget
         campaignTarget = null;
@@ -417,7 +502,7 @@ public class CampaignTargetServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId            long
    * @param campaignTargetValues CampaignTargetValues
    * @return CampaignTargetOperation
    */
@@ -440,36 +525,24 @@ public class CampaignTargetServiceSample {
 
         // Set ScheduleTarget
         ScheduleTarget scheduleTarget = new ScheduleTarget();
-        scheduleTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         scheduleTarget.setTargetType(TargetType.SCHEDULE);
-
+        scheduleTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         campaignTarget.setTarget(scheduleTarget);
 
       } else if (TargetType.LOCATION.equals(campaignTargetValue.getCampaignTarget().getTarget().getTargetType())) {
 
         // Set LocationTarget
         LocationTarget locationTarget = new LocationTarget();
-        locationTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         locationTarget.setTargetType(TargetType.LOCATION);
-
+        locationTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         campaignTarget.setTarget(locationTarget);
-
-      } else if (TargetType.PLATFORM.equals(campaignTargetValue.getCampaignTarget().getTarget().getTargetType())) {
-
-        // Set PlatformTarget
-        PlatformTarget platformTarget = new PlatformTarget();
-        platformTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
-        platformTarget.setTargetType(TargetType.PLATFORM);
-
-        campaignTarget.setTarget(platformTarget);
 
       } else if (TargetType.NETWORK.equals(campaignTargetValue.getCampaignTarget().getTarget().getTargetType())) {
 
         // Set NetworkTarget
         NetworkTarget removeNetworkTarget = new NetworkTarget();
-        removeNetworkTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         removeNetworkTarget.setTargetType(TargetType.NETWORK);
-
+        removeNetworkTarget.setTargetId(campaignTargetValue.getCampaignTarget().getTarget().getTargetId());
         campaignTarget.setTarget(removeNetworkTarget);
       }
 
@@ -482,7 +555,7 @@ public class CampaignTargetServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId            long
    * @param campaignTargetValues CampaignTargetValues
    * @return CampaignTargetSelector
    */

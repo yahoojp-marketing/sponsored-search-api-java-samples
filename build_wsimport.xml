@@ -8,7 +8,7 @@ Property for build tasks
   <property name="src.dir" value="${basedir}/src/main/java"/>
   <property name="dest.dir" value="${basedir}/build"/>
   <property name="wsdl.dir" value="${basedir}/wsdl"/>
-  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.1"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.2"/>
   <property name="pakcage.base" value="jp.yahooapis.ss.V6"/>
   <!--==================================
 classpath for build

@@ -15,6 +15,9 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Created by ttakami on 2016/05/02.
+ */
 public class CampaignExportSampleTest {
 
   @Test

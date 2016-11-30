@@ -1,10 +1,5 @@
 package jp.co.yahoo.ad_api_sample.siteRetargetingSample;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.RetargetingListServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.RetargetingListService.DefaultTargetList;
@@ -34,6 +29,13 @@ import jp.yahooapis.ss.V6.RetargetingListService.TargetListType;
 import jp.yahooapis.ss.V6.RetargetingListService.TargetingList;
 import jp.yahooapis.ss.V6.RetargetingListService.UrlRuleItem;
 import jp.yahooapis.ss.V6.RetargetingListService.UrlRuleKey;
+
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 /**
  * Sample Program for RetargetingListService. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -342,8 +344,12 @@ public class RetargetingListServiceSample {
       ruleBaseTargetList.setReachStorageSpan(Long.valueOf(180));
       ruleBaseTargetList.setIsAllVisitor(IsAllVisitorRule.FALSE);
       ruleBaseTargetList.setIsDateSpecific(IsDateSpecificRule.TRUE);
-      ruleBaseTargetList.setStartDate("20160916");
-      ruleBaseTargetList.setEndDate("20161231");
+
+      DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+      String today = dateTimeFormatter.format(ZonedDateTime.now());
+      String endDay = dateTimeFormatter.format(ZonedDateTime.now().plusYears(1));
+      ruleBaseTargetList.setStartDate(today);
+      ruleBaseTargetList.setEndDate(endDay);
 
       UrlRuleItem urlRuleItem1 = new UrlRuleItem();
       urlRuleItem1.setRuleType(RuleType.URL_RULE);

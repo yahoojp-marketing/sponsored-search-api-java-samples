@@ -140,14 +140,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link PlatformBidMultiplier }
-     * 
-     */
-    public PlatformBidMultiplier createPlatformBidMultiplier() {
-        return new PlatformBidMultiplier();
-    }
-
-    /**
      * Create an instance of {@link ErrorDetail }
      * 
      */
@@ -161,14 +153,6 @@ public class ObjectFactory {
      */
     public AdGroupBidMultiplierValues createAdGroupBidMultiplierValues() {
         return new AdGroupBidMultiplierValues();
-    }
-
-    /**
-     * Create an instance of {@link PlatformBidMultiplierList }
-     * 
-     */
-    public PlatformBidMultiplierList createPlatformBidMultiplierList() {
-        return new PlatformBidMultiplierList();
     }
 
     /**

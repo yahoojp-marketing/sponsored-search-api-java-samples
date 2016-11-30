@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="campaignName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}CampaignCriterionUse"/>
@@ -45,7 +45,7 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class CampaignCriterion {
 
-    protected long accountId;
+    protected Long accountId;
     protected Long campaignId;
     protected String campaignName;
     @XmlElement(required = true)
@@ -57,16 +57,24 @@ public class CampaignCriterion {
     /**
      * Gets the value of the accountId property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 
     /**
      * Sets the value of the accountId property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setAccountId(long value) {
+    public void setAccountId(Long value) {
         this.accountId = value;
     }
 

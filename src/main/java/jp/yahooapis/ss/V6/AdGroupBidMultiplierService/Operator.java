@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="Operator">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="SET"/>
+ *     &lt;enumeration value="REMOVE"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -23,7 +24,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum Operator {
 
-    SET;
+    SET,
+    REMOVE;
 
     public String value() {
         return name();

@@ -21,8 +21,8 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ss.yahooapis.jp/V6}Operation">
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long"/>
- *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}CampaignCriterionUse"/>
+ *         &lt;element name="campaignId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="criterionUse" type="{http://ss.yahooapis.jp/V6}CampaignCriterionUse" minOccurs="0"/>
  *         &lt;element name="operand" type="{http://ss.yahooapis.jp/V6}CampaignCriterion" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -44,8 +44,7 @@ public class CampaignCriterionOperation
 {
 
     protected long accountId;
-    protected long campaignId;
-    @XmlElement(required = true)
+    protected Long campaignId;
     @XmlSchemaType(name = "string")
     protected CampaignCriterionUse criterionUse;
     @XmlElement(required = true)
@@ -70,16 +69,24 @@ public class CampaignCriterionOperation
     /**
      * Gets the value of the campaignId property.
      * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
      */
-    public long getCampaignId() {
+    public Long getCampaignId() {
         return campaignId;
     }
 
     /**
      * Sets the value of the campaignId property.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
      */
-    public void setCampaignId(long value) {
+    public void setCampaignId(Long value) {
         this.campaignId = value;
     }
 

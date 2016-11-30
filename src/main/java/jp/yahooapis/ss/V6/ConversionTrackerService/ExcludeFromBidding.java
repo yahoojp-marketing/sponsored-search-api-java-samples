@@ -1,39 +1,37 @@
 
-package jp.yahooapis.ss.V6.AdGroupBidMultiplierService;
+package jp.yahooapis.ss.V6.ConversionTrackerService;
 
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for PlatformType.
+ * <p>Java class for ExcludeFromBidding.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="PlatformType">
+ * &lt;simpleType name="ExcludeFromBidding">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="SMART_PHONE"/>
- *     &lt;enumeration value="TABLET"/>
- *     &lt;enumeration value="DESKTOP"/>
+ *     &lt;enumeration value="TRUE"/>
+ *     &lt;enumeration value="FALSE"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "PlatformType")
+@XmlType(name = "ExcludeFromBidding")
 @XmlEnum
-public enum PlatformType {
+public enum ExcludeFromBidding {
 
-    SMART_PHONE,
-    TABLET,
-    DESKTOP;
+    TRUE,
+    FALSE;
 
     public String value() {
         return name();
     }
 
-    public static PlatformType fromValue(String v) {
+    public static ExcludeFromBidding fromValue(String v) {
         return valueOf(v);
     }
 

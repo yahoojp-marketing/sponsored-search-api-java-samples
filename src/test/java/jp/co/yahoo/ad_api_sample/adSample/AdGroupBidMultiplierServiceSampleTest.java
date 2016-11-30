@@ -93,4 +93,27 @@ public class AdGroupBidMultiplierServiceSampleTest {
       assertThat(adGroupBidMultiplierValue.getAdGroupBidMultiplier().getAccountId(), is(notNullValue()));
     }
   }
+
+  /**
+   * Sample TestCase of remove method for AdGroupBidMultiplierServiceSample.
+   */
+  @Test
+  public void testRemove() throws Exception {
+    // Set Operation
+    AdGroupBidMultiplierOperation adGroupBidMultiplierOperation = AdGroupBidMultiplierServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId);
+
+    // Run
+    List<AdGroupBidMultiplierValues> adGroupBidMultiplierValues = null;
+    try {
+      adGroupBidMultiplierValues = AdGroupBidMultiplierServiceSample.remove(adGroupBidMultiplierOperation);
+    } catch (Exception e) {
+      fail();
+    }
+
+    // Assert
+    for (AdGroupBidMultiplierValues adGroupBidMultiplierValue : adGroupBidMultiplierValues) {
+      assertThat(adGroupBidMultiplierValue.isOperationSucceeded(), is(true));
+      assertThat(adGroupBidMultiplierValue.getAdGroupBidMultiplier().getAccountId(), is(notNullValue()));
+    }
+  }
 }

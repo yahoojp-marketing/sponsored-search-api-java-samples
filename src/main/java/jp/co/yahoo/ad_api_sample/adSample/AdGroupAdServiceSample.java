@@ -1,11 +1,5 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.xml.ws.Holder;
-
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupAdServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.AdGroupAdService.Ad;
@@ -23,16 +17,20 @@ import jp.yahooapis.ss.V6.AdGroupAdService.AdType;
 import jp.yahooapis.ss.V6.AdGroupAdService.Advanced;
 import jp.yahooapis.ss.V6.AdGroupAdService.AppAd;
 import jp.yahooapis.ss.V6.AdGroupAdService.ApprovalStatus;
-import jp.yahooapis.ss.V6.AdGroupAdService.CarrierName;
 import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameter;
 import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameters;
 import jp.yahooapis.ss.V6.AdGroupAdService.DevicePreference;
 import jp.yahooapis.ss.V6.AdGroupAdService.Error;
-import jp.yahooapis.ss.V6.AdGroupAdService.MobileAd;
+import jp.yahooapis.ss.V6.AdGroupAdService.ExtendedTextAd;
 import jp.yahooapis.ss.V6.AdGroupAdService.Operator;
 import jp.yahooapis.ss.V6.AdGroupAdService.Paging;
 import jp.yahooapis.ss.V6.AdGroupAdService.TextAd2;
 import jp.yahooapis.ss.V6.AdGroupAdService.UserStatus;
+
+import java.util.Arrays;
+import java.util.List;
+
+import javax.xml.ws.Holder;
 
 
 /**
@@ -104,7 +102,6 @@ public class AdGroupAdServiceSample {
    *
    * @param operation AdGroupAdOperation
    * @return AdGroupAdValues
-   * @throws Exception
    */
   public static List<AdGroupAdValues> add(AdGroupAdOperation operation) throws Exception {
 
@@ -144,7 +141,6 @@ public class AdGroupAdServiceSample {
    *
    * @param operation AdGroupAdOperation
    * @return AdGroupAdValues
-   * @throws Exception
    */
   public static List<AdGroupAdValues> set(AdGroupAdOperation operation) throws Exception {
 
@@ -184,7 +180,6 @@ public class AdGroupAdServiceSample {
    *
    * @param operation AdGroupAdOperation
    * @return AdGroupAdValues
-   * @throws Exception
    */
   public static List<AdGroupAdValues> remove(AdGroupAdOperation operation) throws Exception {
 
@@ -224,7 +219,6 @@ public class AdGroupAdServiceSample {
    *
    * @param adGroupAdSelector AdGroupAdSelector
    * @return AdGroupAdValues
-   * @throws Exception
    */
   public static List<AdGroupAdValues> get(AdGroupAdSelector adGroupAdSelector) throws Exception {
 
@@ -289,18 +283,6 @@ public class AdGroupAdServiceSample {
         System.out.println("ad/description = " + textAd2.getDescription());
         System.out.println("ad/description2 = " + textAd2.getDescription2());
         System.out.println("ad/devicePreference = " + textAd2.getDevicePreference());
-      } else if (ad instanceof MobileAd) {
-        MobileAd mobileAd = (MobileAd) ad;
-        System.out.println("ad/type = " + mobileAd.getType().toString());
-        System.out.println("ad/url = " + mobileAd.getUrl());
-        System.out.println("ad/displayUrl = " + mobileAd.getDisplayUrl());
-        System.out.println("ad/headline = " + mobileAd.getHeadline());
-        System.out.println("ad/description = " + mobileAd.getDescription());
-        if (mobileAd.getMobileCarriers() != null) {
-          for (CarrierName carrierName : mobileAd.getMobileCarriers()) {
-            System.out.println("ad/mobileCarriers = " + carrierName);
-          }
-        }
       } else if (ad instanceof AppAd) {
         AppAd appAd = (AppAd) ad;
         System.out.println("ad/type = " + appAd.getType().toString());
@@ -312,26 +294,37 @@ public class AdGroupAdServiceSample {
         System.out.println("ad/appStore = " + appAd.getAppStore());
         System.out.println("ad/appId = " + appAd.getAppId());
         System.out.println("ad/devicePreference = " + appAd.getDevicePreference());
+      } else if (ad instanceof ExtendedTextAd) {
+        ExtendedTextAd extendedTextAd = (ExtendedTextAd) ad;
+        System.out.println("ad/type = " + extendedTextAd.getType().toString());
+        System.out.println("ad/url = " + extendedTextAd.getUrl());
+        System.out.println("ad/displayUrl = " + extendedTextAd.getDisplayUrl());
+        System.out.println("ad/headline = " + extendedTextAd.getHeadline());
+        System.out.println("ad/description = " + extendedTextAd.getDescription());
+        System.out.println("ad/headline2 = " + extendedTextAd.getHeadline2());
+        System.out.println("ad/path1 = " + extendedTextAd.getPath1());
+        System.out.println("ad/path2 = " + extendedTextAd.getPath2());
+        System.out.println("ad/devicePreference = " + extendedTextAd.getDevicePreference());
       }
-      
+
       System.out.println("ad/advancedUrl = " + ad.getAdvancedUrl());
       System.out.println("ad/advancedMobileUrl = " + ad.getAdvancedMobileUrl());
       System.out.println("ad/trackingUrl = " + ad.getTrackingUrl());
       System.out.println("ad/advanced = " + ad.getAdvanced());
 
-      if(null != ad.getAdditionalAdvancedUrls()){
+      if (null != ad.getAdditionalAdvancedUrls()) {
         List<AdGroupAdAdditionalAdvancedUrls> additionalAdvancedUrls = ad.getAdditionalAdvancedUrls();
         int index = 0;
-        for (AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl : additionalAdvancedUrls){
+        for (AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl : additionalAdvancedUrls) {
           System.out.println("additionalAdvancedUrls[" + index + "]/additionalAdvancedUrl/advancedUrl = " + additionalAdvancedUrl.getAdvancedUrl());
           System.out.println("additionalAdvancedUrls[" + index + "]/additionalAdvancedUrl/disapprovalReasonCodes = " + additionalAdvancedUrl.getDisapprovalReasonCodes());
         }
       }
 
-      if(null != ad.getAdditionalAdvancedMobileUrls()){
+      if (null != ad.getAdditionalAdvancedMobileUrls()) {
         List<AdGroupAdAdditionalAdvancedMobileUrls> additionalAdvancedMobileUrls = ad.getAdditionalAdvancedMobileUrls();
         int index = 0;
-        for (AdGroupAdAdditionalAdvancedMobileUrls additionalAdvancedMobileUrl : additionalAdvancedMobileUrls){
+        for (AdGroupAdAdditionalAdvancedMobileUrls additionalAdvancedMobileUrl : additionalAdvancedMobileUrls) {
           System.out.println("additionalAdvancedMobileUrls[" + index + "]/additionalAdvancedMobileUrl/advancedMobileUrl = " + additionalAdvancedMobileUrl.getAdvancedMobileUrl());
           System.out.println("additionalAdvancedMobileUrls[" + index + "]/additionalAdvancedMobileUrl/disapprovalReasonCodes = " + additionalAdvancedMobileUrl.getDisapprovalReasonCodes());
         }
@@ -350,8 +343,8 @@ public class AdGroupAdServiceSample {
           }
         }
       }
-      
-      
+
+
     }
     System.out.println("---------");
   }
@@ -359,11 +352,11 @@ public class AdGroupAdServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
-   * @param campaignId long
-   * @param adGroupId long
+   * @param accountId     long
+   * @param campaignId    long
+   * @param adGroupId     long
    * @param appCampaignId long
-   * @param appAdGroupId long
+   * @param appAdGroupId  long
    * @return AdGroupAdOperation
    */
   public static AdGroupAdOperation createSampleAddRequest(long accountId, long campaignId, long adGroupId, long appCampaignId, long appAdGroupId) {
@@ -378,7 +371,7 @@ public class AdGroupAdServiceSample {
     parameter1.setKey("id1");
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));
-    
+
     // Set TextAd2
     TextAd2 textAd2 = new TextAd2();
     textAd2.setType(AdType.TEXT_AD_2);
@@ -438,8 +431,45 @@ public class AdGroupAdServiceSample {
     appAdAdGroupAd.setAdName("SampleAppAd_CreateOn_" + SoapUtils.getCurrentTimestamp());
     appAdAdGroupAd.setAd(appAd);
     appAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
-    
-    operation.getOperand().addAll(Arrays.asList(textAd2AdGroupAd, appAdAdGroupAd));
+
+    // Set ExtendedTextAd
+    ExtendedTextAd extendedTextAd = new ExtendedTextAd();
+    extendedTextAd.setType(AdType.EXTENDED_TEXT_AD);
+    extendedTextAd.setHeadline("sample headline");
+    extendedTextAd.setDescription("sample ad desc");
+    extendedTextAd.setHeadline2("sample headline2");
+    extendedTextAd.setPath1("path1");
+    extendedTextAd.setPath2("path2");
+    extendedTextAd.setDisplayUrl("www.yahoo.co.jp");
+    extendedTextAd.setDevicePreference(DevicePreference.SMART_PHONE);
+    extendedTextAd.setAdvancedUrl("http://www.yahoo.co.jp");
+    extendedTextAd.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
+    extendedTextAd.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    extendedTextAd.setCustomParameters(customParameters);
+
+    additionalAdvancedUrl1.setAdvancedUrl("http://www1.yahoo.co.jp");
+    additionalAdvancedUrl2.setAdvancedUrl("http://www2.yahoo.co.jp");
+    additionalAdvancedUrl3.setAdvancedUrl("http://www3.yahoo.co.jp");
+    extendedTextAd.getAdditionalAdvancedUrls().add(additionalAdvancedUrl1);
+    extendedTextAd.getAdditionalAdvancedUrls().add(additionalAdvancedUrl2);
+    extendedTextAd.getAdditionalAdvancedUrls().add(additionalAdvancedUrl3);
+
+    adGroupAdAdditionalAdvancedMobileUrls1.setAdvancedMobileUrl("http://www1.yahoo.co.jp/mobile");
+    adGroupAdAdditionalAdvancedMobileUrls2.setAdvancedMobileUrl("http://www2.yahoo.co.jp/mobile");
+    adGroupAdAdditionalAdvancedMobileUrls3.setAdvancedMobileUrl("http://www3.yahoo.co.jp/mobile");
+    extendedTextAd.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls1);
+    extendedTextAd.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls2);
+    extendedTextAd.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls3);
+
+    AdGroupAd extendedTextAdAdGroupAd = new AdGroupAd();
+    extendedTextAdAdGroupAd.setAccountId(accountId);
+    extendedTextAdAdGroupAd.setCampaignId(campaignId);
+    extendedTextAdAdGroupAd.setAdGroupId(adGroupId);
+    extendedTextAdAdGroupAd.setAdName("SampleExtendedTextAd_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    extendedTextAdAdGroupAd.setAd(extendedTextAd);
+    extendedTextAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
+
+    operation.getOperand().addAll(Arrays.asList(textAd2AdGroupAd, appAdAdGroupAd, extendedTextAdAdGroupAd));
 
     return operation;
   }
@@ -447,7 +477,7 @@ public class AdGroupAdServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId       long
    * @param adGroupAdValues AdGroupAdValues
    * @return AdGroupAdOperation
    */
@@ -466,7 +496,7 @@ public class AdGroupAdServiceSample {
       adGroupAd.setAdGroupId(adGroupAdValue.getAdGroupAd().getAdGroupId());
       adGroupAd.setAdId(adGroupAdValue.getAdGroupAd().getAdId());
       adGroupAd.setUserStatus(UserStatus.PAUSED);
-      
+
       // Set Ad
       if (AdType.TEXT_AD_2.equals(adGroupAdValue.getAdGroupAd().getAd().getType())) {
 
@@ -485,6 +515,13 @@ public class AdGroupAdServiceSample {
 
         adGroupAd.setAdName("SampleAppAd_UpdateOn_" + SoapUtils.getCurrentTimestamp());
         adGroupAd.setAd(appAd);
+      } else if(AdType.EXTENDED_TEXT_AD.equals(adGroupAdValue.getAdGroupAd().getAd().getType())) {
+        // Set ExtendedTextAd
+        ExtendedTextAd extendedTextAd = new ExtendedTextAd();
+        extendedTextAd.setType(AdType.APP_AD);
+
+        adGroupAd.setAdName("SampleAppAd_UpdateOn_" + SoapUtils.getCurrentTimestamp());
+        adGroupAd.setAd(extendedTextAd);
       }
 
       operation.getOperand().add(adGroupAd);
@@ -496,7 +533,7 @@ public class AdGroupAdServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId       long
    * @param adGroupAdValues AdGroupAdValues
    * @return AdGroupAdOperation
    */
@@ -524,7 +561,7 @@ public class AdGroupAdServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId       long
    * @param adGroupAdValues AdGroupAdValues
    * @return AdGroupAdSelector
    */

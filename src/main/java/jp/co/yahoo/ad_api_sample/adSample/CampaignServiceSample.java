@@ -35,6 +35,7 @@ import jp.yahooapis.ss.V6.CampaignService.SettingType;
 import jp.yahooapis.ss.V6.CampaignService.TargetCpaBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.TargetRoasBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
 import jp.yahooapis.ss.V6.CampaignService.UrlReviewData;
 import jp.yahooapis.ss.V6.CampaignService.UserStatus;
 
@@ -71,23 +72,60 @@ public class CampaignServiceSample {
       // Run
       List<CampaignValues> addCampaignValues = add(addCampaignOperation);
 
-      // =================================================================
-      // CampaignService::GET
-      // =================================================================
-      // Set Selector
-      CampaignSelector campaignSelector = createSampleGetRequest(accountId, addCampaignValues);
+      boolean allApproved = true;
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds for Get Campaign  *****\n");
+        Thread.sleep(30000);
 
-      // Run
-      get(campaignSelector);
+        // =================================================================
+        // CampaignService::GET
+        // =================================================================
+        // Set Selector
+        CampaignSelector campaignSelector = createSampleGetRequest(accountId, addCampaignValues);
 
-      // =================================================================
-      // CampaignService::SET
-      // =================================================================
-      // Set Operation
-      CampaignOperation setCampaignOperation = createSampleSetRequest(accountId, biddingStrategyId, addCampaignValues);
+        // Run
+        List<CampaignValues> getCampaignValues = get(campaignSelector);
 
-      // Run
-      set(setCampaignOperation);
+        allApproved = true;
+        for (CampaignValues campaignValues : getCampaignValues) {
+          if (!UrlApprovalStatus.APPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())
+              && !UrlApprovalStatus.NONE.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())) {
+            allApproved = false;
+          } else if(UrlApprovalStatus.DISAPPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())){
+            System.out.println("Error : This campaign was denied.");
+            campaignValues.getCampaign().getUrlReviewData().getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+
+          }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
+
+      if (!allApproved) {
+
+        // =================================================================
+        // CampaignService::REMOVE
+        // =================================================================
+        // Set Operation
+        CampaignOperation removeCampaignOperation = createSampleRemoveRequest(accountId, addCampaignValues);
+        // Run
+        remove(removeCampaignOperation);
+        System.exit(5);
+      } else {
+        // =================================================================
+        // CampaignService::SET
+        // =================================================================
+        // Set Operation
+        CampaignOperation setCampaignOperation = createSampleSetRequest(accountId, biddingStrategyId, addCampaignValues);
+
+        // Run
+        set(setCampaignOperation);
+      }
 
       // =================================================================
       // CampaignService::REMOVE
@@ -109,7 +147,6 @@ public class CampaignServiceSample {
    *
    * @param operation CampaignOperation
    * @return CampaignValues
-   * @throws Exception
    */
   public static List<CampaignValues> add(CampaignOperation operation) throws Exception {
 
@@ -149,7 +186,6 @@ public class CampaignServiceSample {
    *
    * @param operation CampaignOperation
    * @return CampaignValues
-   * @throws Exception
    */
   public static List<CampaignValues> set(CampaignOperation operation) throws Exception {
 
@@ -189,7 +225,6 @@ public class CampaignServiceSample {
    *
    * @param operation CampaignOperation
    * @return CampaignValues
-   * @throws Exception
    */
   public static List<CampaignValues> remove(CampaignOperation operation) throws Exception {
 
@@ -229,7 +264,6 @@ public class CampaignServiceSample {
    *
    * @param selector CampaignSelector
    * @return CampaignValues
-   * @throws Exception
    */
   public static List<CampaignValues> get(CampaignSelector selector) throws Exception {
 
@@ -403,14 +437,14 @@ public class CampaignServiceSample {
       }
 
     }
-    
+
     System.out.println("---------");
   }
 
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId         long
    * @param biddingStrategyId long
    * @return CampaignOperation
    */
@@ -419,7 +453,7 @@ public class CampaignServiceSample {
     CampaignOperation operation = new CampaignOperation();
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
-    
+
     // Set Budget
     Budget budget = new Budget();
     budget.setPeriod(BudgetPeriod.DAILY);
@@ -439,14 +473,14 @@ public class CampaignServiceSample {
     // Set ManualCpc
     CampaignBiddingStrategy manualCpcStrategy = new CampaignBiddingStrategy();
     manualCpcStrategy.setBiddingStrategyType(BiddingStrategyType.MANUAL_CPC);
-   
+
     // Set CustomParameters
     CustomParameters customParameters = new CustomParameters();
     CustomParameter parameter1 = new CustomParameter();
     parameter1.setKey("id1");
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));
-    
+
     // Set AutoBidding Campaign
     Campaign autoBiddingCampaign = new Campaign();
     autoBiddingCampaign.setAccountId(accountId);
@@ -459,11 +493,11 @@ public class CampaignServiceSample {
     autoBiddingCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     autoBiddingCampaign.getSettings().add(geoTargetTypeSetting);
     autoBiddingCampaign.setCampaignType(CampaignType.STANDARD);
-    
+
     autoBiddingCampaign.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     autoBiddingCampaign.setCustomParameters(customParameters);
-    
-    
+
+
     // Set ManualCpc Campaign
     Campaign manualCpcCampaign = new Campaign();
     manualCpcCampaign.setAccountId(accountId);
@@ -476,10 +510,10 @@ public class CampaignServiceSample {
     manualCpcCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     manualCpcCampaign.getSettings().add(geoTargetTypeSetting);
     manualCpcCampaign.setCampaignType(CampaignType.STANDARD);
-    
+
     manualCpcCampaign.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     manualCpcCampaign.setCustomParameters(customParameters);
-    
+
     // Set App Campaign
     Campaign appCampaign = new Campaign();
     appCampaign.setAccountId(accountId);
@@ -503,9 +537,9 @@ public class CampaignServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId         long
    * @param biddingStrategyId long
-   * @param campaignValues CampaignValues
+   * @param campaignValues    CampaignValues
    * @return CampaignOperation
    */
   public static CampaignOperation createSampleSetRequest(long accountId, long biddingStrategyId, List<CampaignValues> campaignValues) {
@@ -559,7 +593,7 @@ public class CampaignServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId      long
    * @param campaignValues CampaignValues
    * @return CampaignOperation
    */
@@ -585,7 +619,7 @@ public class CampaignServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId long
+   * @param accountId      long
    * @param campaignValues CampaignValues
    * @return CampaignSelector
    */

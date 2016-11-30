@@ -26,7 +26,6 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="criterionTargetList" type="{http://ss.yahooapis.jp/V6}CriterionTargetList"/>
  *         &lt;element name="excludedType" type="{http://ss.yahooapis.jp/V6}ExcludedType" minOccurs="0"/>
  *         &lt;element name="bidMultiplier" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *         &lt;element name="targetAll" type="{http://ss.yahooapis.jp/V6}TargetAll" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -44,8 +43,7 @@ import javax.xml.bind.annotation.XmlType;
     "adGroupName",
     "criterionTargetList",
     "excludedType",
-    "bidMultiplier",
-    "targetAll"
+    "bidMultiplier"
 })
 public class AdGroupRetargetingList {
 
@@ -59,8 +57,6 @@ public class AdGroupRetargetingList {
     @XmlSchemaType(name = "string")
     protected ExcludedType excludedType;
     protected Double bidMultiplier;
-    @XmlSchemaType(name = "string")
-    protected TargetAll targetAll;
 
     /**
      * Gets the value of the accountId property.
@@ -236,30 +232,6 @@ public class AdGroupRetargetingList {
      */
     public void setBidMultiplier(Double value) {
         this.bidMultiplier = value;
-    }
-
-    /**
-     * Gets the value of the targetAll property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link TargetAll }
-     *     
-     */
-    public TargetAll getTargetAll() {
-        return targetAll;
-    }
-
-    /**
-     * Sets the value of the targetAll property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link TargetAll }
-     *     
-     */
-    public void setTargetAll(TargetAll value) {
-        this.targetAll = value;
     }
 
 }

@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="displayUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="headline" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="devicePreference" type="{http://ss.yahooapis.jp/V6}DevicePreference" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -53,12 +54,13 @@ import javax.xml.bind.annotation.XmlType;
     "url",
     "displayUrl",
     "headline",
-    "description"
+    "description",
+    "devicePreference"
 })
 @XmlSeeAlso({
-    MobileAd.class,
     AppAd.class,
-    TextAd2 .class
+    TextAd2 .class,
+    ExtendedTextAd.class
 })
 public class Ad {
 
@@ -76,6 +78,8 @@ public class Ad {
     protected String displayUrl;
     protected String headline;
     protected String description;
+    @XmlSchemaType(name = "string")
+    protected DevicePreference devicePreference;
 
     /**
      * Gets the value of the type property.
@@ -373,6 +377,30 @@ public class Ad {
      */
     public void setDescription(String value) {
         this.description = value;
+    }
+
+    /**
+     * Gets the value of the devicePreference property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link DevicePreference }
+     *     
+     */
+    public DevicePreference getDevicePreference() {
+        return devicePreference;
+    }
+
+    /**
+     * Sets the value of the devicePreference property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DevicePreference }
+     *     
+     */
+    public void setDevicePreference(DevicePreference value) {
+        this.devicePreference = value;
     }
 
 }

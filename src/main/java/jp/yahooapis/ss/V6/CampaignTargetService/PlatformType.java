@@ -14,6 +14,8 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="PlatformType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="SMART_PHONE"/>
+ *     &lt;enumeration value="TABLET"/>
+ *     &lt;enumeration value="DESKTOP"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -23,7 +25,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum PlatformType {
 
-    SMART_PHONE;
+    SMART_PHONE,
+    TABLET,
+    DESKTOP;
 
     public String value() {
         return name();

@@ -4,7 +4,7 @@
 
   <groupId>jp.co.yahoo</groupId>
   <artifactId>ad-api-sample</artifactId>
-  <version>SS-API-V6.1</version>
+  <version>SS-API-V6.2</version>
   <packaging>jar</packaging>
 
   <name>ad-api-sample</name>

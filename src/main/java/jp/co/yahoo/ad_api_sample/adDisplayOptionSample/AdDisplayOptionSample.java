@@ -26,6 +26,7 @@ import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedServiceInterface;
 import jp.yahooapis.ss.V6.CampaignFeedService.CampaignFeedValues;
 import jp.yahooapis.ss.V6.CampaignFeedService.DevicePlatform;
 import jp.yahooapis.ss.V6.FeedItemService.Advanced;
+import jp.yahooapis.ss.V6.FeedItemService.ApprovalStatus;
 import jp.yahooapis.ss.V6.FeedItemService.CustomParameter;
 import jp.yahooapis.ss.V6.FeedItemService.CustomParameters;
 import jp.yahooapis.ss.V6.FeedItemService.DayOfWeek;
@@ -39,8 +40,10 @@ import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
 import jp.yahooapis.ss.V6.FeedItemService.IsRemove;
 import jp.yahooapis.ss.V6.FeedItemService.MinuteOfHour;
+import jp.yahooapis.ss.V6.FeedItemService.Paging;
 import jp.yahooapis.ss.V6.FeedItemService.SimpleFeedItemAttribute;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -85,8 +88,59 @@ public class AdDisplayOptionSample {
       // GET CALLEXTENSION
       FeedItemSelector feedItemSelector2 = FeedItemServiceSample.createSampleGetRequest(accountId, addfeedItemValues_callextension);
       FeedItemServiceSample.get(feedItemSelector2);
-      // wait for sandbox review
-      Thread.sleep(30000);
+
+      // =================================================================
+      // FeedItemService GET
+      // =================================================================
+      // Run
+      boolean allApproved = true;
+      List<Long> feedItemIds = new ArrayList<>();
+      addfeedItemValues_quicklink.stream().forEach(feedItemValues -> feedItemIds.add(feedItemValues.getFeedItem().getFeedItemId()));
+      addfeedItemValues_callextension.stream().forEach(feedItemValues -> feedItemIds.add(feedItemValues.getFeedItem().getFeedItemId()));
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds for Get FeedItem  *****\n");
+        Thread.sleep(30000);
+
+        // Set Selector
+        FeedItemSelector selector = new FeedItemSelector();
+        selector.setAccountId(accountId);
+        selector.getFeedItemIds().addAll(feedItemIds);
+        Paging feedItemPaging = new Paging();
+        feedItemPaging.setStartIndex(1);
+        feedItemPaging.setNumberResults(20);
+        selector.setPaging(feedItemPaging);
+
+        // Run
+        List<FeedItemValues> getFeedItemValues = null;
+        try {
+          getFeedItemValues = FeedItemServiceSample.get(selector);
+        } catch (Exception e) {
+          throw e;
+        }
+        allApproved = true;
+        for (FeedItemValues feedItemValue : getFeedItemValues) {
+          if (!ApprovalStatus.APPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            allApproved = false;
+          } else if (ApprovalStatus.PRE_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())
+              || ApprovalStatus.POST_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            System.out.println("Error : This FeedItem was denied.");
+            feedItemValue.getFeedItem().getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+            System.exit(0);
+          }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
+
+      if (!allApproved) {
+        System.out.println("Error : The review did not end.");
+        System.exit(0);
+      }
 
       // SET QUICKLINK
       FeedItemOperation setFeedItemOperation_quicklink = createSampleFeedItemServiceSetRequest_quicklink(accountId, addfeedItemValues_quicklink);
@@ -96,8 +150,7 @@ public class AdDisplayOptionSample {
           feedItemId1 = feedItemValues.getFeedItem().getFeedItemId();
         }
       }
-      // wait for sandbox review
-      Thread.sleep(30000);
+
       // SET CALLEXTENSION
       FeedItemOperation setFeedItemOperation_callextension = createSampleFeedItemServiceAddRequest_callextension(accountId, addfeedItemValues_callextension);
       List<FeedItemValues> setFeedItemValues_callextension = FeedItemServiceSample.set(setFeedItemOperation_callextension);
