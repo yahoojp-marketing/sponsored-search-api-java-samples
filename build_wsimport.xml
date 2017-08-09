@@ -423,11 +423,11 @@ target for wsimport
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/RetargetingListService?wsdl"/>
     </exec>
-    <echo message="start wsimport NegativeCampaignRetargetingListService.wsdl...."/>
+    <echo message="start wsimport CampaignRetargetingListService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
-      <arg value="${wsdl.dir}/NegativeCampaignRetargetingListService/NegativeCampaignRetargetingListService.wsdl"/>
+      <arg value="${wsdl.dir}/CampaignRetargetingListService/CampaignRetargetingListService.wsdl"/>
       <arg value="-p"/>
-      <arg value="${pakcage.base}.NegativeCampaignRetargetingListService"/>
+      <arg value="${pakcage.base}.CampaignRetargetingListService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -435,7 +435,7 @@ target for wsimport
       <arg value="UTF-8"/>
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
-      <arg value="${wsdl.location}/NegativeCampaignRetargetingListService?wsdl"/>
+      <arg value="${wsdl.location}/CampaignRetargetingListService?wsdl"/>
     </exec>
     <echo message="start wsimport AdGroupRetargetingListService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">

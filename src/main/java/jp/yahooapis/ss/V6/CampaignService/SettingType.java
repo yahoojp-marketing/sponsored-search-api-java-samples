@@ -14,6 +14,7 @@ import javax.xml.bind.annotation.XmlType;
  * &lt;simpleType name="SettingType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
  *     &lt;enumeration value="GEO_TARGET_TYPE_SETTING"/>
+ *     &lt;enumeration value="TARGET_LIST_SETTING"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
@@ -23,7 +24,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlEnum
 public enum SettingType {
 
-    GEO_TARGET_TYPE_SETTING;
+    GEO_TARGET_TYPE_SETTING,
+    TARGET_LIST_SETTING;
 
     public String value() {
         return name();

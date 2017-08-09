@@ -1,10 +1,13 @@
 --------------------------------
 <<Version>>
 --------------------------------
-Version 6.2.0
+Version 6.3.0
 
 [Change history]
 -----------
+2017/07/20:
+- Correspond to Version 6.3.
+
 2016/11/24:
 - Correspond to Version 6.2.
 
@@ -80,9 +83,9 @@ The following programs are stored.
   - keywordEstimatorSample/KeywordEstimatorSample.java                      : Sample of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
   - reportDownloadSample/ReportDownloadSample.java                          : Sample of Get report via ReportDefinitionService/ReportService
   - siteRetargetingSample/AdGroupRetargetingListServiceSample.java          : Sample of Get and Mutate operation for ad group retargeting list via AdGroupRetargetingListService.
-  - siteRetargetingSample/NegativeCampaignRetargetingListServiceSample.java : Sample of Get and Mutate operation for campaign retargeting list via NegativeCampaignRetargetingListService.
+  - siteRetargetingSample/CampaignRetargetingListServiceSample.java         : Sample of Get and Mutate operation for campaign retargeting list via CampaignRetargetingListService.
   - siteRetargetingSample/RetargetingListServiceSample.java                 : Sample of Get and Mutate operation for retargeting list via RetargetingListService.
-  - siteRetargetingSample/SiteRetargetingSample.java                        : Sample of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
+  - siteRetargetingSample/SiteRetargetingSample.java                        : Sample of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSample.java                            : Sample of Get the related keywords based on the specified value via TargetingIdeaService.
   - campaignExportSample/CampaignExportSample.java                          : Sample of Add the export job and Download via CampaignExportService.
 
@@ -137,9 +140,9 @@ The following test cases are stored.
   - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : Test case of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
   - reportDownloadSample/ReportDownloadSampleTest.java                          : Test case of Get report via ReportDefinitionService/ReportService.
   - siteRetargetingSample/AdGroupRetargetingListServiceSampleTest.java          : Test case of Get and Mutate operation for ad group retargeting list via AdGroupRetargetingListService.
-  - siteRetargetingSample/NegativeCampaignRetargetingListServiceSampleTest.java : Test case of Get and Mutate operation for campaign retargeting list via NegativeCampaignRetargetingListService.
+  - siteRetargetingSample/CampaignRetargetingListServiceSampleTest.java         : Test case of Get and Mutate operation for campaign retargeting list via CampaignRetargetingListService.
   - siteRetargetingSample/RetargetingListServiceSampleTest.java                 : Test case of Get and Mutate operation for retargeting list via RetargetingListService.
-  - siteRetargetingSample/SiteRetargetingSampleTest.java                        : Test case of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
+  - siteRetargetingSample/SiteRetargetingSampleTest.java                        : Test case of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : Test case of Get the related keywords based on the specified value via TargetingIdeaService.
   - campaignExportSample/CampaignExportSampleTest.java                          : Test case of Add the export job and Download via CampaignExportService.
 
@@ -199,7 +202,7 @@ TARGETLISTID	: Target list ID (Optional/New list created if it does not exist)
 --------------------------------
 set SAMPLE_HOME={ad-api-sample}
 set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.0.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
+set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.3.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
 
 [e.g.]
 ---------------------------------------
@@ -227,7 +230,7 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.AdGroupRetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.NegativeCampaignRetargetingListServiceSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.CampaignRetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample

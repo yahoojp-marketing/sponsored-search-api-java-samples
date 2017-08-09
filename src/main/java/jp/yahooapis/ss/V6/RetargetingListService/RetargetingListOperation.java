@@ -6,6 +6,7 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -20,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;extension base="{http://ss.yahooapis.jp/V6}Operation">
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="owner" type="{http://ss.yahooapis.jp/V6}TargetListOwner" minOccurs="0"/>
  *         &lt;element name="operand" type="{http://ss.yahooapis.jp/V6}TargetingList" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/extension>
@@ -32,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "RetargetingListOperation", propOrder = {
     "accountId",
+    "owner",
     "operand"
 })
 public class RetargetingListOperation
@@ -39,6 +42,8 @@ public class RetargetingListOperation
 {
 
     protected long accountId;
+    @XmlSchemaType(name = "string")
+    protected TargetListOwner owner;
     @XmlElement(required = true)
     protected List<TargetingList> operand;
 
@@ -56,6 +61,30 @@ public class RetargetingListOperation
      */
     public void setAccountId(long value) {
         this.accountId = value;
+    }
+
+    /**
+     * Gets the value of the owner property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TargetListOwner }
+     *     
+     */
+    public TargetListOwner getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the value of the owner property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TargetListOwner }
+     *     
+     */
+    public void setOwner(TargetListOwner value) {
+        this.owner = value;
     }
 
     /**

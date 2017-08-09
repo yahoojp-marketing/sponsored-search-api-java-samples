@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="targetListIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="targetListTypes" type="{http://ss.yahooapis.jp/V6}TargetListType" maxOccurs="3" minOccurs="0"/>
+ *         &lt;element name="owner" type="{http://ss.yahooapis.jp/V6}TargetListOwner" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -37,6 +38,7 @@ import javax.xml.bind.annotation.XmlType;
     "accountId",
     "targetListIds",
     "targetListTypes",
+    "owner",
     "paging"
 })
 public class RetargetingListSelector {
@@ -46,6 +48,8 @@ public class RetargetingListSelector {
     protected List<Long> targetListIds;
     @XmlSchemaType(name = "string")
     protected List<TargetListType> targetListTypes;
+    @XmlSchemaType(name = "string")
+    protected TargetListOwner owner;
     protected Paging paging;
 
     /**
@@ -120,6 +124,30 @@ public class RetargetingListSelector {
             targetListTypes = new ArrayList<TargetListType>();
         }
         return this.targetListTypes;
+    }
+
+    /**
+     * Gets the value of the owner property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TargetListOwner }
+     *     
+     */
+    public TargetListOwner getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the value of the owner property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TargetListOwner }
+     *     
+     */
+    public void setOwner(TargetListOwner value) {
+        this.owner = value;
     }
 
     /**

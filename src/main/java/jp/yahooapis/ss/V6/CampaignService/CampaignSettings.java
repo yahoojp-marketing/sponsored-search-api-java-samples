@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
     "type"
 })
 @XmlSeeAlso({
+    TargetingSetting.class,
     GeoTargetTypeSetting.class
 })
 public abstract class CampaignSettings {
