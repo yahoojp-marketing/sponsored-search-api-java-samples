@@ -1,6 +1,8 @@
 
 package jp.yahooapis.ss.V6.ReportDefinitionService;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlType;
@@ -23,6 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="fieldType" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="canSelect" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
  *         &lt;element name="canFilter" type="{http://www.w3.org/2001/XMLSchema}boolean" minOccurs="0"/>
+ *         &lt;element name="impossibleCombinationFields" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,7 +42,8 @@ import javax.xml.bind.annotation.XmlType;
     "xmlAttributeName",
     "fieldType",
     "canSelect",
-    "canFilter"
+    "canFilter",
+    "impossibleCombinationFields"
 })
 public class ReportFieldAttribute {
 
@@ -50,6 +54,7 @@ public class ReportFieldAttribute {
     protected String fieldType;
     protected Boolean canSelect;
     protected Boolean canFilter;
+    protected List<String> impossibleCombinationFields;
 
     /**
      * Gets the value of the fieldName property.
@@ -217,6 +222,35 @@ public class ReportFieldAttribute {
      */
     public void setCanFilter(Boolean value) {
         this.canFilter = value;
+    }
+
+    /**
+     * Gets the value of the impossibleCombinationFields property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the impossibleCombinationFields property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getImpossibleCombinationFields().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getImpossibleCombinationFields() {
+        if (impossibleCombinationFields == null) {
+            impossibleCombinationFields = new ArrayList<String>();
+        }
+        return this.impossibleCombinationFields;
     }
 
 }

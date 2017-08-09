@@ -32,9 +32,11 @@ import jp.yahooapis.ss.V6.CampaignService.PageOnePromotedBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.Paging;
 import jp.yahooapis.ss.V6.CampaignService.ReviewUrl;
 import jp.yahooapis.ss.V6.CampaignService.SettingType;
+import jp.yahooapis.ss.V6.CampaignService.TargetAll;
 import jp.yahooapis.ss.V6.CampaignService.TargetCpaBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.TargetRoasBiddingScheme;
 import jp.yahooapis.ss.V6.CampaignService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignService.TargetingSetting;
 import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
 import jp.yahooapis.ss.V6.CampaignService.UrlReviewData;
 import jp.yahooapis.ss.V6.CampaignService.UserStatus;
@@ -373,6 +375,11 @@ public class CampaignServiceSample {
           System.out.println("settings(GeoTargetTypeSetting)/positiveGeoTargetType = " + geoTargetTypeSetting.getPositiveGeoTargetType());
           System.out.println("settings(GeoTargetTypeSetting)/negativeGeoTargetType = " + geoTargetTypeSetting.getNegativeGeoTargetType());
 
+        } else if (settings instanceof TargetingSetting) {
+          System.out.println("settings(TargetingSetting)/type = " + settings.getType());
+          TargetingSetting targetingSetting = (TargetingSetting) settings;
+          System.out.println("settings(TargetingSetting)/targetAll = " + targetingSetting.getTargetAll());
+
         }
       }
     }
@@ -466,6 +473,11 @@ public class CampaignServiceSample {
     geoTargetTypeSetting.setPositiveGeoTargetType(GeoTargetType.AREA_OF_INTENT);
     geoTargetTypeSetting.setNegativeGeoTargetType(GeoTargetType.LOCATION_OF_PRESENCE);
 
+    // Set TargetingSetting
+    TargetingSetting targetingSetting = new TargetingSetting();
+    targetingSetting.setType(SettingType.TARGET_LIST_SETTING);
+    targetingSetting.setTargetAll(TargetAll.ACTIVE);
+
     // Set AutoBidding
     CampaignBiddingStrategy autoBiddingStrategy = new CampaignBiddingStrategy();
     autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
@@ -492,6 +504,7 @@ public class CampaignServiceSample {
     autoBiddingCampaign.setBiddingStrategyConfiguration(autoBiddingStrategy);
     autoBiddingCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     autoBiddingCampaign.getSettings().add(geoTargetTypeSetting);
+    autoBiddingCampaign.getSettings().add(targetingSetting);
     autoBiddingCampaign.setCampaignType(CampaignType.STANDARD);
 
     autoBiddingCampaign.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
@@ -509,6 +522,7 @@ public class CampaignServiceSample {
     manualCpcCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
     manualCpcCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     manualCpcCampaign.getSettings().add(geoTargetTypeSetting);
+    manualCpcCampaign.getSettings().add(targetingSetting);
     manualCpcCampaign.setCampaignType(CampaignType.STANDARD);
 
     manualCpcCampaign.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
@@ -525,6 +539,7 @@ public class CampaignServiceSample {
     appCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
     appCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
     appCampaign.getSettings().add(geoTargetTypeSetting);
+    appCampaign.getSettings().add(targetingSetting);
     appCampaign.setCampaignType(CampaignType.MOBILE_APP);
     appCampaign.setAppStore(AppStore.IOS);
     appCampaign.setAppId(SoapUtils.getCurrentTimestamp());

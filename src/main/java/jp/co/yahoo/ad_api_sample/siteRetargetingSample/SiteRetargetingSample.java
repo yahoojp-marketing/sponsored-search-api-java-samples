@@ -14,17 +14,18 @@ import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
 import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
 import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
 import jp.yahooapis.ss.V6.BiddingStrategyService.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.V6.CampaignRetargetingListService.ExcludedType;
 import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
 import jp.yahooapis.ss.V6.CampaignService.CampaignType;
 import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListOperation;
-import jp.yahooapis.ss.V6.NegativeCampaignRetargetingListService.NegativeCampaignRetargetingListSelector;
+import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListOperation;
+import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListSelector;
 import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListOperation;
 import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListSelector;
 import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListValues;
 
 /**
- * Sample Program for RetargetingListService,CampaignService,NegativeCampaignRetargetingListService
+ * Sample Program for RetargetingListService,CampaignService,CampaignRetargetingListService
  * AdGroupService,AdGroupRetargetingListServiceService. Copyright (C) 2012 Yahoo Japan Corporation.
  * All Rights Reserved.
  */
@@ -99,14 +100,14 @@ public class SiteRetargetingSample {
       }
 
       // =================================================================
-      // NegativeCampaignRetargetingListService
+      // CampaignRetargetingListService
       // =================================================================
       // ADD
-      NegativeCampaignRetargetingListOperation addNegativeCampaignRetargetingListOperation = NegativeCampaignRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListId);
-      NegativeCampaignRetargetingListServiceSample.add(addNegativeCampaignRetargetingListOperation);
+      CampaignRetargetingListOperation addCampaignRetargetingListOperation = CampaignRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListId, ExcludedType.INCLUDED, 1.0d);
+      CampaignRetargetingListServiceSample.add(addCampaignRetargetingListOperation);
       // GET
-      NegativeCampaignRetargetingListSelector negativeCampaignRetargetingListSelector = NegativeCampaignRetargetingListServiceSample.createSampleGetRequest(accountId, campaignId, targetListId);
-      NegativeCampaignRetargetingListServiceSample.get(negativeCampaignRetargetingListSelector);
+      CampaignRetargetingListSelector campaignRetargetingListSelector = CampaignRetargetingListServiceSample.createSampleGetRequest(accountId, campaignId, targetListId);
+      CampaignRetargetingListServiceSample.get(campaignRetargetingListSelector);
 
       // =================================================================
       // AdGroupService
@@ -138,7 +139,7 @@ public class SiteRetargetingSample {
 
       // =================================================================
       // remove AdGroupRetargetingListServiceService, AdGroupService,
-      // NegativeCampaignRetargetingListService, CampaignService
+      // CampaignRetargetingListService, CampaignService
       // =================================================================
       // AdGroupRetargetingListServiceService
       AdGroupRetargetingListOperation removeAdGroupRetargetingListOperation = AdGroupRetargetingListServiceSample.createSampleRemoveRequest(accountId, adGroupRetargetingListValues);
@@ -150,9 +151,9 @@ public class SiteRetargetingSample {
         AdGroupServiceSample.remove(removeAdGroupOperation);
       }
 
-      // NegativeCampaignRetargetingListService
-      NegativeCampaignRetargetingListOperation removeNegativeCampaignRetargetingListOperation = NegativeCampaignRetargetingListServiceSample.createSampleRemoveRequest(accountId, campaignId, targetListId);
-      NegativeCampaignRetargetingListServiceSample.remove(removeNegativeCampaignRetargetingListOperation);
+      // CampaignRetargetingListService
+      CampaignRetargetingListOperation removeCampaignRetargetingListOperation = CampaignRetargetingListServiceSample.createSampleRemoveRequest(accountId, campaignId, targetListId, ExcludedType.INCLUDED);
+      CampaignRetargetingListServiceSample.remove(removeCampaignRetargetingListOperation);
 
       // CampaignService
       if (campaignValues != null) {

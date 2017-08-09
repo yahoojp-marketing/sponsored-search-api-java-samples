@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="reportId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="reportJobId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="reportName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reportJobStatus" type="{http://ss.yahooapis.jp/V6}ReportJobStatus" minOccurs="0"/>
  *         &lt;element name="reportJobErrorDetail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="requestTime" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
@@ -38,6 +39,7 @@ import javax.xml.bind.annotation.XmlType;
     "accountId",
     "reportId",
     "reportJobId",
+    "reportName",
     "reportJobStatus",
     "reportJobErrorDetail",
     "requestTime",
@@ -49,6 +51,7 @@ public class ReportRecord {
     protected Long accountId;
     protected Long reportId;
     protected Long reportJobId;
+    protected String reportName;
     @XmlSchemaType(name = "string")
     protected ReportJobStatus reportJobStatus;
     protected String reportJobErrorDetail;
@@ -126,6 +129,30 @@ public class ReportRecord {
      */
     public void setReportJobId(Long value) {
         this.reportJobId = value;
+    }
+
+    /**
+     * Gets the value of the reportName property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getReportName() {
+        return reportName;
+    }
+
+    /**
+     * Sets the value of the reportName property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setReportName(String value) {
+        this.reportName = value;
     }
 
     /**

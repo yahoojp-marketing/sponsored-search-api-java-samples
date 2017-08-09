@@ -18,6 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="targetListId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="targetListName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="retargetingTrackId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -29,12 +30,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "CriterionTargetList", propOrder = {
     "targetListId",
-    "targetListName"
+    "targetListName",
+    "retargetingTrackId"
 })
 public class CriterionTargetList {
 
     protected long targetListId;
     protected String targetListName;
+    protected Long retargetingTrackId;
 
     /**
      * Gets the value of the targetListId property.
@@ -74,6 +77,30 @@ public class CriterionTargetList {
      */
     public void setTargetListName(String value) {
         this.targetListName = value;
+    }
+
+    /**
+     * Gets the value of the retargetingTrackId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getRetargetingTrackId() {
+        return retargetingTrackId;
+    }
+
+    /**
+     * Sets the value of the retargetingTrackId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setRetargetingTrackId(Long value) {
+        this.retargetingTrackId = value;
     }
 
 }

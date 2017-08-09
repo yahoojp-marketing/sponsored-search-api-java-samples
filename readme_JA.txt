@@ -1,10 +1,13 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version 6.2.0
+Version 6.3.0
 
 ■変更履歴
 -----------
+2017/07/20:
+- Version 6.3に対応しました。
+
 2016/11/24:
 - Version 6.2に対応しました。
 
@@ -82,9 +85,9 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - sharedCriterionSample/CampaignSharedSetServiceSample.java               : AccountSharedService/CampaignService/CampaignSharedSetServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のサンプルです。
   - sharedCriterionSample/SharedCriterionServiceSample.java                 : AccountSharedService/SharedCriterionServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のサンプルです。
   - siteRetargetingSample/AdGroupRetargetingListServiceSample.java          : AdGroupRetargetingListServiceによる広告グループ用リターゲティングリストの登録、参照、更新、削除処理のサンプルです。
-  - siteRetargetingSample/NegativeCampaignRetargetingListServiceSample.java : NegativeCampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のサンプルです。
+  - siteRetargetingSample/CampaignRetargetingListServiceSample.java         : CampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のサンプルです。
   - siteRetargetingSample/RetargetingListServiceSample.java                 : RetargetingListServiceによるリターゲティングリストの登録、参照、更新処理のサンプルです。
-  - siteRetargetingSample/SiteRetargetingSample.java                        : RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のサンプルです。
+  - siteRetargetingSample/SiteRetargetingSample.java                        : RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のサンプルです。
   - targetingIdeaSample/TargetingIdeaSample.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のサンプルです。
   - campaignExportSample/CampaignExportSample.java                          : CampaignExportServiceによるExportジョブ登録、CSVダウンロードのサンプルです。
 
@@ -99,7 +102,7 @@ JAX-WSを使用してAPIを呼び出す形になっています。
 
 - binディレクトリ : コンパイルされたサンプルプログラムの実行ファイルと、Windows上で実行するためのバッチファイルが格納されています。
   - run_sample.bat                ： Windows上でサンプルプログラムを実行するためのバッチファイルです。
-  - ad-api-sample-SS-API-V6.0.jar ： コンパイルされたサンプルプログラムがまとめたjarファイルです。
+  - ad-api-sample-SS-API-V6.3.jar ： コンパイルされたサンプルプログラムがまとめたjarファイルです。
 
 - confディレクトリ : サンプルプログラム実行時の各種設定を記述するプロパティファイルが格納されています。
   - api_config.properties：各種IDを記述する設定ファイルです。
@@ -141,9 +144,9 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - sharedCriterionSample/CampaignSharedSetServiceSampleTest.java               : AccountSharedService/CampaignService/CampaignSharedSetServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のテストケースです。
   - sharedCriterionSample/SharedCriterionServiceSampleTest.java                 : AccountSharedService/SharedCriterionServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のテストケースです。
   - siteRetargetingSample/AdGroupRetargetingListServiceSampleTest.java          : AdGroupRetargetingListServiceによる広告グループ用リターゲティングリストの登録、参照、更新、削除処理のテストケースです。
-  - siteRetargetingSample/NegativeCampaignRetargetingListServiceSampleTest.java : NegativeCampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のテストケースです。
+  - siteRetargetingSample/CampaignRetargetingListServiceSampleTest.java         : CampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のテストケースです。
   - siteRetargetingSample/RetargetingListServiceSampleTest.java                 : RetargetingListServiceによるリターゲティングリストの登録、参照、更新処理のテストケースです。
-  - siteRetargetingSample/SiteRetargetingSampleTest.java                        : RetargetingListService/BiddingStrategyService/CampaignService/NegativeCampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のテストケースです。
+  - siteRetargetingSample/SiteRetargetingSampleTest.java                        : RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のテストケースです。
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のテストケースです。
   - campaignExportSample/CampaignExportSampleTest.java                          : CampaignExportServiceによるExportジョブ登録、ダウンロード処理のテストケースです。
 
@@ -203,7 +206,7 @@ TARGETLISTID  : ターゲットリストID（任意、存在しない場合は�
 --------------------------------
 set SAMPLE_HOME={ad-api-sample}
 set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.0.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
+set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.3.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
 
 ■実行例
 ---------------------------------------
@@ -234,7 +237,7 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/AccountSharedS
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/CampaignSharedSetServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/SharedCriterionServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.AdGroupRetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.NegativeCampaignRetargetingListServiceSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.CampaignRetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingListServiceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample

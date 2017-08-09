@@ -164,6 +164,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TargetingSetting }
+     * 
+     */
+    public TargetingSetting createTargetingSetting() {
+        return new TargetingSetting();
+    }
+
+    /**
      * Create an instance of {@link CustomParameter }
      * 
      */

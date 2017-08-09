@@ -259,6 +259,7 @@ public class AdGroupRetargetingListServiceSample {
     System.out.println("adGroupName = " + adGroupRetargetingList.getAdGroupName());
     System.out.println("criterionTargetList/targetListId = " + adGroupRetargetingList.getCriterionTargetList().getTargetListId());
     System.out.println("criterionTargetList/targetListName = " + adGroupRetargetingList.getCriterionTargetList().getTargetListName());
+    System.out.println("criterionTargetList/retargetingTrackId = " + adGroupRetargetingList.getCriterionTargetList().getRetargetingTrackId());
     System.out.println("excludedType = " + adGroupRetargetingList.getExcludedType());
     System.out.println("bidMultiplier = " + adGroupRetargetingList.getBidMultiplier());
 
@@ -272,7 +273,7 @@ public class AdGroupRetargetingListServiceSample {
    * @param campaignId long
    * @param targetListId long
    * @param adGroupId long
-   * @return NegativeCampaignRetargetingListOperation
+   * @return CampaignRetargetingListOperation
    */
   public static AdGroupRetargetingListOperation createSampleAddRequest(long accountId, long campaignId, long targetListId, long adGroupId) {
     CriterionTargetList criterionTargetList = new CriterionTargetList();
@@ -329,7 +330,7 @@ public class AdGroupRetargetingListServiceSample {
    *
    * @param accountId long
    * @param adGroupRetargetingListValuesList AdGroupRetargetingListValues
-   * @return NegativeCampaignRetargetingListOperation
+   * @return CampaignRetargetingListOperation
    */
   public static AdGroupRetargetingListOperation createSampleSetRequest(long accountId, List<AdGroupRetargetingListValues> adGroupRetargetingListValuesList) {
     List<AdGroupRetargetingList> setAdGroupRetargetingListList = new ArrayList<AdGroupRetargetingList>();
@@ -362,7 +363,7 @@ public class AdGroupRetargetingListServiceSample {
    *
    * @param accountId long
    * @param adGroupRetargetingListValuesList AdGroupRetargetingListValues
-   * @return NegativeCampaignRetargetingListOperation
+   * @return CampaignRetargetingListOperation
    */
   public static AdGroupRetargetingListOperation createSampleRemoveRequest(long accountId, List<AdGroupRetargetingListValues> adGroupRetargetingListValuesList) {
     List<AdGroupRetargetingList> removeAdGroupRetargetingListList = new ArrayList<AdGroupRetargetingList>();

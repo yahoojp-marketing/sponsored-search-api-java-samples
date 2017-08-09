@@ -25,6 +25,7 @@ import jp.yahooapis.ss.V6.RetargetingListService.RuleGroup;
 import jp.yahooapis.ss.V6.RetargetingListService.RuleItem;
 import jp.yahooapis.ss.V6.RetargetingListService.RuleOperator;
 import jp.yahooapis.ss.V6.RetargetingListService.RuleType;
+import jp.yahooapis.ss.V6.RetargetingListService.TargetListOwner;
 import jp.yahooapis.ss.V6.RetargetingListService.TargetListType;
 import jp.yahooapis.ss.V6.RetargetingListService.TargetingList;
 import jp.yahooapis.ss.V6.RetargetingListService.UrlRuleItem;
@@ -320,6 +321,7 @@ public class RetargetingListServiceSample {
     RetargetingListOperation addOperation = new RetargetingListOperation();
     addOperation.setOperator(Operator.ADD);
     addOperation.setAccountId(accountId);
+    addOperation.setOwner(TargetListOwner.OWNER);
     addOperation.getOperand().add(defaultTargetList);
 
     return addOperation;
@@ -374,6 +376,7 @@ public class RetargetingListServiceSample {
     RetargetingListOperation addOperation = new RetargetingListOperation();
     addOperation.setOperator(Operator.ADD);
     addOperation.setAccountId(accountId);
+    addOperation.setOwner(TargetListOwner.OWNER);
     addOperation.getOperand().addAll(ruleBaseTargetListList);
 
     return addOperation;
@@ -418,6 +421,7 @@ public class RetargetingListServiceSample {
     RetargetingListOperation addOperation = new RetargetingListOperation();
     addOperation.setOperator(Operator.ADD);
     addOperation.setAccountId(accountId);
+    addOperation.setOwner(TargetListOwner.OWNER);
     addOperation.getOperand().add(logicalTargetList);
 
     return addOperation;
@@ -462,6 +466,7 @@ public class RetargetingListServiceSample {
     RetargetingListOperation setOperation = new RetargetingListOperation();
     setOperation.setOperator(Operator.SET);
     setOperation.setAccountId(accountId);
+    setOperation.setOwner(TargetListOwner.OWNER);
 
     int ruleIndex = 0;
     for (RetargetingListValues retargetingListValues : retargetingListValuesList) {

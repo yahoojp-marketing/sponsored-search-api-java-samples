@@ -20,15 +20,16 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
+ *         &lt;element name="owner" type="{http://ss.yahooapis.jp/V6}TargetListOwner" minOccurs="0"/>
  *         &lt;element name="retargetingAccountStatus" type="{http://ss.yahooapis.jp/V6}RetargetingAccountStatus" minOccurs="0"/>
  *         &lt;element name="targetListId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
+ *         &lt;element name="targetListTrackId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="targetListType" type="{http://ss.yahooapis.jp/V6}TargetListType"/>
  *         &lt;element name="targetListName" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="targetListDescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="reachStorageStatus" type="{http://ss.yahooapis.jp/V6}ReachStorageStatus" minOccurs="0"/>
  *         &lt;element name="reachStorageSpan" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *         &lt;element name="reach" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
- *         &lt;element name="targetListTrackId" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -40,15 +41,16 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "TargetingList", propOrder = {
     "accountId",
+    "owner",
     "retargetingAccountStatus",
     "targetListId",
+    "targetListTrackId",
     "targetListType",
     "targetListName",
     "targetListDescription",
     "reachStorageStatus",
     "reachStorageSpan",
-    "reach",
-    "targetListTrackId"
+    "reach"
 })
 @XmlSeeAlso({
     RuleBaseTargetList.class,
@@ -58,8 +60,11 @@ import javax.xml.bind.annotation.XmlType;
 public class TargetingList {
 
     protected long accountId;
+    @XmlSchemaType(name = "string")
+    protected TargetListOwner owner;
     protected RetargetingAccountStatus retargetingAccountStatus;
     protected Long targetListId;
+    protected Long targetListTrackId;
     @XmlElement(required = true)
     @XmlSchemaType(name = "string")
     protected TargetListType targetListType;
@@ -69,7 +74,6 @@ public class TargetingList {
     protected ReachStorageStatus reachStorageStatus;
     protected Long reachStorageSpan;
     protected Long reach;
-    protected Long targetListTrackId;
 
     /**
      * Gets the value of the accountId property.
@@ -85,6 +89,30 @@ public class TargetingList {
      */
     public void setAccountId(long value) {
         this.accountId = value;
+    }
+
+    /**
+     * Gets the value of the owner property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link TargetListOwner }
+     *     
+     */
+    public TargetListOwner getOwner() {
+        return owner;
+    }
+
+    /**
+     * Sets the value of the owner property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link TargetListOwner }
+     *     
+     */
+    public void setOwner(TargetListOwner value) {
+        this.owner = value;
     }
 
     /**
@@ -133,6 +161,30 @@ public class TargetingList {
      */
     public void setTargetListId(Long value) {
         this.targetListId = value;
+    }
+
+    /**
+     * Gets the value of the targetListTrackId property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Long }
+     *     
+     */
+    public Long getTargetListTrackId() {
+        return targetListTrackId;
+    }
+
+    /**
+     * Sets the value of the targetListTrackId property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Long }
+     *     
+     */
+    public void setTargetListTrackId(Long value) {
+        this.targetListTrackId = value;
     }
 
     /**
@@ -277,30 +329,6 @@ public class TargetingList {
      */
     public void setReach(Long value) {
         this.reach = value;
-    }
-
-    /**
-     * Gets the value of the targetListTrackId property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
-     */
-    public Long getTargetListTrackId() {
-        return targetListTrackId;
-    }
-
-    /**
-     * Sets the value of the targetListTrackId property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
-     */
-    public void setTargetListTrackId(Long value) {
-        this.targetListTrackId = value;
     }
 
 }
