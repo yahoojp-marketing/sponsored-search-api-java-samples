@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="lang" type="{http://ss.yahooapis.jp/V6}Lang" minOccurs="0"/>
  *         &lt;element name="output" type="{http://ss.yahooapis.jp/V6}Output" minOccurs="0"/>
  *         &lt;element name="encoding" type="{http://ss.yahooapis.jp/V6}Encoding" minOccurs="0"/>
- *         &lt;element name="advanced" type="{http://ss.yahooapis.jp/V6}Advanced" minOccurs="0"/>
+ *         &lt;element name="exportFields" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -65,7 +65,7 @@ import javax.xml.bind.annotation.XmlType;
     "lang",
     "output",
     "encoding",
-    "advanced"
+    "exportFields"
 })
 public class ExportSetting {
 
@@ -101,8 +101,7 @@ public class ExportSetting {
     protected Output output;
     @XmlSchemaType(name = "string")
     protected Encoding encoding;
-    @XmlSchemaType(name = "string")
-    protected Advanced advanced;
+    protected List<String> exportFields;
 
     /**
      * Gets the value of the accountId property.
@@ -573,27 +572,32 @@ public class ExportSetting {
     }
 
     /**
-     * Gets the value of the advanced property.
+     * Gets the value of the exportFields property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Advanced }
-     *     
-     */
-    public Advanced getAdvanced() {
-        return advanced;
-    }
-
-    /**
-     * Sets the value of the advanced property.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the exportFields property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Advanced }
-     *     
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getExportFields().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
      */
-    public void setAdvanced(Advanced value) {
-        this.advanced = value;
+    public List<String> getExportFields() {
+        if (exportFields == null) {
+            exportFields = new ArrayList<String>();
+        }
+        return this.exportFields;
     }
 
 }

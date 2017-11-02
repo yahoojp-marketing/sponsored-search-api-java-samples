@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "KeywordEstimatorService", targetNamespace = "http://ss.yahooapis.jp/V6", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V6.3/KeywordEstimatorService?wsdl")
+@WebServiceClient(name = "KeywordEstimatorService", targetNamespace = "http://ss.yahooapis.jp/V6", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V6.4/KeywordEstimatorService?wsdl")
 public class KeywordEstimatorService
     extends Service
 {
@@ -30,7 +30,7 @@ public class KeywordEstimatorService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V6.3/KeywordEstimatorService?wsdl");
+            url = new URL("https://sandbox.ss.yahooapis.jp/services/V6.4/KeywordEstimatorService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

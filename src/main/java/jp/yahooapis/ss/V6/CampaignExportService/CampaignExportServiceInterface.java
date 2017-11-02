@@ -64,4 +64,21 @@ public interface CampaignExportServiceInterface {
         throws ApiException
     ;
 
+    /**
+     * 
+     * @param rval
+     * @param error
+     * @throws ApiException
+     */
+    @WebMethod
+    @RequestWrapper(localName = "getExportFields", targetNamespace = "http://ss.yahooapis.jp/V6", className = "jp.yahooapis.ss.V6.CampaignExportService.GetExportFields")
+    @ResponseWrapper(localName = "getExportFieldsResponse", targetNamespace = "http://ss.yahooapis.jp/V6", className = "jp.yahooapis.ss.V6.CampaignExportService.GetExportFieldsResponse")
+    public void getExportFields(
+        @WebParam(name = "rval", targetNamespace = "http://ss.yahooapis.jp/V6", mode = WebParam.Mode.OUT)
+        Holder<CampaignExportFieldValue> rval,
+        @WebParam(name = "error", targetNamespace = "http://ss.yahooapis.jp/V6", mode = WebParam.Mode.OUT)
+        Holder<List<Error>> error)
+        throws ApiException
+    ;
+
 }

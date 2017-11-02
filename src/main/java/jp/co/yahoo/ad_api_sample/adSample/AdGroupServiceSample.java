@@ -63,7 +63,7 @@ public class AdGroupServiceSample {
       // AdGroupService ADD
       // =================================================================
       // Set Operation
-      AdGroupOperation addAdGroupOperation = createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = createSampleAddRequest(accountId, campaignId, appCampaignId);
 
       // Run
       List<AdGroupValues> adGroupValues = add(addAdGroupOperation);
@@ -81,7 +81,7 @@ public class AdGroupServiceSample {
       // AdGroupService SET
       // =================================================================
       // Set Operation
-      AdGroupOperation setAdGroupOperation = createSampleSetRequest(accountId, biddingStrategyId, adGroupValues);
+      AdGroupOperation setAdGroupOperation = createSampleSetRequest(accountId,  adGroupValues);
 
       // Run
       set(setAdGroupOperation);
@@ -455,10 +455,9 @@ public class AdGroupServiceSample {
    * @param accountId long
    * @param campaignId long
    * @param appCampaignId long
-   * @param biddingStrategyId long
    * @return AdGroupOperation
    */
-  public static AdGroupOperation createSampleAddRequest(long accountId, long campaignId, long appCampaignId, long biddingStrategyId) {
+  public static AdGroupOperation createSampleAddRequest(long accountId, long campaignId, long appCampaignId) {
     // Set Operation
     AdGroupOperation operation = new AdGroupOperation();
     operation.setOperator(Operator.ADD);
@@ -467,16 +466,6 @@ public class AdGroupServiceSample {
     // Set Bid
     Bid bit = new Bid();
     bit.setMaxCpc((long) 120);
-
-    // Set AutoBidding
-    AdGroupBiddingStrategy autoBiddingStrategy = new AdGroupBiddingStrategy();
-    autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
-    autoBiddingStrategy.setInitialBid(bit);
-
-    // Set ManualCpc
-    AdGroupBiddingStrategy manualCpcStrategy = new AdGroupBiddingStrategy();
-    manualCpcStrategy.setBiddingStrategyType(BiddingStrategyType.MANUAL_CPC);
-    manualCpcStrategy.setInitialBid(bit);
 
     // Set Settings
     TargetingSetting targetingSetting = new TargetingSetting();
@@ -490,13 +479,12 @@ public class AdGroupServiceSample {
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));
     
-    // Set AutoBidding AdGroup
+    // Set AdGroup
     AdGroup autoBiddingAdGroup = new AdGroup();
     autoBiddingAdGroup.setAccountId(accountId);
     autoBiddingAdGroup.setCampaignId(campaignId);
-    autoBiddingAdGroup.setAdGroupName("SampleAutoBiddingAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    autoBiddingAdGroup.setAdGroupName("SampleAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
     autoBiddingAdGroup.setUserStatus(UserStatus.ACTIVE);
-    autoBiddingAdGroup.setBiddingStrategyConfiguration(autoBiddingStrategy);
     autoBiddingAdGroup.setSettings(targetingSetting);    
     autoBiddingAdGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     autoBiddingAdGroup.setCustomParameters(customParameters);
@@ -507,7 +495,6 @@ public class AdGroupServiceSample {
     manualCpcAdGroup.setCampaignId(campaignId);
     manualCpcAdGroup.setAdGroupName("SampleManualCpcAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
     manualCpcAdGroup.setUserStatus(UserStatus.ACTIVE);
-    manualCpcAdGroup.setBiddingStrategyConfiguration(manualCpcStrategy);
     manualCpcAdGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     manualCpcAdGroup.setCustomParameters(customParameters);
     
@@ -526,11 +513,10 @@ public class AdGroupServiceSample {
    * create sample request.
    *
    * @param accountId long
-   * @param biddingStrategyId long
    * @param adGroupValues AdGroupValues
    * @return AdGroupOperation
    */
-  public static AdGroupOperation createSampleSetRequest(long accountId, long biddingStrategyId, List<AdGroupValues> adGroupValues) {
+  public static AdGroupOperation createSampleSetRequest(long accountId, List<AdGroupValues> adGroupValues) {
     // Set Operation
     AdGroupOperation operation = new AdGroupOperation();
     operation.setOperator(Operator.SET);
@@ -542,11 +528,6 @@ public class AdGroupServiceSample {
       // Set Bid
       Bid bit = new Bid();
       bit.setMaxCpc((long) 200);
-
-      // Set AutoBidding
-      AdGroupBiddingStrategy autoBiddingStrategy = new AdGroupBiddingStrategy();
-      autoBiddingStrategy.setBiddingStrategyId(biddingStrategyId);
-      autoBiddingStrategy.setInitialBid(bit);
 
       // Set Settings
       TargetingSetting targetingSetting = new TargetingSetting();
@@ -560,8 +541,6 @@ public class AdGroupServiceSample {
       adGroup.setAdGroupId(adGroupValue.getAdGroup().getAdGroupId());
       adGroup.setCampaignName("Sample_UpdateOn_" + adGroupValue.getAdGroup().getAdGroupId() + "_" + SoapUtils.getCurrentTimestamp());
       adGroup.setUserStatus(UserStatus.PAUSED);
-      // Change Auto Bidding Strategy
-      adGroup.setBiddingStrategyConfiguration(autoBiddingStrategy);
 
       if (null != adGroup.getTrackingUrl() && !"".equals(adGroup.getTrackingUrl())) {
         adGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id2}");

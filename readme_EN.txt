@@ -1,10 +1,14 @@
 --------------------------------
 <<Version>>
 --------------------------------
-Version 6.3.0
+Version 6.4.0
 
 [Change history]
 -----------
+2017/11/01:
+- Correspond to Version 6.4.
+- Added AuditLogDownloadSample.
+
 2017/07/20:
 - Correspond to Version 6.3.
 
@@ -88,6 +92,7 @@ The following programs are stored.
   - siteRetargetingSample/SiteRetargetingSample.java                        : Sample of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSample.java                            : Sample of Get the related keywords based on the specified value via TargetingIdeaService.
   - campaignExportSample/CampaignExportSample.java                          : Sample of Add the export job and Download via CampaignExportService.
+  - auditLogDownloadSample/AuditLogDownloadSample.java                      : Sample of download operation history log via AuditLogService.
 
 
 * The following are the class called from sample programs.
@@ -145,6 +150,7 @@ The following test cases are stored.
   - siteRetargetingSample/SiteRetargetingSampleTest.java                        : Test case of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : Test case of Get the related keywords based on the specified value via TargetingIdeaService.
   - campaignExportSample/CampaignExportSampleTest.java                          : Test case of Add the export job and Download via CampaignExportService.
+  - auditLogDownloadSample/AuditLogDownloadSampleTest.java                      : Test case of download operation history log via AuditLogService.
 
 [src/test/resource directory]
 The following resources are stored.
@@ -202,7 +208,7 @@ TARGETLISTID	: Target list ID (Optional/New list created if it does not exist)
 --------------------------------
 set SAMPLE_HOME={ad-api-sample}
 set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.3.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
+set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.4.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
 
 [e.g.]
 ---------------------------------------
@@ -235,6 +241,7 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingLis
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.auditLogDownloadSample.AuditLogDownloadSample
 ---------------------------------------
 
 When the operation for data download is executed, the file will be stored in the directory of download.

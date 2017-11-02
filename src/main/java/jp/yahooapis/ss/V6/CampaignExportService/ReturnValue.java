@@ -35,6 +35,7 @@ import javax.xml.bind.annotation.XmlType;
     "error"
 })
 @XmlSeeAlso({
+    CampaignExportFieldValue.class,
     CampaignExportValues.class
 })
 public abstract class ReturnValue {

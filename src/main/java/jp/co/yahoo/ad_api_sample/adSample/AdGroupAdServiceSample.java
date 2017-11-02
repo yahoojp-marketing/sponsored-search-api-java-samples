@@ -372,28 +372,12 @@ public class AdGroupAdServiceSample {
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));
 
-    // Set TextAd2
-    TextAd2 textAd2 = new TextAd2();
-    textAd2.setType(AdType.TEXT_AD_2);
-    textAd2.setHeadline("sample headline");
-    textAd2.setDescription("sample ad desc");
-    textAd2.setDescription2("sample ad desc2");
-    textAd2.setDisplayUrl("www.yahoo.co.jp");
-    textAd2.setDevicePreference(DevicePreference.SMART_PHONE);
-    textAd2.setAdvancedUrl("http://www.yahoo.co.jp");
-    textAd2.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
-    textAd2.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
-    textAd2.setCustomParameters(customParameters);
-
     AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl1 = new AdGroupAdAdditionalAdvancedUrls();
     AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl2 = new AdGroupAdAdditionalAdvancedUrls();
     AdGroupAdAdditionalAdvancedUrls additionalAdvancedUrl3 = new AdGroupAdAdditionalAdvancedUrls();
     additionalAdvancedUrl1.setAdvancedUrl("http://www1.yahoo.co.jp");
     additionalAdvancedUrl2.setAdvancedUrl("http://www2.yahoo.co.jp");
     additionalAdvancedUrl3.setAdvancedUrl("http://www3.yahoo.co.jp");
-    textAd2.getAdditionalAdvancedUrls().add(additionalAdvancedUrl1);
-    textAd2.getAdditionalAdvancedUrls().add(additionalAdvancedUrl2);
-    textAd2.getAdditionalAdvancedUrls().add(additionalAdvancedUrl3);
 
     AdGroupAdAdditionalAdvancedMobileUrls adGroupAdAdditionalAdvancedMobileUrls1 = new AdGroupAdAdditionalAdvancedMobileUrls();
     AdGroupAdAdditionalAdvancedMobileUrls adGroupAdAdditionalAdvancedMobileUrls2 = new AdGroupAdAdditionalAdvancedMobileUrls();
@@ -401,17 +385,6 @@ public class AdGroupAdServiceSample {
     adGroupAdAdditionalAdvancedMobileUrls1.setAdvancedMobileUrl("http://www1.yahoo.co.jp/mobile");
     adGroupAdAdditionalAdvancedMobileUrls2.setAdvancedMobileUrl("http://www2.yahoo.co.jp/mobile");
     adGroupAdAdditionalAdvancedMobileUrls3.setAdvancedMobileUrl("http://www3.yahoo.co.jp/mobile");
-    textAd2.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls1);
-    textAd2.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls2);
-    textAd2.getAdditionalAdvancedMobileUrls().add(adGroupAdAdditionalAdvancedMobileUrls3);
-
-    AdGroupAd textAd2AdGroupAd = new AdGroupAd();
-    textAd2AdGroupAd.setAccountId(accountId);
-    textAd2AdGroupAd.setCampaignId(campaignId);
-    textAd2AdGroupAd.setAdGroupId(adGroupId);
-    textAd2AdGroupAd.setAdName("SampleTextAd2_CreateOn_" + SoapUtils.getCurrentTimestamp());
-    textAd2AdGroupAd.setAd(textAd2);
-    textAd2AdGroupAd.setUserStatus(UserStatus.ACTIVE);
 
     // Set AppAd
     AppAd appAd = new AppAd();
@@ -469,7 +442,7 @@ public class AdGroupAdServiceSample {
     extendedTextAdAdGroupAd.setAd(extendedTextAd);
     extendedTextAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
 
-    operation.getOperand().addAll(Arrays.asList(textAd2AdGroupAd, appAdAdGroupAd, extendedTextAdAdGroupAd));
+    operation.getOperand().addAll(Arrays.asList(appAdAdGroupAd, extendedTextAdAdGroupAd));
 
     return operation;
   }
@@ -497,17 +470,7 @@ public class AdGroupAdServiceSample {
       adGroupAd.setAdId(adGroupAdValue.getAdGroupAd().getAdId());
       adGroupAd.setUserStatus(UserStatus.PAUSED);
 
-      // Set Ad
-      if (AdType.TEXT_AD_2.equals(adGroupAdValue.getAdGroupAd().getAd().getType())) {
-
-        // Set TextAd2
-        TextAd2 textAd2 = new TextAd2();
-        textAd2.setType(AdType.TEXT_AD_2);
-
-        adGroupAd.setAdName("SampleTextAd2_UpdateOn_" + SoapUtils.getCurrentTimestamp());
-        adGroupAd.setAd(textAd2);
-
-      } else if (AdType.APP_AD.equals(adGroupAdValue.getAdGroupAd().getAd().getType())) {
+      if (AdType.APP_AD.equals(adGroupAdValue.getAdGroupAd().getAd().getType())) {
 
         // Set AppAd
         AppAd appAd = new AppAd();

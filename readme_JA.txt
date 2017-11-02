@@ -1,10 +1,14 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version 6.3.0
+Version 6.4.0
 
 ■変更履歴
 -----------
+2017/11/01:
+- Version 6.4に対応しました。
+- AuditLogDownloadSampleを追加しました。
+
 2017/07/20:
 - Version 6.3に対応しました。
 
@@ -90,6 +94,7 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - siteRetargetingSample/SiteRetargetingSample.java                        : RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のサンプルです。
   - targetingIdeaSample/TargetingIdeaSample.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のサンプルです。
   - campaignExportSample/CampaignExportSample.java                          : CampaignExportServiceによるExportジョブ登録、CSVダウンロードのサンプルです。
+  - auditLogDownloadSample/AuditLogDownloadSample.java                      : AuditLogServiceによるジョブ登録、CSVダウンロードのサンプルです。
 
 ・以下は各サンプルプログラムから利用されるクラスです。
 
@@ -102,12 +107,12 @@ JAX-WSを使用してAPIを呼び出す形になっています。
 
 - binディレクトリ : コンパイルされたサンプルプログラムの実行ファイルと、Windows上で実行するためのバッチファイルが格納されています。
   - run_sample.bat                ： Windows上でサンプルプログラムを実行するためのバッチファイルです。
-  - ad-api-sample-SS-API-V6.3.jar ： コンパイルされたサンプルプログラムがまとめたjarファイルです。
+  - ad-api-sample-SS-API-V6.4.jar ： コンパイルされたサンプルプログラムがまとめたjarファイルです。
 
 - confディレクトリ : サンプルプログラム実行時の各種設定を記述するプロパティファイルが格納されています。
   - api_config.properties：各種IDを記述する設定ファイルです。
 
-- downloadディレクトリ：ReportDownloadSample,CampaignExportServiceを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
+- downloadディレクトリ：ReportDownloadSample,CampaignExportService,AuditLogServiceを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
 
 - uploadディレクトリ：現在は利用しません。
 
@@ -149,6 +154,7 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - siteRetargetingSample/SiteRetargetingSampleTest.java                        : RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のテストケースです。
   - targetingIdeaSample/TargetingIdeaSampleTest.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のテストケースです。
   - campaignExportSample/CampaignExportSampleTest.java                          : CampaignExportServiceによるExportジョブ登録、ダウンロード処理のテストケースです。
+  - auditLogDownloadSample/AuditLogDownloadSampleTest.java                      : AuditLogServiceによるジョブ登録、CSVダウンロード処理のテストケースです。
 
 ■src/test/resourceディレクトリ
 以下の内容物が格納されています。
@@ -206,7 +212,7 @@ TARGETLISTID  : ターゲットリストID（任意、存在しない場合は�
 --------------------------------
 set SAMPLE_HOME={ad-api-sample}
 set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.3.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
+set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.4.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\src\main\resources
 
 ■実行例
 ---------------------------------------
@@ -242,6 +248,7 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingLis
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.auditLogDownloadSample.AuditLogDownloadSample
 ---------------------------------------
 
 データをダウンロードする処理を実行した場合には、downloadディレクトリにファイルが格納されます。

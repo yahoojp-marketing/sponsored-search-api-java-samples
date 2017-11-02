@@ -18,6 +18,7 @@ import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdSelector;
 import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdValues;
 import jp.yahooapis.ss.V6.AdGroupAdService.AdType;
 import jp.yahooapis.ss.V6.AdGroupAdService.DevicePreference;
+import jp.yahooapis.ss.V6.AdGroupAdService.ExtendedTextAd;
 import jp.yahooapis.ss.V6.AdGroupAdService.Operator;
 import jp.yahooapis.ss.V6.AdGroupAdService.TextAd2;
 import jp.yahooapis.ss.V6.AdGroupAdService.UserStatus;
@@ -195,13 +196,13 @@ public class AdvancedUrlSample {
       // AdGroupService
       // =================================================================
       // ADD
-      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
       List<AdGroupValues> adGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
       // GET
       AdGroupSelector adGroupSelector = AdGroupServiceSample.createSampleGetRequest(accountId, adGroupValues);
       AdGroupServiceSample.get(adGroupSelector);
       // SET
-      AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, biddingStrategyId, adGroupValues);
+      AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, adGroupValues);
       AdGroupServiceSample.set(setAdGroupOperation);
 
       for (AdGroupValues value : adGroupValues) {
@@ -871,28 +872,28 @@ public class AdvancedUrlSample {
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));
 
-    // Set TextAd2
-    TextAd2 textAd2 = new TextAd2();
-    textAd2.setType(AdType.TEXT_AD_2);
-    textAd2.setHeadline("sample headline");
-    textAd2.setDescription("sample ad desc");
-    textAd2.setDescription2("sample ad desc2");
-    textAd2.setDisplayUrl("www.yahoo.co.jp");
-    textAd2.setDevicePreference(DevicePreference.SMART_PHONE);
-    textAd2.setAdvancedUrl("http://www.yahoo.co.jp");
-    textAd2.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
-    textAd2.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
-    textAd2.setCustomParameters(customParameters);
+    // Set ExtendedTextAd
+    ExtendedTextAd extendedTextAd = new ExtendedTextAd();
+    extendedTextAd.setType(AdType.EXTENDED_TEXT_AD);
+    extendedTextAd.setHeadline("sample headline");
+    extendedTextAd.setHeadline2("sample headline");
+    extendedTextAd.setDescription("sample ad desc");
+    extendedTextAd.setDisplayUrl("www.yahoo.co.jp");
+    extendedTextAd.setDevicePreference(DevicePreference.SMART_PHONE);
+    extendedTextAd.setAdvancedUrl("http://www.yahoo.co.jp");
+    extendedTextAd.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
+    extendedTextAd.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
+    extendedTextAd.setCustomParameters(customParameters);
 
-    AdGroupAd textAd2AdGroupAd = new AdGroupAd();
-    textAd2AdGroupAd.setAccountId(accountId);
-    textAd2AdGroupAd.setCampaignId(campaignId);
-    textAd2AdGroupAd.setAdGroupId(adGroupId);
-    textAd2AdGroupAd.setAdName("SampleTextAd2_CreateOn_" + SoapUtils.getCurrentTimestamp());
-    textAd2AdGroupAd.setAd(textAd2);
-    textAd2AdGroupAd.setUserStatus(UserStatus.ACTIVE);
+    AdGroupAd extendedTextAdAdGroupAd = new AdGroupAd();
+    extendedTextAdAdGroupAd.setAccountId(accountId);
+    extendedTextAdAdGroupAd.setCampaignId(campaignId);
+    extendedTextAdAdGroupAd.setAdGroupId(adGroupId);
+    extendedTextAdAdGroupAd.setAdName("SampleExtendedTextAd_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    extendedTextAdAdGroupAd.setAd(extendedTextAd);
+    extendedTextAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
 
-    operation.getOperand().addAll(Arrays.asList(textAd2AdGroupAd));
+    operation.getOperand().addAll(Arrays.asList(extendedTextAdAdGroupAd));
 
     return operation;
   }
