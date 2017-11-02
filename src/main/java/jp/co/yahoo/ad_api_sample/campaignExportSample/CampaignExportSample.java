@@ -3,7 +3,8 @@ package jp.co.yahoo.ad_api_sample.campaignExportSample;
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignExportServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.JobTimeoutException;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.CampaignExportService.Advanced;
+import jp.yahooapis.ss.V6.CampaignExportService.CampaignExportFieldAttribute;
+import jp.yahooapis.ss.V6.CampaignExportService.CampaignExportFieldValue;
 import jp.yahooapis.ss.V6.CampaignExportService.CampaignExportPage;
 import jp.yahooapis.ss.V6.CampaignExportService.CampaignExportReturnValue;
 import jp.yahooapis.ss.V6.CampaignExportService.CampaignExportService;
@@ -18,6 +19,7 @@ import jp.yahooapis.ss.V6.CampaignExportService.JobStatus;
 import jp.yahooapis.ss.V6.CampaignExportService.Lang;
 import jp.yahooapis.ss.V6.CampaignExportService.Output;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -61,13 +63,14 @@ public class CampaignExportSample {
     this.jobName = "sampleExport";
     ExportSetting setting = new ExportSetting();
     setting.setAccountId(accountId);
-    setting.setAdvanced(Advanced.FALSE);
     setting.setJobName(this.jobName);
     setting.getEntityTypes().addAll(Arrays.asList(EntityType.CAMPAIGN,EntityType.BIDDABLE_AD_GROUP_CRITERION));
     setting.setLang(Lang.EN);
     setting.setEncoding(Encoding.UTF_8);
     setting.setOutput(Output.CSV);
-
+    for (CampaignExportFieldAttribute attribute : getExportFields()) {
+      setting.getExportFields().add(attribute.getFieldName());
+    }
     return this.addJob(setting);
   }
 
@@ -171,12 +174,41 @@ public class CampaignExportSample {
     SoapUtils.download(this.downloadUrl, fileName);
   }
 
+  /**
+   * execute CampaignExportService::getExportFields
+   * @throws Exception
+   */
+  public List<CampaignExportFieldAttribute> getExportFields() throws Exception {
+    Holder<CampaignExportFieldValue> returnValue = new Holder<>();
+    Holder<List<Error>> errorHolder = new Holder<>();
+    String separator = System.getProperty("line.separator");
+    List<String> exportFieldName = new ArrayList<>();
+
+    System.out.println("############################################");
+    System.out.println("CampaignExportService::getExportFields");
+    this.service.getExportFields(returnValue,errorHolder);
+    StringBuilder builder = new StringBuilder();
+    builder.append("exportField = {");
+    builder.append(separator);
+    for(CampaignExportFieldAttribute attribute:returnValue.value.getFields()){
+      builder.append("fieldName[").append(attribute.getFieldName()).append("],");
+      builder.append("displayFieldNameJA[").append(attribute.getDisplayFieldNameJA()).append("],");
+      builder.append("displayFieldNameEN[").append(attribute.getDisplayFieldNameEN()).append("],");
+      builder.append(separator);
+      exportFieldName.add(attribute.getFieldName());
+    }
+    builder.append("}");
+    System.out.println(builder.toString());
+    System.out.println("############################################");
+
+    return returnValue.value.getFields();
+  }
+
   private void display(Job job) {
     System.out.println("accountId = " + job.getAccountId());
     System.out.println("jobId = " + job.getJobId());
     System.out.println("jobName = " + job.getJobName());
     System.out.println("userName = " + job.getUserName());
-    System.out.println("advanced = " + job.getAdvanced());
     System.out.println("status = " + job.getStatus());
     System.out.println("startDate = " + job.getStartDate());
     System.out.println("endDate = " + job.getEndDate());

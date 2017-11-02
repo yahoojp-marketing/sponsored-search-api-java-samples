@@ -1,6 +1,8 @@
 
 package jp.yahooapis.ss.V6.CampaignExportService;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlSchemaType;
@@ -25,8 +27,8 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="endDate" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="status" type="{http://ss.yahooapis.jp/V6}JobStatus" minOccurs="0"/>
  *         &lt;element name="progress" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/>
- *         &lt;element name="advanced" type="{http://ss.yahooapis.jp/V6}Advanced" minOccurs="0"/>
  *         &lt;element name="downloadUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="exportFields" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -45,8 +47,8 @@ import javax.xml.bind.annotation.XmlType;
     "endDate",
     "status",
     "progress",
-    "advanced",
-    "downloadUrl"
+    "downloadUrl",
+    "exportFields"
 })
 public class Job {
 
@@ -59,9 +61,8 @@ public class Job {
     @XmlSchemaType(name = "string")
     protected JobStatus status;
     protected Integer progress;
-    @XmlSchemaType(name = "string")
-    protected Advanced advanced;
     protected String downloadUrl;
+    protected List<String> exportFields;
 
     /**
      * Gets the value of the accountId property.
@@ -256,30 +257,6 @@ public class Job {
     }
 
     /**
-     * Gets the value of the advanced property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Advanced }
-     *     
-     */
-    public Advanced getAdvanced() {
-        return advanced;
-    }
-
-    /**
-     * Sets the value of the advanced property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Advanced }
-     *     
-     */
-    public void setAdvanced(Advanced value) {
-        this.advanced = value;
-    }
-
-    /**
      * Gets the value of the downloadUrl property.
      * 
      * @return
@@ -301,6 +278,35 @@ public class Job {
      */
     public void setDownloadUrl(String value) {
         this.downloadUrl = value;
+    }
+
+    /**
+     * Gets the value of the exportFields property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the exportFields property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getExportFields().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getExportFields() {
+        if (exportFields == null) {
+            exportFields = new ArrayList<String>();
+        }
+        return this.exportFields;
     }
 
 }

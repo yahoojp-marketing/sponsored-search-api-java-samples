@@ -1,6 +1,7 @@
 package jp.co.yahoo.ad_api_sample.campaignExportSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
+import jp.yahooapis.ss.V6.CampaignExportService.CampaignExportFieldAttribute;
 import jp.yahooapis.ss.V6.CampaignExportService.Encoding;
 import jp.yahooapis.ss.V6.CampaignExportService.EntityType;
 import jp.yahooapis.ss.V6.CampaignExportService.ExportSetting;
@@ -11,12 +12,16 @@ import jp.yahooapis.ss.V6.CampaignExportService.Output;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 /**
- * Created by ttakami on 2016/05/02.
+ * Sample TestCase for AccountSampleTest.
+ * Copyright (C) 2016 Yahoo Japan Corporation. All Rights Reserved.
  */
 public class CampaignExportSampleTest {
 
@@ -67,7 +72,14 @@ public class CampaignExportSampleTest {
     selector.getJobIds().add(jobId);
     CampaignExportSample sample = new CampaignExportSample();
     sample.get(selector).download();
+  }
 
+  @Ignore
+  @Test
+  public void testGetExportFields() throws Exception{
+    CampaignExportSample sample = new CampaignExportSample();
+    List<CampaignExportFieldAttribute> exportFieldValueList = sample.getExportFields();
+    assertTrue(!exportFieldValueList.isEmpty());
   }
 
 }

@@ -134,13 +134,13 @@ public class AdSample {
       // AdGroupService
       // =================================================================
       // ADD
-      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
       List<AdGroupValues> adGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
       // GET
       AdGroupSelector adGroupSelector = AdGroupServiceSample.createSampleGetRequest(accountId, adGroupValues);
       AdGroupServiceSample.get(adGroupSelector);
       // SET
-      AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, biddingStrategyId, adGroupValues);
+      AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, adGroupValues);
       AdGroupServiceSample.set(setAdGroupOperation);
 
       for (AdGroupValues value : adGroupValues) {

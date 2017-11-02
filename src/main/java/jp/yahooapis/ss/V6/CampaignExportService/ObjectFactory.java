@@ -68,6 +68,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetExportFieldsResponse }
+     * 
+     */
+    public GetExportFieldsResponse createGetExportFieldsResponse() {
+        return new GetExportFieldsResponse();
+    }
+
+    /**
+     * Create an instance of {@link CampaignExportFieldValue }
+     * 
+     */
+    public CampaignExportFieldValue createCampaignExportFieldValue() {
+        return new CampaignExportFieldValue();
+    }
+
+    /**
      * Create an instance of {@link Get }
      * 
      */
@@ -121,6 +137,22 @@ public class ObjectFactory {
      */
     public SoapHeader createSoapHeader() {
         return new SoapHeader();
+    }
+
+    /**
+     * Create an instance of {@link GetExportFields }
+     * 
+     */
+    public GetExportFields createGetExportFields() {
+        return new GetExportFields();
+    }
+
+    /**
+     * Create an instance of {@link CampaignExportFieldAttribute }
+     * 
+     */
+    public CampaignExportFieldAttribute createCampaignExportFieldAttribute() {
+        return new CampaignExportFieldAttribute();
     }
 
     /**

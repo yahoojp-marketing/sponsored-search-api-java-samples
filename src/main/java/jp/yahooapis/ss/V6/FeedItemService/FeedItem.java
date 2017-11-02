@@ -37,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="customParameters" type="{http://ss.yahooapis.jp/V6}CustomParameters" minOccurs="0"/>
  *         &lt;element name="reviewCustomParameters" type="{http://ss.yahooapis.jp/V6}CustomParameters" minOccurs="0"/>
  *         &lt;element name="advanced" type="{http://ss.yahooapis.jp/V6}Advanced" minOccurs="0"/>
+ *         &lt;element name="geoTargeting" type="{http://ss.yahooapis.jp/V6}Location" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -64,7 +65,8 @@ import javax.xml.bind.annotation.XmlType;
     "targetingKeyword",
     "customParameters",
     "reviewCustomParameters",
-    "advanced"
+    "advanced",
+    "geoTargeting"
 })
 public class FeedItem {
 
@@ -90,6 +92,7 @@ public class FeedItem {
     protected CustomParameters reviewCustomParameters;
     @XmlSchemaType(name = "string")
     protected Advanced advanced;
+    protected Location geoTargeting;
 
     /**
      * Gets the value of the accountId property.
@@ -531,6 +534,30 @@ public class FeedItem {
      */
     public void setAdvanced(Advanced value) {
         this.advanced = value;
+    }
+
+    /**
+     * Gets the value of the geoTargeting property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Location }
+     *     
+     */
+    public Location getGeoTargeting() {
+        return geoTargeting;
+    }
+
+    /**
+     * Sets the value of the geoTargeting property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Location }
+     *     
+     */
+    public void setGeoTargeting(Location value) {
+        this.geoTargeting = value;
     }
 
 }

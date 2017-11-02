@@ -55,7 +55,7 @@ public class AdGroupServiceSampleTest {
   @Test
   public void testAdd() throws Exception {
     // Set Operation
-    AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
+    AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
 
     // Run
     List<AdGroupValues> addAdGroupValues = null;
@@ -84,7 +84,7 @@ public class AdGroupServiceSampleTest {
     // =================================================================
     List<AdGroupValues> addAdGroupValues = null;
     try {
-      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
       addAdGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
     } catch (Exception e) {
       fail();
@@ -94,7 +94,7 @@ public class AdGroupServiceSampleTest {
     // AdGroupService SET
     // =================================================================
     // Set Operation
-    AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, biddingStrategyId, addAdGroupValues);
+    AdGroupOperation setAdGroupOperation = AdGroupServiceSample.createSampleSetRequest(accountId, addAdGroupValues);
 
     // Run
     List<AdGroupValues> setAdGroupValues = null;
@@ -123,7 +123,7 @@ public class AdGroupServiceSampleTest {
     // =================================================================
     List<AdGroupValues> addAdGroupValues = null;
     try {
-      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
       addAdGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
     } catch (Exception e) {
       fail();

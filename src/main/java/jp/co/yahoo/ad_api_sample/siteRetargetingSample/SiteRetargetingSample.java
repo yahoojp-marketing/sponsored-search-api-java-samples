@@ -115,7 +115,7 @@ public class SiteRetargetingSample {
       List<AdGroupValues> adGroupValues = null;
       if (adGroupId == 9999999999l) {
         // ADD
-        AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId, biddingStrategyId);
+        AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
         adGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
         for (AdGroupValues value : adGroupValues) {
           if (value.getAdGroup().getCampaignId() == campaignId) {

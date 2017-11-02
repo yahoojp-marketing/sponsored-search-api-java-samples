@@ -8,7 +8,7 @@ Property for build tasks
   <property name="src.dir" value="${basedir}/src/main/java"/>
   <property name="dest.dir" value="${basedir}/build"/>
   <property name="wsdl.dir" value="${basedir}/wsdl"/>
-  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.2"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.4"/>
   <property name="pakcage.base" value="jp.yahooapis.ss.V6"/>
   <!--==================================
 classpath for build
@@ -450,6 +450,19 @@ target for wsimport
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/AdGroupRetargetingListService?wsdl"/>
+    </exec>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AuditLogService/AuditLogService.wsdl"/>
+      <arg value="-p"/>
+      <arg value="${pakcage.base}.AuditLogService"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AuditLogService?wsdl"/>
     </exec>
   </target>
 </project>

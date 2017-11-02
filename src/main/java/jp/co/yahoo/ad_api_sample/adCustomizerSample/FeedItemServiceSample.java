@@ -4,6 +4,7 @@ import jp.co.yahoo.ad_api_sample.error.impl.FeedItemServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.FeedItemService.Advanced;
 import jp.yahooapis.ss.V6.FeedItemService.ApprovalStatus;
+import jp.yahooapis.ss.V6.FeedItemService.CriterionTypeFeedItem;
 import jp.yahooapis.ss.V6.FeedItemService.CustomParameter;
 import jp.yahooapis.ss.V6.FeedItemService.CustomParameters;
 import jp.yahooapis.ss.V6.FeedItemService.DayOfWeek;
@@ -11,6 +12,7 @@ import jp.yahooapis.ss.V6.FeedItemService.DevicePreference;
 import jp.yahooapis.ss.V6.FeedItemService.Error;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItem;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemAttribute;
+import jp.yahooapis.ss.V6.FeedItemService.FeedItemGeoRestriction;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemPage;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemPlaceholderType;
@@ -21,7 +23,9 @@ import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemService;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemServiceInterface;
 import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
+import jp.yahooapis.ss.V6.FeedItemService.IsRemove;
 import jp.yahooapis.ss.V6.FeedItemService.KeywordMatchType;
+import jp.yahooapis.ss.V6.FeedItemService.Location;
 import jp.yahooapis.ss.V6.FeedItemService.MinuteOfHour;
 import jp.yahooapis.ss.V6.FeedItemService.Operator;
 import jp.yahooapis.ss.V6.FeedItemService.Paging;
@@ -30,6 +34,8 @@ import jp.yahooapis.ss.V6.FeedItemService.TargetingAdGroup;
 import jp.yahooapis.ss.V6.FeedItemService.TargetingCampaign;
 import jp.yahooapis.ss.V6.FeedItemService.TargetingKeyword;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -359,6 +365,19 @@ public class FeedItemServiceSample {
         System.out.println("advanced = " + feedItem.getAdvanced().toString());
       }
 
+      if (feedItem.getGeoTargeting() != null) {
+        System.out.println("geoTargeting/targetId = " + feedItem.getGeoTargeting().getTargetId());
+        if (feedItem.getGeoTargeting().getType() != null) {
+          System.out.println("geoTargeting/type = " + feedItem.getGeoTargeting().getType().name());
+        }
+        if (feedItem.getGeoTargeting().getGeoTargetingRestriction() != null) {
+          System.out.println("geoTargeting/geoTargetingRestriction = " + feedItem.getGeoTargeting().getGeoTargetingRestriction().name());
+        }
+        if (feedItem.getGeoTargeting().getIsRemove() != null) {
+          System.out.println("geoTargeting/isRemove = " + feedItem.getGeoTargeting().getIsRemove().name());
+        }
+      }
+
       System.out.println("---------");
     } catch (Exception e) {
       e.printStackTrace();
@@ -404,8 +423,8 @@ public class FeedItemServiceSample {
     feedItem.getFeedItemAttribute().addAll(Arrays.asList(integerTypeFeedItemAttribute, priceTypeFeedItemAttribute, dateTypeFeedItemAttribute, stringTypeFeedItemAttribute));
     feedItem.setPlaceholderType(FeedItemPlaceholderType.AD_CUSTOMIZER);
     feedItem.setDevicePreference(DevicePreference.SMART_PHONE);
-    feedItem.setStartDate("20161215");
-    feedItem.setEndDate("20181215");
+    feedItem.setStartDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now()));
+    feedItem.setEndDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now().plusMonths(1L)));
 
     // Set Schedule
     FeedItemSchedule feedItemSchedule1 = new FeedItemSchedule();
@@ -435,6 +454,13 @@ public class FeedItemServiceSample {
     targetingKeyword.setText("sample keyword");
     targetingKeyword.setMatchType(KeywordMatchType.PHRASE);
     feedItem.setTargetingKeyword(targetingKeyword);
+
+    // Set GeoTargeting
+    Location location = new Location();
+    location.setType(CriterionTypeFeedItem.LOCATION);
+    location.setGeoTargetingRestriction(FeedItemGeoRestriction.LOCATION_OF_PRESENCE);
+    location.setTargetId("JP-01-0010");
+    feedItem.setGeoTargeting(location);
 
     operation.getOperand().add(feedItem);
 
@@ -495,6 +521,11 @@ public class FeedItemServiceSample {
       TargetingKeyword targetingKeyword = new TargetingKeyword();
       targetingKeyword.setTargetingKeywordId(0L);
       feedItem.setTargetingKeyword(targetingKeyword);
+
+      // Set GeoTargeting delete GeoTargeting
+      Location location = new Location();
+      location.setIsRemove(IsRemove.TRUE);
+      feedItem.setGeoTargeting(location);
 
       operation.getOperand().add(feedItem);
     }
