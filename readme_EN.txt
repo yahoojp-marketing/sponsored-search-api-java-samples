@@ -1,10 +1,13 @@
 --------------------------------
 <<Version>>
 --------------------------------
-Version 6.4.0
+Version 6.5.0
 
 [Change history]
 -----------
+2017/01/24:
+- Correspond to Version 6.5.
+
 2017/11/01:
 - Correspond to Version 6.4.
 - Added AuditLogDownloadSample.

@@ -22,12 +22,14 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="accountId" type="{http://www.w3.org/2001/XMLSchema}long"/>
  *         &lt;element name="conversionTrackerIds" type="{http://www.w3.org/2001/XMLSchema}long" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="appIds" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="statuses" type="{http://ss.yahooapis.jp/V6}ConversionTrackerStatus" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="categories" type="{http://ss.yahooapis.jp/V6}ConversionTrackerCategory" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="conversionTrackerTypes" type="{http://ss.yahooapis.jp/V6}ConversionTrackerType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="trackingCodeTypes" type="{http://ss.yahooapis.jp/V6}TrackingCodeType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="countingTypes" type="{http://ss.yahooapis.jp/V6}ConversionCountingType" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="excludeFromBiddings" type="{http://ss.yahooapis.jp/V6}ExcludeFromBidding" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="crossDeviceConversionFlags" type="{http://ss.yahooapis.jp/V6}CrossDeviceConversionFlag" maxOccurs="unbounded" minOccurs="0"/>
  *         &lt;element name="dateRange" type="{http://ss.yahooapis.jp/V6}ConversionDateRange" minOccurs="0"/>
  *         &lt;element name="paging" type="{http://ss.yahooapis.jp/V6}Paging" minOccurs="0"/>
  *       &lt;/sequence>
@@ -42,12 +44,14 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "ConversionTrackerSelector", propOrder = {
     "accountId",
     "conversionTrackerIds",
+    "appIds",
     "statuses",
     "categories",
     "conversionTrackerTypes",
     "trackingCodeTypes",
     "countingTypes",
     "excludeFromBiddings",
+    "crossDeviceConversionFlags",
     "dateRange",
     "paging"
 })
@@ -56,6 +60,7 @@ public class ConversionTrackerSelector {
     protected long accountId;
     @XmlElement(type = Long.class)
     protected List<Long> conversionTrackerIds;
+    protected List<String> appIds;
     @XmlSchemaType(name = "string")
     protected List<ConversionTrackerStatus> statuses;
     @XmlSchemaType(name = "string")
@@ -68,6 +73,8 @@ public class ConversionTrackerSelector {
     protected List<ConversionCountingType> countingTypes;
     @XmlSchemaType(name = "string")
     protected List<ExcludeFromBidding> excludeFromBiddings;
+    @XmlSchemaType(name = "string")
+    protected List<CrossDeviceConversionFlag> crossDeviceConversionFlags;
     protected ConversionDateRange dateRange;
     protected Paging paging;
 
@@ -114,6 +121,35 @@ public class ConversionTrackerSelector {
             conversionTrackerIds = new ArrayList<Long>();
         }
         return this.conversionTrackerIds;
+    }
+
+    /**
+     * Gets the value of the appIds property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the appIds property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getAppIds().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getAppIds() {
+        if (appIds == null) {
+            appIds = new ArrayList<String>();
+        }
+        return this.appIds;
     }
 
     /**
@@ -288,6 +324,35 @@ public class ConversionTrackerSelector {
             excludeFromBiddings = new ArrayList<ExcludeFromBidding>();
         }
         return this.excludeFromBiddings;
+    }
+
+    /**
+     * Gets the value of the crossDeviceConversionFlags property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the crossDeviceConversionFlags property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getCrossDeviceConversionFlags().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link CrossDeviceConversionFlag }
+     * 
+     * 
+     */
+    public List<CrossDeviceConversionFlag> getCrossDeviceConversionFlags() {
+        if (crossDeviceConversionFlags == null) {
+            crossDeviceConversionFlags = new ArrayList<CrossDeviceConversionFlag>();
+        }
+        return this.crossDeviceConversionFlags;
     }
 
     /**

@@ -156,6 +156,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link AdGroupAdRotationMode }
+     * 
+     */
+    public AdGroupAdRotationMode createAdGroupAdRotationMode() {
+        return new AdGroupAdRotationMode();
+    }
+
+    /**
      * Create an instance of {@link PageOnePromotedBiddingScheme }
      * 
      */

@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AccountTrackingUrlService", targetNamespace = "http://ss.yahooapis.jp/V6", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V6.4/AccountTrackingURLService?wsdl")
+@WebServiceClient(name = "AccountTrackingUrlService", targetNamespace = "http://ss.yahooapis.jp/V6", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V6.5/AccountTrackingURLService?wsdl")
 public class AccountTrackingUrlService
     extends Service
 {
@@ -30,7 +30,7 @@ public class AccountTrackingUrlService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V6.4/AccountTrackingURLService?wsdl");
+            url = new URL("https://sandbox.ss.yahooapis.jp/services/V6.5/AccountTrackingURLService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -4,7 +4,7 @@
 
   <groupId>jp.co.yahoo</groupId>
   <artifactId>ad-api-sample</artifactId>
-  <version>SS-API-V6.4</version>
+  <version>SS-API-V6.5</version>
   <packaging>jar</packaging>
 
   <name>ad-api-sample</name>
@@ -48,6 +48,17 @@
           <excludes>
             <exclude>**/*.properties</exclude>
           </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Built-By>Yahoo! Promotional Ads API</Built-By>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
     </plugins>

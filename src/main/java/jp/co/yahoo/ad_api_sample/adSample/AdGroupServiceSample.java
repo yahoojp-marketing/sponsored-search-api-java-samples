@@ -3,6 +3,7 @@ package jp.co.yahoo.ad_api_sample.adSample;
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroup;
+import jp.yahooapis.ss.V6.AdGroupService.AdGroupAdRotationMode;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupBiddingStrategy;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupPage;
@@ -11,6 +12,7 @@ import jp.yahooapis.ss.V6.AdGroupService.AdGroupSelector;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupService;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupServiceInterface;
 import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
+import jp.yahooapis.ss.V6.AdGroupService.AdRotationMode;
 import jp.yahooapis.ss.V6.AdGroupService.Bid;
 import jp.yahooapis.ss.V6.AdGroupService.BiddingStrategyType;
 import jp.yahooapis.ss.V6.AdGroupService.BudgetOptimizerBiddingScheme;
@@ -287,35 +289,40 @@ public class AdGroupServiceSample {
       if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof EnhancedCpcBiddingScheme) {
         EnhancedCpcBiddingScheme enhancedCpcBiddingScheme = (EnhancedCpcBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(EnhancedCpcBiddingScheme)/biddingStrategyType = " + enhancedCpcBiddingScheme.getBiddingStrategyType());
+
       } else if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof PageOnePromotedBiddingScheme) {
         PageOnePromotedBiddingScheme pageOnePromotedBiddingScheme = (PageOnePromotedBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(PageOnePromotedBiddingScheme)/biddingStrategyType = " + pageOnePromotedBiddingScheme.getBiddingStrategyType());
         System.out.println("biddingStrategyConfiguration/biddingScheme(PageOnePromotedBiddingScheme)/bidCeiling = " + pageOnePromotedBiddingScheme.getBidCeiling());
         System.out.println("biddingStrategyConfiguration/biddingScheme(PageOnePromotedBiddingScheme)/bidMultiplier = " + pageOnePromotedBiddingScheme.getBidMultiplier());
         System.out.println("biddingStrategyConfiguration/biddingScheme(PageOnePromotedBiddingScheme)/bidChangesForRaisesOnly = " + pageOnePromotedBiddingScheme.getBidChangesForRaisesOnly());
-        System.out.println("biddingStrategyConfiguration/biddingScheme(PageOnePromotedBiddingScheme)/raiseBidWhenBudgetConstrained = "
-            + pageOnePromotedBiddingScheme.getRaiseBidWhenBudgetConstrained());
+        System.out.println("biddingStrategyConfiguration/biddingScheme(PageOnePromotedBiddingScheme)/raiseBidWhenBudgetConstrained = " + pageOnePromotedBiddingScheme.getRaiseBidWhenBudgetConstrained());
         System.out.println("biddingStrategyConfiguration/biddingScheme(PageOnePromotedBiddingScheme)/raiseBidWhenLowQualityScore = " + pageOnePromotedBiddingScheme.getRaiseBidWhenLowQualityScore());
+
       } else if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof TargetCpaBiddingScheme) {
         TargetCpaBiddingScheme targetCpaBiddingScheme = (TargetCpaBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetCpaBiddingScheme)/biddingStrategyType = " + targetCpaBiddingScheme.getBiddingStrategyType());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetCpaBiddingScheme)/targetCpa = " + targetCpaBiddingScheme.getTargetCpa());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetCpaBiddingScheme)/bidCeiling = " + targetCpaBiddingScheme.getBidCeiling());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetCpaBiddingScheme)/bidFloor = " + targetCpaBiddingScheme.getBidFloor());
+
       } else if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof TargetSpendBiddingScheme) {
         TargetSpendBiddingScheme targetSpendBiddingScheme = (TargetSpendBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/biddingStrategyType = " + targetSpendBiddingScheme.getBiddingStrategyType());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/bidCeiling = " + targetSpendBiddingScheme.getBidCeiling());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetSpendBiddingScheme)/spendTarget = " + targetSpendBiddingScheme.getSpendTarget());
+
       } else if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof TargetRoasBiddingScheme) {
         TargetRoasBiddingScheme targetRoasBiddingScheme = (TargetRoasBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetRoasBiddingScheme)/biddingStrategyType = " + targetRoasBiddingScheme.getBiddingStrategyType());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetRoasBiddingScheme)/targetRoas = " + targetRoasBiddingScheme.getTargetRoas());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetRoasBiddingScheme)/bidCeiling = " + targetRoasBiddingScheme.getBidCeiling());
         System.out.println("biddingStrategyConfiguration/biddingScheme(TargetRoasBiddingScheme)/bidFloor = " + targetRoasBiddingScheme.getBidFloor());
+
       } else if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof ManualCpcBiddingScheme) {
         ManualCpcBiddingScheme manualCpcBiddingScheme = (ManualCpcBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(ManualCpcBiddingScheme)/biddingStrategyType = " + manualCpcBiddingScheme.getBiddingStrategyType());
+
       } else if (adGroup.getBiddingStrategyConfiguration().getBiddingScheme() instanceof BudgetOptimizerBiddingScheme) {
         BudgetOptimizerBiddingScheme budgetOptimizerBiddingScheme = (BudgetOptimizerBiddingScheme) adGroup.getBiddingStrategyConfiguration().getBiddingScheme();
         System.out.println("biddingStrategyConfiguration/biddingScheme(BudgetOptimizerBiddingScheme)/biddingStrategyType = " + budgetOptimizerBiddingScheme.getBiddingStrategyType());
@@ -336,114 +343,115 @@ public class AdGroupServiceSample {
 
           if (biddingStrategy.getBiddingScheme() instanceof EnhancedCpcBiddingScheme) {
             EnhancedCpcBiddingScheme enhancedCpcBiddingScheme = (EnhancedCpcBiddingScheme) biddingStrategy.getBiddingScheme();
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(EnhancedCpcBiddingScheme)/biddingStrategyType = "
-                + enhancedCpcBiddingScheme.getBiddingStrategyType());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(EnhancedCpcBiddingScheme)/biddingStrategyType = " + enhancedCpcBiddingScheme.getBiddingStrategyType());
+
           } else if (biddingStrategy.getBiddingScheme() instanceof PageOnePromotedBiddingScheme) {
             PageOnePromotedBiddingScheme pageOnePromotedBiddingScheme = (PageOnePromotedBiddingScheme) biddingStrategy.getBiddingScheme();
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/biddingStrategyType = "
-                + pageOnePromotedBiddingScheme.getBiddingStrategyType());
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/bidCeiling = "
-                + pageOnePromotedBiddingScheme.getBidCeiling());
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/bidMultiplier = "
-                + pageOnePromotedBiddingScheme.getBidMultiplier());
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/bidChangesForRaisesOnly = "
-                + pageOnePromotedBiddingScheme.getBidChangesForRaisesOnly());
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/raiseBidWhenBudgetConstrained = "
-                + pageOnePromotedBiddingScheme.getRaiseBidWhenBudgetConstrained());
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/raiseBidWhenLowQualityScore = "
-                + pageOnePromotedBiddingScheme.getRaiseBidWhenLowQualityScore());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/biddingStrategyType = " + pageOnePromotedBiddingScheme.getBiddingStrategyType());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/bidCeiling = " + pageOnePromotedBiddingScheme.getBidCeiling());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/bidMultiplier = " + pageOnePromotedBiddingScheme.getBidMultiplier());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/bidChangesForRaisesOnly = " + pageOnePromotedBiddingScheme.getBidChangesForRaisesOnly());
+            System.out.println(
+                "biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/raiseBidWhenBudgetConstrained = " + pageOnePromotedBiddingScheme.getRaiseBidWhenBudgetConstrained());
+            System.out.println(
+                "biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(PageOnePromotedBiddingScheme)/raiseBidWhenLowQualityScore = " + pageOnePromotedBiddingScheme.getRaiseBidWhenLowQualityScore());
+
           } else if (biddingStrategy.getBiddingScheme() instanceof TargetCpaBiddingScheme) {
             TargetCpaBiddingScheme targetCpaBiddingScheme = (TargetCpaBiddingScheme) biddingStrategy.getBiddingScheme();
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetCpaBiddingScheme)/biddingStrategyType = "
-                + targetCpaBiddingScheme.getBiddingStrategyType());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetCpaBiddingScheme)/biddingStrategyType = " + targetCpaBiddingScheme.getBiddingStrategyType());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetCpaBiddingScheme)/targetCpa = " + targetCpaBiddingScheme.getTargetCpa());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetCpaBiddingScheme)/bidCeiling = " + targetCpaBiddingScheme.getBidCeiling());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetCpaBiddingScheme)/bidFloor = " + targetCpaBiddingScheme.getBidFloor());
+
           } else if (biddingStrategy.getBiddingScheme() instanceof TargetSpendBiddingScheme) {
             TargetSpendBiddingScheme targetSpendBiddingScheme = (TargetSpendBiddingScheme) biddingStrategy.getBiddingScheme();
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetSpendBiddingScheme)/biddingStrategyType = "
-                + targetSpendBiddingScheme.getBiddingStrategyType());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetSpendBiddingScheme)/biddingStrategyType = " + targetSpendBiddingScheme.getBiddingStrategyType());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetSpendBiddingScheme)/bidCeiling = " + targetSpendBiddingScheme.getBidCeiling());
+
           } else if (biddingStrategy.getBiddingScheme() instanceof TargetRoasBiddingScheme) {
             TargetRoasBiddingScheme targetRoasBiddingScheme = (TargetRoasBiddingScheme) biddingStrategy.getBiddingScheme();
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetRoasBiddingScheme)/biddingStrategyType = "
-                + targetRoasBiddingScheme.getBiddingStrategyType());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetRoasBiddingScheme)/biddingStrategyType = " + targetRoasBiddingScheme.getBiddingStrategyType());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetRoasBiddingScheme)/targetRoas = " + targetRoasBiddingScheme.getTargetRoas());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetRoasBiddingScheme)/bidCeiling = " + targetRoasBiddingScheme.getBidCeiling());
             System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(TargetRoasBiddingScheme)/bidFloor = " + targetRoasBiddingScheme.getBidFloor());
+
           } else if (biddingStrategy.getBiddingScheme() instanceof ManualCpcBiddingScheme) {
             ManualCpcBiddingScheme manualCpcBiddingScheme = (ManualCpcBiddingScheme) biddingStrategy.getBiddingScheme();
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(ManualCpcBiddingScheme)/biddingStrategyType = "
-                + manualCpcBiddingScheme.getBiddingStrategyType());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(ManualCpcBiddingScheme)/biddingStrategyType = " + manualCpcBiddingScheme.getBiddingStrategyType());
+
           } else if (biddingStrategy.getBiddingScheme() instanceof BudgetOptimizerBiddingScheme) {
             BudgetOptimizerBiddingScheme budgetOptimizerBiddingScheme = (BudgetOptimizerBiddingScheme) biddingStrategy.getBiddingScheme();
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(BudgetOptimizerBiddingScheme)/biddingStrategyType = "
-                + budgetOptimizerBiddingScheme.getBiddingStrategyType());
-            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(BudgetOptimizerBiddingScheme)/bidCeiling = "
-                + budgetOptimizerBiddingScheme.getBidCeiling());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(BudgetOptimizerBiddingScheme)/biddingStrategyType = " + budgetOptimizerBiddingScheme.getBiddingStrategyType());
+            System.out.println("biddingStrategyConfiguration/parentBiddingStrategyConfigurations/biddingScheme(BudgetOptimizerBiddingScheme)/bidCeiling = " + budgetOptimizerBiddingScheme.getBidCeiling());
           }
         }
       }
+    }
 
-      if (adGroup.getSettings() != null) {
-        System.out.println("settings/criterionType = " + adGroup.getSettings().getCriterionType());
-        System.out.println("settings/targetAll = " + ((TargetingSetting)adGroup.getSettings()).getTargetAll());
-      }
-      System.out.println("trackingUrl = " + adGroup.getTrackingUrl());
-      if (null != adGroup.getCustomParameters()) {
-        CustomParameters customParameters = adGroup.getCustomParameters();
-        System.out.println("customParameters/isRemove = " + customParameters.getIsRemove());
+    if (adGroup.getSettings() != null) {
+      System.out.println("settings/criterionType = " + adGroup.getSettings().getCriterionType());
+      System.out.println("settings/targetAll = " + ((TargetingSetting) adGroup.getSettings()).getTargetAll());
+    }
 
-        if (null != customParameters.getParameters()) {
-          int index = 0;
-          for (CustomParameter parameter : customParameters.getParameters()) {
-            System.out.println("customParameters/parameters[" + index + "]/key = " + parameter.getKey());
-            System.out.println("customParameters/parameters[" + index + "]/value = " + parameter.getValue());
-            index++;
-          }
+    System.out.println("trackingUrl = " + adGroup.getTrackingUrl());
+
+    if (null != adGroup.getCustomParameters()) {
+      CustomParameters customParameters = adGroup.getCustomParameters();
+      System.out.println("customParameters/isRemove = " + customParameters.getIsRemove());
+
+      if (null != customParameters.getParameters()) {
+        int index = 0;
+        for (CustomParameter parameter : customParameters.getParameters()) {
+          System.out.println("customParameters/parameters[" + index + "]/key = " + parameter.getKey());
+          System.out.println("customParameters/parameters[" + index + "]/value = " + parameter.getValue());
+          index++;
         }
       }
+    }
 
-      if (null != adGroup.getUrlReviewData()) {
-        UrlReviewData urlReviewData = adGroup.getUrlReviewData();
-        if (null != urlReviewData.getInReviewUrl()) {
-          ReviewUrl inReviewUrl = urlReviewData.getInReviewUrl();
-          if (null != inReviewUrl) {
-            System.out.println("urlReviewData/inReviewUrl/trackingUrl = " + inReviewUrl.getTrackingUrl());
-            if (null != inReviewUrl.getParameters()) {
-              int index = 0;
-              for (CustomParameter parameter : inReviewUrl.getParameters()) {
-                System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
-                System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
-                index++;
-              }
+    if (null != adGroup.getUrlReviewData()) {
+      UrlReviewData urlReviewData = adGroup.getUrlReviewData();
+      if (null != urlReviewData.getInReviewUrl()) {
+        ReviewUrl inReviewUrl = urlReviewData.getInReviewUrl();
+        if (null != inReviewUrl) {
+          System.out.println("urlReviewData/inReviewUrl/trackingUrl = " + inReviewUrl.getTrackingUrl());
+          if (null != inReviewUrl.getParameters()) {
+            int index = 0;
+            for (CustomParameter parameter : inReviewUrl.getParameters()) {
+              System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
+              System.out.println("urlReviewData/inReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
+              index++;
             }
           }
         }
+      }
 
-        if (null != urlReviewData.getInReviewUrl()) {
-          ReviewUrl disapprovalReviewUrl = urlReviewData.getDisapprovalReviewUrl();
-          if (null != disapprovalReviewUrl) {
-            System.out.println("urlReviewData/disapprovalReviewUrl/trackingUrl = " + disapprovalReviewUrl.getTrackingUrl());
-            if (null != disapprovalReviewUrl.getParameters()) {
-              int index = 0;
-              for (CustomParameter parameter : disapprovalReviewUrl.getParameters()) {
-                System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
-                System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
-                index++;
-              }
+      if (null != urlReviewData.getInReviewUrl()) {
+        ReviewUrl disapprovalReviewUrl = urlReviewData.getDisapprovalReviewUrl();
+        if (null != disapprovalReviewUrl) {
+          System.out.println("urlReviewData/disapprovalReviewUrl/trackingUrl = " + disapprovalReviewUrl.getTrackingUrl());
+          if (null != disapprovalReviewUrl.getParameters()) {
+            int index = 0;
+            for (CustomParameter parameter : disapprovalReviewUrl.getParameters()) {
+              System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/key = " + parameter.getKey());
+              System.out.println("urlReviewData/disapprovalReviewUrl/parameters[" + index + "]/value = " + parameter.getValue());
+              index++;
             }
           }
         }
+      }
 
-        System.out.println("urlReviewData/urlApprovalStatus = " + urlReviewData.getUrlApprovalStatus());
+      System.out.println("urlReviewData/urlApprovalStatus = " + urlReviewData.getUrlApprovalStatus());
 
-        if (null != urlReviewData.getDisapprovalReasonCodes()) {
-          for (String disapprovalReasonCode : urlReviewData.getDisapprovalReasonCodes()) {
-            System.out.println("urlReviewData/disapprovalReasonCodes = " + disapprovalReasonCode);
-          }
+      if (null != urlReviewData.getDisapprovalReasonCodes()) {
+        for (String disapprovalReasonCode : urlReviewData.getDisapprovalReasonCodes()) {
+          System.out.println("urlReviewData/disapprovalReasonCodes = " + disapprovalReasonCode);
         }
       }
+    }
+
+    if(adGroup.getAdGroupAdRotationMode() != null){
+      System.out.println("adGroupAdRotationMode/adRotationMode = " + adGroup.getAdGroupAdRotationMode().getAdRotationMode());
     }
 
     System.out.println("---------");
@@ -478,6 +486,10 @@ public class AdGroupServiceSample {
     parameter1.setKey("id1");
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));
+
+    // Set AdGroupAdRotationMode
+    AdGroupAdRotationMode adGroupAdRotationMode = new AdGroupAdRotationMode();
+    adGroupAdRotationMode.setAdRotationMode(AdRotationMode.ROTATE_FOREVER);
     
     // Set AdGroup
     AdGroup autoBiddingAdGroup = new AdGroup();
@@ -488,6 +500,7 @@ public class AdGroupServiceSample {
     autoBiddingAdGroup.setSettings(targetingSetting);    
     autoBiddingAdGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     autoBiddingAdGroup.setCustomParameters(customParameters);
+    autoBiddingAdGroup.setAdGroupAdRotationMode(adGroupAdRotationMode);
 
     // Set ManualCpc AdGroup
     AdGroup manualCpcAdGroup = new AdGroup();
@@ -497,7 +510,8 @@ public class AdGroupServiceSample {
     manualCpcAdGroup.setUserStatus(UserStatus.ACTIVE);
     manualCpcAdGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     manualCpcAdGroup.setCustomParameters(customParameters);
-    
+    manualCpcAdGroup.setAdGroupAdRotationMode(adGroupAdRotationMode);
+
     // Set App AdGroup
     AdGroup appAdGroup = new AdGroup();
     appAdGroup.setAccountId(accountId);
@@ -534,6 +548,10 @@ public class AdGroupServiceSample {
       targetingSetting.setCriterionType(CriterionType.TARGET_LIST);
       targetingSetting.setTargetAll(TargetAll.DEACTIVE);
 
+      // Set AdGroupAdRotationMode
+      AdGroupAdRotationMode adGroupAdRotationMode = new AdGroupAdRotationMode();
+      adGroupAdRotationMode.setAdRotationMode(AdRotationMode.OPTIMIZE);
+
       // Set AutoBidding AdGroup
       AdGroup adGroup = new AdGroup();
       adGroup.setAccountId(adGroupValue.getAdGroup().getAccountId());
@@ -541,6 +559,7 @@ public class AdGroupServiceSample {
       adGroup.setAdGroupId(adGroupValue.getAdGroup().getAdGroupId());
       adGroup.setCampaignName("Sample_UpdateOn_" + adGroupValue.getAdGroup().getAdGroupId() + "_" + SoapUtils.getCurrentTimestamp());
       adGroup.setUserStatus(UserStatus.PAUSED);
+      adGroup.setAdGroupAdRotationMode(adGroupAdRotationMode);
 
       if (null != adGroup.getTrackingUrl() && !"".equals(adGroup.getTrackingUrl())) {
         adGroup.setTrackingUrl("http://yahoo.co.jp?url={lpurl}&amp;a={creative}&amp;pid={_id2}");

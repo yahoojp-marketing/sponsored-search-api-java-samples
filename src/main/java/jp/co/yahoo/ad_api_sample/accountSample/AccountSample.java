@@ -168,7 +168,7 @@ public class AccountSample {
   /**
    * display account entity to stdout.
    *
-   * @param values Account entity for display.
+   * @param account Account entity for display.
    */
   private static void display(Account account) {
     System.out.println("accountId = " + account.getAccountId());

@@ -174,7 +174,7 @@ public class AccountTrackingUrlSample {
   /**
    * display accountTrackingUrl entity to stdout.
    *
-   * @param values AccountTrackingUrl entity for display.
+   * @param accountTrackingUrl AccountTrackingUrl entity for display.
    */
   private static void display(AccountTrackingUrl accountTrackingUrl) {
     System.out.println("accountId = " + accountTrackingUrl.getAccountId());
