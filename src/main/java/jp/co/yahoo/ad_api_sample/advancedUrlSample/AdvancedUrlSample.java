@@ -708,8 +708,8 @@ public class AdvancedUrlSample {
     trackingUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp?url={lpurl}&amp;pid={_id1}");
     feedItem.getFeedItemAttribute().add(trackingUrl);
 
-    feedItem.setStartDate("20161215");
-    feedItem.setEndDate("20181215");
+    feedItem.setStartDate("20181215");
+    feedItem.setEndDate("20201215");
 
     FeedItemSchedule quickLinkSchedule1 = new FeedItemSchedule();
     quickLinkSchedule1.setDayOfWeek(DayOfWeek.SUNDAY);

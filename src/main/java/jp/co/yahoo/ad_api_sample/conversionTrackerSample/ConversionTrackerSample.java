@@ -20,6 +20,7 @@ import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerServiceInter
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerStatus;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerType;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ConversionTrackerValues;
+import jp.yahooapis.ss.V6.ConversionTrackerService.CrossDeviceConversionFlag;
 import jp.yahooapis.ss.V6.ConversionTrackerService.Error;
 import jp.yahooapis.ss.V6.ConversionTrackerService.ExcludeFromBidding;
 import jp.yahooapis.ss.V6.ConversionTrackerService.MarkupLanguage;
@@ -120,6 +121,7 @@ public class ConversionTrackerSample {
       webConversion.setCountingType(ConversionCountingType.MANY_PER_CLICK);
       webConversion.setExcludeFromBidding(ExcludeFromBidding.FALSE);
       webConversion.setMeasurementPeriod(7);
+      webConversion.setCrossDeviceConversionFlag(CrossDeviceConversionFlag.TRUE);
 
       ConversionTrackerOperation addOperation = new ConversionTrackerOperation();
       addOperation.setOperator(Operator.ADD);
@@ -192,6 +194,7 @@ public class ConversionTrackerSample {
       setWebConversion.setCategory(ConversionTrackerCategory.DEFAULT);
       setWebConversion.setStatus(ConversionTrackerStatus.DISABLED);
       setWebConversion.setConversionTrackerType(ConversionTrackerType.WEB_CONVERSION);
+      setWebConversion.setCrossDeviceConversionFlag(CrossDeviceConversionFlag.FALSE);
 
       // set conversionTrackerId
       for (ConversionTrackerValues conversionTrackerValues : getResponse) {
@@ -415,6 +418,7 @@ public class ConversionTrackerSample {
       System.out.println("snippet = " + webConversion.getSnippet());
       System.out.println("markupLanguage = " + webConversion.getMarkupLanguage());
       System.out.println("trackingCodeType = " + webConversion.getTrackingCodeType());
+      System.out.println("crossDeviceConversionFlag = " + webConversion.getCrossDeviceConversionFlag());
 
     }
     if (conversionTracker instanceof AppConversion) {

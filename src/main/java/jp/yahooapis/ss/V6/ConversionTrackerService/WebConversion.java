@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="snippet" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="markupLanguage" type="{http://ss.yahooapis.jp/V6}MarkupLanguage" minOccurs="0"/>
  *         &lt;element name="trackingCodeType" type="{http://ss.yahooapis.jp/V6}TrackingCodeType" minOccurs="0"/>
+ *         &lt;element name="crossDeviceConversionFlag" type="{http://ss.yahooapis.jp/V6}CrossDeviceConversionFlag" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/extension>
  *   &lt;/complexContent>
@@ -32,7 +33,8 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "WebConversion", propOrder = {
     "snippet",
     "markupLanguage",
-    "trackingCodeType"
+    "trackingCodeType",
+    "crossDeviceConversionFlag"
 })
 public class WebConversion
     extends ConversionTracker
@@ -43,6 +45,8 @@ public class WebConversion
     protected MarkupLanguage markupLanguage;
     @XmlSchemaType(name = "string")
     protected TrackingCodeType trackingCodeType;
+    @XmlSchemaType(name = "string")
+    protected CrossDeviceConversionFlag crossDeviceConversionFlag;
 
     /**
      * Gets the value of the snippet property.
@@ -114,6 +118,30 @@ public class WebConversion
      */
     public void setTrackingCodeType(TrackingCodeType value) {
         this.trackingCodeType = value;
+    }
+
+    /**
+     * Gets the value of the crossDeviceConversionFlag property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link CrossDeviceConversionFlag }
+     *     
+     */
+    public CrossDeviceConversionFlag getCrossDeviceConversionFlag() {
+        return crossDeviceConversionFlag;
+    }
+
+    /**
+     * Sets the value of the crossDeviceConversionFlag property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link CrossDeviceConversionFlag }
+     *     
+     */
+    public void setCrossDeviceConversionFlag(CrossDeviceConversionFlag value) {
+        this.crossDeviceConversionFlag = value;
     }
 
 }

@@ -102,9 +102,9 @@ public class CustomerSyncSample {
   }
 
   /**
-   * display account entity to stdout.
+   * display auditlog entity to stdout.
    *
-   * @param account account entity for display.
+   * @param auditlog account entity for display.
    */
   private static void display(Auditlog auditlog) {
     System.out.println("updatedTime = " + auditlog.getUpdatedTime());

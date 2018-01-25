@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="trackingUrl" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="customParameters" type="{http://ss.yahooapis.jp/V6}CustomParameters" minOccurs="0"/>
  *         &lt;element name="urlReviewData" type="{http://ss.yahooapis.jp/V6}UrlReviewData" minOccurs="0"/>
+ *         &lt;element name="adGroupAdRotationMode" type="{http://ss.yahooapis.jp/V6}AdGroupAdRotationMode" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -56,7 +57,8 @@ import javax.xml.bind.annotation.XmlType;
     "settings",
     "trackingUrl",
     "customParameters",
-    "urlReviewData"
+    "urlReviewData",
+    "adGroupAdRotationMode"
 })
 public class AdGroup {
 
@@ -77,6 +79,7 @@ public class AdGroup {
     protected String trackingUrl;
     protected CustomParameters customParameters;
     protected UrlReviewData urlReviewData;
+    protected AdGroupAdRotationMode adGroupAdRotationMode;
 
     /**
      * Gets the value of the accountId property.
@@ -428,6 +431,30 @@ public class AdGroup {
      */
     public void setUrlReviewData(UrlReviewData value) {
         this.urlReviewData = value;
+    }
+
+    /**
+     * Gets the value of the adGroupAdRotationMode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link AdGroupAdRotationMode }
+     *     
+     */
+    public AdGroupAdRotationMode getAdGroupAdRotationMode() {
+        return adGroupAdRotationMode;
+    }
+
+    /**
+     * Sets the value of the adGroupAdRotationMode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link AdGroupAdRotationMode }
+     *     
+     */
+    public void setAdGroupAdRotationMode(AdGroupAdRotationMode value) {
+        this.adGroupAdRotationMode = value;
     }
 
 }

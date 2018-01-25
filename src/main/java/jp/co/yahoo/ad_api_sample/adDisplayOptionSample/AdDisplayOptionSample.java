@@ -43,6 +43,8 @@ import jp.yahooapis.ss.V6.FeedItemService.MinuteOfHour;
 import jp.yahooapis.ss.V6.FeedItemService.Paging;
 import jp.yahooapis.ss.V6.FeedItemService.SimpleFeedItemAttribute;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -551,8 +553,9 @@ public class AdDisplayOptionSample {
     trackingUrl.setFeedAttributeValue("http://www.quicklink.sample.co.jp?url={lpurl}&amp;pid={_id1}");
     feedItem.getFeedItemAttribute().add(trackingUrl);
     
-    feedItem.setStartDate("20161215");
-    feedItem.setEndDate("20181215");
+    feedItem.setStartDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now()));
+
+    feedItem.setEndDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now().plusYears(2)));
 
     FeedItemSchedule quickLinkSchedule1 = new FeedItemSchedule();
     quickLinkSchedule1.setDayOfWeek(DayOfWeek.SUNDAY);
