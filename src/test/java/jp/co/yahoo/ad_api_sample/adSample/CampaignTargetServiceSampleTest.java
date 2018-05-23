@@ -1,14 +1,14 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
-import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
-import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
-import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetOperation;
-import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetSelector;
-import jp.yahooapis.ss.V6.CampaignTargetService.CampaignTargetValues;
-import jp.yahooapis.ss.V6.CampaignTargetService.Paging;
+import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201805.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201805.campaign.CampaignValues;
+import jp.yahooapis.ss.v201805.campaign.UrlApprovalStatus;
+import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetOperation;
+import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetSelector;
+import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetValues;
+import jp.yahooapis.ss.v201805.Paging;
 
 import org.junit.After;
 import org.junit.Before;

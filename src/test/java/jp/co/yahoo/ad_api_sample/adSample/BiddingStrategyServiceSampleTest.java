@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategySelector;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyType;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V6.BiddingStrategyService.Paging;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategySelector;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyType;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201805.Paging;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +58,7 @@ public class BiddingStrategyServiceSampleTest {
     // Run
     List<BiddingStrategyValues> biddingStrategyValues = null;
     try {
-      biddingStrategyValues = BiddingStrategyServiceSample.add(addBiddingStrategyOperation);
+      biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
     } catch (Exception e) {
       fail();
     }
@@ -81,7 +81,7 @@ public class BiddingStrategyServiceSampleTest {
     List<BiddingStrategyValues> biddingStrategyValues = null;
     try {
       BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
-      biddingStrategyValues = BiddingStrategyServiceSample.add(addBiddingStrategyOperation);
+      biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
     } catch (Exception e) {
       fail();
     }
@@ -95,7 +95,7 @@ public class BiddingStrategyServiceSampleTest {
     // Run
     List<BiddingStrategyValues> setBiddingStrategyValues = null;
     try {
-      setBiddingStrategyValues = BiddingStrategyServiceSample.set(setBiddingStrategyOperation);
+      setBiddingStrategyValues = BiddingStrategyServiceSample.mutate(setBiddingStrategyOperation);
     } catch (Exception e) {
       fail();
     }
@@ -118,7 +118,7 @@ public class BiddingStrategyServiceSampleTest {
     List<BiddingStrategyValues> biddingStrategyValues = null;
     try {
       BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
-      biddingStrategyValues = BiddingStrategyServiceSample.add(addBiddingStrategyOperation);
+      biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
     } catch (Exception e) {
       fail();
     }
@@ -132,7 +132,7 @@ public class BiddingStrategyServiceSampleTest {
     // Run
     List<BiddingStrategyValues> removeBiddingStrategyValues = null;
     try {
-      removeBiddingStrategyValues = BiddingStrategyServiceSample.remove(removeBiddingStrategyOperation);
+      removeBiddingStrategyValues = BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
     } catch (Exception e) {
       fail();
     }

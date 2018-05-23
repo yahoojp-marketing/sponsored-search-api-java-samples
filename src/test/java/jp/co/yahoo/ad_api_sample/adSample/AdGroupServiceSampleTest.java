@@ -8,8 +8,8 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -1,26 +1,26 @@
 package jp.co.yahoo.ad_api_sample.targetingIdeaSample;
 
+import jp.co.yahoo.ad_api_sample.error.impl.TargetingIdeaServiceErrorEntityFactory;
+import jp.co.yahoo.ad_api_sample.util.SoapUtils;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201805.targetingidea.Attribute;
+import jp.yahooapis.ss.v201805.targetingidea.CriterionType;
+import jp.yahooapis.ss.v201805.targetingidea.KeywordAttribute;
+import jp.yahooapis.ss.v201805.targetingidea.KeywordMatchType;
+import jp.yahooapis.ss.v201805.targetingidea.ProposalKeyword;
+import jp.yahooapis.ss.v201805.targetingidea.RelatedToKeywordSearchParameter;
+import jp.yahooapis.ss.v201805.targetingidea.SearchParameterUse;
+import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaPage;
+import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaSelector;
+import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaService;
+import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaServiceInterface;
+import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaValues;
+
 import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.ws.Holder;
-
-import jp.co.yahoo.ad_api_sample.error.impl.TargetingIdeaServiceErrorEntityFactory;
-import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.TargetingIdeaService.Attribute;
-import jp.yahooapis.ss.V6.TargetingIdeaService.CriterionType;
-import jp.yahooapis.ss.V6.TargetingIdeaService.Error;
-import jp.yahooapis.ss.V6.TargetingIdeaService.KeywordAttribute;
-import jp.yahooapis.ss.V6.TargetingIdeaService.KeywordMatchType;
-import jp.yahooapis.ss.V6.TargetingIdeaService.Paging;
-import jp.yahooapis.ss.V6.TargetingIdeaService.ProposalKeyword;
-import jp.yahooapis.ss.V6.TargetingIdeaService.RelatedToKeywordSearchParameter;
-import jp.yahooapis.ss.V6.TargetingIdeaService.SearchParameterUse;
-import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaPage;
-import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaSelector;
-import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaService;
-import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaServiceInterface;
-import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaValues;
 
 /**
  * Sample Program for TargetingIdeaService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -29,7 +29,6 @@ import jp.yahooapis.ss.V6.TargetingIdeaService.TargetingIdeaValues;
 
 public class TargetingIdeaSample {
 
-
   /**
    * main method for TargetingIdeaSample
    *
@@ -37,15 +36,10 @@ public class TargetingIdeaSample {
    */
   public static void main(String[] args) {
     try {
-      // =================================================================
-      // TargetingIdeaService
-      // =================================================================
-      TargetingIdeaServiceInterface targetingIdeaService = SoapUtils.createServiceInterface(TargetingIdeaServiceInterface.class, TargetingIdeaService.class);
-
       // -----------------------------------------------
       // TargetingIdeaService::get
       // -----------------------------------------------
-      // request
+      // Set SearchParameter
       RelatedToKeywordSearchParameter relateKewyrod = new RelatedToKeywordSearchParameter();
       relateKewyrod.setSearchParameterUse(SearchParameterUse.RELATED_TO_KEYWORD);
       ProposalKeyword proposalKeyword1 = new ProposalKeyword();
@@ -54,37 +48,57 @@ public class TargetingIdeaSample {
       proposalKeyword1.setMatchType(KeywordMatchType.PHRASE);
       relateKewyrod.getKeywords().add(proposalKeyword1);
 
-
-      TargetingIdeaSelector targetingIdeaSelector = new TargetingIdeaSelector();
-      targetingIdeaSelector.getSearchParameter().addAll(Arrays.asList(relateKewyrod));
+      // Set Selector
+      TargetingIdeaSelector selector = new TargetingIdeaSelector();
+      selector.getSearchParameter().addAll(Arrays.asList(relateKewyrod));
       Paging paging = new Paging();
       paging.setStartIndex(1);
       paging.setNumberResults(2);
-      targetingIdeaSelector.setPaging(paging);
+      selector.setPaging(paging);
 
-      // call API
-      System.out.println("############################################");
-      System.out.println("TargetingIdeaService::get");
-      System.out.println("############################################");
-      Holder<TargetingIdeaPage> targetingIdeaPageHolder = new Holder<TargetingIdeaPage>();
-      Holder<List<Error>> errorArrayHolder = new Holder<List<Error>>();
-      targetingIdeaService.get(targetingIdeaSelector, targetingIdeaPageHolder, errorArrayHolder);
+      // Run
+      get(selector);
 
-      // if error
-      if (errorArrayHolder.value != null && errorArrayHolder.value.size() > 0) {
-        SoapUtils.displayErrors(new TargetingIdeaServiceErrorEntityFactory(errorArrayHolder.value), true);
-      }
-
-      // reponse
-      if (targetingIdeaPageHolder.value != null) {
-        for (TargetingIdeaValues values : targetingIdeaPageHolder.value.getValues()) {
-          // reponse display
-          displayTargetingIdea(values);
-        }
-      }
     } catch (Exception ex) {
       ex.printStackTrace();
     }
+  }
+
+  /**
+   * Sample Program for TargetingIdeaService GET.
+   *
+   * @param selector TargetingIdeaSelector
+   * @return TargetingIdeaValues
+   * @throws Exception
+   */
+  public static List<TargetingIdeaValues> get(TargetingIdeaSelector selector) throws Exception {
+
+    // call API
+    System.out.println("############################################");
+    System.out.println("TargetingIdeaService::get");
+    System.out.println("############################################");
+
+    Holder<TargetingIdeaPage> targetingIdeaPageHolder = new Holder<TargetingIdeaPage>();
+    Holder<List<Error>> errorArrayHolder = new Holder<List<Error>>();
+    TargetingIdeaServiceInterface targetingIdeaService = SoapUtils.createServiceInterface(TargetingIdeaServiceInterface.class, TargetingIdeaService.class);
+    targetingIdeaService.get(selector, targetingIdeaPageHolder, errorArrayHolder);
+
+    // error
+    if (errorArrayHolder.value != null && errorArrayHolder.value.size() > 0) {
+      SoapUtils.displayErrors(new TargetingIdeaServiceErrorEntityFactory(errorArrayHolder.value), true);
+    }
+    if (errorArrayHolder.value == null) {
+      throw new Exception("NoDataResponse:TargetingIdeaService Get");
+    }
+
+    // Display
+    for (TargetingIdeaValues values : targetingIdeaPageHolder.value.getValues()) {
+      // reponse display
+      display(values);
+    }
+
+    // Response
+    return targetingIdeaPageHolder.value.getValues();
   }
 
   /**
@@ -92,7 +106,7 @@ public class TargetingIdeaSample {
    * 
    * @param values TargetingIdea entity for display.
    */
-  private static void displayTargetingIdea(TargetingIdeaValues values) {
+  private static void display(TargetingIdeaValues values) {
     if (values.getData() != null) {
       System.out.println("data/key = " + values.getData().getKey());
       Attribute attribute = values.getData().getValue();

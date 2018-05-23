@@ -1,11 +1,11 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionOperation;
-import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionSelector;
-import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionUse;
-import jp.yahooapis.ss.V6.CampaignCriterionService.CampaignCriterionValues;
-import jp.yahooapis.ss.V6.CampaignCriterionService.Paging;
+import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionOperation;
+import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionSelector;
+import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionUse;
+import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionValues;
+import jp.yahooapis.ss.v201805.Paging;
 
 import org.junit.Before;
 import org.junit.Test;

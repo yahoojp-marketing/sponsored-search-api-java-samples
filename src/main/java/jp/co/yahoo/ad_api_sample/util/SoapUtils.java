@@ -56,8 +56,6 @@ public class SoapUtils {
    * OnbehalfOf Account
    */
   private static String ONBEHALF_ACCOUNT = null;
-
-
   /**
    * OnbehalfOf Password
    */
@@ -539,7 +537,7 @@ public class SoapUtils {
       String serviceName = clazzName.substring(0, clazzName.indexOf("Interface"));
       // create WsdlURL
       URL wsdlLocation = new URL(getWsdlUrl(serviceName));
-      Service serviceProxy = Service.create(wsdlLocation, new QName(getAPI_NAMESPACE(), serviceClass.getSimpleName()));
+      Service serviceProxy = Service.create(wsdlLocation, new QName(getAPI_NAMESPACE() + "/" + clazzName.substring(0, clazzName.indexOf("ServiceInterface")), serviceClass.getSimpleName()));
       serviceProxy.setHandlerResolver(SoapClientHandler.createHadlerResolver());
 
       // create EndPointURL

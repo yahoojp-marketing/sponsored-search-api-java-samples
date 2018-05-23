@@ -1,11 +1,15 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version 6.5.0
+Version 201805
 
 ■変更履歴
 -----------
-2017/01/24:
+
+2018/05/23:
+- Version 201805に対応しました。
+
+2018/01/24:
 - Version 6.5に対応しました。
 
 2017/11/01:
@@ -84,7 +88,6 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - balanceSample/BalanceSample.java                                        : BalanceServiceによるアカウント残高を参照する処理のサンプルです。
   - bidLandscapeSample/BidLandscapeSample.java                              : BidLandscapeServiceによるビットのシュミレート情報を参照する処理のサンプルです。
   - conversionTrackerSample/ConversionTrackerSample.java                    : ConversionTrackerServiceによるコンバージョントラック情報の登録、参照、更新処理のサンプルです。
-  - customerSyncSample/CustomerSyncSample.java                              : CustomerSyncServiceによるアカウント、キャンペーン情報の更新履歴参照処理のサンプルです。
   - dictionarySample/DictionarySample.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のサンプルです。
   - keywordEstimatorSample/KeywordEstimatorSample.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のサンプルです。
   - reportDownloadSample/ReportDownloadSample.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のサンプルです。
@@ -144,7 +147,6 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - balanceSample/BalanceSampleTest.java                                        : BalanceServiceによるアカウント残高を参照する処理のテストケースです。
   - bidLandscapeSample/BidLandscapeSampleTest.java                              : BidLandscapeServiceによるビットのシュミレート情報を参照する処理のテストケースです。
   - conversionTrackerSample/ConversionTrackerSampleTest.java                    : ConversionTrackerServiceによるコンバージョントラック情報の登録、参照、更新処理のテストケースです。
-  - customerSyncSample/CustomerSyncSampleTest.java                              : CustomerSyncServiceによるアカウント、キャンペーン情報の更新履歴参照処理のテストケースです。
   - dictionarySample/DictionarySampleTest.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のテストケースです。
   - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のテストケースです。
   - reportDownloadSample/ReportDownloadSampleTest.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のテストケースです。
@@ -238,7 +240,6 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.advancedURLSample.advancedURLSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.balanceSample.BalanceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.bidLandscapeSample.BidLandscapeSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.conversionTrackerSample.ConversionTrackerSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.customerSyncSample.CustomerSyncSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample

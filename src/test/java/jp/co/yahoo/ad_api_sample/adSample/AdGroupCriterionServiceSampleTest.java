@@ -1,14 +1,13 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionOperation;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionSelector;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionUse;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionValues;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Advanced;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.ApprovalStatus;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Paging;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.UserStatus;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionSelector;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201805.adgroupcriterion.ApprovalStatus;
+import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201805.adgroupcriterion.UserStatus;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -169,7 +168,6 @@ public class AdGroupCriterionServiceSampleTest {
     selector.setCriterionUse(AdGroupCriterionUse.BIDDABLE);
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
-    selector.setAdvanced(Advanced.TRUE);
     Paging paging = new Paging();
     paging.setStartIndex(1);
     paging.setNumberResults(20);

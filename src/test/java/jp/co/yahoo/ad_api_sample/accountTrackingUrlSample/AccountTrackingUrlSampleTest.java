@@ -13,12 +13,12 @@ import org.junit.Test;
 
 import jp.co.yahoo.ad_api_sample.accountTrackingUrlSample.AccountTrackingUrlSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrl;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlOperation;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlSelector;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlValues;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.Operator;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.Paging;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrl;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlOperation;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlSelector;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlValues;
+import jp.yahooapis.ss.v201805.accounttrackingurl.Operator;
+import jp.yahooapis.ss.v201805.Paging;
 
 /**
  * Sample TestCase for AccountTrackingUrlSampleTest. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -93,7 +93,7 @@ public class AccountTrackingUrlSampleTest {
     // Run
     List<AccountTrackingUrlValues> accountTrackingUrlValues = null;
     try {
-      accountTrackingUrlValues = AccountTrackingUrlSample.set(operation);
+      accountTrackingUrlValues = AccountTrackingUrlSample.mutate(operation);
     } catch (Exception e) {
       fail();
     }

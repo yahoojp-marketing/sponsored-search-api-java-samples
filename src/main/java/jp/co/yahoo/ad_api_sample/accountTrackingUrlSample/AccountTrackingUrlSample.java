@@ -7,17 +7,17 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AccountTrackingURLServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrl;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlOperation;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlPage;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlReturnValue;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlSelector;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlService;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlServiceInterface;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.AccountTrackingUrlValues;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.Error;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.Operator;
-import jp.yahooapis.ss.V6.AccountTrackingURLService.Paging;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrl;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlOperation;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlPage;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlReturnValue;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlSelector;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlService;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlServiceInterface;
+import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlValues;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.accounttrackingurl.Operator;
+import jp.yahooapis.ss.v201805.Paging;
 
 /**
  * Sample Program for AccountTrackingUrlService. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -77,7 +77,7 @@ public class AccountTrackingUrlSample {
       Thread.sleep(30000);
 
       // Run
-      set(operation);
+      mutate(operation);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -86,17 +86,17 @@ public class AccountTrackingUrlSample {
   }
 
   /**
-   * Sample Program for AccountTrackingUrlService SET.
+   * Sample Program for AccountTrackingUrlService MUTATE.
    * 
    * @param operation AccountTrackingUrlOperation
    * @return AccountTrackingUrlValues
    * @throws Exception
    */
-  public static List<AccountTrackingUrlValues> set(AccountTrackingUrlOperation operation) throws Exception {
+  public static List<AccountTrackingUrlValues> mutate(AccountTrackingUrlOperation operation) throws Exception {
 
     // call API
     System.out.println("############################################");
-    System.out.println("AccountTrackingUrlService::mutate(SET)");
+    System.out.println("AccountTrackingUrlService::mutate(" + operation.getOperator() + ")");
     System.out.println("############################################");
 
     Holder<AccountTrackingUrlReturnValue> accountReturnValueHolder = new Holder<AccountTrackingUrlReturnValue>();
@@ -109,7 +109,7 @@ public class AccountTrackingUrlSample {
       SoapUtils.displayErrors(new AccountTrackingURLServiceErrorEntityFactory(accountErrorHolder.value), true);
     }
     if (accountErrorHolder.value == null) {
-      throw new Exception("NoDataResponse:AccountTrackingUrlService mutate(set)");
+      throw new Exception("NoDataResponse:AccountTrackingUrlService" + operation.getOperator());
     }
 
     // Display

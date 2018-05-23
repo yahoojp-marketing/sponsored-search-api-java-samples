@@ -2,45 +2,49 @@ package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.CampaignService.AdServingOptimizationStatus;
-import jp.yahooapis.ss.V6.CampaignService.AppStore;
-import jp.yahooapis.ss.V6.CampaignService.BiddingStrategyType;
-import jp.yahooapis.ss.V6.CampaignService.Budget;
-import jp.yahooapis.ss.V6.CampaignService.BudgetDeliveryMethod;
-import jp.yahooapis.ss.V6.CampaignService.BudgetOptimizerBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.BudgetPeriod;
-import jp.yahooapis.ss.V6.CampaignService.Campaign;
-import jp.yahooapis.ss.V6.CampaignService.CampaignBiddingStrategy;
-import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
-import jp.yahooapis.ss.V6.CampaignService.CampaignPage;
-import jp.yahooapis.ss.V6.CampaignService.CampaignReturnValue;
-import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
-import jp.yahooapis.ss.V6.CampaignService.CampaignService;
-import jp.yahooapis.ss.V6.CampaignService.CampaignServiceInterface;
-import jp.yahooapis.ss.V6.CampaignService.CampaignSettings;
-import jp.yahooapis.ss.V6.CampaignService.CampaignType;
-import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V6.CampaignService.CustomParameter;
-import jp.yahooapis.ss.V6.CampaignService.CustomParameters;
-import jp.yahooapis.ss.V6.CampaignService.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.Error;
-import jp.yahooapis.ss.V6.CampaignService.GeoTargetType;
-import jp.yahooapis.ss.V6.CampaignService.GeoTargetTypeSetting;
-import jp.yahooapis.ss.V6.CampaignService.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.Operator;
-import jp.yahooapis.ss.V6.CampaignService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.Paging;
-import jp.yahooapis.ss.V6.CampaignService.ReviewUrl;
-import jp.yahooapis.ss.V6.CampaignService.SettingType;
-import jp.yahooapis.ss.V6.CampaignService.TargetAll;
-import jp.yahooapis.ss.V6.CampaignService.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.TargetingSetting;
-import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
-import jp.yahooapis.ss.V6.CampaignService.UrlReviewData;
-import jp.yahooapis.ss.V6.CampaignService.UserStatus;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201805.campaign.AdServingOptimizationStatus;
+import jp.yahooapis.ss.v201805.campaign.AppStore;
+import jp.yahooapis.ss.v201805.campaign.BiddingStrategyType;
+import jp.yahooapis.ss.v201805.campaign.Budget;
+import jp.yahooapis.ss.v201805.campaign.BudgetDeliveryMethod;
+import jp.yahooapis.ss.v201805.campaign.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.v201805.campaign.BudgetPeriod;
+import jp.yahooapis.ss.v201805.campaign.Campaign;
+import jp.yahooapis.ss.v201805.campaign.CampaignBiddingStrategy;
+import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201805.campaign.CampaignPage;
+import jp.yahooapis.ss.v201805.campaign.CampaignReturnValue;
+import jp.yahooapis.ss.v201805.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201805.campaign.CampaignService;
+import jp.yahooapis.ss.v201805.campaign.CampaignServiceInterface;
+import jp.yahooapis.ss.v201805.campaign.CampaignSettings;
+import jp.yahooapis.ss.v201805.campaign.CampaignType;
+import jp.yahooapis.ss.v201805.campaign.CampaignValues;
+import jp.yahooapis.ss.v201805.campaign.CustomParameter;
+import jp.yahooapis.ss.v201805.campaign.CustomParameters;
+import jp.yahooapis.ss.v201805.campaign.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.campaign.GeoTargetType;
+import jp.yahooapis.ss.v201805.campaign.GeoTargetTypeSetting;
+import jp.yahooapis.ss.v201805.campaign.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.v201805.campaign.Operator;
+import jp.yahooapis.ss.v201805.campaign.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201805.campaign.ReviewUrl;
+import jp.yahooapis.ss.v201805.campaign.SettingType;
+import jp.yahooapis.ss.v201805.campaign.TargetAll;
+import jp.yahooapis.ss.v201805.campaign.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.v201805.campaign.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.v201805.campaign.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201805.campaign.TargetingSetting;
+import jp.yahooapis.ss.v201805.campaign.UrlApprovalStatus;
+import jp.yahooapis.ss.v201805.campaign.UrlReviewData;
+import jp.yahooapis.ss.v201805.campaign.UserStatus;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
@@ -64,6 +68,24 @@ public class CampaignServiceSample {
       // =================================================================
       long accountId = SoapUtils.getAccountId();
       long biddingStrategyId = SoapUtils.getBiddingStrategyId();
+
+      // =================================================================
+      // BiddingStrategyService::ADD
+      // =================================================================
+      List<BiddingStrategyValues> biddingStrategyValues = null;
+      if (biddingStrategyId == 9999999999l) {
+        BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
+        biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
+        for (BiddingStrategyValues value : biddingStrategyValues) {
+          if (value.getBiddingStrategy().getBiddingScheme() instanceof jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme) {
+            biddingStrategyId = value.getBiddingStrategy().getBiddingStrategyId();
+          }
+        }
+
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds *****\n");
+        Thread.sleep(30000);
+      }
 
       // =================================================================
       // CampaignService::ADD
@@ -138,6 +160,13 @@ public class CampaignServiceSample {
       // Run
       remove(removeCampaignOperation);
 
+      // =================================================================
+      // remove BiddingStrategy
+      // =================================================================
+      if (biddingStrategyValues != null) {
+        BiddingStrategyOperation removeBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleRemoveRequest(accountId, biddingStrategyValues);
+        BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
+      }
     } catch (Exception e) {
       e.printStackTrace();
       throw e;
@@ -498,8 +527,8 @@ public class CampaignServiceSample {
     autoBiddingCampaign.setAccountId(accountId);
     autoBiddingCampaign.setCampaignName("SampleAutoBiddingCampaign_CreateOn_" + SoapUtils.getCurrentTimestamp());
     autoBiddingCampaign.setUserStatus(UserStatus.ACTIVE);
-    autoBiddingCampaign.setStartDate("20300101");
-    autoBiddingCampaign.setEndDate("20301231");
+    autoBiddingCampaign.setStartDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now()));
+    autoBiddingCampaign.setEndDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now().plusMonths(1L)));
     autoBiddingCampaign.setBudget(budget);
     autoBiddingCampaign.setBiddingStrategyConfiguration(autoBiddingStrategy);
     autoBiddingCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
@@ -516,8 +545,8 @@ public class CampaignServiceSample {
     manualCpcCampaign.setAccountId(accountId);
     manualCpcCampaign.setCampaignName("SampleManualCpcCampaign_CreateOn_" + SoapUtils.getCurrentTimestamp());
     manualCpcCampaign.setUserStatus(UserStatus.ACTIVE);
-    manualCpcCampaign.setStartDate("20300101");
-    manualCpcCampaign.setEndDate("20301231");
+    manualCpcCampaign.setStartDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now()));
+    manualCpcCampaign.setEndDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now().plusMonths(1L)));
     manualCpcCampaign.setBudget(budget);
     manualCpcCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
     manualCpcCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
@@ -533,8 +562,8 @@ public class CampaignServiceSample {
     appCampaign.setAccountId(accountId);
     appCampaign.setCampaignName("SampleAppCampaign_CreateOn_" + SoapUtils.getCurrentTimestamp());
     appCampaign.setUserStatus(UserStatus.ACTIVE);
-    appCampaign.setStartDate("20300101");
-    appCampaign.setEndDate("20301231");
+    appCampaign.setStartDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now()));
+    appCampaign.setEndDate(DateTimeFormatter.ofPattern("yyyyMMdd").format(LocalDateTime.now().plusMonths(1L)));
     appCampaign.setBudget(budget);
     appCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
     appCampaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.CONVERSION_OPTIMIZE);
@@ -581,8 +610,6 @@ public class CampaignServiceSample {
       campaign.setCampaignId(campaignValue.getCampaign().getCampaignId());
       campaign.setCampaignName("Sample_UpdateOn_" + campaignValue.getCampaign().getCampaignId() + "_" + SoapUtils.getCurrentTimestamp());
       campaign.setUserStatus(UserStatus.PAUSED);
-      campaign.setStartDate("20300101");
-      campaign.setEndDate("20301231");
       campaign.setBudget(budget);
       campaign.setAdServingOptimizationStatus(AdServingOptimizationStatus.OPTIMIZE);
 

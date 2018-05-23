@@ -1,13 +1,12 @@
 package jp.co.yahoo.ad_api_sample.adCustomizerSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.FeedItemService.Advanced;
-import jp.yahooapis.ss.V6.FeedItemService.ApprovalStatus;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemPlaceholderType;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
-import jp.yahooapis.ss.V6.FeedItemService.Paging;
+import jp.yahooapis.ss.v201805.feeditem.ApprovalStatus;
+import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201805.Paging;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -69,7 +68,7 @@ public class FeedItemServiceSampleTest {
   @Test
   public void testAdd() throws Exception {
     // Set Operation
-    FeedItemOperation addFeedItemOperation = FeedItemServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
+    FeedItemOperation addFeedItemOperation = FeedItemServiceSample.AdCustomizerSampleFeedItem.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
 
     // Run
     List<FeedItemValues> addFeedItemValues = null;
@@ -98,7 +97,7 @@ public class FeedItemServiceSampleTest {
     // =================================================================
     List<FeedItemValues> addFeedItemValues = null;
     try {
-      FeedItemOperation addFeedItemOperation = FeedItemServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
+      FeedItemOperation addFeedItemOperation = FeedItemServiceSample.AdCustomizerSampleFeedItem.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
       addFeedItemValues = FeedItemServiceSample.add(addFeedItemOperation);
     } catch (Exception e) {
       fail();
@@ -130,7 +129,6 @@ public class FeedItemServiceSampleTest {
         selector.getApprovalStatuses().add(ApprovalStatus.PRE_DISAPPROVED);
         selector.getApprovalStatuses().add(ApprovalStatus.APPROVED_WITH_REVIEW);
         selector.getApprovalStatuses().add(ApprovalStatus.POST_DISAPPROVED);
-        selector.setAdvanced(Advanced.FALSE);
         Paging feedItemPaging = new Paging();
         feedItemPaging.setStartIndex(1);
         feedItemPaging.setNumberResults(20);
@@ -168,7 +166,7 @@ public class FeedItemServiceSampleTest {
     // FeefItemService SET
     // =================================================================
     // Set Operation
-    FeedItemOperation setFeedItemOperation = FeedItemServiceSample.createSampleSetRequest(accountId, addFeedItemValues);
+    FeedItemOperation setFeedItemOperation = FeedItemServiceSample.AdCustomizerSampleFeedItem.createSampleSetRequest(accountId, addFeedItemValues);
 
     // Run
     List<FeedItemValues> setFeedItemValues = null;
@@ -197,7 +195,7 @@ public class FeedItemServiceSampleTest {
     // =================================================================
     List<FeedItemValues> addFeedItemValues = null;
     try {
-      FeedItemOperation addFeedItemOperation = FeedItemServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
+      FeedItemOperation addFeedItemOperation = FeedItemServiceSample.AdCustomizerSampleFeedItem.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
       addFeedItemValues = FeedItemServiceSample.add(addFeedItemOperation);
     } catch (Exception e) {
       fail();
@@ -243,7 +241,6 @@ public class FeedItemServiceSampleTest {
     selector.getApprovalStatuses().add(ApprovalStatus.PRE_DISAPPROVED);
     selector.getApprovalStatuses().add(ApprovalStatus.APPROVED_WITH_REVIEW);
     selector.getApprovalStatuses().add(ApprovalStatus.POST_DISAPPROVED);
-    selector.setAdvanced(Advanced.FALSE);
     Paging feedItemPaging = new Paging();
     feedItemPaging.setStartIndex(1);
     feedItemPaging.setNumberResults(20);

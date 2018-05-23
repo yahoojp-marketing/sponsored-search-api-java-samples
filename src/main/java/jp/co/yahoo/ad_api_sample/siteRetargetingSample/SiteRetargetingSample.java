@@ -6,23 +6,23 @@ import jp.co.yahoo.ad_api_sample.adSample.AdGroupServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.BiddingStrategyServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListOperation;
-import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListSelector;
-import jp.yahooapis.ss.V6.AdGroupRetargetingListService.AdGroupRetargetingListValues;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V6.BiddingStrategyService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.ExcludedType;
-import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
-import jp.yahooapis.ss.V6.CampaignService.CampaignType;
-import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListOperation;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListSelector;
-import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListOperation;
-import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListSelector;
-import jp.yahooapis.ss.V6.RetargetingListService.RetargetingListValues;
+import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListOperation;
+import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListSelector;
+import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListValues;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.ExcludedType;
+import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201805.campaign.CampaignType;
+import jp.yahooapis.ss.v201805.campaign.CampaignValues;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListOperation;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListSelector;
+import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListOperation;
+import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListSelector;
+import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListValues;
 
 /**
  * Sample Program for RetargetingListService,CampaignService,CampaignRetargetingListService
@@ -55,7 +55,7 @@ public class SiteRetargetingSample {
       if (biddingStrategyId == 9999999999l) {
         // ADD
         BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
-        biddingStrategyValues = BiddingStrategyServiceSample.add(addBiddingStrategyOperation);
+        biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
         for (BiddingStrategyValues value : biddingStrategyValues) {
           if (value.getBiddingStrategy().getBiddingScheme() instanceof PageOnePromotedBiddingScheme) {
             biddingStrategyId = value.getBiddingStrategy().getBiddingStrategyId();
@@ -164,12 +164,11 @@ public class SiteRetargetingSample {
       // BiddingStrategy
       if (biddingStrategyValues != null) {
         BiddingStrategyOperation removeBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleRemoveRequest(accountId, biddingStrategyValues);
-        BiddingStrategyServiceSample.remove(removeBiddingStrategyOperation);
+        BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
       }
     } catch (Exception e) {
       e.printStackTrace();
       throw e;
     }
   }
-
 }

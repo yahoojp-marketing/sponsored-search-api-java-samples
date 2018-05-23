@@ -1,11 +1,14 @@
 --------------------------------
 <<Version>>
 --------------------------------
-Version 6.5.0
+Version 201805
 
 [Change history]
 -----------
-2017/01/24:
+2018/05/23:
+- Correspond to Version 201805.
+
+2018/01/24:
 - Correspond to Version 6.5.
 
 2017/11/01:
@@ -84,7 +87,6 @@ The following programs are stored.
   - advancedURLSample/advancedURLSample.java                                : Sample of Get and Mutate operation of submission using Advanced URL system via AccountTrackingUrlService/CampaignService/AdGroupService/AdGroupCriterionService/AdGroupAdService/FeedItemService.
   - balanceSample/BalanceSample.java                                        : Sample of Get account balance via BalanceService.
   - bidLandscapeSample/BidLandscapeSample.java                              : Sample of Get bid landscape via BidLandscapeService.
-  - customerSyncSample/CustomerSyncSample.java                              : Sample of Get data of the operation history of account or campaign via CustomerSyncService.
   - conversionTrackerSample/ConversionTrackerSample.java                    : Sample of Get and Mutate operation for conversion via ConversionTrackerService.
   - dictionarySample/DictionarySample.java                                  : Sample of Get the list of EditorialReason and Geo code via DictionaryService.
   - keywordEstimatorSample/KeywordEstimatorSample.java                      : Sample of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
@@ -143,7 +145,6 @@ The following test cases are stored.
   - balanceSample/BalanceSampleTest.java                                        : Test case of Get account balance via BalanceService.
   - bidLandscapeSample/BidLandscapeSampleTest.java                              : Test case of Get bid landscape via BidLandscapeService.
   - conversionTrackerSample/ConversionTrackerSampleTest.java                    : Test case of Get and Mutate operation for conversion via ConversionTrackerService.
-  - customerSyncSample/CustomerSyncSampleTest.java                              : Test case of Get data of the operation history of account or campaign via CustomerSyncService.
   - dictionarySample/DictionarySampleTest.java                                  : Test case of Get the list of EditorialReason and Geo code via DictionaryService.
   - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : Test case of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
   - reportDownloadSample/ReportDownloadSampleTest.java                          : Test case of Get report via ReportDefinitionService/ReportService.
@@ -234,7 +235,6 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.advancedURLSample.advancedURLSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.balanceSample.BalanceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.bidLandscapeSample.BidLandscapeSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.conversionTrackerSample.ConversionTrackerSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.customerSyncSample.CustomerSyncSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample

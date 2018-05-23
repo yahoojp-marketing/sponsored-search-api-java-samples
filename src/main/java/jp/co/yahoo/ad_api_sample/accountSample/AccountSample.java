@@ -7,20 +7,20 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AccountServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AccountService.Account;
-import jp.yahooapis.ss.V6.AccountService.AccountOperation;
-import jp.yahooapis.ss.V6.AccountService.AccountPage;
-import jp.yahooapis.ss.V6.AccountService.AccountReturnValue;
-import jp.yahooapis.ss.V6.AccountService.AccountSelector;
-import jp.yahooapis.ss.V6.AccountService.AccountService;
-import jp.yahooapis.ss.V6.AccountService.AccountServiceInterface;
-import jp.yahooapis.ss.V6.AccountService.AccountStatus;
-import jp.yahooapis.ss.V6.AccountService.AccountType;
-import jp.yahooapis.ss.V6.AccountService.AccountValues;
-import jp.yahooapis.ss.V6.AccountService.DeliveryStatus;
-import jp.yahooapis.ss.V6.AccountService.Error;
-import jp.yahooapis.ss.V6.AccountService.Operator;
-import jp.yahooapis.ss.V6.AccountService.Paging;
+import jp.yahooapis.ss.v201805.account.Account;
+import jp.yahooapis.ss.v201805.account.AccountOperation;
+import jp.yahooapis.ss.v201805.account.AccountPage;
+import jp.yahooapis.ss.v201805.account.AccountReturnValue;
+import jp.yahooapis.ss.v201805.account.AccountSelector;
+import jp.yahooapis.ss.v201805.account.AccountService;
+import jp.yahooapis.ss.v201805.account.AccountServiceInterface;
+import jp.yahooapis.ss.v201805.account.AccountStatus;
+import jp.yahooapis.ss.v201805.account.AccountType;
+import jp.yahooapis.ss.v201805.account.AccountValues;
+import jp.yahooapis.ss.v201805.account.DeliveryStatus;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.account.Operator;
+import jp.yahooapis.ss.v201805.Paging;
 
 /**
  * Sample Program for AccountService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -77,7 +77,7 @@ public class AccountSample {
       operation.getOperand().add(operand);
 
       // Run
-      set(operation);
+      mutate(operation);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -86,17 +86,17 @@ public class AccountSample {
   }
 
   /**
-   * Sample Program for AccountService SET.
+   * Sample Program for AccountService MUTATE.
    * 
    * @param operation AccountOperation
    * @return AccountValues
    * @throws Exception
    */
-  public static List<AccountValues> set(AccountOperation operation) throws Exception {
+  public static List<AccountValues> mutate(AccountOperation operation) throws Exception {
 
     // call API
     System.out.println("############################################");
-    System.out.println("AccountService::mutate(SET)");
+    System.out.println("AccountService::mutate(" + operation.getOperator() +")");
     System.out.println("############################################");
 
     Holder<AccountReturnValue> accountReturnValueHolder = new Holder<AccountReturnValue>();
@@ -109,7 +109,7 @@ public class AccountSample {
       SoapUtils.displayErrors(new AccountServiceErrorEntityFactory(accountErrorHolder.value), true);
     }
     if (accountErrorHolder.value == null) {
-      throw new Exception("NoDataResponse:AccountService mutate(set)");
+      throw new Exception("NoDataResponse:AccountService " + operation.getOperator());
     }
 
     // Display

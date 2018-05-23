@@ -9,15 +9,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AccountService.Account;
-import jp.yahooapis.ss.V6.AccountService.AccountOperation;
-import jp.yahooapis.ss.V6.AccountService.AccountSelector;
-import jp.yahooapis.ss.V6.AccountService.AccountStatus;
-import jp.yahooapis.ss.V6.AccountService.AccountType;
-import jp.yahooapis.ss.V6.AccountService.AccountValues;
-import jp.yahooapis.ss.V6.AccountService.DeliveryStatus;
-import jp.yahooapis.ss.V6.AccountService.Operator;
-import jp.yahooapis.ss.V6.AccountService.Paging;
+import jp.yahooapis.ss.v201805.account.Account;
+import jp.yahooapis.ss.v201805.account.AccountOperation;
+import jp.yahooapis.ss.v201805.account.AccountSelector;
+import jp.yahooapis.ss.v201805.account.AccountStatus;
+import jp.yahooapis.ss.v201805.account.AccountType;
+import jp.yahooapis.ss.v201805.account.AccountValues;
+import jp.yahooapis.ss.v201805.account.DeliveryStatus;
+import jp.yahooapis.ss.v201805.account.Operator;
+import jp.yahooapis.ss.v201805.Paging;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -98,7 +98,7 @@ public class AccountSampleTest {
     // Run
     List<AccountValues> accountValues = null;
     try {
-      accountValues = AccountSample.set(operation);
+      accountValues = AccountSample.mutate(operation);
     } catch (Exception e) {
       fail();
     }

@@ -8,8 +8,8 @@ Property for build tasks
   <property name="src.dir" value="${basedir}/src/main/java"/>
   <property name="dest.dir" value="${basedir}/build"/>
   <property name="wsdl.dir" value="${basedir}/wsdl"/>
-  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V6.5"/>
-  <property name="pakcage.base" value="jp.yahooapis.ss.V6"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V201805"/>
+  <property name="pakcage.base" value="jp.yahooapis.ss.v201805"/>
   <!--==================================
 classpath for build
 ===================================-->
@@ -21,8 +21,6 @@ target for wsimport
     <echo message="start wsimport AccountService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AccountService/AccountService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AccountService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -35,8 +33,6 @@ target for wsimport
     <echo message="start wsimport AccountSharedService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AccountSharedService/AccountSharedService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AccountSharedService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -49,8 +45,6 @@ target for wsimport
     <echo message="start wsimport SharedCriterionService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/SharedCriterionService/SharedCriterionService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.SharedCriterionService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -63,8 +57,6 @@ target for wsimport
     <echo message="start wsimport AccountTrackingURLService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AccountTrackingURLService/AccountTrackingURLService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AccountTrackingURLService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -77,8 +69,6 @@ target for wsimport
     <echo message="start wsimport AdGroupAdService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AdGroupAdService/AdGroupAdService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AdGroupAdService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -91,8 +81,6 @@ target for wsimport
     <echo message="start wsimport AdGroupService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AdGroupService/AdGroupService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AdGroupService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -105,8 +93,6 @@ target for wsimport
     <echo message="start wsimport AdGroupBidMultiplierService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AdGroupBidMultiplierService/AdGroupBidMultiplierService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AdGroupBidMultiplierService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -119,8 +105,6 @@ target for wsimport
     <echo message="start wsimport AdGroupCriterionService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AdGroupCriterionService/AdGroupCriterionService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AdGroupCriterionService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -133,8 +117,6 @@ target for wsimport
     <echo message="start wsimport AdGroupFeedService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AdGroupFeedService/AdGroupFeedService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AdGroupFeedService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -147,8 +129,6 @@ target for wsimport
     <echo message="start wsimport BalanceService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/BalanceService/BalanceService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.BalanceService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -161,8 +141,6 @@ target for wsimport
     <echo message="start wsimport BidLandscapeService.wsdl.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/BidLandscapeService/BidLandscapeService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.BidLandscapeService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -175,8 +153,6 @@ target for wsimport
     <echo message="start wsimport CampaignCriterionService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignCriterionService/CampaignCriterionService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CampaignCriterionService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -189,8 +165,6 @@ target for wsimport
     <echo message="start wsimport CampaignFeedService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignFeedService/CampaignFeedService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CampaignFeedService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -203,8 +177,6 @@ target for wsimport
     <echo message="start wsimport CampaignService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignService/CampaignService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CampaignService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -216,8 +188,6 @@ target for wsimport
     </exec>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignExportService/CampaignExportService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CampaignExportService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -230,8 +200,6 @@ target for wsimport
     <echo message="start wsimport CampaignTargetService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignTargetService/CampaignTargetService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CampaignTargetService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -244,8 +212,6 @@ target for wsimport
     <echo message="start wsimport CampaignSharedSetService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignSharedSetService/CampaignSharedSetService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CampaignSharedSetService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -258,8 +224,6 @@ target for wsimport
     <echo message="start wsimport ConversionTrackerService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/ConversionTrackerService/ConversionTrackerService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.ConversionTrackerService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -269,25 +233,9 @@ target for wsimport
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/ConversionTrackerService?wsdl"/>
     </exec>
-    <echo message="start wsimport CustomerSyncService.wsdl...."/>
-    <exec executable="${env.JAVA_HOME}/bin/wsimport">
-      <arg value="${wsdl.dir}/CustomerSyncService/CustomerSyncService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CustomerSyncService"/>
-      <arg value="-s"/>
-      <arg value="${src.dir}"/>
-      <arg value="-Xnocompile"/>
-      <arg value="-encoding"/>
-      <arg value="UTF-8"/>
-      <arg value="-J-Duser.language=en"/>
-      <arg value="-wsdllocation"/>
-      <arg value="${wsdl.location}/CustomerSyncService?wsdl"/>
-    </exec>
     <echo message="start wsimport DictionaryService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/DictionaryService/DictionaryService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.DictionaryService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -300,8 +248,6 @@ target for wsimport
     <echo message="start wsimport FeedFolderService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/FeedFolderService/FeedFolderService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.FeedFolderService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -314,8 +260,6 @@ target for wsimport
     <echo message="start wsimport FeedItemService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/FeedItemService/FeedItemService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.FeedItemService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -328,8 +272,6 @@ target for wsimport
     <echo message="start wsimport KeywordEstimatorService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/KeywordEstimatorService/KeywordEstimatorService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.KeywordEstimatorService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -342,8 +284,6 @@ target for wsimport
     <echo message="start wsimport LocationService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/LocationService/LocationService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.LocationService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -356,8 +296,6 @@ target for wsimport
     <echo message="start wsimport ReportDefinitionService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/ReportDefinitionService/ReportDefinitionService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.ReportDefinitionService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -370,8 +308,6 @@ target for wsimport
     <echo message="start wsimport ReportService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/ReportService/ReportService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.ReportService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -384,8 +320,6 @@ target for wsimport
     <echo message="start wsimport TargetingIdeaService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/TargetingIdeaService/TargetingIdeaService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.TargetingIdeaService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -398,8 +332,6 @@ target for wsimport
     <echo message="start wsimport BiddingStrategyService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/BiddingStrategyService/BiddingStrategyService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.BiddingStrategyService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -412,8 +344,6 @@ target for wsimport
     <echo message="start wsimport RetargetingListService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/RetargetingListService/RetargetingListService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.RetargetingListService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -426,8 +356,6 @@ target for wsimport
     <echo message="start wsimport CampaignRetargetingListService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/CampaignRetargetingListService/CampaignRetargetingListService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.CampaignRetargetingListService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -440,8 +368,6 @@ target for wsimport
     <echo message="start wsimport AdGroupRetargetingListService.wsdl...."/>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AdGroupRetargetingListService/AdGroupRetargetingListService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AdGroupRetargetingListService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
@@ -453,8 +379,6 @@ target for wsimport
     </exec>
     <exec executable="${env.JAVA_HOME}/bin/wsimport">
       <arg value="${wsdl.dir}/AuditLogService/AuditLogService.wsdl"/>
-      <arg value="-p"/>
-      <arg value="${pakcage.base}.AuditLogService"/>
       <arg value="-s"/>
       <arg value="${src.dir}"/>
       <arg value="-Xnocompile"/>
