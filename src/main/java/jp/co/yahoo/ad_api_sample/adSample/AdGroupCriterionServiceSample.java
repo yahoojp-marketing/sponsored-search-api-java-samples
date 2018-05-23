@@ -2,51 +2,45 @@ package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupCriterionServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterion;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionAdditionalAdvancedMobileUrls;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionAdditionalAdvancedUrls;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionAdditionalUrl;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionBiddingStrategy;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionOperation;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionPage;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionReturnValue;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionSelector;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionService;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionServiceInterface;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionUse;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionValues;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Advanced;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.ApprovalStatus;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Bid;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.BiddableAdGroupCriterion;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.BudgetOptimizerBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Criterion;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.CriterionType;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.CustomParameter;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.CustomParameters;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Error;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.IsRemove;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Keyword;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.KeywordMatchType;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Operator;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.Paging;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.UserStatus;
-import jp.yahooapis.ss.V6.CampaignService.CampaignSelector;
-import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V6.CampaignService.UrlApprovalStatus;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterion;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionAdditionalAdvancedMobileUrls;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionAdditionalAdvancedUrls;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionAdditionalUrl;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionBiddingStrategy;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionPage;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionReturnValue;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionSelector;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionService;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionServiceInterface;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201805.adgroupcriterion.ApprovalStatus;
+import jp.yahooapis.ss.v201805.adgroupcriterion.Bid;
+import jp.yahooapis.ss.v201805.adgroupcriterion.BiddableAdGroupCriterion;
+import jp.yahooapis.ss.v201805.adgroupcriterion.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroupcriterion.Criterion;
+import jp.yahooapis.ss.v201805.adgroupcriterion.CriterionType;
+import jp.yahooapis.ss.v201805.adgroupcriterion.CustomParameter;
+import jp.yahooapis.ss.v201805.adgroupcriterion.CustomParameters;
+import jp.yahooapis.ss.v201805.adgroupcriterion.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroupcriterion.IsRemove;
+import jp.yahooapis.ss.v201805.adgroupcriterion.Keyword;
+import jp.yahooapis.ss.v201805.adgroupcriterion.KeywordMatchType;
+import jp.yahooapis.ss.v201805.adgroupcriterion.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroupcriterion.Operator;
+import jp.yahooapis.ss.v201805.adgroupcriterion.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroupcriterion.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroupcriterion.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroupcriterion.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroupcriterion.UserStatus;
 
 import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.ws.Holder;
-
-import static java.lang.Thread.sleep;
 
 
 /**
@@ -521,8 +515,6 @@ public class AdGroupCriterionServiceSample {
             }
           }
         }
-
-        System.out.println("advanced = " + biddableAdGroupCriterion.getAdvanced());
       }
     }
 
@@ -602,7 +594,6 @@ public class AdGroupCriterionServiceSample {
 
     biddableAdGroupCriterion.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     biddableAdGroupCriterion.setCustomParameters(customParameters);
-    biddableAdGroupCriterion.setAdvanced(Advanced.TRUE);
 
     operation.getOperand().add(biddableAdGroupCriterion);
 
@@ -667,7 +658,6 @@ public class AdGroupCriterionServiceSample {
 
       biddableAdGroupCriterion.setTrackingUrl("http://www.yahoo2.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
       biddableAdGroupCriterion.setCustomParameters(customParameters);
-      biddableAdGroupCriterion.setAdvanced(Advanced.TRUE);
 
       operation.getOperand().add(biddableAdGroupCriterion);
     }
@@ -734,7 +724,6 @@ public class AdGroupCriterionServiceSample {
     selector.setCriterionUse(AdGroupCriterionUse.BIDDABLE);
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
-    selector.setAdvanced(Advanced.TRUE);
     Paging paging = new Paging();
     paging.setStartIndex(1);
     paging.setNumberResults(20);

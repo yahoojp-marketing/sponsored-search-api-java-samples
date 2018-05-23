@@ -7,26 +7,26 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.BiddingStrategyServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BidChangesForRaisesOnly;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategy;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyPage;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyReturnValue;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategySelector;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyService;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyServiceInterface;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyType;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V6.BiddingStrategyService.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.V6.BiddingStrategyService.Error;
-import jp.yahooapis.ss.V6.BiddingStrategyService.Operator;
-import jp.yahooapis.ss.V6.BiddingStrategyService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V6.BiddingStrategyService.Paging;
-import jp.yahooapis.ss.V6.BiddingStrategyService.RaiseBidWhenBudgetConstrained;
-import jp.yahooapis.ss.V6.BiddingStrategyService.RaiseBidWhenLowQualityScore;
-import jp.yahooapis.ss.V6.BiddingStrategyService.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.V6.BiddingStrategyService.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.V6.BiddingStrategyService.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201805.biddingstrategy.BidChangesForRaisesOnly;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategy;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyPage;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyReturnValue;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategySelector;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyService;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyServiceInterface;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyType;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201805.biddingstrategy.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.biddingstrategy.Operator;
+import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201805.biddingstrategy.RaiseBidWhenBudgetConstrained;
+import jp.yahooapis.ss.v201805.biddingstrategy.RaiseBidWhenLowQualityScore;
+import jp.yahooapis.ss.v201805.biddingstrategy.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.v201805.biddingstrategy.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.v201805.biddingstrategy.TargetSpendBiddingScheme;
 
 /**
  * Sample Program for BiddingStrategyService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -53,7 +53,7 @@ public class BiddingStrategyServiceSample {
       BiddingStrategyOperation addBiddingStrategyOperation = createSampleAddRequest(accountId);
 
       // Run
-      List<BiddingStrategyValues> biddingStrategyValues = add(addBiddingStrategyOperation);
+      List<BiddingStrategyValues> biddingStrategyValues = mutate(addBiddingStrategyOperation);
 
       // =================================================================
       // BiddingStrategyService::GET
@@ -71,7 +71,7 @@ public class BiddingStrategyServiceSample {
       BiddingStrategyOperation setBiddingStrategyOperation = createSampleSetRequest(accountId, biddingStrategyValues);
 
       // Run
-      set(setBiddingStrategyOperation);
+      mutate(setBiddingStrategyOperation);
 
       // =================================================================
       // BiddingStrategyService::REMOVE
@@ -80,7 +80,7 @@ public class BiddingStrategyServiceSample {
       BiddingStrategyOperation removeBiddingStrategyOperation = createSampleRemoveRequest(accountId, biddingStrategyValues);
 
       // Run
-      remove(removeBiddingStrategyOperation);
+      mutate(removeBiddingStrategyOperation);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -89,17 +89,17 @@ public class BiddingStrategyServiceSample {
   }
 
   /**
-   * Sample Program for BiddingStrategyService ADD.
+   * Sample Program for BiddingStrategyService MUTATE.
    *
    * @param operation BiddingStrategyOperation
    * @return BiddingStrategyValues
    * @throws Exception
    */
-  public static List<BiddingStrategyValues> add(BiddingStrategyOperation operation) throws Exception {
+  public static List<BiddingStrategyValues> mutate(BiddingStrategyOperation operation) throws Exception {
 
     // Call API
     System.out.println("############################################");
-    System.out.println("BiddingStrategyService::mutate(ADD)");
+    System.out.println("BiddingStrategyService::mutate(" + operation.getOperator() + ")");
     System.out.println("############################################");
 
     Holder<BiddingStrategyReturnValue> biddingStrategyReturnValueHolder = new Holder<BiddingStrategyReturnValue>();
@@ -112,87 +112,7 @@ public class BiddingStrategyServiceSample {
       SoapUtils.displayErrors(new BiddingStrategyServiceErrorEntityFactory(errorHolder.value), true);
     }
     if (biddingStrategyReturnValueHolder.value == null) {
-      throw new Exception("NoDataResponse:BiddingStrategyService Add");
-    }
-
-    // Display
-    for (BiddingStrategyValues biddingStrategyValues : biddingStrategyReturnValueHolder.value.getValues()) {
-      if (biddingStrategyValues.isOperationSucceeded()) {
-        display(biddingStrategyValues.getBiddingStrategy());
-      } else {
-        SoapUtils.displayErrors(new BiddingStrategyServiceErrorEntityFactory(biddingStrategyValues.getError()), true);
-      }
-    }
-
-    // Response
-    return biddingStrategyReturnValueHolder.value.getValues();
-  }
-
-  /**
-   * Sample Program for BiddingStrategyService SET.
-   *
-   * @param operation BiddingStrategyOperation
-   * @return BiddingStrategyValues
-   * @throws Exception
-   */
-  public static List<BiddingStrategyValues> set(BiddingStrategyOperation operation) throws Exception {
-
-    // Call API
-    System.out.println("############################################");
-    System.out.println("BiddingStrategyService::mutate(SET)");
-    System.out.println("############################################");
-
-    Holder<BiddingStrategyReturnValue> biddingStrategyReturnValueHolder = new Holder<BiddingStrategyReturnValue>();
-    Holder<List<Error>> errorHolder = new Holder<List<Error>>();
-    BiddingStrategyServiceInterface biddingStrategyService = SoapUtils.createServiceInterface(BiddingStrategyServiceInterface.class, BiddingStrategyService.class);
-    biddingStrategyService.mutate(operation, biddingStrategyReturnValueHolder, errorHolder);
-
-    // Error
-    if (errorHolder.value != null && errorHolder.value.size() > 0) {
-      SoapUtils.displayErrors(new BiddingStrategyServiceErrorEntityFactory(errorHolder.value), true);
-    }
-    if (biddingStrategyReturnValueHolder.value == null) {
-      throw new Exception("NoDataResponse:BiddingStrategyService Set");
-    }
-
-    // Display
-    for (BiddingStrategyValues biddingStrategyValues : biddingStrategyReturnValueHolder.value.getValues()) {
-      if (biddingStrategyValues.isOperationSucceeded()) {
-        display(biddingStrategyValues.getBiddingStrategy());
-      } else {
-        SoapUtils.displayErrors(new BiddingStrategyServiceErrorEntityFactory(biddingStrategyValues.getError()), true);
-      }
-    }
-
-    // Response
-    return biddingStrategyReturnValueHolder.value.getValues();
-  }
-
-  /**
-   * Sample Program for BiddingStrategyService REMOVE.
-   *
-   * @param operation BiddingStrategyOperation
-   * @return BiddingStrategyValues
-   * @throws Exception
-   */
-  public static List<BiddingStrategyValues> remove(BiddingStrategyOperation operation) throws Exception {
-
-    // Call API
-    System.out.println("############################################");
-    System.out.println("BiddingStrategyService::mutate(REMOVE)");
-    System.out.println("############################################");
-
-    Holder<BiddingStrategyReturnValue> biddingStrategyReturnValueHolder = new Holder<BiddingStrategyReturnValue>();
-    Holder<List<Error>> errorHolder = new Holder<List<Error>>();
-    BiddingStrategyServiceInterface biddingStrategyService = SoapUtils.createServiceInterface(BiddingStrategyServiceInterface.class, BiddingStrategyService.class);
-    biddingStrategyService.mutate(operation, biddingStrategyReturnValueHolder, errorHolder);
-
-    // Error
-    if (errorHolder.value != null && errorHolder.value.size() > 0) {
-      SoapUtils.displayErrors(new BiddingStrategyServiceErrorEntityFactory(errorHolder.value), true);
-    }
-    if (biddingStrategyReturnValueHolder.value == null) {
-      throw new Exception("NoDataResponse:BiddingStrategyService Remove");
+      throw new Exception("NoDataResponse:BiddingStrategyService " + operation.getOperator());
     }
 
     // Display

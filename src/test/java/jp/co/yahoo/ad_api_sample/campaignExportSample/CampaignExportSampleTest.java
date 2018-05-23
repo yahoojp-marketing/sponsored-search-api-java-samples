@@ -1,13 +1,13 @@
 package jp.co.yahoo.ad_api_sample.campaignExportSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.CampaignExportService.CampaignExportFieldAttribute;
-import jp.yahooapis.ss.V6.CampaignExportService.Encoding;
-import jp.yahooapis.ss.V6.CampaignExportService.EntityType;
-import jp.yahooapis.ss.V6.CampaignExportService.ExportSetting;
-import jp.yahooapis.ss.V6.CampaignExportService.JobSelector;
-import jp.yahooapis.ss.V6.CampaignExportService.Lang;
-import jp.yahooapis.ss.V6.CampaignExportService.Output;
+import jp.yahooapis.ss.v201805.campaignexport.CampaignExportFieldAttribute;
+import jp.yahooapis.ss.v201805.campaignexport.Encoding;
+import jp.yahooapis.ss.v201805.campaignexport.EntityType;
+import jp.yahooapis.ss.v201805.campaignexport.ExportSetting;
+import jp.yahooapis.ss.v201805.campaignexport.JobSelector;
+import jp.yahooapis.ss.v201805.campaignexport.Lang;
+import jp.yahooapis.ss.v201805.campaignexport.Output;
 
 import org.junit.Ignore;
 import org.junit.Test;

@@ -2,30 +2,29 @@ package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupAdServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AdGroupAdService.Ad;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAd;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdAdditionalAdvancedMobileUrls;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdAdditionalAdvancedUrls;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdOperation;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdPage;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdReturnValue;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdSelector;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdService;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdServiceInterface;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdValues;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdType;
-import jp.yahooapis.ss.V6.AdGroupAdService.Advanced;
-import jp.yahooapis.ss.V6.AdGroupAdService.AppAd;
-import jp.yahooapis.ss.V6.AdGroupAdService.ApprovalStatus;
-import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameter;
-import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameters;
-import jp.yahooapis.ss.V6.AdGroupAdService.DevicePreference;
-import jp.yahooapis.ss.V6.AdGroupAdService.Error;
-import jp.yahooapis.ss.V6.AdGroupAdService.ExtendedTextAd;
-import jp.yahooapis.ss.V6.AdGroupAdService.Operator;
-import jp.yahooapis.ss.V6.AdGroupAdService.Paging;
-import jp.yahooapis.ss.V6.AdGroupAdService.TextAd2;
-import jp.yahooapis.ss.V6.AdGroupAdService.UserStatus;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201805.adgroupad.Ad;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAd;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdAdditionalAdvancedMobileUrls;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdAdditionalAdvancedUrls;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdPage;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdReturnValue;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdService;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdServiceInterface;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201805.adgroupad.AdType;
+import jp.yahooapis.ss.v201805.adgroupad.AppAd;
+import jp.yahooapis.ss.v201805.adgroupad.ApprovalStatus;
+import jp.yahooapis.ss.v201805.adgroupad.CustomParameter;
+import jp.yahooapis.ss.v201805.adgroupad.CustomParameters;
+import jp.yahooapis.ss.v201805.adgroupad.DevicePreference;
+import jp.yahooapis.ss.v201805.adgroupad.ExtendedTextAd;
+import jp.yahooapis.ss.v201805.adgroupad.Operator;
+import jp.yahooapis.ss.v201805.adgroupad.TextAd2;
+import jp.yahooapis.ss.v201805.adgroupad.UserStatus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -310,7 +309,6 @@ public class AdGroupAdServiceSample {
       System.out.println("ad/advancedUrl = " + ad.getAdvancedUrl());
       System.out.println("ad/advancedMobileUrl = " + ad.getAdvancedMobileUrl());
       System.out.println("ad/trackingUrl = " + ad.getTrackingUrl());
-      System.out.println("ad/advanced = " + ad.getAdvanced());
 
       if (null != ad.getAdditionalAdvancedUrls()) {
         List<AdGroupAdAdditionalAdvancedUrls> additionalAdvancedUrls = ad.getAdditionalAdvancedUrls();
@@ -540,7 +538,6 @@ public class AdGroupAdServiceSample {
     selector.getUserStatuses().addAll(Arrays.asList(UserStatus.ACTIVE, UserStatus.PAUSED));
     selector.getApprovalStatuses().addAll(
         Arrays.asList(ApprovalStatus.APPROVED, ApprovalStatus.APPROVED_WITH_REVIEW, ApprovalStatus.REVIEW, ApprovalStatus.POST_DISAPPROVED, ApprovalStatus.PRE_DISAPPROVED));
-    selector.setAdvanced(Advanced.TRUE);
     Paging paging = new Paging();
     paging.setStartIndex(1);
     paging.setNumberResults(20);

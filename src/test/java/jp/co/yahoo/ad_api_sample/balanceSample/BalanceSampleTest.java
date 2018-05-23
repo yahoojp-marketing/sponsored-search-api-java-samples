@@ -8,8 +8,8 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.BalanceService.BalanceSelector;
-import jp.yahooapis.ss.V6.BalanceService.BalanceValues;
+import jp.yahooapis.ss.v201805.balance.BalanceSelector;
+import jp.yahooapis.ss.v201805.balance.BalanceValues;
 
 import org.junit.Before;
 import org.junit.Test;

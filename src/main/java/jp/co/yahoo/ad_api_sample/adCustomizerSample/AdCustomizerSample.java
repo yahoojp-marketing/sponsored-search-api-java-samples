@@ -6,36 +6,35 @@ import jp.co.yahoo.ad_api_sample.adSample.AdGroupServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.BiddingStrategyServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAd;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdOperation;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdSelector;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdGroupAdValues;
-import jp.yahooapis.ss.V6.AdGroupAdService.AdType;
-import jp.yahooapis.ss.V6.AdGroupAdService.Advanced;
-import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameter;
-import jp.yahooapis.ss.V6.AdGroupAdService.CustomParameters;
-import jp.yahooapis.ss.V6.AdGroupAdService.DevicePreference;
-import jp.yahooapis.ss.V6.AdGroupAdService.ExtendedTextAd;
-import jp.yahooapis.ss.V6.AdGroupAdService.Operator;
-import jp.yahooapis.ss.V6.AdGroupAdService.UserStatus;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionOperation;
-import jp.yahooapis.ss.V6.AdGroupCriterionService.AdGroupCriterionValues;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyOperation;
-import jp.yahooapis.ss.V6.BiddingStrategyService.BiddingStrategyValues;
-import jp.yahooapis.ss.V6.BiddingStrategyService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V6.CampaignService.CampaignOperation;
-import jp.yahooapis.ss.V6.CampaignService.CampaignType;
-import jp.yahooapis.ss.V6.CampaignService.CampaignValues;
-import jp.yahooapis.ss.V6.FeedFolderService.FeedAttribute;
-import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderOperation;
-import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderPlaceholderField;
-import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderSelector;
-import jp.yahooapis.ss.V6.FeedFolderService.FeedFolderValues;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemOperation;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemSelector;
-import jp.yahooapis.ss.V6.FeedItemService.FeedItemValues;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAd;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201805.adgroupad.AdType;
+import jp.yahooapis.ss.v201805.adgroupad.CustomParameter;
+import jp.yahooapis.ss.v201805.adgroupad.CustomParameters;
+import jp.yahooapis.ss.v201805.adgroupad.DevicePreference;
+import jp.yahooapis.ss.v201805.adgroupad.ExtendedTextAd;
+import jp.yahooapis.ss.v201805.adgroupad.Operator;
+import jp.yahooapis.ss.v201805.adgroupad.UserStatus;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201805.campaign.CampaignType;
+import jp.yahooapis.ss.v201805.campaign.CampaignValues;
+import jp.yahooapis.ss.v201805.feedfolder.FeedAttribute;
+import jp.yahooapis.ss.v201805.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201805.feedfolder.FeedFolderPlaceholderField;
+import jp.yahooapis.ss.v201805.feedfolder.FeedFolderSelector;
+import jp.yahooapis.ss.v201805.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -76,17 +75,17 @@ public class AdCustomizerSample {
       List<BiddingStrategyValues> biddingStrategyValues = null;
       if (biddingStrategyId == 9999999999l) {
         BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
-        biddingStrategyValues = BiddingStrategyServiceSample.add(addBiddingStrategyOperation);
+        biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
         for (BiddingStrategyValues value : biddingStrategyValues) {
           if (value.getBiddingStrategy().getBiddingScheme() instanceof PageOnePromotedBiddingScheme) {
             biddingStrategyId = value.getBiddingStrategy().getBiddingStrategyId();
           }
         }
-      }
 
-      // sleep 30 second.
-      System.out.println("\n***** sleep 30 seconds *****\n");
-      Thread.sleep(30000);
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds *****\n");
+        Thread.sleep(30000);
+      }
       
       // =================================================================
       // CampaignService::mutate(ADD)
@@ -172,7 +171,7 @@ public class AdCustomizerSample {
       // FeedItemService
       // =================================================================
       // ADD
-      FeedItemOperation addFeedItemOperation = FeedItemServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
+      FeedItemOperation addFeedItemOperation = FeedItemServiceSample.AdCustomizerSampleFeedItem.createSampleAddRequest(accountId, campaignId, adGroupId, feedFolderId, feedAttributeIds);
       List<FeedItemValues> feedItemValues = FeedItemServiceSample.add(addFeedItemOperation);
       // GET
       FeedItemSelector feedItemSelector = FeedItemServiceSample.createSampleGetRequest(accountId, feedItemValues);
@@ -182,7 +181,7 @@ public class AdCustomizerSample {
       Thread.sleep(20000);
 
       // SET
-      FeedItemOperation setFeedItemOperation = FeedItemServiceSample.createSampleSetRequest(accountId, feedItemValues);
+      FeedItemOperation setFeedItemOperation = FeedItemServiceSample.AdCustomizerSampleFeedItem.createSampleSetRequest(accountId, feedItemValues);
       FeedItemServiceSample.set(setFeedItemOperation);
 
       // =================================================================
@@ -220,7 +219,7 @@ public class AdCustomizerSample {
       // BiddingStrategy
       if (biddingStrategyValues != null) {
         BiddingStrategyOperation removeBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleRemoveRequest(accountId, biddingStrategyValues);
-        BiddingStrategyServiceSample.remove(removeBiddingStrategyOperation);
+        BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
       }
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -268,7 +267,6 @@ public class AdCustomizerSample {
     keywordAd.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
     keywordAd.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     keywordAd.setCustomParameters(customParameters);
-    keywordAd.setAdvanced(Advanced.TRUE);
     adGroupAd1.setAd(keywordAd);
     adGroupAd1.setUserStatus(UserStatus.ACTIVE);
 
@@ -289,7 +287,6 @@ public class AdCustomizerSample {
     countdownOptionAd1.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
     countdownOptionAd1.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
     countdownOptionAd1.setCustomParameters(customParameters);
-    countdownOptionAd1.setAdvanced(Advanced.TRUE);
     adGroupAd2.setAd(countdownOptionAd1);
     adGroupAd2.setUserStatus(UserStatus.ACTIVE);
 
@@ -321,7 +318,6 @@ public class AdCustomizerSample {
     countdownOptionAd2.setAdvancedUrl("http://www.yahoo.co.jp");
     countdownOptionAd2.setAdvancedMobileUrl("http://www.yahoo.co.jp/mobile");
     countdownOptionAd2.setTrackingUrl("http://www.yahoo.co.jp/?url={lpurl}&amp;a={creative}&amp;pid={_id1}");
-    countdownOptionAd2.setAdvanced(Advanced.TRUE);
     adGroupAd3.setAd(countdownOptionAd2);
     adGroupAd3.setUserStatus(UserStatus.ACTIVE);
 

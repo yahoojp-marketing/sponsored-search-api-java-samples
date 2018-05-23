@@ -6,19 +6,19 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignRetargetingListServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CriterionTargetList;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.Error;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingList;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListOperation;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListPage;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListReturnValue;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListSelector;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListService;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListServiceInterface;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.CampaignRetargetingListValues;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.ExcludedType;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.Operator;
-import jp.yahooapis.ss.V6.CampaignRetargetingListService.Paging;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CriterionTargetList;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingList;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListOperation;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListPage;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListReturnValue;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListSelector;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListService;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListServiceInterface;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListValues;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.ExcludedType;
+import jp.yahooapis.ss.v201805.campaignretargetinglist.Operator;
+import jp.yahooapis.ss.v201805.Paging;
 
 /**
  * Sample Program for CampaignRetargetingListService. Copyright (C) 2012 Yahoo Japan Corporation. All

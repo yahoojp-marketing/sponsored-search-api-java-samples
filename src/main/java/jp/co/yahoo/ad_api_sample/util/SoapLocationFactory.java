@@ -8,10 +8,10 @@ import javax.xml.ws.Holder;
 import javax.xml.ws.Service;
 import javax.xml.ws.wsaddressing.W3CEndpointReferenceBuilder;
 
-import jp.yahooapis.ss.V6.LocationService.Error;
-import jp.yahooapis.ss.V6.LocationService.LocationReturnValue;
-import jp.yahooapis.ss.V6.LocationService.LocationService;
-import jp.yahooapis.ss.V6.LocationService.LocationServiceInterface;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.location.LocationReturnValue;
+import jp.yahooapis.ss.v201805.location.LocationService;
+import jp.yahooapis.ss.v201805.location.LocationServiceInterface;
 
 
 
@@ -29,7 +29,9 @@ public class SoapLocationFactory {
   public String getSoapLocation() throws Exception {
 
     // create EndPoint URL
-    Service serviceProxy = Service.create(new URL(SoapUtils.getWsdlUrl(SERVICE_NAME)), new QName(SoapUtils.getAPI_NAMESPACE(), LocationService.class.getSimpleName()));
+    Service serviceProxy = Service.create(new URL(SoapUtils.getWsdlUrl(SERVICE_NAME))
+        , new QName(SoapUtils.getAPI_NAMESPACE() + "/" + LocationService.class.getSimpleName().substring(0, LocationService.class.getSimpleName().indexOf("Service"))
+        , LocationService.class.getSimpleName()));
     serviceProxy.setHandlerResolver(SoapClientHandler.createHadlerResolver());
     W3CEndpointReferenceBuilder builder = new W3CEndpointReferenceBuilder();
     String locationServer = SoapUtils.getLocationServer(SERVICE_NAME);

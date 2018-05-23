@@ -4,7 +4,7 @@
 
   <groupId>jp.co.yahoo</groupId>
   <artifactId>ad-api-sample</artifactId>
-  <version>SS-API-V6.5</version>
+  <version>SS-API-V201805</version>
   <packaging>jar</packaging>
 
   <name>ad-api-sample</name>
@@ -12,6 +12,7 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.test.skip>true</maven.test.skip>
   </properties>
 
   <dependencies>

@@ -1,16 +1,16 @@
 package jp.co.yahoo.ad_api_sample.auditLogDownloadSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogEncoding;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogEventType;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogJob;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogLang;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogOperation;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogOutput;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogSelector;
-import jp.yahooapis.ss.V6.AuditLogService.AuditLogValues;
-import jp.yahooapis.ss.V6.AuditLogService.DateRange;
-import jp.yahooapis.ss.V6.AuditLogService.EventSelector;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogEncoding;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogEventType;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogJob;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogLang;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogOperation;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogOutput;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogSelector;
+import jp.yahooapis.ss.v201805.auditlog.AuditLogValues;
+import jp.yahooapis.ss.v201805.auditlog.DateRange;
+import jp.yahooapis.ss.v201805.auditlog.EventSelector;
 
 import org.junit.Ignore;
 import org.junit.Test;

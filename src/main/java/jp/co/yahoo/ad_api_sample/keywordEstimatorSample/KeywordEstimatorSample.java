@@ -1,25 +1,25 @@
 package jp.co.yahoo.ad_api_sample.keywordEstimatorSample;
 
+import jp.co.yahoo.ad_api_sample.error.impl.KeywordEstimatorServiceErrorEntityFactory;
+import jp.co.yahoo.ad_api_sample.util.SoapUtils;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.keywordestimator.AdGroupEstimateRequest;
+import jp.yahooapis.ss.v201805.keywordestimator.CampaignEstimateRequest;
+import jp.yahooapis.ss.v201805.keywordestimator.EstimateKeyword;
+import jp.yahooapis.ss.v201805.keywordestimator.IsNegativeBool;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordEstimateRequest;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordEstimateResult;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordEstimateValues;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordEstimatorPage;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordEstimatorSelector;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordEstimatorService;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordEstimatorServiceInterface;
+import jp.yahooapis.ss.v201805.keywordestimator.KeywordMatchType;
+
 import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.ws.Holder;
-
-import jp.co.yahoo.ad_api_sample.error.impl.KeywordEstimatorServiceErrorEntityFactory;
-import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.AdGroupEstimateRequest;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.CampaignEstimateRequest;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.Error;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.EstimateKeyword;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.IsNegativeBool;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimateRequest;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimateResult;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimateValues;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorPage;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorSelector;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorService;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordEstimatorServiceInterface;
-import jp.yahooapis.ss.V6.KeywordEstimatorService.KeywordMatchType;
 
 /**
  * Sample Program for KeywordEstimatorService. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -31,19 +31,19 @@ public class KeywordEstimatorSample {
    * main method for KeywordEstimatorSample
    *
    * @param args command line arguments
+   * @throws Exception
    */
-  public static void main(String[] args) {
-    long accountId = SoapUtils.getAccountId();
+  public static void main(String[] args) throws Exception {
     try {
       // =================================================================
-      // KeywordEstimatorService
+      // Setting
       // =================================================================
-      KeywordEstimatorServiceInterface keywordEstimatorService = SoapUtils.createServiceInterface(KeywordEstimatorServiceInterface.class, KeywordEstimatorService.class);
+      long accountId = SoapUtils.getAccountId();
 
       // -----------------------------------------------
       // KeywordEstimatorService::get
       // -----------------------------------------------
-      // request
+      // Set Selector
       KeywordEstimateRequest keyword1 = new KeywordEstimateRequest();
       EstimateKeyword estimateKeyword1 = new EstimateKeyword();
       estimateKeyword1.setText("sample1");
@@ -68,43 +68,57 @@ public class KeywordEstimatorSample {
 
       CampaignEstimateRequest campaignEstimateRequest = new CampaignEstimateRequest();
       campaignEstimateRequest.getAdGroupEstimateRequests().addAll(Arrays.asList(adGroupEstimateRequest1, adGroupEstimateRequest2));
-      KeywordEstimatorSelector keywordEstimatorSelector = new KeywordEstimatorSelector();
-      keywordEstimatorSelector.setAccountId(accountId);
-      keywordEstimatorSelector.setCampaignEstimateRequest(campaignEstimateRequest);
+      KeywordEstimatorSelector selector = new KeywordEstimatorSelector();
+      selector.setAccountId(accountId);
+      selector.setCampaignEstimateRequest(campaignEstimateRequest);
 
-      // call API
-      System.out.println("############################################");
-      System.out.println("KeywordEstimatorService::get");
-      System.out.println("############################################");
-      Holder<KeywordEstimatorPage> keywordEstimatorPageHolder = new Holder<KeywordEstimatorPage>();
-      Holder<List<Error>> errorArrayHolder = new Holder<List<Error>>();
-      keywordEstimatorService.get(keywordEstimatorSelector, keywordEstimatorPageHolder, errorArrayHolder);
+      // Run
+      get(selector);
 
-      // if error
-      if (errorArrayHolder.value != null && errorArrayHolder.value.size() > 0) {
-        SoapUtils.displayErrors(new KeywordEstimatorServiceErrorEntityFactory(errorArrayHolder.value), true);
-
-      }
-
-      // response
-      if (keywordEstimatorPageHolder.value != null) {
-        if (keywordEstimatorPageHolder.value.getValues() != null) {
-          for (KeywordEstimateValues values : keywordEstimatorPageHolder.value.getValues()) {
-            if (values.isOperationSucceeded()) {
-              // display response
-              displayKeywordEstimateResult(values.getData());
-            } else {
-              // if error
-              SoapUtils.displayErrors(new KeywordEstimatorServiceErrorEntityFactory(errorArrayHolder.value), true);
-            }
-          }
-        }
-      }
-
-
-    } catch (Exception ex) {
-      ex.printStackTrace();
+    } catch (Exception e) {
+      e.printStackTrace();
+      throw e;
     }
+  }
+
+  /**
+   * Sample Program for KeywordEstimatorService GET.
+   *
+   * @param selector KeywordEstimatorSelector
+   * @return KeywordEstimateValues
+   * @throws Exception
+   */
+  public static List<KeywordEstimateValues> get(KeywordEstimatorSelector selector) throws Exception {
+
+    // call API
+    System.out.println("############################################");
+    System.out.println("KeywordEstimatorService::get");
+    System.out.println("############################################");
+
+    Holder<KeywordEstimatorPage> keywordEstimatorPageHolder = new Holder<KeywordEstimatorPage>();
+    Holder<List<Error>> errorArrayHolder = new Holder<List<Error>>();
+    KeywordEstimatorServiceInterface keywordEstimatorService = SoapUtils.createServiceInterface(KeywordEstimatorServiceInterface.class, KeywordEstimatorService.class);
+    keywordEstimatorService.get(selector, keywordEstimatorPageHolder, errorArrayHolder);
+
+    // Error
+    if (errorArrayHolder.value != null && errorArrayHolder.value.size() > 0) {
+      SoapUtils.displayErrors(new KeywordEstimatorServiceErrorEntityFactory(errorArrayHolder.value), true);
+    }
+    if (errorArrayHolder.value == null) {
+      throw new Exception("NoDataResponse:KeywordEstimatorService Get");
+    }
+
+    // Display
+    for (KeywordEstimateValues values : keywordEstimatorPageHolder.value.getValues()) {
+      if (values.isOperationSucceeded()) {
+        display(values.getData());
+      } else {
+        SoapUtils.displayErrors(new KeywordEstimatorServiceErrorEntityFactory(errorArrayHolder.value), true);
+      }
+    }
+
+    // Response
+    return keywordEstimatorPageHolder.value.getValues();
   }
 
   /**
@@ -112,7 +126,7 @@ public class KeywordEstimatorSample {
    * 
    * @param data KeywordEstimateResult entity for display.
    */
-  private static void displayKeywordEstimateResult(KeywordEstimateResult data) {
+  private static void display(KeywordEstimateResult data) {
     System.out.println("keyword = " + data.getKeyword());
     if (data.getMin() != null) {
       System.out.println("min/clicks = " + data.getMin().getClicks());

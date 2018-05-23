@@ -2,37 +2,36 @@ package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroup;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupAdRotationMode;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupBiddingStrategy;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupOperation;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupPage;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupReturnValue;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupSelector;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupService;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupServiceInterface;
-import jp.yahooapis.ss.V6.AdGroupService.AdGroupValues;
-import jp.yahooapis.ss.V6.AdGroupService.AdRotationMode;
-import jp.yahooapis.ss.V6.AdGroupService.Bid;
-import jp.yahooapis.ss.V6.AdGroupService.BiddingStrategyType;
-import jp.yahooapis.ss.V6.AdGroupService.BudgetOptimizerBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupService.CriterionType;
-import jp.yahooapis.ss.V6.AdGroupService.CustomParameter;
-import jp.yahooapis.ss.V6.AdGroupService.CustomParameters;
-import jp.yahooapis.ss.V6.AdGroupService.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupService.Error;
-import jp.yahooapis.ss.V6.AdGroupService.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupService.Operator;
-import jp.yahooapis.ss.V6.AdGroupService.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupService.Paging;
-import jp.yahooapis.ss.V6.AdGroupService.ReviewUrl;
-import jp.yahooapis.ss.V6.AdGroupService.TargetAll;
-import jp.yahooapis.ss.V6.AdGroupService.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupService.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupService.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.V6.AdGroupService.TargetingSetting;
-import jp.yahooapis.ss.V6.AdGroupService.UrlReviewData;
-import jp.yahooapis.ss.V6.AdGroupService.UserStatus;
+import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201805.adgroup.AdGroup;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupAdRotationMode;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupBiddingStrategy;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupPage;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupReturnValue;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupSelector;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupService;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupServiceInterface;
+import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201805.adgroup.AdRotationMode;
+import jp.yahooapis.ss.v201805.adgroup.Bid;
+import jp.yahooapis.ss.v201805.adgroup.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroup.CriterionType;
+import jp.yahooapis.ss.v201805.adgroup.CustomParameter;
+import jp.yahooapis.ss.v201805.adgroup.CustomParameters;
+import jp.yahooapis.ss.v201805.adgroup.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroup.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroup.Operator;
+import jp.yahooapis.ss.v201805.adgroup.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroup.ReviewUrl;
+import jp.yahooapis.ss.v201805.adgroup.TargetAll;
+import jp.yahooapis.ss.v201805.adgroup.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroup.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroup.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201805.adgroup.TargetingSetting;
+import jp.yahooapis.ss.v201805.adgroup.UrlReviewData;
+import jp.yahooapis.ss.v201805.adgroup.UserStatus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -490,7 +489,7 @@ public class AdGroupServiceSample {
     // Set AdGroupAdRotationMode
     AdGroupAdRotationMode adGroupAdRotationMode = new AdGroupAdRotationMode();
     adGroupAdRotationMode.setAdRotationMode(AdRotationMode.ROTATE_FOREVER);
-    
+
     // Set AdGroup
     AdGroup autoBiddingAdGroup = new AdGroup();
     autoBiddingAdGroup.setAccountId(accountId);
