@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignSelector;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.campaign.UserStatus;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.campaign.UserStatus;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,11 +29,13 @@ public class CampaignServiceSampleTest {
    */
   private long accountId;
   private long biddingStrategyId;
+  private long feedFolderId;
 
   @Before
   public void setup() {
     accountId = SoapUtils.getAccountId();
     biddingStrategyId = SoapUtils.getBiddingStrategyId();
+    feedFolderId = SoapUtils.getDasFeedFolderId();
   }
 
   /**
@@ -56,8 +58,9 @@ public class CampaignServiceSampleTest {
   public void testAdd() throws Exception {
     // Set Operation
     CampaignOperation campaignOperation = CampaignServiceSample.createSampleAddRequest(accountId, biddingStrategyId);
+    campaignOperation = CampaignServiceSample.createSampleDasAddRequest(campaignOperation, accountId, feedFolderId);
 
-    // Run
+        // Run
     List<CampaignValues> addCampaignValues = null;
     try {
       addCampaignValues = CampaignServiceSample.add(campaignOperation);
@@ -85,6 +88,7 @@ public class CampaignServiceSampleTest {
     List<CampaignValues> addCampaignValues = null;
     try {
       CampaignOperation addCampaignOperation = CampaignServiceSample.createSampleAddRequest(accountId, biddingStrategyId);
+      addCampaignOperation = CampaignServiceSample.createSampleDasAddRequest(addCampaignOperation, accountId, feedFolderId);
       addCampaignValues = CampaignServiceSample.add(addCampaignOperation);
     } catch (Exception e) {
       fail();
@@ -125,6 +129,7 @@ public class CampaignServiceSampleTest {
     List<CampaignValues> addCampaignValues = null;
     try {
       CampaignOperation addCampaignOperation = CampaignServiceSample.createSampleAddRequest(accountId, biddingStrategyId);
+      addCampaignOperation = CampaignServiceSample.createSampleDasAddRequest(addCampaignOperation, accountId, feedFolderId);
       addCampaignValues = CampaignServiceSample.add(addCampaignOperation);
     } catch (Exception e) {
       fail();

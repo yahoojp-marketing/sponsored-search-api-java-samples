@@ -1,13 +1,13 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionOperation;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionSelector;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionUse;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionValues;
-import jp.yahooapis.ss.v201805.adgroupcriterion.ApprovalStatus;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.adgroupcriterion.UserStatus;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionSelector;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201808.adgroupcriterion.ApprovalStatus;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.adgroupcriterion.UserStatus;
 
 import org.junit.Before;
 import org.junit.Test;

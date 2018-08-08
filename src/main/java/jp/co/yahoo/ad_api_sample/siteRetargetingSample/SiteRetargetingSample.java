@@ -1,28 +1,29 @@
 package jp.co.yahoo.ad_api_sample.siteRetargetingSample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.adSample.AdGroupServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.BiddingStrategyServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListOperation;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListSelector;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListValues;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201805.campaignretargetinglist.ExcludedType;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignType;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListOperation;
-import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListSelector;
-import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListOperation;
-import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListSelector;
-import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListValues;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListOperation;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListSelector;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListValues;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201808.campaignretargetinglist.ExcludedType;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignType;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaignretargetinglist.CampaignRetargetingListOperation;
+import jp.yahooapis.ss.v201808.campaignretargetinglist.CampaignRetargetingListSelector;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListOperation;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListSelector;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListValues;
 
 /**
  * Sample Program for RetargetingListService,CampaignService,CampaignRetargetingListService
@@ -46,6 +47,7 @@ public class SiteRetargetingSample {
       long campaignId = SoapUtils.getCampaignId();
       long appCampaignId = SoapUtils.getAppCampaignId();
       long adGroupId = SoapUtils.getAdGroupId();
+      List<Long> targetListIds = new ArrayList<>();
       long targetListId = 0;
 
       // =================================================================
@@ -77,6 +79,7 @@ public class SiteRetargetingSample {
       RetargetingListServiceSample.set(setRetargetingListOperation);
 
       for (RetargetingListValues value : retargetingListValues) {
+        targetListIds.add(value.getTargetList().getTargetListId());
         if (targetListId == 0) {
           targetListId = value.getTargetList().getTargetListId();
         }
@@ -128,10 +131,10 @@ public class SiteRetargetingSample {
       // AdGroupRetargetingListServiceService
       // =================================================================
       // ADD
-      AdGroupRetargetingListOperation addAdGroupRetargetingListOperation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListId, adGroupId);
+      AdGroupRetargetingListOperation addAdGroupRetargetingListOperation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListIds, adGroupId);
       List<AdGroupRetargetingListValues> adGroupRetargetingListValues = AdGroupRetargetingListServiceSample.add(addAdGroupRetargetingListOperation);
       // GET
-      AdGroupRetargetingListSelector adGroupRetargetingListSelector = AdGroupRetargetingListServiceSample.createSampleGetRequest(accountId, campaignId, targetListId, adGroupId);
+      AdGroupRetargetingListSelector adGroupRetargetingListSelector = AdGroupRetargetingListServiceSample.createSampleGetRequest(accountId, campaignId, targetListIds, adGroupId);
       AdGroupRetargetingListServiceSample.get(adGroupRetargetingListSelector);
       // SET
       AdGroupRetargetingListOperation setOperation = AdGroupRetargetingListServiceSample.createSampleSetRequest(accountId, adGroupRetargetingListValues);

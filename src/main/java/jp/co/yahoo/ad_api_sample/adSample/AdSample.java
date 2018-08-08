@@ -1,31 +1,33 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupSelector;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201805.adgroupbidmultiplier.AdGroupBidMultiplierOperation;
-import jp.yahooapis.ss.v201805.adgroupbidmultiplier.AdGroupBidMultiplierSelector;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionOperation;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionSelector;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategySelector;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignSelector;
-import jp.yahooapis.ss.v201805.campaign.CampaignType;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionOperation;
-import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionSelector;
-import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionValues;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetOperation;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetSelector;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetValues;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupSelector;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201808.adgroupbidmultiplier.AdGroupBidMultiplierOperation;
+import jp.yahooapis.ss.v201808.adgroupbidmultiplier.AdGroupBidMultiplierSelector;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionSelector;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201808.adgroupcriterion.ApprovalStatus;
+import jp.yahooapis.ss.v201808.adgroupcriterion.BiddableAdGroupCriterion;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategySelector;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201808.campaign.CampaignType;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaigncriterion.CampaignCriterionOperation;
+import jp.yahooapis.ss.v201808.campaigncriterion.CampaignCriterionSelector;
+import jp.yahooapis.ss.v201808.campaigncriterion.CampaignCriterionValues;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetOperation;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetSelector;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetValues;
 
 import java.util.List;
 
@@ -161,6 +163,70 @@ public class AdSample {
       // ADD
       AdGroupCriterionOperation addAdGroupCriterionOperation = AdGroupCriterionServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId);
       List<AdGroupCriterionValues> adGroupCriterionValues = AdGroupCriterionServiceSample.add(addAdGroupCriterionOperation);
+      boolean allApproved = true;
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds *****\n");
+        Thread.sleep(30000);
+
+        // =================================================================
+        // AdGroupCriterionService GET
+        // =================================================================
+        // Set Selector
+        AdGroupCriterionSelector adGroupCriterionSelector = AdGroupCriterionServiceSample.createSampleGetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
+
+        // Run
+        List<AdGroupCriterionValues> getAdGroupCriterionValues = AdGroupCriterionServiceSample.get(adGroupCriterionSelector);
+
+        allApproved = true;
+        for (AdGroupCriterionValues adGroupCriterionValue : getAdGroupCriterionValues) {
+          if (!ApprovalStatus.APPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+            allApproved = false;
+          } else if (ApprovalStatus.POST_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())
+              || ApprovalStatus.PRE_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+            System.out.println("Error : This AdGroupCriterion was denied.");
+            ((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+          }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
+      if (!allApproved) {
+        System.out.println("Error : The review did not end.");
+        // =================================================================
+        // REMOVE
+        // =================================================================
+        // AdGroupCriterionService
+        AdGroupCriterionOperation removeAdGroupCriterionOperation = AdGroupCriterionServiceSample.createSampleRemoveRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
+        AdGroupCriterionServiceSample.remove(removeAdGroupCriterionOperation);
+
+        // AdGroupService
+        AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, adGroupValues);
+        AdGroupServiceSample.remove(removeAdGroupOperation);
+
+        // CampaignCriterionService
+        CampaignCriterionOperation removeCampaignCriterionOperation = CampaignCriterionServiceSample.createSampleRemoveRequest(accountId, campaignId, campaignCriterionValues);
+        CampaignCriterionServiceSample.remove(removeCampaignCriterionOperation);
+
+        // CampaignTarget
+        CampaignTargetOperation removeCampaignTargetOperation = CampaignTargetServiceSample.createSampleRemoveRequest(accountId, campaignTargetValues);
+        CampaignTargetServiceSample.remove(removeCampaignTargetOperation);
+
+        // Campaign
+        CampaignOperation removeCampaignOperation = CampaignServiceSample.createSampleRemoveRequest(accountId, campaignValues);
+        CampaignServiceSample.remove(removeCampaignOperation);
+
+        // BiddingStrategy
+        BiddingStrategyOperation removeBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleRemoveRequest(accountId, biddingStrategyValues);
+        BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
+
+        System.exit(1);
+      }
+
       // GET
       AdGroupCriterionSelector adGroupCriterionSelector = AdGroupCriterionServiceSample.createSampleGetRequest(accountId, campaignId, adGroupId, adGroupCriterionValues);
       AdGroupCriterionServiceSample.get(adGroupCriterionSelector);

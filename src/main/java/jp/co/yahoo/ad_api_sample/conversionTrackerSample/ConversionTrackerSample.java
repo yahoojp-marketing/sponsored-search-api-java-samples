@@ -2,32 +2,31 @@ package jp.co.yahoo.ad_api_sample.conversionTrackerSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.ConversionTrackerServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.conversiontracker.AppConversion;
-import jp.yahooapis.ss.v201805.conversiontracker.AppConversionType;
-import jp.yahooapis.ss.v201805.conversiontracker.AppPlatform;
-import jp.yahooapis.ss.v201805.conversiontracker.AppPostbackUrl;
-import jp.yahooapis.ss.v201805.conversiontracker.AppPostbackUrlClearFlag;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionCountingType;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionDateRange;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTracker;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerCategory;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerOperation;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerPage;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerReturnValue;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerSelector;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerService;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerServiceInterface;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerStatus;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerType;
-import jp.yahooapis.ss.v201805.conversiontracker.ConversionTrackerValues;
-import jp.yahooapis.ss.v201805.conversiontracker.CrossDeviceConversionFlag;
-import jp.yahooapis.ss.v201805.conversiontracker.ExcludeFromBidding;
-import jp.yahooapis.ss.v201805.conversiontracker.MarkupLanguage;
-import jp.yahooapis.ss.v201805.conversiontracker.Operator;
-import jp.yahooapis.ss.v201805.conversiontracker.TrackingCodeType;
-import jp.yahooapis.ss.v201805.conversiontracker.WebConversion;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.conversiontracker.AppConversion;
+import jp.yahooapis.ss.v201808.conversiontracker.AppConversionType;
+import jp.yahooapis.ss.v201808.conversiontracker.AppPlatform;
+import jp.yahooapis.ss.v201808.conversiontracker.AppPostbackUrl;
+import jp.yahooapis.ss.v201808.conversiontracker.AppPostbackUrlClearFlag;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionCountingType;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionDateRange;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTracker;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerCategory;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerOperation;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerPage;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerReturnValue;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerSelector;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerService;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerServiceInterface;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerStatus;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerType;
+import jp.yahooapis.ss.v201808.conversiontracker.ConversionTrackerValues;
+import jp.yahooapis.ss.v201808.conversiontracker.ExcludeFromBidding;
+import jp.yahooapis.ss.v201808.conversiontracker.MarkupLanguage;
+import jp.yahooapis.ss.v201808.conversiontracker.Operator;
+import jp.yahooapis.ss.v201808.conversiontracker.TrackingCodeType;
+import jp.yahooapis.ss.v201808.conversiontracker.WebConversion;
 
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
@@ -62,7 +61,7 @@ public class ConversionTrackerSample {
       // Set Operation
       // AppConversionTracker(DOWNLOAD)
       AppConversion appConversion1 = new AppConversion();
-      appConversion1.setAppId(appId);
+      appConversion1.setAppId(appId + "_1");
       appConversion1.setAppPlatform(AppPlatform.ANDROID_MARKET);
       appConversion1.setAppConversionType(AppConversionType.DOWNLOAD);
       appConversion1.setAccountId(accountId);
@@ -77,7 +76,7 @@ public class ConversionTrackerSample {
 
       // AppConversionTracker(FIRST_OPEN)
       AppConversion appConversion2 = new AppConversion();
-      appConversion2.setAppId(appId);
+      appConversion2.setAppId(appId + "_2");
       appConversion2.setAppPlatform(AppPlatform.ANDROID_MARKET);
       appConversion2.setAppConversionType(AppConversionType.FIRST_OPEN);
       appConversion2.setAccountId(accountId);
@@ -87,7 +86,7 @@ public class ConversionTrackerSample {
       appConversion2.setConversionTrackerType(ConversionTrackerType.APP_CONVERSION);
       appConversion2.setUserRevenueValue("100");
       appConversion2.setCountingType(ConversionCountingType.ONE_PER_CLICK);
-      appConversion2.setExcludeFromBidding(ExcludeFromBidding.FALSE);
+      appConversion2.setExcludeFromBidding(ExcludeFromBidding.TRUE);
       appConversion2.setMeasurementPeriod(30);
 
       AppPostbackUrl appPostbackUrl = new AppPostbackUrl();
@@ -121,7 +120,6 @@ public class ConversionTrackerSample {
       webConversion.setCountingType(ConversionCountingType.MANY_PER_CLICK);
       webConversion.setExcludeFromBidding(ExcludeFromBidding.FALSE);
       webConversion.setMeasurementPeriod(7);
-      webConversion.setCrossDeviceConversionFlag(CrossDeviceConversionFlag.TRUE);
 
       ConversionTrackerOperation addOperation = new ConversionTrackerOperation();
       addOperation.setOperator(Operator.ADD);
@@ -156,6 +154,10 @@ public class ConversionTrackerSample {
 
       // Run
       List<ConversionTrackerValues> getResponse = get(selector);
+
+      // sleep 180 second.
+      System.out.println("\n***** sleep 180 seconds *****\n");
+      Thread.sleep(180000);
 
       // =================================================================
       // ConversionTrackerService::mutate(SET)
@@ -194,7 +196,6 @@ public class ConversionTrackerSample {
       setWebConversion.setCategory(ConversionTrackerCategory.DEFAULT);
       setWebConversion.setStatus(ConversionTrackerStatus.DISABLED);
       setWebConversion.setConversionTrackerType(ConversionTrackerType.WEB_CONVERSION);
-      setWebConversion.setCrossDeviceConversionFlag(CrossDeviceConversionFlag.FALSE);
 
       // set conversionTrackerId
       for (ConversionTrackerValues conversionTrackerValues : getResponse) {
@@ -418,7 +419,6 @@ public class ConversionTrackerSample {
       System.out.println("snippet = " + webConversion.getSnippet());
       System.out.println("markupLanguage = " + webConversion.getMarkupLanguage());
       System.out.println("trackingCodeType = " + webConversion.getTrackingCodeType());
-      System.out.println("crossDeviceConversionFlag = " + webConversion.getCrossDeviceConversionFlag());
 
     }
     if (conversionTracker instanceof AppConversion) {

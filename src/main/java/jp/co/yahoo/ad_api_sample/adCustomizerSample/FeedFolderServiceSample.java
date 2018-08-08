@@ -2,20 +2,20 @@ package jp.co.yahoo.ad_api_sample.adCustomizerSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.FeedFolderServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.feedfolder.FeedAttribute;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolder;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderOperation;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderPage;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderPlaceholderField;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderPlaceholderType;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderReturnValue;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderSelector;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderService;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderServiceInterface;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderValues;
-import jp.yahooapis.ss.v201805.feedfolder.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.feedfolder.FeedAttribute;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolder;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderPage;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderPlaceholderField;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderReturnValue;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderSelector;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderService;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderServiceInterface;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201808.feedfolder.Operator;
+import jp.yahooapis.ss.v201808.Paging;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +45,7 @@ public class FeedFolderServiceSample {
       // =================================================================
       // Set Operation
       FeedFolderOperation addFeedFolderOperation = createSampleAddRequest(accountId);
+      addFeedFolderOperation = createSampleDasAddRequest(addFeedFolderOperation, accountId);
 
       // Run
       List<FeedFolderValues> feedFolderValues = add(addFeedFolderOperation);
@@ -251,6 +252,7 @@ public class FeedFolderServiceSample {
     System.out.println("accountId = " + feedFolder.getAccountId());
     System.out.println("feedFolderId = " + feedFolder.getFeedFolderId());
     System.out.println("feedFolderName = " + feedFolder.getFeedFolderName());
+    System.out.println("domain = " + feedFolder.getDomain());
 
     long feedAttributeIndex = 0;
     for (FeedAttribute feedAttribute : feedFolder.getFeedAttribute()) {
@@ -276,7 +278,7 @@ public class FeedFolderServiceSample {
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
 
-    // Set FeedAttribute
+    // Set FeedAttribute For AdCustomizer
     FeedAttribute integerTypeFeedAttribute = new FeedAttribute();
     integerTypeFeedAttribute.setFeedAttributeName("SampleInteger_" + SoapUtils.getCurrentTimestamp());
     integerTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_INTEGER);
@@ -290,14 +292,14 @@ public class FeedFolderServiceSample {
     stringTypeFeedAttribute.setFeedAttributeName("SampleString_" + SoapUtils.getCurrentTimestamp());
     stringTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_STRING);
 
-    // Set Operand
-    FeedFolder feedFolder = new FeedFolder();
-    feedFolder.setAccountId(accountId);
-    feedFolder.setFeedFolderName("SampleFeedFolder_" + SoapUtils.getCurrentTimestamp());
-    feedFolder.setPlaceholderType(FeedFolderPlaceholderType.AD_CUSTOMIZER);
-    feedFolder.getFeedAttribute().addAll(Arrays.asList(integerTypeFeedAttribute, priceTypeFeedAttribute, dateTypeFeedAttribute, stringTypeFeedAttribute));
+    // Set Operand For AdCustomizer
+    FeedFolder feedFolderAdCustomizer = new FeedFolder();
+    feedFolderAdCustomizer.setAccountId(accountId);
+    feedFolderAdCustomizer.setFeedFolderName("SampleFeedFolderAd_" + SoapUtils.getCurrentTimestamp());
+    feedFolderAdCustomizer.setPlaceholderType(FeedFolderPlaceholderType.AD_CUSTOMIZER);
+    feedFolderAdCustomizer.getFeedAttribute().addAll(Arrays.asList(integerTypeFeedAttribute, priceTypeFeedAttribute, dateTypeFeedAttribute, stringTypeFeedAttribute));
 
-    operation.getOperand().add(feedFolder);
+    operation.getOperand().add(feedFolderAdCustomizer);
 
     return operation;
   }
@@ -305,7 +307,37 @@ public class FeedFolderServiceSample {
   /**
    * create sample request.
    *
+   * @param operation FeedFolderOperation
    * @param accountId Account ID
+   * @return FeedFolderOperation
+   */
+  public static FeedFolderOperation createSampleDasAddRequest(FeedFolderOperation operation, long accountId) {
+    // Set Operation
+    if(operation == null) {
+      operation = new FeedFolderOperation();
+      operation.setOperator(Operator.ADD);
+      operation.setAccountId(accountId);
+
+    } else if( !operation.getOperator().equals(Operator.ADD) || operation.getAccountId() != accountId) {
+      return operation;
+    }
+
+    // Set Operand For DAS
+    FeedFolder feedFolderDas = new FeedFolder();
+    feedFolderDas.setAccountId(accountId);
+    feedFolderDas.setFeedFolderName("SampleFeedFolderDas_" + SoapUtils.getCurrentTimestamp());
+    feedFolderDas.setDomain("https://www.yahoo.co.jp");
+    feedFolderDas.setPlaceholderType(FeedFolderPlaceholderType.DYNAMIC_AD_FOR_SEARCH_PAGE_FEEDS);
+
+    operation.getOperand().add(feedFolderDas);
+
+    return operation;
+  }
+
+  /**
+   * create sample request.
+   *
+   * @param accountId        Account ID
    * @param feedFolderValues FeedFolderValues entity for set.
    * @return FeedFolderOperation
    */
@@ -317,28 +349,30 @@ public class FeedFolderServiceSample {
 
     // Set Operand
     for (FeedFolderValues feedFolderValue : feedFolderValues) {
+      if (feedFolderValue.getFeedFolder().getPlaceholderType() == FeedFolderPlaceholderType.AD_CUSTOMIZER) {
 
-      FeedFolder feedFolder = new FeedFolder();
-      feedFolder.setAccountId(feedFolderValue.getFeedFolder().getAccountId());
-      feedFolder.setFeedFolderId(feedFolderValue.getFeedFolder().getFeedFolderId());
-      feedFolder.setPlaceholderType(feedFolderValue.getFeedFolder().getPlaceholderType());
+        FeedFolder feedFolder = new FeedFolder();
+        feedFolder.setAccountId(feedFolderValue.getFeedFolder().getAccountId());
+        feedFolder.setFeedFolderId(feedFolderValue.getFeedFolder().getFeedFolderId());
+        feedFolder.setPlaceholderType(feedFolderValue.getFeedFolder().getPlaceholderType());
 
-      // Set FeedAttribute
-      FeedAttribute integerTypeFeedAttribute = new FeedAttribute();
-      integerTypeFeedAttribute.setFeedAttributeName("SampleInteger2_" + SoapUtils.getCurrentTimestamp());
-      integerTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_INTEGER);
-      FeedAttribute priceTypeFeedAttribute = new FeedAttribute();
-      priceTypeFeedAttribute.setFeedAttributeName("SamplePrice2_" + SoapUtils.getCurrentTimestamp());
-      priceTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_PRICE);
-      FeedAttribute dateTypeFeedAttribute = new FeedAttribute();
-      dateTypeFeedAttribute.setFeedAttributeName("SampleDate2_" + SoapUtils.getCurrentTimestamp());
-      dateTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_DATE);
-      FeedAttribute stringTypeFeedAttribute = new FeedAttribute();
-      stringTypeFeedAttribute.setFeedAttributeName("SampleString2_" + SoapUtils.getCurrentTimestamp());
-      stringTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_STRING);
+        // Set FeedAttribute
+        FeedAttribute integerTypeFeedAttribute = new FeedAttribute();
+        integerTypeFeedAttribute.setFeedAttributeName("SampleInteger2_" + SoapUtils.getCurrentTimestamp());
+        integerTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_INTEGER);
+        FeedAttribute priceTypeFeedAttribute = new FeedAttribute();
+        priceTypeFeedAttribute.setFeedAttributeName("SamplePrice2_" + SoapUtils.getCurrentTimestamp());
+        priceTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_PRICE);
+        FeedAttribute dateTypeFeedAttribute = new FeedAttribute();
+        dateTypeFeedAttribute.setFeedAttributeName("SampleDate2_" + SoapUtils.getCurrentTimestamp());
+        dateTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_DATE);
+        FeedAttribute stringTypeFeedAttribute = new FeedAttribute();
+        stringTypeFeedAttribute.setFeedAttributeName("SampleString2_" + SoapUtils.getCurrentTimestamp());
+        stringTypeFeedAttribute.setPlaceholderField(FeedFolderPlaceholderField.AD_CUSTOMIZER_STRING);
 
-      feedFolder.getFeedAttribute().addAll(Arrays.asList(integerTypeFeedAttribute, priceTypeFeedAttribute, dateTypeFeedAttribute, stringTypeFeedAttribute));
-      operation.getOperand().add(feedFolder);
+        feedFolder.getFeedAttribute().addAll(Arrays.asList(integerTypeFeedAttribute, priceTypeFeedAttribute, dateTypeFeedAttribute, stringTypeFeedAttribute));
+        operation.getOperand().add(feedFolder);
+      }
     }
 
     return operation;
@@ -347,7 +381,7 @@ public class FeedFolderServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId Account ID
+   * @param accountId        Account ID
    * @param feedFolderValues FeedFolderValues entity for remove.
    * @return FeedFolderOperation
    */
@@ -373,7 +407,7 @@ public class FeedFolderServiceSample {
   /**
    * create sample request.
    *
-   * @param accountId Account ID
+   * @param accountId        Account ID
    * @param feedFolderValues FeedFolderValues entity for get.
    * @return FeedFolderSelector
    */

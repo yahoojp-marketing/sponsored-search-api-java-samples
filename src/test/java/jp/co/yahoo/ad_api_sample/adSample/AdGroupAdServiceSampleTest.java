@@ -9,12 +9,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201805.adgroupad.ApprovalStatus;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.adgroupad.UserStatus;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201808.adgroupad.ApprovalStatus;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.adgroupad.UserStatus;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -33,6 +33,8 @@ public class AdGroupAdServiceSampleTest {
   private long adGroupId;
   private long appCampaignId;
   private long appAdGroupId;
+  private long dasCampaignId;
+  private long dasAdGroupId;
 
   @Before
   public void setup() {
@@ -41,6 +43,8 @@ public class AdGroupAdServiceSampleTest {
     adGroupId = SoapUtils.getAdGroupId();
     appCampaignId = SoapUtils.getAppCampaignId();
     appAdGroupId = SoapUtils.getAppAdGroupId();
+    dasCampaignId = SoapUtils.getDasCampaignId();
+    dasAdGroupId = SoapUtils.getDasAdGroupId();
   }
 
   /**
@@ -63,6 +67,7 @@ public class AdGroupAdServiceSampleTest {
   public void testAdd() throws Exception {
     // Set Operation
     AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
+    addAdGroupAdOperation = AdGroupAdServiceSample.createSampleDasAddRequest(addAdGroupAdOperation, accountId, dasCampaignId, dasAdGroupId);
 
     // Run
     List<AdGroupAdValues> addAdGroupAdValues = null;
@@ -92,6 +97,7 @@ public class AdGroupAdServiceSampleTest {
     List<AdGroupAdValues> addAdGroupAdValues = null;
     try {
       AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
+      addAdGroupAdOperation = AdGroupAdServiceSample.createSampleDasAddRequest(addAdGroupAdOperation, accountId, dasCampaignId, dasAdGroupId);
       addAdGroupAdValues = AdGroupAdServiceSample.add(addAdGroupAdOperation);
     } catch (Exception e) {
       fail();
@@ -131,6 +137,7 @@ public class AdGroupAdServiceSampleTest {
     List<AdGroupAdValues> addAdGroupAdValues = null;
     try {
       AdGroupAdOperation addAdGroupAdOperation = AdGroupAdServiceSample.createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
+      addAdGroupAdOperation = AdGroupAdServiceSample.createSampleDasAddRequest(addAdGroupAdOperation, accountId, dasCampaignId, dasAdGroupId);
       addAdGroupAdValues = AdGroupAdServiceSample.add(addAdGroupAdOperation);
     } catch (Exception e) {
       fail();

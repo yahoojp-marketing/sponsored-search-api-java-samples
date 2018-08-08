@@ -12,49 +12,49 @@ import jp.co.yahoo.ad_api_sample.adSample.CampaignCriterionServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignTargetServiceSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupSelector;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAd;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201805.adgroupad.AdType;
-import jp.yahooapis.ss.v201805.adgroupad.DevicePreference;
-import jp.yahooapis.ss.v201805.adgroupad.ExtendedTextAd;
-import jp.yahooapis.ss.v201805.adgroupad.Operator;
-import jp.yahooapis.ss.v201805.adgroupad.UserStatus;
-import jp.yahooapis.ss.v201805.adgroupbidmultiplier.AdGroupBidMultiplierOperation;
-import jp.yahooapis.ss.v201805.adgroupbidmultiplier.AdGroupBidMultiplierSelector;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionOperation;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionSelector;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionValues;
-import jp.yahooapis.ss.v201805.adgroupcriterion.BiddableAdGroupCriterion;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedOperation;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedSelector;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategySelector;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignSelector;
-import jp.yahooapis.ss.v201805.campaign.CampaignType;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionOperation;
-import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionSelector;
-import jp.yahooapis.ss.v201805.campaigncriterion.CampaignCriterionValues;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedOperation;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedSelector;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedValues;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetOperation;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetSelector;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetValues;
-import jp.yahooapis.ss.v201805.feeditem.ApprovalStatus;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupSelector;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAd;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201808.adgroupad.AdType;
+import jp.yahooapis.ss.v201808.adgroupad.DevicePreference;
+import jp.yahooapis.ss.v201808.adgroupad.ExtendedTextAd;
+import jp.yahooapis.ss.v201808.adgroupad.Operator;
+import jp.yahooapis.ss.v201808.adgroupad.UserStatus;
+import jp.yahooapis.ss.v201808.adgroupbidmultiplier.AdGroupBidMultiplierOperation;
+import jp.yahooapis.ss.v201808.adgroupbidmultiplier.AdGroupBidMultiplierSelector;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionSelector;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201808.adgroupcriterion.BiddableAdGroupCriterion;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedOperation;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedSelector;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategySelector;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201808.campaign.CampaignType;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaigncriterion.CampaignCriterionOperation;
+import jp.yahooapis.ss.v201808.campaigncriterion.CampaignCriterionSelector;
+import jp.yahooapis.ss.v201808.campaigncriterion.CampaignCriterionValues;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedOperation;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedSelector;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedValues;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetOperation;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetSelector;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetValues;
+import jp.yahooapis.ss.v201808.feeditem.ApprovalStatus;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemValues;
 
 import java.util.Arrays;
 import java.util.List;
@@ -84,6 +84,7 @@ public class AdvancedUrlSample {
       long appCampaignId = 0;
       long appAdGroupId = 0;
       long feedItemId1 = -1;
+      long feedItemId2 = -1;
 
       // =================================================================
       // BiddingStrategyService
@@ -207,10 +208,10 @@ public class AdvancedUrlSample {
 
         allApproved = true;
         for (AdGroupCriterionValues adGroupCriterionValue : getAdGroupCriterionValues) {
-          if (!jp.yahooapis.ss.v201805.adgroupcriterion.ApprovalStatus.APPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+          if (!jp.yahooapis.ss.v201808.adgroupcriterion.ApprovalStatus.APPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
             allApproved = false;
-          } else if (jp.yahooapis.ss.v201805.adgroupcriterion.ApprovalStatus.POST_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())
-              || jp.yahooapis.ss.v201805.adgroupcriterion.ApprovalStatus.PRE_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
+          } else if (jp.yahooapis.ss.v201808.adgroupcriterion.ApprovalStatus.POST_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())
+              || jp.yahooapis.ss.v201808.adgroupcriterion.ApprovalStatus.PRE_DISAPPROVED.equals(((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getApprovalStatus())) {
             System.out.println("Error : This AdGroupCriterion was denied.");
             ((BiddableAdGroupCriterion) adGroupCriterionValue.getAdGroupCriterion()).getDisapprovalReasonCodes().stream().forEach(
                 disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
@@ -257,6 +258,9 @@ public class AdvancedUrlSample {
       FeedItemOperation addFeedItemOperation_quicklink = FeedItemServiceSample.QuicklinkSampleFeedItem.createSampleAddRequest(accountId);
       List<FeedItemValues> addfeedItemValues_quicklink = FeedItemServiceSample.add(addFeedItemOperation_quicklink);
 
+      // ADD CALLEXTENSION
+      FeedItemOperation addFeedItemOperation_callextension = FeedItemServiceSample.CallextensionSampleFeedItem.createSampleAddRequest(accountId);
+      List<FeedItemValues> addfeedItemValues_callextension = FeedItemServiceSample.add(addFeedItemOperation_callextension);
 
       // =================================================================
       // FeedItemService GET
@@ -273,6 +277,10 @@ public class AdvancedUrlSample {
         // GET QUICKLINK
         FeedItemSelector feedItemSelector1 = FeedItemServiceSample.createSampleGetRequest(accountId, addfeedItemValues_quicklink);
         List<FeedItemValues> getFeedItemValues = FeedItemServiceSample.get(feedItemSelector1);
+
+        // GET CALLEXTENSION
+        FeedItemSelector feedItemSelector2 = FeedItemServiceSample.createSampleGetRequest(accountId, addfeedItemValues_callextension);
+        getFeedItemValues.addAll(FeedItemServiceSample.get(feedItemSelector2));
 
         feedItemAllApproved = true;
         for (FeedItemValues feedItemValue : getFeedItemValues) {
@@ -299,6 +307,15 @@ public class AdvancedUrlSample {
         }
       }
 
+      // SET CALLEXTENSION
+      FeedItemOperation setFeedItemOperation_callextension = FeedItemServiceSample.CallextensionSampleFeedItem.createSampleSetRequest(accountId, addfeedItemValues_callextension);
+      List<FeedItemValues> setFeedItemValues_callextension = FeedItemServiceSample.set(setFeedItemOperation_callextension);
+      for (FeedItemValues feedItemValues : setFeedItemValues_callextension) {
+        if (feedItemValues.getFeedItem().getFeedItemId() != null) {
+          feedItemId2 = feedItemValues.getFeedItem().getFeedItemId();
+        }
+      }
+
       // =================================================================
       // CampaignFeedService::mutate(SET)
       // =================================================================
@@ -314,13 +331,13 @@ public class AdvancedUrlSample {
       // =================================================================
       // AdGroupFeedService::mutate(SET)
       // =================================================================
-      AdGroupFeedOperation setAdGroupFeedOperation = AdGroupFeedServiceSample.createSampleSetRequest(accountId, campaignId, adGroupId, feedItemId1);
+      AdGroupFeedOperation setAdGroupFeedOperation = AdGroupFeedServiceSample.createSampleSetRequest(accountId, campaignId, adGroupId, feedItemId2);
       List<AdGroupFeedValues> setAdGroupFeedResponse = AdGroupFeedServiceSample.set(setAdGroupFeedOperation);
 
       // =================================================================
       // AdGroupFeedService::get
       // =================================================================
-      AdGroupFeedSelector adGroupFeedSelector = AdGroupFeedServiceSample.createSampleGetRequest(accountId, campaignId, feedItemId1);
+      AdGroupFeedSelector adGroupFeedSelector = AdGroupFeedServiceSample.createSampleGetRequest(accountId, campaignId, feedItemId2);
       List<AdGroupFeedValues> getAdGroupFeedResponse = AdGroupFeedServiceSample.get(adGroupFeedSelector);
 
       // =================================================================
@@ -329,6 +346,9 @@ public class AdvancedUrlSample {
       FeedItemOperation removeFeedItemOperation_quicklink = FeedItemServiceSample.createSampleRemoveRequest(accountId, setFeedItemValues_quicklink);
       removeFeedItemOperation_quicklink.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
       FeedItemServiceSample.remove(removeFeedItemOperation_quicklink);
+      FeedItemOperation removeFeedItemOperation_callextension = FeedItemServiceSample.createSampleRemoveRequest(accountId, setFeedItemValues_callextension);
+      removeFeedItemOperation_callextension.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
+      FeedItemServiceSample.remove(removeFeedItemOperation_callextension);
 
       // =================================================================
       // remove AdGroupAdService, AdGroupCriterionService, AdGroupService,
@@ -385,8 +405,8 @@ public class AdvancedUrlSample {
     operation.setAccountId(accountId);
 
     // Set CustomParamaters
-    jp.yahooapis.ss.v201805.adgroupad.CustomParameters customParameters = new jp.yahooapis.ss.v201805.adgroupad.CustomParameters();
-    jp.yahooapis.ss.v201805.adgroupad.CustomParameter parameter1 = new jp.yahooapis.ss.v201805.adgroupad.CustomParameter();
+    jp.yahooapis.ss.v201808.adgroupad.CustomParameters customParameters = new jp.yahooapis.ss.v201808.adgroupad.CustomParameters();
+    jp.yahooapis.ss.v201808.adgroupad.CustomParameter parameter1 = new jp.yahooapis.ss.v201808.adgroupad.CustomParameter();
     parameter1.setKey("id1");
     parameter1.setValue("1234");
     customParameters.getParameters().addAll(Arrays.asList(parameter1));

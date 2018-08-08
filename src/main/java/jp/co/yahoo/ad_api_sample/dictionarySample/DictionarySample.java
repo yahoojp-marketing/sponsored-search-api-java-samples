@@ -2,18 +2,18 @@ package jp.co.yahoo.ad_api_sample.dictionarySample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.DictionaryServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.dictionary.DictionaryLang;
-import jp.yahooapis.ss.v201805.dictionary.DictionaryService;
-import jp.yahooapis.ss.v201805.dictionary.DictionaryServiceInterface;
-import jp.yahooapis.ss.v201805.dictionary.DisapprovalReason;
-import jp.yahooapis.ss.v201805.dictionary.DisapprovalReasonPage;
-import jp.yahooapis.ss.v201805.dictionary.DisapprovalReasonSelector;
-import jp.yahooapis.ss.v201805.dictionary.DisapprovalReasonValues;
-import jp.yahooapis.ss.v201805.dictionary.GeographicLocation;
-import jp.yahooapis.ss.v201805.dictionary.GeographicLocationPage;
-import jp.yahooapis.ss.v201805.dictionary.GeographicLocationSelector;
-import jp.yahooapis.ss.v201805.dictionary.GeographicLocationValues;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.dictionary.DictionaryLang;
+import jp.yahooapis.ss.v201808.dictionary.DictionaryService;
+import jp.yahooapis.ss.v201808.dictionary.DictionaryServiceInterface;
+import jp.yahooapis.ss.v201808.dictionary.DisapprovalReason;
+import jp.yahooapis.ss.v201808.dictionary.DisapprovalReasonPage;
+import jp.yahooapis.ss.v201808.dictionary.DisapprovalReasonSelector;
+import jp.yahooapis.ss.v201808.dictionary.DisapprovalReasonValues;
+import jp.yahooapis.ss.v201808.dictionary.GeographicLocation;
+import jp.yahooapis.ss.v201808.dictionary.GeographicLocationPage;
+import jp.yahooapis.ss.v201808.dictionary.GeographicLocationSelector;
+import jp.yahooapis.ss.v201808.dictionary.GeographicLocationValues;
 
 import java.util.List;
 

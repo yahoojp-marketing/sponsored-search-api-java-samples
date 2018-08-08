@@ -11,9 +11,9 @@ import org.junit.Test;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListOperation;
-import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListSelector;
-import jp.yahooapis.ss.v201805.retargetinglist.RetargetingListValues;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListOperation;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListSelector;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListValues;
 
 /**
  * Sample TestCase for RetargetingListServiceSample. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

@@ -3,38 +3,38 @@ package jp.co.yahoo.ad_api_sample.reportDownloadSample;
 import jp.co.yahoo.ad_api_sample.error.impl.ReportDefinitionServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.error.impl.ReportServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportCompressType;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDateRangeType;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinition;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionFieldValue;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionOperation;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionPage;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionReturnValue;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionSelector;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionService;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionServiceInterface;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDefinitionValues;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDownloadEncode;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportDownloadFormat;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportFieldAttribute;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportIncludeZeroImpressions;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportIntervalType;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportIsTemplate;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportLanguage;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportSortField;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportSortType;
-import jp.yahooapis.ss.v201805.reportdefinition.ReportType;
-import jp.yahooapis.ss.v201805.report.ReportJobStatus;
-import jp.yahooapis.ss.v201805.report.ReportOperation;
-import jp.yahooapis.ss.v201805.report.ReportPage;
-import jp.yahooapis.ss.v201805.report.ReportRecord;
-import jp.yahooapis.ss.v201805.report.ReportReturnValue;
-import jp.yahooapis.ss.v201805.report.ReportSelector;
-import jp.yahooapis.ss.v201805.report.ReportService;
-import jp.yahooapis.ss.v201805.report.ReportServiceInterface;
-import jp.yahooapis.ss.v201805.report.ReportValues;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportCompressType;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDateRangeType;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinition;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionFieldValue;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionOperation;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionPage;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionReturnValue;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionSelector;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionService;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionServiceInterface;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDefinitionValues;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDownloadEncode;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportDownloadFormat;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportFieldAttribute;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportIncludeZeroImpressions;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportIntervalType;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportIsTemplate;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportLanguage;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportSortField;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportSortType;
+import jp.yahooapis.ss.v201808.reportdefinition.ReportType;
+import jp.yahooapis.ss.v201808.report.ReportJobStatus;
+import jp.yahooapis.ss.v201808.report.ReportOperation;
+import jp.yahooapis.ss.v201808.report.ReportPage;
+import jp.yahooapis.ss.v201808.report.ReportRecord;
+import jp.yahooapis.ss.v201808.report.ReportReturnValue;
+import jp.yahooapis.ss.v201808.report.ReportSelector;
+import jp.yahooapis.ss.v201808.report.ReportService;
+import jp.yahooapis.ss.v201808.report.ReportServiceInterface;
+import jp.yahooapis.ss.v201808.report.ReportValues;
 
 import java.util.Arrays;
 import java.util.List;
@@ -78,7 +78,7 @@ public class ReportDownloadSample {
       // request
       ReportDefinitionOperation reportDefinitionOperation = new ReportDefinitionOperation();
       reportDefinitionOperation.setAccountId(accountId);
-      reportDefinitionOperation.setOperator(jp.yahooapis.ss.v201805.reportdefinition.Operator.ADD);
+      reportDefinitionOperation.setOperator(jp.yahooapis.ss.v201808.reportdefinition.Operator.ADD);
 
       ReportDefinition reportDefinition = new ReportDefinition();
       reportDefinition.setAccountId(accountId);
@@ -151,7 +151,7 @@ public class ReportDownloadSample {
       addReportRecord.setReportId(reportId);
 
       ReportOperation addReportOperation = new ReportOperation();
-      addReportOperation.setOperator(jp.yahooapis.ss.v201805.report.Operator.ADD);
+      addReportOperation.setOperator(jp.yahooapis.ss.v201808.report.Operator.ADD);
       addReportOperation.setAccountId(SoapUtils.getAccountId());
       addReportOperation.getOperand().add(addReportRecord);
 
@@ -213,7 +213,7 @@ public class ReportDownloadSample {
       removeReportRecord.setAccountId(accountId);
       removeReportRecord.setReportJobId(reportJobId);
       ReportOperation removeReportOperation = new ReportOperation();
-      removeReportOperation.setOperator(jp.yahooapis.ss.v201805.report.Operator.REMOVE);
+      removeReportOperation.setOperator(jp.yahooapis.ss.v201808.report.Operator.REMOVE);
       removeReportOperation.setAccountId(accountId);
       removeReportOperation.getOperand().add(removeReportRecord);
 
@@ -230,7 +230,7 @@ public class ReportDownloadSample {
 
       ReportDefinitionOperation removeReportDefintionOperation = new ReportDefinitionOperation();
       removeReportDefintionOperation.setAccountId(accountId);
-      removeReportDefintionOperation.setOperator(jp.yahooapis.ss.v201805.reportdefinition.Operator.REMOVE);
+      removeReportDefintionOperation.setOperator(jp.yahooapis.ss.v201808.reportdefinition.Operator.REMOVE);
       removeReportDefintionOperation.getOperand().add(removeReportDefintion);
 
       // Run

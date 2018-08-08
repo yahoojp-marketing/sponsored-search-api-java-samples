@@ -3,8 +3,8 @@ package jp.co.yahoo.ad_api_sample.error.impl;
 import jp.co.yahoo.ad_api_sample.error.ErrorDetailEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntity;
 import jp.co.yahoo.ad_api_sample.error.ErrorEntityFactory;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.ErrorDetail;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.ErrorDetail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class CampaignExportServiceErrorEntityFactory implements ErrorEntityFactory {
 
-  private List<jp.yahooapis.ss.v201805.Error> errors;
+  private List<jp.yahooapis.ss.v201808.Error> errors;
 
   public CampaignExportServiceErrorEntityFactory(List<Error> errors) {
     this.errors = errors;

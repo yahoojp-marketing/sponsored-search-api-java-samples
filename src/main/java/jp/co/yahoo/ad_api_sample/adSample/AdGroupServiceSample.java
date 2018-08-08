@@ -2,36 +2,36 @@ package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.adgroup.AdGroup;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupAdRotationMode;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupBiddingStrategy;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupPage;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupReturnValue;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupSelector;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupService;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupServiceInterface;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201805.adgroup.AdRotationMode;
-import jp.yahooapis.ss.v201805.adgroup.Bid;
-import jp.yahooapis.ss.v201805.adgroup.BudgetOptimizerBiddingScheme;
-import jp.yahooapis.ss.v201805.adgroup.CriterionType;
-import jp.yahooapis.ss.v201805.adgroup.CustomParameter;
-import jp.yahooapis.ss.v201805.adgroup.CustomParameters;
-import jp.yahooapis.ss.v201805.adgroup.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.v201805.adgroup.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.v201805.adgroup.Operator;
-import jp.yahooapis.ss.v201805.adgroup.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201805.adgroup.ReviewUrl;
-import jp.yahooapis.ss.v201805.adgroup.TargetAll;
-import jp.yahooapis.ss.v201805.adgroup.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.v201805.adgroup.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.v201805.adgroup.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.v201805.adgroup.TargetingSetting;
-import jp.yahooapis.ss.v201805.adgroup.UrlReviewData;
-import jp.yahooapis.ss.v201805.adgroup.UserStatus;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.adgroup.AdGroup;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupAdRotationMode;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupBiddingStrategy;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupPage;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupReturnValue;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupSelector;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupService;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupServiceInterface;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201808.adgroup.AdRotationMode;
+import jp.yahooapis.ss.v201808.adgroup.Bid;
+import jp.yahooapis.ss.v201808.adgroup.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.v201808.adgroup.CriterionType;
+import jp.yahooapis.ss.v201808.adgroup.CustomParameter;
+import jp.yahooapis.ss.v201808.adgroup.CustomParameters;
+import jp.yahooapis.ss.v201808.adgroup.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.v201808.adgroup.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.v201808.adgroup.Operator;
+import jp.yahooapis.ss.v201808.adgroup.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201808.adgroup.ReviewUrl;
+import jp.yahooapis.ss.v201808.adgroup.TargetAll;
+import jp.yahooapis.ss.v201808.adgroup.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.v201808.adgroup.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.v201808.adgroup.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201808.adgroup.TargetingSetting;
+import jp.yahooapis.ss.v201808.adgroup.UrlReviewData;
+import jp.yahooapis.ss.v201808.adgroup.UserStatus;
 
 import java.util.Arrays;
 import java.util.List;
@@ -518,6 +518,35 @@ public class AdGroupServiceSample {
     appAdGroup.setAdGroupName("SampleAppAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
     appAdGroup.setUserStatus(UserStatus.ACTIVE);
     operation.getOperand().addAll(Arrays.asList(autoBiddingAdGroup, manualCpcAdGroup, appAdGroup));
+
+    return operation;
+  }
+
+  /**
+   * create sample request.
+   *
+   * @param operation AdGroupOperation
+   * @param accountId long
+   * @param dasCampaignId long
+   * @return AdGroupOperation
+   */
+  public static AdGroupOperation createSampleDasAddRequest(AdGroupOperation operation,long accountId, long dasCampaignId) {
+    // Set Operation
+    if(operation == null) {
+      operation = new AdGroupOperation();
+      operation.setOperator(Operator.ADD);
+      operation.setAccountId(accountId);
+    } else if( !operation.getOperator().equals(Operator.ADD) || operation.getAccountId() != accountId) {
+      return operation;
+    }
+
+    AdGroup dasAdGroup = new AdGroup();
+    dasAdGroup.setAccountId(accountId);
+    dasAdGroup.setCampaignId(dasCampaignId);
+    dasAdGroup.setAdGroupName("SampleDasAdGroup_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    dasAdGroup.setUserStatus(UserStatus.ACTIVE);
+
+    operation.getOperand().addAll(Arrays.asList(dasAdGroup));
 
     return operation;
   }

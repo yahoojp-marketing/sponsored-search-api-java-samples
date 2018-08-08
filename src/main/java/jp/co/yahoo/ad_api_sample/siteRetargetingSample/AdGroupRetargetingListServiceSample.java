@@ -7,19 +7,21 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupRetargetingListServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingList;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListOperation;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListPage;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListReturnValue;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListSelector;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListService;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListServiceInterface;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListValues;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.CriterionTargetList;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.ExcludedType;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingList;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListOperation;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListPage;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListReturnValue;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListSelector;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListService;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListServiceInterface;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListValues;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.CriterionTargetList;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.ExcludedType;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.Operator;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListSelector;
+import jp.yahooapis.ss.v201808.retargetinglist.RetargetingListValues;
 
 /**
  * Sample Program for AdGroupRetargetingListServiceService. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -39,14 +41,15 @@ public class AdGroupRetargetingListServiceSample {
       // =================================================================
       long accountId = SoapUtils.getAccountId();
       long campaignId = SoapUtils.getCampaignId();
-      long targetListId = SoapUtils.getTargetListId();
       long adGroupId = SoapUtils.getAdGroupId();
+      List<Long> targetListIds = SoapUtils.getTargetListIds();
+
 
       // =================================================================
       // AdGroupRetargetingListServiceService::mutate(ADD)
       // =================================================================
       // Set Operation
-      AdGroupRetargetingListOperation addOperation = createSampleAddRequest(accountId, campaignId, targetListId, adGroupId);
+      AdGroupRetargetingListOperation addOperation = createSampleAddRequest(accountId, campaignId, targetListIds, adGroupId);
 
       // Run
       add(addOperation);
@@ -55,7 +58,7 @@ public class AdGroupRetargetingListServiceSample {
       // AdGroupRetargetingListServiceService::get
       // =================================================================
       // Set Selector
-      AdGroupRetargetingListSelector selector = createSampleGetRequest(accountId, campaignId, targetListId, adGroupId);
+      AdGroupRetargetingListSelector selector = createSampleGetRequest(accountId, campaignId, targetListIds, adGroupId);
 
       // Run
       List<AdGroupRetargetingListValues> getResponse = get(selector);
@@ -271,25 +274,27 @@ public class AdGroupRetargetingListServiceSample {
    *
    * @param accountId long
    * @param campaignId long
-   * @param targetListId long
+   * @param targetListIdList List
    * @param adGroupId long
    * @return CampaignRetargetingListOperation
    */
-  public static AdGroupRetargetingListOperation createSampleAddRequest(long accountId, long campaignId, long targetListId, long adGroupId) {
-    CriterionTargetList criterionTargetList = new CriterionTargetList();
-    criterionTargetList.setTargetListId(targetListId);
+  public static AdGroupRetargetingListOperation createSampleAddRequest(long accountId, long campaignId, List<Long> targetListIdList, long adGroupId) {
+    CriterionTargetList criterionTargetList1 = new CriterionTargetList();
+    criterionTargetList1.setTargetListId(targetListIdList.get(0));
+    CriterionTargetList criterionTargetList2 = new CriterionTargetList();
+    criterionTargetList2.setTargetListId(targetListIdList.get(1));
 
     AdGroupRetargetingList adGroupRetargetingList1 = new AdGroupRetargetingList();
     adGroupRetargetingList1.setCampaignId(campaignId);
     adGroupRetargetingList1.setAdGroupId(adGroupId);
-    adGroupRetargetingList1.setCriterionTargetList(criterionTargetList);
+    adGroupRetargetingList1.setCriterionTargetList(criterionTargetList1);
     adGroupRetargetingList1.setExcludedType(ExcludedType.INCLUDED);
     adGroupRetargetingList1.setBidMultiplier(1.00);
 
     AdGroupRetargetingList adGroupRetargetingList2 = new AdGroupRetargetingList();
     adGroupRetargetingList2.setCampaignId(campaignId);
     adGroupRetargetingList2.setAdGroupId(adGroupId);
-    adGroupRetargetingList2.setCriterionTargetList(criterionTargetList);
+    adGroupRetargetingList2.setCriterionTargetList(criterionTargetList2);
     adGroupRetargetingList2.setExcludedType(ExcludedType.EXCLUDED);
 
     AdGroupRetargetingListOperation addOperation = new AdGroupRetargetingListOperation();
@@ -306,15 +311,15 @@ public class AdGroupRetargetingListServiceSample {
    *
    * @param accountId long
    * @param campaignId long
-   * @param targetListId long
+   * @param targetListIdList List
    * @param adGroupId long
    * @return AdGroupRetargetingListSelector
    */
-  public static AdGroupRetargetingListSelector createSampleGetRequest(long accountId, long campaignId, long targetListId, long adGroupId) {
+  public static AdGroupRetargetingListSelector createSampleGetRequest(long accountId, long campaignId, List<Long> targetListIdList, long adGroupId) {
     AdGroupRetargetingListSelector selector = new AdGroupRetargetingListSelector();
     selector.setAccountId(accountId);
     selector.getCampaignIds().add(campaignId);
-    selector.getTargetListIds().add(targetListId);
+    selector.getTargetListIds().addAll(targetListIdList);
     selector.getAdGroupIds().add(adGroupId);
 
     Paging paging = new Paging();

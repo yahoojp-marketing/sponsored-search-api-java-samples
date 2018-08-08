@@ -2,17 +2,17 @@ package jp.co.yahoo.ad_api_sample.sharedCriterionSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AccountSharedServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.accountshared.AccountShared;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedOperation;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedPage;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedReturnValue;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedSelector;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedService;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedServiceInterface;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedValues;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.accountshared.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.accountshared.AccountShared;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedOperation;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedPage;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedReturnValue;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedSelector;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedService;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedServiceInterface;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedValues;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.accountshared.Operator;
+import jp.yahooapis.ss.v201808.Paging;
 
 import java.util.List;
 

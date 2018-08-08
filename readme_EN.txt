@@ -1,12 +1,15 @@
 --------------------------------
 <<Version>>
 --------------------------------
-Version 201805
+Version V201808
 
 [Change history]
 -----------
-2018/05/23:
-- Correspond to Version 201805.
+2018/08/08:
+- Correspond to Version V201808.
+
+2018/04/24:
+- Correspond to Version V201805.
 
 2018/01/24:
 - Correspond to Version 6.5.
@@ -89,6 +92,10 @@ The following programs are stored.
   - bidLandscapeSample/BidLandscapeSample.java                              : Sample of Get bid landscape via BidLandscapeService.
   - conversionTrackerSample/ConversionTrackerSample.java                    : Sample of Get and Mutate operation for conversion via ConversionTrackerService.
   - dictionarySample/DictionarySample.java                                  : Sample of Get the list of EditorialReason and Geo code via DictionaryService.
+  - dynamicAdsForSearchSample/PageFeedItemServiceSample.java                : Sample of Get, Get Review Summary, Upload and Download operation for page feed item via PageFeedItemService.
+  - dynamicAdsForSearchSample/CampaignWebpageServiceSample.java             : Sample of Get and Mutate operation for exclude settings of page feed via CampaignWebpageService.
+  - dynamicAdsForSearchSample/AdGroupWebpageServiceSample.java              : Sample of Get and Mutate operation for allow or exclude settings of page feed via AdGroupWebpageService.
+  - dynamicAdsForSearchSample/DynamicAdsForSearchSample.java                : Sample of Get and Mutate operation of dynamic ads for search via FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageService.
   - keywordEstimatorSample/KeywordEstimatorSample.java                      : Sample of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
   - reportDownloadSample/ReportDownloadSample.java                          : Sample of Get report via ReportDefinitionService/ReportService
   - siteRetargetingSample/AdGroupRetargetingListServiceSample.java          : Sample of Get and Mutate operation for ad group retargeting list via AdGroupRetargetingListService.
@@ -116,9 +123,9 @@ The following resources are stored.
 - conf directory: Property file is stored in order to describe the each setting used in the sample program execution.
   - api_config.properties: Config file to describe each ID.
 
-- download directory: Stores the download data file when ReportDownloadSample,CampaignExportService is executed.
+- download directory: Stores the download data file when ReportDownloadSample,CampaignExportService,PageFeedItemService,DynamicAdsForSearchSample is executed.
 
-- upload directory: Currently not available.
+- upload directory: Stores the upload data file when PageFeedItemServiceSample, DynamicAdsForSearchSample is executed.
 
 [src/test/java directory]
 The following test cases are stored.
@@ -146,6 +153,10 @@ The following test cases are stored.
   - bidLandscapeSample/BidLandscapeSampleTest.java                              : Test case of Get bid landscape via BidLandscapeService.
   - conversionTrackerSample/ConversionTrackerSampleTest.java                    : Test case of Get and Mutate operation for conversion via ConversionTrackerService.
   - dictionarySample/DictionarySampleTest.java                                  : Test case of Get the list of EditorialReason and Geo code via DictionaryService.
+  - dynamicAdsForSearchSample/PageFeedItemServiceSampleTest.java                : Test case of Get, Get Review Summary, Upload and Download operation for page feed item via PageFeedItemService.
+  - dynamicAdsForSearchSample/CampaignWebpageServiceSampleTest.java             : Test case of Get and Mutate operation for exclude settings of page feed  via CampaignWebpageService.
+  - dynamicAdsForSearchSample/AdGroupWebpageServiceSampleTest.java              : Test case of Get and Mutate operation for allow or exclude settings of page feed  via AdGroupWebpageService.
+  - dynamicAdsForSearchSample/DynamicAdsForSearchSampleTest.java                : Test case of Get and Mutate operation of dynamic ads for search via FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageService.
   - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : Test case of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
   - reportDownloadSample/ReportDownloadSampleTest.java                          : Test case of Get report via ReportDefinitionService/ReportService.
   - siteRetargetingSample/AdGroupRetargetingListServiceSampleTest.java          : Test case of Get and Mutate operation for ad group retargeting list via AdGroupRetargetingListService.
@@ -162,9 +173,9 @@ The following resources are stored.
 - conf directory: Property file is stored in order to describe the each setting used in the sample program execution.
   - api_config.properties: Config file to describe each ID.
 
-- download directory: Stores the download data file when ReportDownloadSampleTest is executed.
+- download directory: Stores the download data file when ReportDownloadSampleTest,CampaignExportSample,AuditLogSample,PageFeedItemService,DynamicAdsForSearchSample is executed.
 
-- upload directory: Currently not available.
+- upload directory: Stores the upload data file when PageFeedItemServiceSample, DynamicAdsForSearchSample is executed.
 
 
 --------------------------------
@@ -212,7 +223,7 @@ TARGETLISTID	: Target list ID (Optional/New list created if it does not exist)
 --------------------------------
 set SAMPLE_HOME={ad-api-sample}
 set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.4.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
+set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V201808.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
 
 [e.g.]
 ---------------------------------------
@@ -236,6 +247,10 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.balanceSample.BalanceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.bidLandscapeSample.BidLandscapeSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.conversionTrackerSample.ConversionTrackerSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.PageFeedItemServiceSample.java
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.CampaignWebpageServiceSample.java
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.AdGroupWebpageServiceSample.java
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.DynamicAdsForSearchSample.java
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.AdGroupRetargetingListServiceSample
@@ -248,3 +263,8 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.auditLogDownloadSample.AuditLogDownl
 ---------------------------------------
 
 When the operation for data download is executed, the file will be stored in the directory of download.
+
+When the operation for data upload is executed, please store the file you want to upload under the upload directory.
+File name is fixed in each sample program.
+
+ - In case of PageFeedItemServiceSample, DynamicAdsForSearchSample      : pageFeedItemUploadSample.csv

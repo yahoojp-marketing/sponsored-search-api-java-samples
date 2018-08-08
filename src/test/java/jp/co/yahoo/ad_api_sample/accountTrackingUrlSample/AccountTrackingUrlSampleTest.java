@@ -11,14 +11,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import jp.co.yahoo.ad_api_sample.accountTrackingUrlSample.AccountTrackingUrlSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrl;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlOperation;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlSelector;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlValues;
-import jp.yahooapis.ss.v201805.accounttrackingurl.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrl;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlOperation;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlSelector;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlValues;
+import jp.yahooapis.ss.v201808.accounttrackingurl.Operator;
+import jp.yahooapis.ss.v201808.Paging;
 
 /**
  * Sample TestCase for AccountTrackingUrlSampleTest. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

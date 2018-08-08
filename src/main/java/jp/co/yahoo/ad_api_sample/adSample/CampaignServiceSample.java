@@ -1,47 +1,52 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
+import jp.co.yahoo.ad_api_sample.adCustomizerSample.FeedFolderServiceSample;
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201805.campaign.AdServingOptimizationStatus;
-import jp.yahooapis.ss.v201805.campaign.AppStore;
-import jp.yahooapis.ss.v201805.campaign.BiddingStrategyType;
-import jp.yahooapis.ss.v201805.campaign.Budget;
-import jp.yahooapis.ss.v201805.campaign.BudgetDeliveryMethod;
-import jp.yahooapis.ss.v201805.campaign.BudgetOptimizerBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.BudgetPeriod;
-import jp.yahooapis.ss.v201805.campaign.Campaign;
-import jp.yahooapis.ss.v201805.campaign.CampaignBiddingStrategy;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignPage;
-import jp.yahooapis.ss.v201805.campaign.CampaignReturnValue;
-import jp.yahooapis.ss.v201805.campaign.CampaignSelector;
-import jp.yahooapis.ss.v201805.campaign.CampaignService;
-import jp.yahooapis.ss.v201805.campaign.CampaignServiceInterface;
-import jp.yahooapis.ss.v201805.campaign.CampaignSettings;
-import jp.yahooapis.ss.v201805.campaign.CampaignType;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.campaign.CustomParameter;
-import jp.yahooapis.ss.v201805.campaign.CustomParameters;
-import jp.yahooapis.ss.v201805.campaign.EnhancedCpcBiddingScheme;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.campaign.GeoTargetType;
-import jp.yahooapis.ss.v201805.campaign.GeoTargetTypeSetting;
-import jp.yahooapis.ss.v201805.campaign.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.Operator;
-import jp.yahooapis.ss.v201805.campaign.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.campaign.ReviewUrl;
-import jp.yahooapis.ss.v201805.campaign.SettingType;
-import jp.yahooapis.ss.v201805.campaign.TargetAll;
-import jp.yahooapis.ss.v201805.campaign.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.TargetingSetting;
-import jp.yahooapis.ss.v201805.campaign.UrlApprovalStatus;
-import jp.yahooapis.ss.v201805.campaign.UrlReviewData;
-import jp.yahooapis.ss.v201805.campaign.UserStatus;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.campaign.AdServingOptimizationStatus;
+import jp.yahooapis.ss.v201808.campaign.AppStore;
+import jp.yahooapis.ss.v201808.campaign.BiddingStrategyType;
+import jp.yahooapis.ss.v201808.campaign.Budget;
+import jp.yahooapis.ss.v201808.campaign.BudgetDeliveryMethod;
+import jp.yahooapis.ss.v201808.campaign.BudgetOptimizerBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.BudgetPeriod;
+import jp.yahooapis.ss.v201808.campaign.Campaign;
+import jp.yahooapis.ss.v201808.campaign.CampaignBiddingStrategy;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignPage;
+import jp.yahooapis.ss.v201808.campaign.CampaignReturnValue;
+import jp.yahooapis.ss.v201808.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201808.campaign.CampaignService;
+import jp.yahooapis.ss.v201808.campaign.CampaignServiceInterface;
+import jp.yahooapis.ss.v201808.campaign.CampaignSettings;
+import jp.yahooapis.ss.v201808.campaign.CampaignType;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaign.CustomParameter;
+import jp.yahooapis.ss.v201808.campaign.CustomParameters;
+import jp.yahooapis.ss.v201808.campaign.DynamicAdsForSearchSetting;
+import jp.yahooapis.ss.v201808.campaign.EnhancedCpcBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.GeoTargetType;
+import jp.yahooapis.ss.v201808.campaign.GeoTargetTypeSetting;
+import jp.yahooapis.ss.v201808.campaign.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.Operator;
+import jp.yahooapis.ss.v201808.campaign.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.ReviewUrl;
+import jp.yahooapis.ss.v201808.campaign.SettingType;
+import jp.yahooapis.ss.v201808.campaign.TargetAll;
+import jp.yahooapis.ss.v201808.campaign.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.TargetingSetting;
+import jp.yahooapis.ss.v201808.campaign.UrlApprovalStatus;
+import jp.yahooapis.ss.v201808.campaign.UrlReviewData;
+import jp.yahooapis.ss.v201808.campaign.UserStatus;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderValues;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -77,7 +82,7 @@ public class CampaignServiceSample {
         BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
         biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
         for (BiddingStrategyValues value : biddingStrategyValues) {
-          if (value.getBiddingStrategy().getBiddingScheme() instanceof jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme) {
+          if (value.getBiddingStrategy().getBiddingScheme() instanceof jp.yahooapis.ss.v201808.biddingstrategy.PageOnePromotedBiddingScheme) {
             biddingStrategyId = value.getBiddingStrategy().getBiddingStrategyId();
           }
         }
@@ -88,10 +93,24 @@ public class CampaignServiceSample {
       }
 
       // =================================================================
+      // FeedFolderService::ADD For Das
+      // =================================================================
+      long feedFolderId = -1L;
+      FeedFolderOperation addFeedFolderOperation = FeedFolderServiceSample.createSampleDasAddRequest(null, accountId);
+
+      List<FeedFolderValues> feedFolderValues = FeedFolderServiceSample.add(addFeedFolderOperation);
+      for(FeedFolderValues values: feedFolderValues) {
+        if(values.getFeedFolder().getPlaceholderType().equals(FeedFolderPlaceholderType.DYNAMIC_AD_FOR_SEARCH_PAGE_FEEDS)) {
+          feedFolderId = values.getFeedFolder().getFeedFolderId();
+        }
+      }
+
+      // =================================================================
       // CampaignService::ADD
       // =================================================================
       // Set Operation
       CampaignOperation addCampaignOperation = createSampleAddRequest(accountId, biddingStrategyId);
+      addCampaignOperation =  createSampleDasAddRequest(addCampaignOperation, accountId, feedFolderId);
 
       // Run
       List<CampaignValues> addCampaignValues = add(addCampaignOperation);
@@ -139,6 +158,24 @@ public class CampaignServiceSample {
         CampaignOperation removeCampaignOperation = createSampleRemoveRequest(accountId, addCampaignValues);
         // Run
         remove(removeCampaignOperation);
+
+        // =================================================================
+        // remove FeedFolderService
+        // =================================================================
+        // Set Operation
+        FeedFolderOperation removeFeedFolderOperation = FeedFolderServiceSample.createSampleRemoveRequest(accountId, feedFolderValues);
+        // Run
+        FeedFolderServiceSample.remove(removeFeedFolderOperation);
+
+        // =================================================================
+        // remove BiddingStrategy
+        // =================================================================
+        if (biddingStrategyValues != null) {
+          BiddingStrategyOperation removeBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleRemoveRequest(accountId, biddingStrategyValues);
+          // Run
+          BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
+        }
+
         System.exit(5);
       } else {
         // =================================================================
@@ -159,6 +196,12 @@ public class CampaignServiceSample {
 
       // Run
       remove(removeCampaignOperation);
+
+      // =================================================================
+      // remove FeedFolderService
+      // =================================================================
+      FeedFolderOperation removeFeedFolderOperation = FeedFolderServiceSample.createSampleRemoveRequest(accountId, feedFolderValues);
+      FeedFolderServiceSample.remove(removeFeedFolderOperation);
 
       // =================================================================
       // remove BiddingStrategy
@@ -409,6 +452,17 @@ public class CampaignServiceSample {
           TargetingSetting targetingSetting = (TargetingSetting) settings;
           System.out.println("settings(TargetingSetting)/targetAll = " + targetingSetting.getTargetAll());
 
+        } else if (settings instanceof DynamicAdsForSearchSetting) {
+          System.out.println("settings(DynamicAdsForSearchSetting)/type = " + settings.getType());
+          DynamicAdsForSearchSetting dynamicAdsForSearchSetting = (DynamicAdsForSearchSetting) settings;
+          if(null != dynamicAdsForSearchSetting.getFeedFolderIds()) {
+            int index = 0;
+            for(long feedFolderId: dynamicAdsForSearchSetting.getFeedFolderIds()) {
+              System.out.println("settings(DynamicAdsForSearchSetting)/feedFolderIds[" + index + "] = " + feedFolderId);
+              index++;
+            }
+          }
+
         }
       }
     }
@@ -574,6 +628,55 @@ public class CampaignServiceSample {
     appCampaign.setAppId(SoapUtils.getCurrentTimestamp());
 
     operation.getOperand().addAll(Arrays.asList(autoBiddingCampaign, manualCpcCampaign, appCampaign));
+
+    return operation;
+  }
+
+  /**
+   * create sample request.
+   *
+   * @param accountId         long
+   * @param feedFolderId long
+   * @return CampaignOperation
+   */
+  public static CampaignOperation createSampleDasAddRequest(CampaignOperation operation, long accountId, long feedFolderId) {
+    // Set Operation
+    if(operation == null) {
+      // Add Single Das Campaign
+      operation = new CampaignOperation();
+      operation.setOperator(Operator.ADD);
+      operation.setAccountId(accountId);
+
+    } else if( !operation.getOperator().equals(Operator.ADD) || operation.getAccountId() != accountId) {
+      return operation;
+    }
+
+    // Set Budget
+    Budget budget = new Budget();
+    budget.setPeriod(BudgetPeriod.DAILY);
+    budget.setAmount((long) 1000);
+    budget.setDeliveryMethod(BudgetDeliveryMethod.STANDARD);
+
+    // Set ManualCpc
+    CampaignBiddingStrategy manualCpcStrategy = new CampaignBiddingStrategy();
+    manualCpcStrategy.setBiddingStrategyType(BiddingStrategyType.MANUAL_CPC);
+
+    // Set DynamicAdsForSearchSetting
+    DynamicAdsForSearchSetting dynamicAdsForSearchSetting = new DynamicAdsForSearchSetting();
+    dynamicAdsForSearchSetting.setType(SettingType.DYNAMIC_ADS_FOR_SEARCH_SETTING);
+    dynamicAdsForSearchSetting.getFeedFolderIds().add(feedFolderId);
+
+    // Set DAS Campaign
+    Campaign dasCampaign = new Campaign();
+    dasCampaign.setAccountId(accountId);
+    dasCampaign.setCampaignName("SampleDasCampaign_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    dasCampaign.setUserStatus(UserStatus.ACTIVE);
+    dasCampaign.setBudget(budget);
+    dasCampaign.setBiddingStrategyConfiguration(manualCpcStrategy);
+    dasCampaign.setCampaignType(CampaignType.DYNAMIC_ADS_FOR_SEARCH);
+    dasCampaign.getSettings().add(dynamicAdsForSearchSetting);
+
+    operation.getOperand().addAll(Arrays.asList(dasCampaign));
 
     return operation;
   }

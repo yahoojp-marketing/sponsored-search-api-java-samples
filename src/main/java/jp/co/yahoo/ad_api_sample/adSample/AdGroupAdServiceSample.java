@@ -1,30 +1,43 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
+import jp.co.yahoo.ad_api_sample.adCustomizerSample.FeedFolderServiceSample;
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupAdServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.adgroupad.Ad;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAd;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdAdditionalAdvancedMobileUrls;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdAdditionalAdvancedUrls;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdPage;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdReturnValue;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdService;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdServiceInterface;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201805.adgroupad.AdType;
-import jp.yahooapis.ss.v201805.adgroupad.AppAd;
-import jp.yahooapis.ss.v201805.adgroupad.ApprovalStatus;
-import jp.yahooapis.ss.v201805.adgroupad.CustomParameter;
-import jp.yahooapis.ss.v201805.adgroupad.CustomParameters;
-import jp.yahooapis.ss.v201805.adgroupad.DevicePreference;
-import jp.yahooapis.ss.v201805.adgroupad.ExtendedTextAd;
-import jp.yahooapis.ss.v201805.adgroupad.Operator;
-import jp.yahooapis.ss.v201805.adgroupad.TextAd2;
-import jp.yahooapis.ss.v201805.adgroupad.UserStatus;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201808.adgroupad.Ad;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAd;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdAdditionalAdvancedMobileUrls;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdAdditionalAdvancedUrls;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdPage;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdReturnValue;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdService;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdServiceInterface;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201808.adgroupad.AdType;
+import jp.yahooapis.ss.v201808.adgroupad.AppAd;
+import jp.yahooapis.ss.v201808.adgroupad.ApprovalStatus;
+import jp.yahooapis.ss.v201808.adgroupad.CustomParameter;
+import jp.yahooapis.ss.v201808.adgroupad.CustomParameters;
+import jp.yahooapis.ss.v201808.adgroupad.DevicePreference;
+import jp.yahooapis.ss.v201808.adgroupad.DynamicSearchLinkedAd;
+import jp.yahooapis.ss.v201808.adgroupad.ExtendedTextAd;
+import jp.yahooapis.ss.v201808.adgroupad.Operator;
+import jp.yahooapis.ss.v201808.adgroupad.TextAd2;
+import jp.yahooapis.ss.v201808.adgroupad.UserStatus;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaign.UrlApprovalStatus;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderValues;
 
 import java.util.Arrays;
 import java.util.List;
@@ -49,16 +62,155 @@ public class AdGroupAdServiceSample {
       // Setting
       // =================================================================
       long accountId = SoapUtils.getAccountId();
-      long campaignId = SoapUtils.getCampaignId();
-      long adGroupId = SoapUtils.getAdGroupId();
-      long appCampaignId = SoapUtils.getAppCampaignId();
-      long appAdGroupId = SoapUtils.getAppAdGroupId();
+      long biddingStrategyId = SoapUtils.getBiddingStrategyId();
+      long campaignId =  -1L;
+      long appCampaignId =  -1L;
+      long dasCampaignId =  -1L;
+      long adGroupId = -1L;
+      long appAdGroupId = -1L;
+      long dasAdGroupId = -1L;
+
+      // =================================================================
+      // BiddingStrategyService::ADD
+      // =================================================================
+      List<BiddingStrategyValues> biddingStrategyValues = null;
+      if (biddingStrategyId == 9999999999l) {
+        BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
+        biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
+        for (BiddingStrategyValues value : biddingStrategyValues) {
+          if (value.getBiddingStrategy().getBiddingScheme() instanceof jp.yahooapis.ss.v201808.biddingstrategy.PageOnePromotedBiddingScheme) {
+            biddingStrategyId = value.getBiddingStrategy().getBiddingStrategyId();
+          }
+        }
+
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds *****\n");
+        Thread.sleep(30000);
+      }
+
+      // =================================================================
+      // FeedFolderService ADD FOR DSA
+      // =================================================================
+      long feedFolderId = -1L;
+      FeedFolderOperation addFeedFolderOperation = FeedFolderServiceSample.createSampleDasAddRequest(null, accountId);
+      List<FeedFolderValues> feedFolderValues = FeedFolderServiceSample.add(addFeedFolderOperation);
+      for(FeedFolderValues values: feedFolderValues) {
+        if(values.getFeedFolder().getPlaceholderType().equals(FeedFolderPlaceholderType.DYNAMIC_AD_FOR_SEARCH_PAGE_FEEDS)) {
+          feedFolderId = values.getFeedFolder().getFeedFolderId();
+        }
+      }
+
+      // =================================================================
+      // CampaignService::ADD
+      // =================================================================
+      CampaignOperation addCampaignOperation = CampaignServiceSample.createSampleAddRequest(accountId, biddingStrategyId);
+      addCampaignOperation =  CampaignServiceSample.createSampleDasAddRequest(addCampaignOperation, accountId, feedFolderId);
+      List<CampaignValues> addCampaignValues = CampaignServiceSample.add(addCampaignOperation);
+      boolean allApproved = true;
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds for Get Campaign  *****\n");
+        Thread.sleep(30000);
+
+        // =================================================================
+        // CampaignService::GET
+        // =================================================================
+        // Set Selector
+        CampaignSelector campaignSelector = CampaignServiceSample.createSampleGetRequest(accountId, addCampaignValues);
+
+        // Run
+        List<CampaignValues> getCampaignValues = CampaignServiceSample.get(campaignSelector);
+
+        allApproved = true;
+        for (CampaignValues campaignValues : getCampaignValues) {
+          if (!UrlApprovalStatus.APPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())
+              && !UrlApprovalStatus.NONE.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())) {
+            allApproved = false;
+          } else if(UrlApprovalStatus.DISAPPROVED.equals(campaignValues.getCampaign().getUrlReviewData().getUrlApprovalStatus())){
+            System.out.println("Error : This campaign was denied.");
+            campaignValues.getCampaign().getUrlReviewData().getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+
+          }
+        }
+        if (allApproved) {
+          break;
+        }
+      }
+
+      if (!allApproved) {
+
+        // =================================================================
+        // CampaignService::REMOVE
+        // =================================================================
+        // Set Operation
+        CampaignOperation removeCampaignOperation = CampaignServiceSample.createSampleRemoveRequest(accountId, addCampaignValues);
+        // Run
+        CampaignServiceSample.remove(removeCampaignOperation);
+
+        // =================================================================
+        // remove FeedFolderService
+        // =================================================================
+        // Set Operation
+        FeedFolderOperation removeFeedFolderOperation = FeedFolderServiceSample.createSampleRemoveRequest(accountId, feedFolderValues);
+        // Run
+        FeedFolderServiceSample.remove(removeFeedFolderOperation);
+
+        // =================================================================
+        // remove BiddingStrategy
+        // =================================================================
+        if (biddingStrategyValues != null) {
+          BiddingStrategyOperation removeBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleRemoveRequest(accountId, biddingStrategyValues);
+          // Run
+          BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
+        }
+
+        System.exit(5);
+      }
+
+      // set CampaignId
+      for(CampaignValues value: addCampaignValues) {
+        switch(value.getCampaign().getCampaignType()) {
+          case STANDARD:
+            campaignId = value.getCampaign().getCampaignId();
+            break;
+          case MOBILE_APP:
+            appCampaignId = value.getCampaign().getCampaignId();
+            break;
+          case DYNAMIC_ADS_FOR_SEARCH:
+            dasCampaignId = value.getCampaign().getCampaignId();
+            break;
+        }
+      }
+
+      // =================================================================
+      // AdGroupService ADD
+      // =================================================================
+      // Set Operation
+      AdGroupOperation addAdGroupOperation = AdGroupServiceSample.createSampleAddRequest(accountId, campaignId, appCampaignId);
+      addAdGroupOperation = AdGroupServiceSample.createSampleDasAddRequest(addAdGroupOperation, accountId, dasCampaignId);
+
+      // Run
+      List<AdGroupValues> adGroupValues = AdGroupServiceSample.add(addAdGroupOperation);
+      // set adGroupId
+      for(AdGroupValues value: adGroupValues) {
+        if(value.getAdGroup().getCampaignId() == campaignId) {
+          adGroupId = value.getAdGroup().getAdGroupId();
+        } else if(value.getAdGroup().getCampaignId() == appCampaignId) {
+          appAdGroupId = value.getAdGroup().getAdGroupId();
+        } else if(value.getAdGroup().getCampaignId() == dasCampaignId) {
+          dasAdGroupId = value.getAdGroup().getAdGroupId();
+        }
+      }
 
       // =================================================================
       // AdGroupAdService ADD
       // =================================================================
       // Set Operation
       AdGroupAdOperation addAdGroupAdOperation = createSampleAddRequest(accountId, campaignId, adGroupId, appCampaignId, appAdGroupId);
+      addAdGroupAdOperation = createSampleDasAddRequest(addAdGroupAdOperation, accountId, dasCampaignId, dasAdGroupId);
 
       // Run
       List<AdGroupAdValues> adGroupAdValues = add(addAdGroupAdOperation);
@@ -89,6 +241,33 @@ public class AdGroupAdServiceSample {
 
       // Run
       remove(removeAdGroupAdOperation);
+
+      // =================================================================
+      // AdGroupService REMOVE
+      // =================================================================
+      // Set Operation
+      AdGroupOperation removeAdGroupOperation = AdGroupServiceSample.createSampleRemoveRequest(accountId, adGroupValues);
+
+      // Run
+      AdGroupServiceSample.remove(removeAdGroupOperation);
+
+      // =================================================================
+      // CampaignService::REMOVE
+      // =================================================================
+      // Set Operation
+      CampaignOperation removeCampaignOperation = CampaignServiceSample.createSampleRemoveRequest(accountId, addCampaignValues);
+
+      // Run
+      CampaignServiceSample.remove(removeCampaignOperation);
+
+      // =================================================================
+      // FeedFolderService REMOVE
+      // =================================================================
+      // Set Operation
+      FeedFolderOperation removeFeedFolderOperation = FeedFolderServiceSample.createSampleRemoveRequest(accountId, feedFolderValues);
+
+      // Run
+      FeedFolderServiceSample.remove(removeFeedFolderOperation);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -363,7 +542,7 @@ public class AdGroupAdServiceSample {
     operation.setOperator(Operator.ADD);
     operation.setAccountId(accountId);
 
-    // Set CustomParamaters
+    // Set CustomParameters
     CustomParameters customParameters = new CustomParameters();
     CustomParameter parameter1 = new CustomParameter();
     parameter1.setKey("id1");
@@ -441,6 +620,52 @@ public class AdGroupAdServiceSample {
     extendedTextAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
 
     operation.getOperand().addAll(Arrays.asList(appAdAdGroupAd, extendedTextAdAdGroupAd));
+
+    return operation;
+  }
+
+  /**
+   * create sample request.
+   *
+   * @param operation     AdGroupAdOperation
+   * @param accountId     long
+   * @param dasCampaignId    long
+   * @param dasAdGroupId     long
+   * @return AdGroupAdOperation
+   */
+  public static AdGroupAdOperation createSampleDasAddRequest(AdGroupAdOperation operation, long accountId, long dasCampaignId, long dasAdGroupId) {
+    // Set Operation
+    if(operation == null) {
+      operation = new AdGroupAdOperation();
+      operation.setOperator(Operator.ADD);
+      operation.setAccountId(accountId);
+    } else if( !operation.getOperator().equals(Operator.ADD) || operation.getAccountId() != accountId) {
+      return operation;
+    }
+
+    // Set CustomParameters
+    CustomParameters customParameters = new CustomParameters();
+    CustomParameter parameter1 = new CustomParameter();
+    parameter1.setKey("id1");
+    parameter1.setValue("1234");
+    customParameters.getParameters().addAll(Arrays.asList(parameter1));
+
+    // Set DasAd
+    DynamicSearchLinkedAd dynamicSearchLinkedAd = new DynamicSearchLinkedAd();
+    dynamicSearchLinkedAd.setType(AdType.DYNAMIC_SEARCH_LINKED_AD);
+    dynamicSearchLinkedAd.setTrackingUrl("http://www.xxxxx.com/?url={lpurl}&pid={_id1}");
+    dynamicSearchLinkedAd.setCustomParameters(customParameters);
+    dynamicSearchLinkedAd.setDescription("description");
+
+    AdGroupAd dasAdAdGroupAd = new AdGroupAd();
+    dasAdAdGroupAd.setAccountId(accountId);
+    dasAdAdGroupAd.setCampaignId(dasCampaignId);
+    dasAdAdGroupAd.setAdGroupId(dasAdGroupId);
+    dasAdAdGroupAd.setAdName("SampleDasAdAd_CreateOn_" + SoapUtils.getCurrentTimestamp());
+    dasAdAdGroupAd.setAd(dynamicSearchLinkedAd);
+    dasAdAdGroupAd.setUserStatus(UserStatus.ACTIVE);
+
+    operation.getOperand().addAll(Arrays.asList(dasAdAdGroupAd));
 
     return operation;
   }

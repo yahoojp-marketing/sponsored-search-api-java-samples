@@ -2,20 +2,20 @@ package jp.co.yahoo.ad_api_sample.adDisplayOptionSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignFeedServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeed;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedList;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedOperation;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedPage;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedPlaceholderType;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedReturnValue;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedSelector;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedService;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedServiceInterface;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedValues;
-import jp.yahooapis.ss.v201805.campaignfeed.DevicePlatform;
-import jp.yahooapis.ss.v201805.campaignfeed.Operator;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeed;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedList;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedOperation;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedPage;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedPlaceholderType;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedReturnValue;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedSelector;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedService;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedServiceInterface;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedValues;
+import jp.yahooapis.ss.v201808.campaignfeed.DevicePlatform;
+import jp.yahooapis.ss.v201808.campaignfeed.Operator;
 
 import java.util.List;
 

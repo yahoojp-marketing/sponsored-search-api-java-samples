@@ -2,20 +2,20 @@ package jp.co.yahoo.ad_api_sample.targetingIdeaSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.TargetingIdeaServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.targetingidea.Attribute;
-import jp.yahooapis.ss.v201805.targetingidea.CriterionType;
-import jp.yahooapis.ss.v201805.targetingidea.KeywordAttribute;
-import jp.yahooapis.ss.v201805.targetingidea.KeywordMatchType;
-import jp.yahooapis.ss.v201805.targetingidea.ProposalKeyword;
-import jp.yahooapis.ss.v201805.targetingidea.RelatedToKeywordSearchParameter;
-import jp.yahooapis.ss.v201805.targetingidea.SearchParameterUse;
-import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaPage;
-import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaSelector;
-import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaService;
-import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaServiceInterface;
-import jp.yahooapis.ss.v201805.targetingidea.TargetingIdeaValues;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.targetingidea.Attribute;
+import jp.yahooapis.ss.v201808.targetingidea.CriterionType;
+import jp.yahooapis.ss.v201808.targetingidea.KeywordAttribute;
+import jp.yahooapis.ss.v201808.targetingidea.KeywordMatchType;
+import jp.yahooapis.ss.v201808.targetingidea.ProposalKeyword;
+import jp.yahooapis.ss.v201808.targetingidea.RelatedToKeywordSearchParameter;
+import jp.yahooapis.ss.v201808.targetingidea.SearchParameterUse;
+import jp.yahooapis.ss.v201808.targetingidea.TargetingIdeaPage;
+import jp.yahooapis.ss.v201808.targetingidea.TargetingIdeaSelector;
+import jp.yahooapis.ss.v201808.targetingidea.TargetingIdeaService;
+import jp.yahooapis.ss.v201808.targetingidea.TargetingIdeaServiceInterface;
+import jp.yahooapis.ss.v201808.targetingidea.TargetingIdeaValues;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +26,6 @@ import javax.xml.ws.Holder;
  * Sample Program for TargetingIdeaService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
  * Reserved.
  */
-
 public class TargetingIdeaSample {
 
   /**
@@ -36,21 +35,27 @@ public class TargetingIdeaSample {
    */
   public static void main(String[] args) {
     try {
+      // =================================================================
+      // Setting
+      // =================================================================
+      long accountId = SoapUtils.getAccountId();
+
       // -----------------------------------------------
       // TargetingIdeaService::get
       // -----------------------------------------------
       // Set SearchParameter
-      RelatedToKeywordSearchParameter relateKewyrod = new RelatedToKeywordSearchParameter();
-      relateKewyrod.setSearchParameterUse(SearchParameterUse.RELATED_TO_KEYWORD);
+      RelatedToKeywordSearchParameter relateKeyword = new RelatedToKeywordSearchParameter();
+      relateKeyword.setSearchParameterUse(SearchParameterUse.RELATED_TO_KEYWORD);
       ProposalKeyword proposalKeyword1 = new ProposalKeyword();
       proposalKeyword1.setType(CriterionType.KEYWORD);
       proposalKeyword1.setText("sample1");
       proposalKeyword1.setMatchType(KeywordMatchType.PHRASE);
-      relateKewyrod.getKeywords().add(proposalKeyword1);
+      relateKeyword.getKeywords().add(proposalKeyword1);
 
       // Set Selector
       TargetingIdeaSelector selector = new TargetingIdeaSelector();
-      selector.getSearchParameter().addAll(Arrays.asList(relateKewyrod));
+      selector.setAccountId(new Long(accountId));
+      selector.getSearchParameter().addAll(Arrays.asList(relateKeyword));
       Paging paging = new Paging();
       paging.setStartIndex(1);
       paging.setNumberResults(2);
@@ -103,10 +108,11 @@ public class TargetingIdeaSample {
 
   /**
    * display TargetingIdea entity to stdout.
-   * 
+   *
    * @param values TargetingIdea entity for display.
    */
   private static void display(TargetingIdeaValues values) {
+    System.out.println("data/accountId = " + values.getAccountId());
     if (values.getData() != null) {
       System.out.println("data/key = " + values.getData().getKey());
       Attribute attribute = values.getData().getValue();

@@ -7,17 +7,17 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AccountTrackingURLServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrl;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlOperation;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlPage;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlReturnValue;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlSelector;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlService;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlServiceInterface;
-import jp.yahooapis.ss.v201805.accounttrackingurl.AccountTrackingUrlValues;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.accounttrackingurl.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrl;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlOperation;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlPage;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlReturnValue;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlSelector;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlService;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlServiceInterface;
+import jp.yahooapis.ss.v201808.accounttrackingurl.AccountTrackingUrlValues;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.accounttrackingurl.Operator;
+import jp.yahooapis.ss.v201808.Paging;
 
 /**
  * Sample Program for AccountTrackingUrlService. Copyright (C) 2012 Yahoo Japan Corporation. All

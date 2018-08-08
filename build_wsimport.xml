@@ -8,8 +8,8 @@ Property for build tasks
   <property name="src.dir" value="${basedir}/src/main/java"/>
   <property name="dest.dir" value="${basedir}/build"/>
   <property name="wsdl.dir" value="${basedir}/wsdl"/>
-  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V201805"/>
-  <property name="pakcage.base" value="jp.yahooapis.ss.v201805"/>
+  <property name="wsdl.location" value="https://sandbox.ss.yahooapis.jp/services/V201808"/>
+  <property name="pakcage.base" value="jp.yahooapis.ss.V201808"/>
   <!--==================================
 classpath for build
 ===================================-->
@@ -387,6 +387,39 @@ target for wsimport
       <arg value="-J-Duser.language=en"/>
       <arg value="-wsdllocation"/>
       <arg value="${wsdl.location}/AuditLogService?wsdl"/>
+    </exec>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/PageFeedItemService/PageFeedItemService.wsdl"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/PageFeedItemService?wsdl"/>
+    </exec>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/AdGroupWebpageService/AdGroupWebpageService.wsdl"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/AdGroupWebpageService?wsdl"/>
+    </exec>
+    <exec executable="${env.JAVA_HOME}/bin/wsimport">
+      <arg value="${wsdl.dir}/CampaignWebpageService/CampaignWebpageService.wsdl"/>
+      <arg value="-s"/>
+      <arg value="${src.dir}"/>
+      <arg value="-Xnocompile"/>
+      <arg value="-encoding"/>
+      <arg value="UTF-8"/>
+      <arg value="-J-Duser.language=en"/>
+      <arg value="-wsdllocation"/>
+      <arg value="${wsdl.location}/CampaignWebpageService?wsdl"/>
     </exec>
   </target>
 </project>

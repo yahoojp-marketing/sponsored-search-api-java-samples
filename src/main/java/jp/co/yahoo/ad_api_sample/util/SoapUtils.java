@@ -77,6 +77,10 @@ public class SoapUtils {
    */
   private static long APP_CAMPAIGN_ID = -1;
   /**
+   * Campaign ID (DAS)
+   */
+  private static long DAS_CAMPAIGN_ID = -1;
+  /**
    * AdGroup ID
    */
   private static long ADGROUP_ID = -1;
@@ -85,6 +89,10 @@ public class SoapUtils {
    */
   private static long APP_ADGROUP_ID = -1;
   /**
+   * AdGroup ID (DAS)
+   */
+  private static long DAS_ADGROUP_ID = -1;
+  /**
    * App ID
    */
   private static String APP_ID = null;
@@ -92,6 +100,10 @@ public class SoapUtils {
    * FeedFolder ID
    */
   private static long FEED_FOLDER_ID = -1;
+  /**
+   * FeedFolder ID (DAS)
+   */
+  private static long DAS_FEED_FOLDER_ID = -1;
   /**
    * IntegerType FeedAttribute ID
    */
@@ -116,6 +128,10 @@ public class SoapUtils {
    * Target List ID
    */
   private static long TARGET_LIST_ID = -1;
+  /**
+   * Target List IDs
+   */
+  private static List<Long> TARGET_LIST_IDS = null;
   /**
    * location cache
    */
@@ -199,6 +215,11 @@ public class SoapUtils {
       } else {
         System.out.println("Warn : APPCAMPAIGNID does not exist in the api_config.properties.");
       }
+      if (bundle.containsKey("DASCAMPAIGNID")) {
+        DAS_CAMPAIGN_ID = Long.parseLong(bundle.getString("DASCAMPAIGNID"));
+      } else {
+        System.out.println("Warn : DASCAMPAIGNID does not exist in the api_config.properties.");
+      }
       if (bundle.containsKey("ADGROUPID")) {
         ADGROUP_ID = Long.parseLong(bundle.getString("ADGROUPID"));
       } else {
@@ -208,6 +229,11 @@ public class SoapUtils {
         APP_ADGROUP_ID = Long.parseLong(bundle.getString("APPADGROUPID"));
       } else {
         System.out.println("Warn : APPADGROUPID does not exist in the api_config.properties.");
+      }
+      if (bundle.containsKey("DASADGROUPID")) {
+        DAS_ADGROUP_ID = Long.parseLong(bundle.getString("DASADGROUPID"));
+      } else {
+        System.out.println("Warn : DASADGROUPID does not exist in the api_config.properties.");
       }
       if (bundle.containsKey("APPID")) {
         APP_ID = bundle.getString("APPID");
@@ -219,6 +245,11 @@ public class SoapUtils {
         FEED_FOLDER_ID = Long.parseLong(bundle.getString("FEEDFOLDERID"));
       } else {
         System.out.println("Warn : FEEDFOLDERID does not exist in the api_config.properties.");
+      }
+      if (bundle.containsKey("DASFEEDFOLDERID")) {
+        DAS_FEED_FOLDER_ID = Long.parseLong(bundle.getString("DASFEEDFOLDERID"));
+      } else {
+        System.out.println("Warn : DASFEEDFOLDERID does not exist in the api_config.properties.");
       }
       if (bundle.containsKey("INTEGERFEEDATTRIBUTEID")) {
         INTEGER_FEED_ATTRIBUTE_ID = Long.parseLong(bundle.getString("INTEGERFEEDATTRIBUTEID"));
@@ -255,6 +286,16 @@ public class SoapUtils {
         TARGET_LIST_ID = Long.parseLong(bundle.getString("TARGETLISTID"));
       } else {
         System.out.println("Warn : TARGETLISTID does not exist in the api_config.properties.");
+      }
+
+      if (bundle.containsKey("TARGETLISTIDS")) {
+        String[] ids = bundle.getString("TARGETLISTIDS").split(",");
+        TARGET_LIST_IDS = new ArrayList<Long>();
+        for (int i = 0; i < ids.length; i++) {
+          TARGET_LIST_IDS.add(new Long(ids[i]));
+        }
+      } else {
+        System.out.println("Info : TARGETLISTIDS does not exist in the api_config.properties.");
       }
 
       // setting error
@@ -312,6 +353,15 @@ public class SoapUtils {
     return APP_CAMPAIGN_ID;
   }
 
+
+  /**
+   * get Campaign ID (DAS) from config file.
+   *
+   * @return campaign ID (DAS).
+   */
+  public static long getDasCampaignId() {
+    return DAS_CAMPAIGN_ID;
+  }
   /**
    * get AdGroup ID from config file.
    *
@@ -331,6 +381,15 @@ public class SoapUtils {
   }
 
   /**
+   * get AdGroup ID (DAS) from config file.
+   *
+   * @return adGroup ID (DAS).
+   */
+  public static long getDasAdGroupId() {
+    return DAS_ADGROUP_ID;
+  }
+
+  /**
    * get App ID from config file.
    *
    * @return app ID.
@@ -346,6 +405,15 @@ public class SoapUtils {
    */
   public static long getFeedFolderId() {
     return FEED_FOLDER_ID;
+  }
+
+  /**
+   * get FeedFolder ID (DAS) from config file.
+   *
+   * @return FeedFolder ID (DAS).
+   */
+  public static long getDasFeedFolderId() {
+    return DAS_FEED_FOLDER_ID;
   }
 
   /**
@@ -400,6 +468,15 @@ public class SoapUtils {
    */
   public static long getTargetListId() {
     return TARGET_LIST_ID;
+  }
+
+  /**
+   * get targetList IDs from config file.
+   *
+   * @return targetList IDs.
+   */
+  public static List<Long> getTargetListIds() {
+    return TARGET_LIST_IDS;
   }
 
   /**

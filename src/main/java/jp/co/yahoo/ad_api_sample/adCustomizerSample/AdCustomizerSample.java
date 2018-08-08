@@ -6,35 +6,35 @@ import jp.co.yahoo.ad_api_sample.adSample.AdGroupServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.BiddingStrategyServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAd;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201805.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201805.adgroupad.AdType;
-import jp.yahooapis.ss.v201805.adgroupad.CustomParameter;
-import jp.yahooapis.ss.v201805.adgroupad.CustomParameters;
-import jp.yahooapis.ss.v201805.adgroupad.DevicePreference;
-import jp.yahooapis.ss.v201805.adgroupad.ExtendedTextAd;
-import jp.yahooapis.ss.v201805.adgroupad.Operator;
-import jp.yahooapis.ss.v201805.adgroupad.UserStatus;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionOperation;
-import jp.yahooapis.ss.v201805.adgroupcriterion.AdGroupCriterionValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignType;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.feedfolder.FeedAttribute;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderOperation;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderPlaceholderField;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderSelector;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderValues;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAd;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201808.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201808.adgroupad.AdType;
+import jp.yahooapis.ss.v201808.adgroupad.CustomParameter;
+import jp.yahooapis.ss.v201808.adgroupad.CustomParameters;
+import jp.yahooapis.ss.v201808.adgroupad.DevicePreference;
+import jp.yahooapis.ss.v201808.adgroupad.ExtendedTextAd;
+import jp.yahooapis.ss.v201808.adgroupad.Operator;
+import jp.yahooapis.ss.v201808.adgroupad.UserStatus;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201808.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignType;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.feedfolder.FeedAttribute;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderPlaceholderField;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderSelector;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemValues;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -178,6 +178,7 @@ public class AdCustomizerSample {
       FeedItemServiceSample.get(feedItemSelector);
 
       // wait for sandbox review
+      System.out.println("\n***** sleep 20 seconds *****\n");
       Thread.sleep(20000);
 
       // SET
@@ -185,14 +186,14 @@ public class AdCustomizerSample {
       FeedItemServiceSample.set(setFeedItemOperation);
 
       // =================================================================
-      // remove AdGroupAdService,FeefItemService, FeedFolderService,
+      // remove AdGroupAdService,FeedItemService, FeedFolderService,
       // AdGroupCriterionService, AdGroupService, Campaign, BiddingStrategy
       // =================================================================
       // AdGroupAdService
       AdGroupAdOperation removeAdGroupAdOperation = AdGroupAdServiceSample.createSampleRemoveRequest(accountId, adGroupAdValues);
       AdGroupAdServiceSample.remove(removeAdGroupAdOperation);
 
-      // FeefItemService
+      // FeedItemService
       FeedItemOperation removeFeedItemOperation = FeedItemServiceSample.createSampleRemoveRequest(accountId, feedItemValues);
       FeedItemServiceSample.remove(removeFeedItemOperation);
 
@@ -382,9 +383,9 @@ public class AdCustomizerSample {
     ExtendedTextAd adCustomizerAd3 = new ExtendedTextAd();
     adCustomizerAd3.setType(AdType.EXTENDED_TEXT_AD);
 
-    adCustomizerAd3.setHeadline("{=IF(device=mobile, MOBILE):PC}Headline");
-    adCustomizerAd3.setHeadline2("{=IF(device=mobile, MOBILE):PC}Headline2");
-    adCustomizerAd3.setDescription("{=IF(device=mobile, MOBILE):PC}Description");
+    adCustomizerAd3.setHeadline("{=IF(device=mobile,MOBILE):PC}Headline");
+    adCustomizerAd3.setHeadline2("{=IF(device=mobile,MOBILE):PC}Headline2");
+    adCustomizerAd3.setDescription("{=IF(device=mobile,MOBILE):PC}Description");
 
     adCustomizerAd3.setDisplayUrl("www.yahoo.co.jp");
     adCustomizerAd3.setDevicePreference(DevicePreference.SMART_PHONE);
@@ -403,9 +404,9 @@ public class AdCustomizerSample {
     ExtendedTextAd adCustomizerAd4 = new ExtendedTextAd();
     adCustomizerAd4.setType(AdType.EXTENDED_TEXT_AD);
 
-    adCustomizerAd4.setHeadline("{=IF(device=mobile, MOBILE):PC}test + {=" + feedFolderName2 + "." + feedAttributeName2 + ":default}headline");
-    adCustomizerAd4.setHeadline2("{=IF(device=mobile, MOBILE):PC}test + {=" + feedFolderName2 + "." + feedAttributeName2 + ":default}headline2");
-    adCustomizerAd4.setDescription("{=IF(device=mobile, MOBILE):PC}test + {=" + feedFolderName2 + "." + feedAttributeName2 + ":default}description");
+    adCustomizerAd4.setHeadline("{=IF(device=mobile,MOBILE):PC}test + {=" + feedFolderName2 + "." + feedAttributeName2 + ":default}headline");
+    adCustomizerAd4.setHeadline2("{=IF(device=mobile,MOBILE):PC}test + {=" + feedFolderName2 + "." + feedAttributeName2 + ":default}headline2");
+    adCustomizerAd4.setDescription("{=IF(device=mobile,MOBILE):PC}test + {=" + feedFolderName2 + "." + feedAttributeName2 + ":default}description");
 
     adCustomizerAd4.setDisplayUrl("www.yahoo.co.jp");
     adCustomizerAd4.setDevicePreference(DevicePreference.SMART_PHONE);

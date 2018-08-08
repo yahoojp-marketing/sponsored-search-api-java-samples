@@ -8,10 +8,10 @@ import static org.junit.Assert.fail;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderOperation;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderSelector;
-import jp.yahooapis.ss.v201805.feedfolder.FeedFolderValues;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderSelector;
+import jp.yahooapis.ss.v201808.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201808.Paging;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -52,6 +52,7 @@ public class FeedFolderServiceSampleTest {
   public void testAdd() throws Exception {
     // Set Operation
     FeedFolderOperation addFeedFolderOperation = FeedFolderServiceSample.createSampleAddRequest(accountId);
+    addFeedFolderOperation = FeedFolderServiceSample.createSampleDasAddRequest(addFeedFolderOperation, accountId);
 
     // Run
     List<FeedFolderValues> addFeedFolderValues = null;
@@ -81,6 +82,7 @@ public class FeedFolderServiceSampleTest {
     List<FeedFolderValues> addFeedFolderValues = null;
     try {
       FeedFolderOperation addFeedFolderOperation = FeedFolderServiceSample.createSampleAddRequest(accountId);
+      addFeedFolderOperation = FeedFolderServiceSample.createSampleDasAddRequest(addFeedFolderOperation, accountId);
       addFeedFolderValues = FeedFolderServiceSample.add(addFeedFolderOperation);
     } catch (Exception e) {
       fail();
@@ -120,6 +122,7 @@ public class FeedFolderServiceSampleTest {
     List<FeedFolderValues> addFeedFolderValues = null;
     try {
       FeedFolderOperation addFeedFolderOperation = FeedFolderServiceSample.createSampleAddRequest(accountId);
+      addFeedFolderOperation = FeedFolderServiceSample.createSampleDasAddRequest(addFeedFolderOperation, accountId);
       addFeedFolderValues = FeedFolderServiceSample.add(addFeedFolderOperation);
     } catch (Exception e) {
       fail();

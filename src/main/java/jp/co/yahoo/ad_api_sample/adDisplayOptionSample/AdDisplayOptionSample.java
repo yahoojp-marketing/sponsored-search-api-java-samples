@@ -2,18 +2,18 @@ package jp.co.yahoo.ad_api_sample.adDisplayOptionSample;
 
 import jp.co.yahoo.ad_api_sample.adCustomizerSample.FeedItemServiceSample;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedOperation;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedSelector;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedValues;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedOperation;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedSelector;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedValues;
-import jp.yahooapis.ss.v201805.feeditem.ApprovalStatus;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedOperation;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedSelector;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedValues;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedOperation;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedSelector;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedValues;
+import jp.yahooapis.ss.v201808.feeditem.ApprovalStatus;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemValues;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -140,6 +140,9 @@ public class AdDisplayOptionSample {
       // =================================================================
       CampaignFeedSelector campaignFeedSelector = CampaignFeedServiceSample.createSampleGetRequest(accountId, campaignId, feedItemId1);
       List<CampaignFeedValues> getCampaignFeedResponse = CampaignFeedServiceSample.get(campaignFeedSelector);
+
+      System.out.println("\n***** sleep 60 seconds for Approval  *****\n");
+      Thread.sleep(60000);
 
       // =================================================================
       // AdGroupFeedService::mutate(SET)

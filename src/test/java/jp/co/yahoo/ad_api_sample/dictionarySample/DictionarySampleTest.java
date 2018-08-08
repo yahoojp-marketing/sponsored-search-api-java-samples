@@ -6,11 +6,11 @@ import static org.junit.Assert.fail;
 
 import java.util.List;
 
-import jp.yahooapis.ss.v201805.dictionary.DictionaryLang;
-import jp.yahooapis.ss.v201805.dictionary.DisapprovalReasonSelector;
-import jp.yahooapis.ss.v201805.dictionary.DisapprovalReasonValues;
-import jp.yahooapis.ss.v201805.dictionary.GeographicLocationSelector;
-import jp.yahooapis.ss.v201805.dictionary.GeographicLocationValues;
+import jp.yahooapis.ss.v201808.dictionary.DictionaryLang;
+import jp.yahooapis.ss.v201808.dictionary.DisapprovalReasonSelector;
+import jp.yahooapis.ss.v201808.dictionary.DisapprovalReasonValues;
+import jp.yahooapis.ss.v201808.dictionary.GeographicLocationSelector;
+import jp.yahooapis.ss.v201808.dictionary.GeographicLocationValues;
 
 import org.junit.Test;
 

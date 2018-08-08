@@ -1,14 +1,14 @@
 package jp.co.yahoo.ad_api_sample.adSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignSelector;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.campaign.UrlApprovalStatus;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetOperation;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetSelector;
-import jp.yahooapis.ss.v201805.campaigntarget.CampaignTargetValues;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaign.UrlApprovalStatus;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetOperation;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetSelector;
+import jp.yahooapis.ss.v201808.campaigntarget.CampaignTargetValues;
+import jp.yahooapis.ss.v201808.Paging;
 
 import org.junit.After;
 import org.junit.Before;

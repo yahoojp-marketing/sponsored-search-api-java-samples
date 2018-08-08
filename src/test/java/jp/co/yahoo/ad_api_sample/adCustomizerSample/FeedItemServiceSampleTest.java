@@ -1,12 +1,12 @@
 package jp.co.yahoo.ad_api_sample.adCustomizerSample;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.feeditem.ApprovalStatus;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.feeditem.ApprovalStatus;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201808.Paging;
 
 import org.junit.Before;
 import org.junit.Test;

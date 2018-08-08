@@ -7,20 +7,20 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AccountServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.account.Account;
-import jp.yahooapis.ss.v201805.account.AccountOperation;
-import jp.yahooapis.ss.v201805.account.AccountPage;
-import jp.yahooapis.ss.v201805.account.AccountReturnValue;
-import jp.yahooapis.ss.v201805.account.AccountSelector;
-import jp.yahooapis.ss.v201805.account.AccountService;
-import jp.yahooapis.ss.v201805.account.AccountServiceInterface;
-import jp.yahooapis.ss.v201805.account.AccountStatus;
-import jp.yahooapis.ss.v201805.account.AccountType;
-import jp.yahooapis.ss.v201805.account.AccountValues;
-import jp.yahooapis.ss.v201805.account.DeliveryStatus;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.account.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.account.Account;
+import jp.yahooapis.ss.v201808.account.AccountOperation;
+import jp.yahooapis.ss.v201808.account.AccountPage;
+import jp.yahooapis.ss.v201808.account.AccountReturnValue;
+import jp.yahooapis.ss.v201808.account.AccountSelector;
+import jp.yahooapis.ss.v201808.account.AccountService;
+import jp.yahooapis.ss.v201808.account.AccountServiceInterface;
+import jp.yahooapis.ss.v201808.account.AccountStatus;
+import jp.yahooapis.ss.v201808.account.AccountType;
+import jp.yahooapis.ss.v201808.account.AccountValues;
+import jp.yahooapis.ss.v201808.account.DeliveryStatus;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.account.Operator;
+import jp.yahooapis.ss.v201808.Paging;
 
 /**
  * Sample Program for AccountService. Copyright (C) 2012 Yahoo Japan Corporation. All Rights

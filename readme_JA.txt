@@ -1,13 +1,15 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version 201805
+Version V201808
 
 ■変更履歴
 -----------
+2018/08/08:
+- Version V201808に対応しました。
 
-2018/05/23:
-- Version 201805に対応しました。
+2018/04/24:
+- Version V201805に対応しました。
 
 2018/01/24:
 - Version 6.5に対応しました。
@@ -89,6 +91,10 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - bidLandscapeSample/BidLandscapeSample.java                              : BidLandscapeServiceによるビットのシュミレート情報を参照する処理のサンプルです。
   - conversionTrackerSample/ConversionTrackerSample.java                    : ConversionTrackerServiceによるコンバージョントラック情報の登録、参照、更新処理のサンプルです。
   - dictionarySample/DictionarySample.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のサンプルです。
+  - dynamicAdsForSearchSample/PageFeedItemServiceSample.java                : PageFeedItemServiceによるPageFeedItemのアップロード/ダウンロード処理、審査状況確認、設定参照処理のサンプルです。
+  - dynamicAdsForSearchSample/CampaignWebpageServiceSample.java             : CampaignWebpageServiceによるPageFeed除外設定の参照、登録、削除処理のサンプルです。
+  - dynamicAdsForSearchSample/AdGroupWebpageServiceSample.java              : AdGroupWebpageServiceによるPageFeed配信/除外設定の参照、登録、更新、削除処理のサンプルです。
+  - dynamicAdsForSearchSample/DynamicAdsForSearchSample.java                : FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageServiceによる動的検索連動型広告の処理サンプルです。
   - keywordEstimatorSample/KeywordEstimatorSample.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のサンプルです。
   - reportDownloadSample/ReportDownloadSample.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のサンプルです。
   - sharedCriterionSample/AccountSharedServiceSample.java                   : AccountSharedServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、更新、削除処理のサンプルです。
@@ -113,14 +119,14 @@ JAX-WSを使用してAPIを呼び出す形になっています。
 
 - binディレクトリ : コンパイルされたサンプルプログラムの実行ファイルと、Windows上で実行するためのバッチファイルが格納されています。
   - run_sample.bat                ： Windows上でサンプルプログラムを実行するためのバッチファイルです。
-  - ad-api-sample-SS-API-V6.4.jar ： コンパイルされたサンプルプログラムがまとめたjarファイルです。
+  - ad-api-sample-SS-API-V201808.jar ： コンパイルされたサンプルプログラムがまとめたjarファイルです。
 
 - confディレクトリ : サンプルプログラム実行時の各種設定を記述するプロパティファイルが格納されています。
   - api_config.properties：各種IDを記述する設定ファイルです。
 
-- downloadディレクトリ：ReportDownloadSample,CampaignExportService,AuditLogServiceを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
+- downloadディレクトリ：ReportDownloadSample,CampaignExportSample,AuditLogSample,PageFeedItemService,DynamicAdsForSearchSampleを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
 
-- uploadディレクトリ：現在は利用しません。
+- uploadディレクトリ：PageFeedItemServiceSample, DynamicAdsForSearchSampleでアップロードするファイルをあらかじめ格納しておくディレクトリです。
 
 ■src/test/javaディレクトリ
 以下の各テストケースが格納されています。
@@ -148,6 +154,10 @@ JAX-WSを使用してAPIを呼び出す形になっています。
   - bidLandscapeSample/BidLandscapeSampleTest.java                              : BidLandscapeServiceによるビットのシュミレート情報を参照する処理のテストケースです。
   - conversionTrackerSample/ConversionTrackerSampleTest.java                    : ConversionTrackerServiceによるコンバージョントラック情報の登録、参照、更新処理のテストケースです。
   - dictionarySample/DictionarySampleTest.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のテストケースです。
+  - dynamicAdsForSearchSample/PageFeedItemServiceSampleTest.java                : PageFeedItemServiceによるPageFeedItemのアップロード/ダウンロード処理、審査状況確認、設定参照処理のテストケースです。
+  - dynamicAdsForSearchSample/CampaignWebpageServiceSampleTest.java             : CampaignWebpageServiceによるPageFeed除外設定の参照、登録、削除処理のテストケースです。
+  - dynamicAdsForSearchSample/AdGroupWebpageServiceSampleTest.java              : AdGroupWebpageServiceによるPageFeed除外設定の参照、登録、更新、削除処理のテストケースです。
+  - dynamicAdsForSearchSample/DynamicAdsForSearchSampleTest.java                : FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageServiceによる動的検索連動型広告の処理テストケースです。
   - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のテストケースです。
   - reportDownloadSample/ReportDownloadSampleTest.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のテストケースです。
   - sharedCriterionSample/AccountSharedServiceSampleTest.java                   : AccountSharedServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、更新、削除処理のテストケースです。
@@ -167,9 +177,9 @@ JAX-WSを使用してAPIを呼び出す形になっています。
 - confディレクトリ : テストケース実行時の各種設定を記述するプロパティファイルが格納されています。
   - api_config.properties：各種IDを記述する設定ファイルです。
 
-- downloadディレクトリ：ReportDownloadSampleTestを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
+- downloadディレクトリ：ReportDownloadSample,CampaignExportSample,AuditLogSample,PageFeedItemService,DynamicAdsForSearchSampleを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
 
-- uploadディレクトリ：現在は利用しません。
+- uploadディレクトリ：PageFeedItemServiceSample, DynamicAdsForSearchSampleでアップロードするファイルをあらかじめ格納しておくディレクトリです。
 
 
 --------------------------------
@@ -217,7 +227,7 @@ TARGETLISTID  : ターゲットリストID（任意、存在しない場合は�
 --------------------------------
 set SAMPLE_HOME={ad-api-sample}
 set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V6.4.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\src\main\resources
+set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V201808.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\src\main\resources
 
 ■実行例
 ---------------------------------------
@@ -241,6 +251,10 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.balanceSample.BalanceSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.bidLandscapeSample.BidLandscapeSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.conversionTrackerSample.ConversionTrackerSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.PageFeedItemServiceSample.java
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.CampaignWebpageServiceSample.java
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.AdGroupWebpageServiceSample.java
+java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.DynamicAdsForSearchSample.java
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample
 java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/AccountSharedServiceSample
@@ -256,3 +270,8 @@ java -classpath %CLASS_PATH% %PACKAGE_NAME%.auditLogDownloadSample.AuditLogDownl
 ---------------------------------------
 
 データをダウンロードする処理を実行した場合には、downloadディレクトリにファイルが格納されます。
+
+データをアップロードする処理を実行する場合には、あらかじめuploadディレクトリ配下にアップロードしたいファイルを格納しておく必要があります。
+サンプルプログラムごとにファイル名は固定です。
+
+・PageFeedItemServiceSample, DynamicAdsForSearchSampleの場合　　　 ：pageFeedItemUploadSample.csv

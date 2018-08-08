@@ -1,25 +1,29 @@
 package jp.co.yahoo.ad_api_sample.sharedCriterionSample;
 
+import jp.co.yahoo.ad_api_sample.adSample.BiddingStrategyServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
 import jp.co.yahoo.ad_api_sample.error.impl.CampaignSharedSetServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedOperation;
-import jp.yahooapis.ss.v201805.accountshared.AccountSharedValues;
-import jp.yahooapis.ss.v201805.campaign.BiddingStrategyType;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignType;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSet;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSetOperation;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSetPage;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSetReturnValue;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSetSelector;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSetService;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSetServiceInterface;
-import jp.yahooapis.ss.v201805.campaignsharedset.CampaignSharedSetValues;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.campaignsharedset.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedOperation;
+import jp.yahooapis.ss.v201808.accountshared.AccountSharedValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.BiddingStrategyType;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignType;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSet;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSetOperation;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSetPage;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSetReturnValue;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSetSelector;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSetService;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSetServiceInterface;
+import jp.yahooapis.ss.v201808.campaignsharedset.CampaignSharedSetValues;
+import jp.yahooapis.ss.v201808.campaignsharedset.Operator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +48,23 @@ public class CampaignSharedSetServiceSample {
       AccountSharedServiceSample accountSharedServiceSample = new AccountSharedServiceSample();
       CampaignServiceSample campaignServiceSample = new CampaignServiceSample();
       long accountId = SoapUtils.getAccountId();
-      long biddingStrategyId = SoapUtils.getBiddingStrategyId();
+      long biddingStrategyId = 0;
+
+      // =================================================================
+      // BiddingStrategyService
+      // =================================================================
+      // ADD
+      BiddingStrategyOperation addBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleAddRequest(accountId);
+      List<BiddingStrategyValues> biddingStrategyValues = BiddingStrategyServiceSample.mutate(addBiddingStrategyOperation);
+
+      // sleep 30 second.
+      System.out.println("\n***** sleep 30 seconds *****\n");
+      Thread.sleep(30000);
+      for (BiddingStrategyValues value : biddingStrategyValues) {
+        if (value.getBiddingStrategy().getBiddingScheme() instanceof TargetSpendBiddingScheme) {
+          biddingStrategyId = value.getBiddingStrategy().getBiddingStrategyId();
+        }
+      }
 
       // =================================================================
       // AccountSharedService::add
@@ -124,6 +144,15 @@ public class CampaignSharedSetServiceSample {
 
       // Run
       accountSharedServiceSample.remove(removeAccountSharedOperation);
+
+      // =================================================================
+      // BiddingStrategyService::remove
+      // =================================================================
+      // Set Operation
+      BiddingStrategyOperation removeBiddingStrategyOperation = BiddingStrategyServiceSample.createSampleRemoveRequest(accountId, biddingStrategyValues);
+
+      // Run
+      BiddingStrategyServiceSample.mutate(removeBiddingStrategyOperation);
 
     } catch (Exception e) {
       e.printStackTrace();

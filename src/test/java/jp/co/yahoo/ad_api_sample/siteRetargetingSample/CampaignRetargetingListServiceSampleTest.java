@@ -11,10 +11,10 @@ import org.junit.Test;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListOperation;
-import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListSelector;
-import jp.yahooapis.ss.v201805.campaignretargetinglist.CampaignRetargetingListValues;
-import jp.yahooapis.ss.v201805.campaignretargetinglist.ExcludedType;
+import jp.yahooapis.ss.v201808.campaignretargetinglist.CampaignRetargetingListOperation;
+import jp.yahooapis.ss.v201808.campaignretargetinglist.CampaignRetargetingListSelector;
+import jp.yahooapis.ss.v201808.campaignretargetinglist.CampaignRetargetingListValues;
+import jp.yahooapis.ss.v201808.campaignretargetinglist.ExcludedType;
 
 /**
  * Sample TestCase for CampaignRetargetingListServiceSample. Copyright (C) 2012 Yahoo Japan

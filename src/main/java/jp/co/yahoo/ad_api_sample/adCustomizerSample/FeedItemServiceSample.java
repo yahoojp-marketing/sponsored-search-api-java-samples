@@ -2,39 +2,39 @@ package jp.co.yahoo.ad_api_sample.adCustomizerSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.FeedItemServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.feeditem.ApprovalStatus;
-import jp.yahooapis.ss.v201805.feeditem.CriterionTypeFeedItem;
-import jp.yahooapis.ss.v201805.feeditem.CustomParameter;
-import jp.yahooapis.ss.v201805.feeditem.CustomParameters;
-import jp.yahooapis.ss.v201805.feeditem.DayOfWeek;
-import jp.yahooapis.ss.v201805.feeditem.DevicePreference;
-import jp.yahooapis.ss.v201805.feeditem.FeedAttributeValue;
-import jp.yahooapis.ss.v201805.feeditem.FeedItem;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemAttribute;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemGeoRestriction;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPage;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderField;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemReturnValue;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSchedule;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemScheduling;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemService;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemServiceInterface;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
-import jp.yahooapis.ss.v201805.feeditem.IsRemove;
-import jp.yahooapis.ss.v201805.feeditem.KeywordMatchType;
-import jp.yahooapis.ss.v201805.feeditem.Location;
-import jp.yahooapis.ss.v201805.feeditem.MinuteOfHour;
-import jp.yahooapis.ss.v201805.feeditem.MultipleFeedItemAttribute;
-import jp.yahooapis.ss.v201805.feeditem.Operator;
-import jp.yahooapis.ss.v201805.feeditem.SimpleFeedItemAttribute;
-import jp.yahooapis.ss.v201805.feeditem.TargetingAdGroup;
-import jp.yahooapis.ss.v201805.feeditem.TargetingCampaign;
-import jp.yahooapis.ss.v201805.feeditem.TargetingKeyword;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.feeditem.ApprovalStatus;
+import jp.yahooapis.ss.v201808.feeditem.CriterionTypeFeedItem;
+import jp.yahooapis.ss.v201808.feeditem.CustomParameter;
+import jp.yahooapis.ss.v201808.feeditem.CustomParameters;
+import jp.yahooapis.ss.v201808.feeditem.DayOfWeek;
+import jp.yahooapis.ss.v201808.feeditem.DevicePreference;
+import jp.yahooapis.ss.v201808.feeditem.FeedAttributeValue;
+import jp.yahooapis.ss.v201808.feeditem.FeedItem;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemAttribute;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemGeoRestriction;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemPage;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemPlaceholderField;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemReturnValue;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemSchedule;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemScheduling;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemService;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemServiceInterface;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201808.feeditem.IsRemove;
+import jp.yahooapis.ss.v201808.feeditem.KeywordMatchType;
+import jp.yahooapis.ss.v201808.feeditem.Location;
+import jp.yahooapis.ss.v201808.feeditem.MinuteOfHour;
+import jp.yahooapis.ss.v201808.feeditem.MultipleFeedItemAttribute;
+import jp.yahooapis.ss.v201808.feeditem.Operator;
+import jp.yahooapis.ss.v201808.feeditem.SimpleFeedItemAttribute;
+import jp.yahooapis.ss.v201808.feeditem.TargetingAdGroup;
+import jp.yahooapis.ss.v201808.feeditem.TargetingCampaign;
+import jp.yahooapis.ss.v201808.feeditem.TargetingKeyword;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -407,7 +407,7 @@ public class FeedItemServiceSample {
     public static FeedItemOperation createSampleAddRequest(long accountId) {
       // Set Operation
       FeedItemOperation operation = new FeedItemOperation();
-      operation.setOperator(jp.yahooapis.ss.v201805.feeditem.Operator.ADD);
+      operation.setOperator(jp.yahooapis.ss.v201808.feeditem.Operator.ADD);
       operation.setAccountId(accountId);
       operation.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
 
@@ -457,7 +457,7 @@ public class FeedItemServiceSample {
       scheduling.getSchedules().addAll(Arrays.asList(quickLinkSchedule1, quickLinkSchedule2));
       feedItem.setScheduling(scheduling);
 
-      feedItem.setDevicePreference(jp.yahooapis.ss.v201805.feeditem.DevicePreference.SMART_PHONE);
+      feedItem.setDevicePreference(jp.yahooapis.ss.v201808.feeditem.DevicePreference.SMART_PHONE);
 
       // Set CustomParameters
       CustomParameter customParameter = new CustomParameter();
@@ -482,7 +482,7 @@ public class FeedItemServiceSample {
      */
     public static FeedItemOperation createSampleSetRequest(long accountId, List<FeedItemValues> feedItemValues) {
       FeedItemOperation operation = new FeedItemOperation();
-      operation.setOperator(jp.yahooapis.ss.v201805.feeditem.Operator.SET);
+      operation.setOperator(jp.yahooapis.ss.v201808.feeditem.Operator.SET);
       operation.setAccountId(accountId);
       operation.setPlaceholderType(FeedItemPlaceholderType.QUICKLINK);
 
@@ -547,7 +547,7 @@ public class FeedItemServiceSample {
     public static FeedItemOperation createSampleAddRequest(long accountId) {
       // set Operation
       FeedItemOperation operation = new FeedItemOperation();
-      operation.setOperator(jp.yahooapis.ss.v201805.feeditem.Operator.ADD);
+      operation.setOperator(jp.yahooapis.ss.v201808.feeditem.Operator.ADD);
       operation.setAccountId(accountId);
       operation.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
 
@@ -591,7 +591,7 @@ public class FeedItemServiceSample {
      */
     public static FeedItemOperation createSampleSetRequest(long accountId, List<FeedItemValues> feedItemValues) {
       FeedItemOperation operation = new FeedItemOperation();
-      operation.setOperator(jp.yahooapis.ss.v201805.feeditem.Operator.SET);
+      operation.setOperator(jp.yahooapis.ss.v201808.feeditem.Operator.SET);
       operation.setAccountId(accountId);
       operation.setPlaceholderType(FeedItemPlaceholderType.CALLEXTENSION);
 

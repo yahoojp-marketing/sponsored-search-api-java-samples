@@ -11,9 +11,9 @@ import org.junit.Test;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListOperation;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListSelector;
-import jp.yahooapis.ss.v201805.adgroupretargetinglist.AdGroupRetargetingListValues;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListOperation;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListSelector;
+import jp.yahooapis.ss.v201808.adgroupretargetinglist.AdGroupRetargetingListValues;
 
 /**
  * Sample TestCase for AdGroupRetargetingListServiceSample. Copyright (C) 2012 Yahoo Japan Corporation. All
@@ -27,6 +27,7 @@ public class AdGroupRetargetingListServiceSampleTest {
   private long accountId;
   private long campaignId;
   private long targetListId;
+  private List<Long> targetListIds;
   private long adGroupId;
 
   @Before
@@ -34,6 +35,7 @@ public class AdGroupRetargetingListServiceSampleTest {
     accountId = SoapUtils.getAccountId();
     campaignId = SoapUtils.getCampaignId();
     targetListId = SoapUtils.getTargetListId();
+    targetListIds = SoapUtils.getTargetListIds();
     adGroupId = SoapUtils.getAdGroupId();
   }
 
@@ -58,7 +60,7 @@ public class AdGroupRetargetingListServiceSampleTest {
     // =================================================================
     // AdGroupRetargetingListService::mutate(ADD)
     // =================================================================
-    AdGroupRetargetingListOperation operation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListId, adGroupId);
+    AdGroupRetargetingListOperation operation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListIds, adGroupId);
 
     // Run
     List<AdGroupRetargetingListValues> adGroupRetargetingListValues = null;
@@ -85,7 +87,7 @@ public class AdGroupRetargetingListServiceSampleTest {
     // =================================================================
     // AdGroupRetargetingListService::mutate(ADD)
     // =================================================================
-    AdGroupRetargetingListOperation addOperation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListId, adGroupId);
+    AdGroupRetargetingListOperation addOperation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListIds, adGroupId);
 
     // Run
     List<AdGroupRetargetingListValues> addResponse = null;
@@ -99,7 +101,7 @@ public class AdGroupRetargetingListServiceSampleTest {
     // AdGroupRetargetingListService::get
     // =================================================================
     // Set Selector
-    AdGroupRetargetingListSelector selector = AdGroupRetargetingListServiceSample.createSampleGetRequest(accountId, campaignId, targetListId, adGroupId);
+    AdGroupRetargetingListSelector selector = AdGroupRetargetingListServiceSample.createSampleGetRequest(accountId, campaignId, targetListIds, adGroupId);
 
     // Run
     List<AdGroupRetargetingListValues> getResponse = null;
@@ -126,7 +128,7 @@ public class AdGroupRetargetingListServiceSampleTest {
     // =================================================================
     // AdGroupRetargetingListService::mutate(ADD)
     // =================================================================
-    AdGroupRetargetingListOperation addOperation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListId, adGroupId);
+    AdGroupRetargetingListOperation addOperation = AdGroupRetargetingListServiceSample.createSampleAddRequest(accountId, campaignId, targetListIds, adGroupId);
 
     // Run
     List<AdGroupRetargetingListValues> addResponse = null;

@@ -6,59 +6,35 @@ import jp.co.yahoo.ad_api_sample.adDisplayOptionSample.CampaignFeedServiceSample
 import jp.co.yahoo.ad_api_sample.adSample.AdGroupServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.BiddingStrategyServiceSample;
 import jp.co.yahoo.ad_api_sample.adSample.CampaignServiceSample;
-import jp.co.yahoo.ad_api_sample.error.impl.AdGroupFeedServiceErrorEntityFactory;
-import jp.co.yahoo.ad_api_sample.error.impl.CampaignFeedServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201805.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeed;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedList;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedOperation;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedPage;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedPlaceholderType;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedReturnValue;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedSelector;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedService;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedServiceInterface;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyOperation;
-import jp.yahooapis.ss.v201805.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201805.biddingstrategy.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201805.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201805.campaign.CampaignType;
-import jp.yahooapis.ss.v201805.campaign.CampaignValues;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeed;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedList;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedOperation;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedPage;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedPlaceholderType;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedReturnValue;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedSelector;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedService;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedServiceInterface;
-import jp.yahooapis.ss.v201805.campaignfeed.CampaignFeedValues;
-import jp.yahooapis.ss.v201805.feeditem.DayOfWeek;
-import jp.yahooapis.ss.v201805.feeditem.FeedAttributeValue;
-import jp.yahooapis.ss.v201805.feeditem.FeedItem;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderField;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSchedule;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemScheduling;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201805.feeditem.FeedItemValues;
-import jp.yahooapis.ss.v201805.feeditem.MinuteOfHour;
-import jp.yahooapis.ss.v201805.feeditem.MultipleFeedItemAttribute;
-import jp.yahooapis.ss.v201805.feeditem.Operator;
-import jp.yahooapis.ss.v201805.feeditem.SimpleFeedItemAttribute;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201808.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeed;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedList;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedOperation;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedPlaceholderType;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedSelector;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201808.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201808.biddingstrategy.PageOnePromotedBiddingScheme;
+import jp.yahooapis.ss.v201808.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201808.campaign.CampaignType;
+import jp.yahooapis.ss.v201808.campaign.CampaignValues;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeed;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedList;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedOperation;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedPlaceholderType;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedSelector;
+import jp.yahooapis.ss.v201808.campaignfeed.CampaignFeedValues;
+import jp.yahooapis.ss.v201808.feeditem.ApprovalStatus;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201808.feeditem.FeedItemValues;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.List;
-
-import javax.xml.ws.Holder;
 
 /**
  * Sample Program for StructuredSnippetSample. Copyright (C) 2012 Yahoo Japan Corporation. All Rights
@@ -137,9 +113,37 @@ public class StructuredSnippetSample {
       FeedItemOperation addFeedItemOperation = FeedItemServiceSample.StructuredSnippetSampleFeedItem.createSampleAddRequest(accountId);
       List<FeedItemValues> feedItemValues = FeedItemServiceSample.add(addFeedItemOperation);
 
-      // GET
-      FeedItemSelector feedItemSelector = FeedItemServiceSample.createSampleGetRequest(accountId, feedItemValues);
-      feedItemValues = FeedItemServiceSample.get(feedItemSelector);
+      // =================================================================
+      // FeedItemService GET
+      // =================================================================
+      // Run
+      boolean feedItemAllApproved = true;
+
+      // call 30sec sleep * 30 = 15minute
+      for (int i = 0; i < 30; i++) {
+        // sleep 30 second.
+        System.out.println("\n***** sleep 30 seconds for Get FeedItem  *****\n");
+        Thread.sleep(30000);
+
+        FeedItemSelector feedItemSelector1 = FeedItemServiceSample.createSampleGetRequest(accountId, feedItemValues);
+        List<FeedItemValues> getFeedItemValues = FeedItemServiceSample.get(feedItemSelector1);
+
+        feedItemAllApproved = true;
+        for (FeedItemValues feedItemValue : getFeedItemValues) {
+          if (!ApprovalStatus.APPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            feedItemAllApproved = false;
+          } else if (ApprovalStatus.PRE_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())
+              || ApprovalStatus.POST_DISAPPROVED.equals(feedItemValue.getFeedItem().getApprovalStatus())) {
+            System.out.println("Error : This FeedItem was denied.");
+            feedItemValue.getFeedItem().getDisapprovalReasonCodes().stream().forEach(
+                disapprovalReasonCode -> System.out.println("disapprovalReasonCode:[" + disapprovalReasonCode + "]")
+            );
+          }
+        }
+        if (feedItemAllApproved) {
+          break;
+        }
+      }
 
       // SET
       FeedItemOperation setFeedItemOperation = FeedItemServiceSample.StructuredSnippetSampleFeedItem.createSampleSetRequest(accountId, feedItemValues);
@@ -206,7 +210,7 @@ public class StructuredSnippetSample {
 
     // Set Operation
     CampaignFeedOperation campaignFeedOperation = new CampaignFeedOperation();
-    campaignFeedOperation.setOperator(jp.yahooapis.ss.v201805.campaignfeed.Operator.SET);
+    campaignFeedOperation.setOperator(jp.yahooapis.ss.v201808.campaignfeed.Operator.SET);
     campaignFeedOperation.setAccountId(accountId);
 
     // Set CampaignFeedList
@@ -254,7 +258,7 @@ public class StructuredSnippetSample {
 
     // Set Operation
     AdGroupFeedOperation adGroupFeedOperation = new AdGroupFeedOperation();
-    adGroupFeedOperation.setOperator(jp.yahooapis.ss.v201805.adgroupfeed.Operator.SET);
+    adGroupFeedOperation.setOperator(jp.yahooapis.ss.v201808.adgroupfeed.Operator.SET);
     adGroupFeedOperation.setAccountId(accountId);
 
     // Set AdGroupFeedList

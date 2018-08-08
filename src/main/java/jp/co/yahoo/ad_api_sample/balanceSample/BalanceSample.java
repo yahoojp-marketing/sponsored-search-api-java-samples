@@ -6,12 +6,12 @@ import javax.xml.ws.Holder;
 
 import jp.co.yahoo.ad_api_sample.error.impl.BalanceServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.balance.BalancePage;
-import jp.yahooapis.ss.v201805.balance.BalanceSelector;
-import jp.yahooapis.ss.v201805.balance.BalanceService;
-import jp.yahooapis.ss.v201805.balance.BalanceServiceInterface;
-import jp.yahooapis.ss.v201805.balance.BalanceValues;
-import jp.yahooapis.ss.v201805.Error;
+import jp.yahooapis.ss.v201808.balance.BalancePage;
+import jp.yahooapis.ss.v201808.balance.BalanceSelector;
+import jp.yahooapis.ss.v201808.balance.BalanceService;
+import jp.yahooapis.ss.v201808.balance.BalanceServiceInterface;
+import jp.yahooapis.ss.v201808.balance.BalanceValues;
+import jp.yahooapis.ss.v201808.Error;
 
 
 /**

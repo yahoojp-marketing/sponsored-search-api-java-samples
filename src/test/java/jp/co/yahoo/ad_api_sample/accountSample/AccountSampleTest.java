@@ -9,15 +9,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.account.Account;
-import jp.yahooapis.ss.v201805.account.AccountOperation;
-import jp.yahooapis.ss.v201805.account.AccountSelector;
-import jp.yahooapis.ss.v201805.account.AccountStatus;
-import jp.yahooapis.ss.v201805.account.AccountType;
-import jp.yahooapis.ss.v201805.account.AccountValues;
-import jp.yahooapis.ss.v201805.account.DeliveryStatus;
-import jp.yahooapis.ss.v201805.account.Operator;
-import jp.yahooapis.ss.v201805.Paging;
+import jp.yahooapis.ss.v201808.account.Account;
+import jp.yahooapis.ss.v201808.account.AccountOperation;
+import jp.yahooapis.ss.v201808.account.AccountSelector;
+import jp.yahooapis.ss.v201808.account.AccountStatus;
+import jp.yahooapis.ss.v201808.account.AccountType;
+import jp.yahooapis.ss.v201808.account.AccountValues;
+import jp.yahooapis.ss.v201808.account.DeliveryStatus;
+import jp.yahooapis.ss.v201808.account.Operator;
+import jp.yahooapis.ss.v201808.Paging;
 
 import org.junit.Before;
 import org.junit.Test;

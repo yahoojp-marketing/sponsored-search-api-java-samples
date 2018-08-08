@@ -2,20 +2,20 @@ package jp.co.yahoo.ad_api_sample.adDisplayOptionSample;
 
 import jp.co.yahoo.ad_api_sample.error.impl.AdGroupFeedServiceErrorEntityFactory;
 import jp.co.yahoo.ad_api_sample.util.SoapUtils;
-import jp.yahooapis.ss.v201805.Error;
-import jp.yahooapis.ss.v201805.Paging;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeed;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedList;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedOperation;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedPage;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedPlaceholderType;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedReturnValue;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedSelector;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedService;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedServiceInterface;
-import jp.yahooapis.ss.v201805.adgroupfeed.AdGroupFeedValues;
-import jp.yahooapis.ss.v201805.adgroupfeed.DevicePlatform;
-import jp.yahooapis.ss.v201805.adgroupfeed.Operator;
+import jp.yahooapis.ss.v201808.Error;
+import jp.yahooapis.ss.v201808.Paging;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeed;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedList;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedOperation;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedPage;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedPlaceholderType;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedReturnValue;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedSelector;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedService;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedServiceInterface;
+import jp.yahooapis.ss.v201808.adgroupfeed.AdGroupFeedValues;
+import jp.yahooapis.ss.v201808.adgroupfeed.DevicePlatform;
+import jp.yahooapis.ss.v201808.adgroupfeed.Operator;
 
 import java.util.List;
 
@@ -146,11 +146,10 @@ public class AdGroupFeedServiceSample {
     operand.setCampaignId(campaignId);
     operand.setAdGroupId(adGroupId);
 
-    operand.setPlaceholderType(AdGroupFeedPlaceholderType.QUICKLINK);
+    operand.setPlaceholderType(AdGroupFeedPlaceholderType.CALLEXTENSION);
     AdGroupFeed setAdGroupFeed = new AdGroupFeed();
     setAdGroupFeed.setFeedItemId(feedItemId);
     operand.getAdGroupFeed().add(setAdGroupFeed);
-    operand.setDevicePlatform(DevicePlatform.DESKTOP);
 
     operation.getOperand().add(operand);
     return operation;
