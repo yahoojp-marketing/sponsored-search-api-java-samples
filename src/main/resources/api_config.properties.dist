@@ -1,0 +1,31 @@
+#-----------------------------------------------------------------
+# common defines
+#-----------------------------------------------------------------
+API_VERSION = V201901
+API_NS = http://ss.yahooapis.jp/V201901
+
+#-----------------------------------------------------------------
+# location
+#-----------------------------------------------------------------
+#for sandbox
+LOCATION = sandbox.ss.yahooapis.jp
+#for production
+#LOCATION=ss.yahooapis.jp
+
+#-----------------------------------------------------------------
+# API Account
+#-----------------------------------------------------------------
+LICENSE = xxxx-xxxx-xxxx-xxxx
+APIACCOUNTID = xxxx-xxxx-xxxx-xxxx
+APIACCOUNTPASSWORD = xxxxxx
+
+#-----------------------------------------------------------------
+# Onbehalf Account (if sandbox, can not use these params.)
+#-----------------------------------------------------------------
+#ONBEHALFOFACCOUNTID = xxxxx-xxxxx-xxxxx-xxxxx
+#ONBEHALFOFPASSWORD = xxxxxx
+
+#-----------------------------------------------------------------
+# Account
+#-----------------------------------------------------------------
+ACCOUNTID = xxxxxxxx

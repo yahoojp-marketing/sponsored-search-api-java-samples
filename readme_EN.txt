@@ -1,270 +1,71 @@
 --------------------------------
-<<Version>>
+[Version]
 --------------------------------
-Version V201808
+Version 201901
 
-[Change history]
+- Change logs
 -----------
-2018/08/08:
-- Correspond to Version V201808.
+2019/01/29:
+- 201901 is now available.
 
-2018/04/24:
-- Correspond to Version V201805.
+--------------------------------
+[Overview]
+--------------------------------
+These code samples show how to use Java to call APIs.
+Using JAX-WS to call API.
 
-2018/01/24:
-- Correspond to Version 6.5.
+--------------------------------
+[Contents]
+--------------------------------
+src/main/
+  - resources/
+    - api_config.properties.dist    : Config files to specify Ids. Rename this file to "api_config.properties"
+  - java/jp/yahooapis/ss/
+    - v201901/                      : Java Entity classes for written versions(V201901).
+    - adapisample/
+      - basic/                      : Examples of each services.
+      - feature/                    : Examples of how to create ads, set targeting.
+      - repository/                 : Utilities which help you use the code samples.
+      - util/                       : Utilities which help you use the code samples.
+download/                           : Directory where downloaded files stored when using download feature.
+upload/                             : Directory where uploaded files stored when using upload feature.
 
-2017/11/01:
-- Correspond to Version 6.4.
-- Added AuditLogDownloadSample.
-
-2017/07/20:
-- Correspond to Version 6.3.
-
-2016/11/24:
-- Correspond to Version 6.2.
-
-2016/08/31:
-- Correspond to Version 6.1.
-
-2016/05/13:
-- Add CampaignExportSample at Version 6.0.
-
-2016/04/13:
-- Correspond to Version 6.0.
-
-2015/09/16:
-- Correspond to Version 5.3.
-
-2015/05/20:
-- Correspond to Version 5.2.
-- Correspond to Java 1.8.
-- Changed the project environment to Maven.
-
-2014/06/13:
-- Correspond to Version 5.1.
-
-2013/12/15:
-- Correspond to Version 5.0.
-
-2013/08/28:
-- Additional API from Version 4.2: Correspond to AdGroupBidMultiplierService.
-- Soap API Library is changed to JAX-WS.
-
-2013/07/22:
-- Correspond to Version 4.2. The change from Version 4.0 is as below.
--- Added AdDisplayOptionSample.java
+--------------------------------
+[Feature]
+--------------------------------
+src/main/java/jp/yahooapis/ss/adapisample/feature/
+  - AdCustomizerSample.java                     : Examples of AdCustomizer features.
+  - AdDisplayOptionSample.java                  : Examples of AdDisplayOption features.
+  - AdSample.java                               : Examples of AdvancedUrl features.
+  - DynamicAdsForSearchSample.java              : Examples of DynamicAdsForSearch features.
+  - LabelSample.java                            : Examples of Label features.
+  - SharedNegativeCampaignCriterionSample.java  : Examples of SharedNegativeCampaignCriterion features.
+  - SiteRetargetingSample.java                  : Examples of SiteRetargeting features.
+  - StructuredSnippetSample.java                : Examples of StructuredSnippet features.
 
 
 --------------------------------
-<<Overview>>
+[Development environment]
 --------------------------------
-This sample program uses Java to call each services in API. 
-Calls the API using JAX-WS.
+Install the softwares below to organize environment.
 
-
---------------------------------
-<<Contents>>
---------------------------------
-[src/main/java directory]
-The following programs are stored.
-
-* Below list are the Sample program that can be executed directly.
-
-- jp/co/yahoo/ad_api_sample
-  - accountSample/AccountSample.java                                        : Sample of Get and Mutate operation for account information via AccountService.
-  - accountTrackingURLSample/AccountTrackingUrlSample.java                  : Sample of Get and Mutate operation for tracking URL of account via AccountTrackingUrlService.
-  - adCustomizerSample/AdCustomizerSample.java                              : Sample of Get and Mutate operation for data auto insertion via AdGroupAdService/FeedItemService/FeedFolderService/AdGroupCriterionService/AdGroupService/CampaignService.
-  - adCustomizerSample/FeedFolderServiceSample.java                         : Sample of Get and Mutate operation for feed (data auto insertion) folder via FeedFolderService.
-  - adCustomizerSample/FeedItemServiceSample.java                           : Sample of Get and Mutate operation for feed item via FeedItemService.
-  - adDisplayOptionSample/AdDisplayOptionSample.java                        : Sample of Get and Mutate operation of Ad Display Option via FeedItemService/CampaignFeedService/AdGroupFeedService.
-  - adSample/AdGroupAdServiceSample.java                                    : Sample of Get and Mutate operation of ads via AdGroupAdService.
-  - adSample/AdGroupBidMultiplierServiceSample.java                         : Sample of Get and Mutate operation of Bid Adjustment of ad group via AdGroupBidMultiplierService.
-  - adSample/AdGroupCriterionServiceSample.java                             : Sample of Get and Mutate operation of criterion of ad group via AdGroupCriterionService.
-  - adSample/AdGroupServiceSample.java                                      : Sample of Get and Mutate operation of ad group via AdGroupService.
-  - adSample/AdSample.java                                                  : Sample of Ad submission via BiddingStrategyService/CampaignService/CampaignTargetService/CampaignCriterionService/AdGroupService/AdGroupCriterionService/AdGroupAdService/AdGroupBidMultiplierService.
-  - adSample/BiddingStrategyServiceSample.java                              : Sample of Get and Mutate operation for auto bidding via BiddingStrategyService.
-  - adSample/CampaignCriterionServiceSample.java                            : Sample of Get and Mutate operation of negative criterion of campaign via CampaignCriterionService.
-  - adSample/CampaignServiceSample.java                                     : Sample of Get and Mutate operation for campaign via CampaignService.
-  - adSample/CampaignTargetServiceSample.java                               : Sample of Get and Mutate operation for target setting via CampaignTargetService.
-  - advancedURLSample/advancedURLSample.java                                : Sample of Get and Mutate operation of submission using Advanced URL system via AccountTrackingUrlService/CampaignService/AdGroupService/AdGroupCriterionService/AdGroupAdService/FeedItemService.
-  - balanceSample/BalanceSample.java                                        : Sample of Get account balance via BalanceService.
-  - bidLandscapeSample/BidLandscapeSample.java                              : Sample of Get bid landscape via BidLandscapeService.
-  - conversionTrackerSample/ConversionTrackerSample.java                    : Sample of Get and Mutate operation for conversion via ConversionTrackerService.
-  - dictionarySample/DictionarySample.java                                  : Sample of Get the list of EditorialReason and Geo code via DictionaryService.
-  - dynamicAdsForSearchSample/PageFeedItemServiceSample.java                : Sample of Get, Get Review Summary, Upload and Download operation for page feed item via PageFeedItemService.
-  - dynamicAdsForSearchSample/CampaignWebpageServiceSample.java             : Sample of Get and Mutate operation for exclude settings of page feed via CampaignWebpageService.
-  - dynamicAdsForSearchSample/AdGroupWebpageServiceSample.java              : Sample of Get and Mutate operation for allow or exclude settings of page feed via AdGroupWebpageService.
-  - dynamicAdsForSearchSample/DynamicAdsForSearchSample.java                : Sample of Get and Mutate operation of dynamic ads for search via FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageService.
-  - keywordEstimatorSample/KeywordEstimatorSample.java                      : Sample of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
-  - reportDownloadSample/ReportDownloadSample.java                          : Sample of Get report via ReportDefinitionService/ReportService
-  - siteRetargetingSample/AdGroupRetargetingListServiceSample.java          : Sample of Get and Mutate operation for ad group retargeting list via AdGroupRetargetingListService.
-  - siteRetargetingSample/CampaignRetargetingListServiceSample.java         : Sample of Get and Mutate operation for campaign retargeting list via CampaignRetargetingListService.
-  - siteRetargetingSample/RetargetingListServiceSample.java                 : Sample of Get and Mutate operation for retargeting list via RetargetingListService.
-  - siteRetargetingSample/SiteRetargetingSample.java                        : Sample of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
-  - targetingIdeaSample/TargetingIdeaSample.java                            : Sample of Get the related keywords based on the specified value via TargetingIdeaService.
-  - campaignExportSample/CampaignExportSample.java                          : Sample of Add the export job and Download via CampaignExportService.
-  - auditLogDownloadSample/AuditLogDownloadSample.java                      : Sample of download operation history log via AuditLogService.
-
-
-* The following are the class called from sample programs.
-
-- under jp/co/yahoo/ad_api_sample
- - util/SoapUtils.java		: Sample and the common process of obtaining of request destination using LocationService.
- - under jp/yahooapis/ss/V6	: The stubs and the skelton classes generated by WSDL using JAX-WS.
-
-[src/main/resource directory]
-The following resources are stored.
-
-- bin directory: The compiled execute file of sample program and the batch file to excecute on Windows are stored.
-  - run_sample.bat                : The batch file in order to execute the sample program on Windows.
-  - ad-api-sample-SS-API-V6.0.jar : The jar files that compiled sample programs. 
-
-- conf directory: Property file is stored in order to describe the each setting used in the sample program execution.
-  - api_config.properties: Config file to describe each ID.
-
-- download directory: Stores the download data file when ReportDownloadSample,CampaignExportService,PageFeedItemService,DynamicAdsForSearchSample is executed.
-
-- upload directory: Stores the upload data file when PageFeedItemServiceSample, DynamicAdsForSearchSample is executed.
-
-[src/test/java directory]
-The following test cases are stored.
-
-*Test case that can execute from JUnit under src/main/java/jp/co/yahoo/ad_api_sample sample program.
-
-- jp/co/yahoo/ad_api_sample
-  - accountSample/AccountSampleTest.java                                        : Test case of Get and Mutate operation for account information via AccountService.
-  - accountTrackingURLSample/AccountTrackingUrlSampleTest.java                  : Test case of Get and Mutate operation for tracking URL of account via AccountTrackingUrlService.
-  - adCustomizerSample/AdCustomizerSampleTest.java                              : Test case of Get and Mutate operation for data auto insertion via AdGroupAdService/FeedItemService/FeedFolderService/AdGroupCriterionService/AdGroupService/CampaignService.
-  - adCustomizerSample/FeedFolderServiceSampleTest.java                         : Test case of Get and Mutate operation for feed (data auto insertion) folder via FeedFolderService.
-  - adCustomizerSample/FeedItemServiceSampleTest.java                           : Test case of Get and Mutate operation for feed item via FeedItemService.
-  - adDisplayOptionSample/AdDisplayOptionSampleTest.java                        : Test case of Get and Mutate operation of Ad Display Option via FeedItemService/CampaignFeedService/AdGroupFeedService.
-  - adSample/AdGroupAdServiceSampleTest.java                                    : Test case of Get and Mutate operation for ad information via AdGroupAdService.
-  - adSample/AdGroupBidMultiplierServiceSampleTest.java                         : Test case of Get and Mutate operation for bid multiplier information via AdGroupBidMultiplierService.
-  - adSample/AdGroupCriterionServiceSampleTest.java                             : Test case of Get and Mutate operation for criteria (such as keyword) via AdGroupCriterionService.
-  - adSample/AdGroupServiceSampleTest.java                                      : Test case of Get and Mutate operation for adgroup via AdGroupService.
-  - adSample/AdSampleTest.java                                                  : Test case of Ad submission via BiddingStrategyService/CampaignService/CampaignTargetService/CampaignCriterionService/AdGroupService/AdGroupCriterionService/AdGroupAdService/AdGroupBidMultiplierService.
-  - adSample/BiddingStrategyServiceSampleTest.java                              : Test case of Get and Mutate operation for auto bidding via BiddingStrategyService.
-  - adSample/CampaignCriterionServiceSampleTest.java                            : Test case of Get and Mutate operation for negative criteria in campaign level via CampaignCriterionService.
-  - adSample/CampaignServiceSampleTest.java                                     : Test case of Get and Mutate operation for campaign via CampaignService.
-  - adSample/CampaignTargetServiceSampleTest.java                               : Test case of Get and Mutate operation for target setting via CampaignTargetService.
-  - advancedURLSample/advancedURLSampleTest.java                                : Test case of Get and Mutate operation for submission using Advanced URL system via AccountTrackingUrlService/CampaignService/AdGroupService/AdGroupCriterionService/AdGroupAdService/FeedItemService.
-  - balanceSample/BalanceSampleTest.java                                        : Test case of Get account balance via BalanceService.
-  - bidLandscapeSample/BidLandscapeSampleTest.java                              : Test case of Get bid landscape via BidLandscapeService.
-  - conversionTrackerSample/ConversionTrackerSampleTest.java                    : Test case of Get and Mutate operation for conversion via ConversionTrackerService.
-  - dictionarySample/DictionarySampleTest.java                                  : Test case of Get the list of EditorialReason and Geo code via DictionaryService.
-  - dynamicAdsForSearchSample/PageFeedItemServiceSampleTest.java                : Test case of Get, Get Review Summary, Upload and Download operation for page feed item via PageFeedItemService.
-  - dynamicAdsForSearchSample/CampaignWebpageServiceSampleTest.java             : Test case of Get and Mutate operation for exclude settings of page feed  via CampaignWebpageService.
-  - dynamicAdsForSearchSample/AdGroupWebpageServiceSampleTest.java              : Test case of Get and Mutate operation for allow or exclude settings of page feed  via AdGroupWebpageService.
-  - dynamicAdsForSearchSample/DynamicAdsForSearchSampleTest.java                : Test case of Get and Mutate operation of dynamic ads for search via FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageService.
-  - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : Test case of Get the estimate keyword data from the existing campaign via KeywordEstimatorService.
-  - reportDownloadSample/ReportDownloadSampleTest.java                          : Test case of Get report via ReportDefinitionService/ReportService.
-  - siteRetargetingSample/AdGroupRetargetingListServiceSampleTest.java          : Test case of Get and Mutate operation for ad group retargeting list via AdGroupRetargetingListService.
-  - siteRetargetingSample/CampaignRetargetingListServiceSampleTest.java         : Test case of Get and Mutate operation for campaign retargeting list via CampaignRetargetingListService.
-  - siteRetargetingSample/RetargetingListServiceSampleTest.java                 : Test case of Get and Mutate operation for retargeting list via RetargetingListService.
-  - siteRetargetingSample/SiteRetargetingSampleTest.java                        : Test case of Get and Mutate operation for site retargeting function via RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListService.
-  - targetingIdeaSample/TargetingIdeaSampleTest.java                            : Test case of Get the related keywords based on the specified value via TargetingIdeaService.
-  - campaignExportSample/CampaignExportSampleTest.java                          : Test case of Add the export job and Download via CampaignExportService.
-  - auditLogDownloadSample/AuditLogDownloadSampleTest.java                      : Test case of download operation history log via AuditLogService.
-
-[src/test/resource directory]
-The following resources are stored.
-
-- conf directory: Property file is stored in order to describe the each setting used in the sample program execution.
-  - api_config.properties: Config file to describe each ID.
-
-- download directory: Stores the download data file when ReportDownloadSampleTest,CampaignExportSample,AuditLogSample,PageFeedItemService,DynamicAdsForSearchSample is executed.
-
-- upload directory: Stores the upload data file when PageFeedItemServiceSample, DynamicAdsForSearchSample is executed.
-
+1. Java 1.8(Java SE Development Kit 8 or above
+2. Apache Maven 3.1.1 or above
+3.  Write Ids in  src/main/resources/api_config.properties.
+  - LOCATION            : choose either sandbox or production environment by removing comment out.
+  - LICENSE             : API license
+  - APIACCOUNTID        : API account id
+  - APIACCOUNTPASSWORD  : API account password
+  - ONBEHALFOFACCOUNTID : On Behalf Of Account Id(optional)
+  - ONBEHALFOFPASSWORD  : On Behalf Of Password(optional)
+  - ACCOUNTID           : AccountId(required)
 
 --------------------------------
-<<Preparation>>
+[How to execute Sample Code]
 --------------------------------
-Please install followings to build operation environment for Java.
+Move into the directory where you cloned and execute the command below.
+$ mvn clean install
 
- [Java 1.8(Java SE Development Kit 8)]
- http://www.oracle.com/technetwork/java/javase/downloads/index.html
-
-Please install followings to build Maven environment for Java.
-
- [Apache Maven 3.1.1]
- https://maven.apache.org/download.cgi
-
-Input each ID below to api_config.properties under the conf directory.
-LOCATION            : Comment out the unnecessary line
-LICENSE             : API license (Required)
-APIACCOUNTID        : API account ID (Required)
-APIACCOUNTPASSWORD  : API account password (Required)
-ONBEHALFOFACCOUNTID : Application account ID (Optional)
-ONBEHALFOFPASSWORD  : Application account password (Optional)
-ACCOUNTID           : Account ID (Required)
-
-The following ID is required to use BidLandscapeSample.
-BIDDINGSTRATEGYID         : Bidding Strategy ID (Required)
-CAMPAIGNID,APPCAMPAIGNID  : Campaign ID (Required)
-ADGROUPID,APPADGROUPID    : Ad group ID (Required)
-ADGROUPCRITERIONIDS       : Ad group criterion ID (Required)
-                            *Can set multiple ID by using comma.
-
-The following ID is required to use AdCustomizerSample.
-FEEDFOLDERID            : Feed Folder ID (Required)
-INTEGERFEEDATTRIBUTEID  : Feed attribute ID from registered AD_CUSTOMIZER_INTEGER in PlaceholderField (Required)
-PRICEFEEDFOLDERID       : Feed attribute ID from registered AD_CUSTOMIZER_PRICE in PlaceholderField (Required)
-DATEFEEDFOLDERID        : Feed attribute ID from registered AD_CUSTOMIZER_DATE in PlaceholderField (Required)
-STRINGFEEDFOLDERID      : Feed attribute ID from registered AD_CUSTOMIZER_STRING in PlaceholderField (Required)
-
-The following ID is required to use SiteRetargetingSample.
-TARGETLISTID	: Target list ID (Optional/New list created if it does not exist)
-
-
---------------------------------
-<<Execution>>
---------------------------------
-set SAMPLE_HOME={ad-api-sample}
-set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V201808.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\ad-api-sample\src\main\resources
-
-[e.g.]
----------------------------------------
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.accountSample.AccountSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.accountTrackingURLSample.AccountTrackingUrlSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adCustomizerSample.AdCustomizerSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adCustomizerSample.FeedFolderServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adCustomizerSample.FeedItemServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adDisplayOptionSample.AdDisplayOptionSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupAdServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupBidMultiplierServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupCriterionServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.BiddingStrategyServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.CampaignCriterionServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.CampaignServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.CampaignTargetServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.advancedURLSample.advancedURLSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.balanceSample.BalanceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.bidLandscapeSample.BidLandscapeSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.conversionTrackerSample.ConversionTrackerSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.PageFeedItemServiceSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.CampaignWebpageServiceSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.AdGroupWebpageServiceSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.DynamicAdsForSearchSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.AdGroupRetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.CampaignRetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.auditLogDownloadSample.AuditLogDownloadSample
----------------------------------------
-
-When the operation for data download is executed, the file will be stored in the directory of download.
-
-When the operation for data upload is executed, please store the file you want to upload under the upload directory.
-File name is fixed in each sample program.
-
- - In case of PageFeedItemServiceSample, DynamicAdsForSearchSample      : pageFeedItemUploadSample.csv
+- Example
+$ java -classpath ./target/classes jp.yahooapis.ss.adapisample.basic.account.AccountServiceSample
+$ java -classpath ./target/classes jp.yahooapis.ss.adapisample.feature.AdSample

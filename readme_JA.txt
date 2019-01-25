@@ -1,185 +1,49 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version V201808
+Version 201901
 
 ■変更履歴
 -----------
-2018/08/08:
-- Version V201808に対応しました。
-
-2018/04/24:
-- Version V201805に対応しました。
-
-2018/01/24:
-- Version 6.5に対応しました。
-
-2017/11/01:
-- Version 6.4に対応しました。
-- AuditLogDownloadSampleを追加しました。
-
-2017/07/20:
-- Version 6.3に対応しました。
-
-2016/11/24:
-- Version 6.2に対応しました。
-
-2016/08/31:
-- Version 6.1に対応しました。
-
-2016/05/13:
-- CampaignExportSample(Version 6.0)を追加しました。
-
-2016/04/13:
-- Version 6.0に対応しました。
-
-2015/09/16:
-- Version 5.3に対応しました。
-
-2015/05/20:
-- Version 5.2対応しました。
-- Java 1.8に対応しました。
-- プロジェクトをMaven形式に変更しました。
-
-2014/06/13:
-- Version 5.1に対応しました。
-
-2013/12/15:
-- Version 5.0に対応しました。
-
-2013/08/28:
-- Version 4.2追加API：AdGroupBidMultiplierServiceに対応しました。
-- Soap APIライブラリをJAX-WSに変更しました。
-
-2013/07/22:
-- Version 4.2に対応しました。Version 4.0からの変更点は以下になります。
--- AdDisplayOptionSample.javaの追加
-
+2019/01/29:
+- Version 201901に対応しました。
 
 --------------------------------
 【概要】
 --------------------------------
-このサンプルプログラムは、Javaを使用して各APIを呼び出す処理サンプルです。
-JAX-WSを使用してAPIを呼び出す形になっています。
+このサンプルプログラムは、Javaを使用して各APIを呼び出す処理のサンプルです。
+JAX-WSを使用してAPIを呼び出します。
+
 
 --------------------------------
 【内容物】
 --------------------------------
-■src/main/javaディレクトリ
-以下の各プログラムが格納されています。
+src/main/
+  - resources/
+    - api_config.properties.dist    : 各種IDを記述する設定ファイルです、api_config.propertiesにリネームして下さい。
+  - java/jp/yahooapis/ss/
+    - v201901/                      : 対象のAPIバージョンのJava用EntityサンプルClassです。
+    - adapisample/
+      - basic/                      : プロモーション広告APIの各種Serviceサンプル集です。
+      - feature/                    : プロモーション広告APIを利用した広告入稿、ターゲティングなどのサンプル集です。
+      - repository/                 : プロモーション広告API各種サンプルを利用するための補助ユーティリティです。
+      - util/                       : プロモーション広告API各種サンプルを利用するための補助ユーティリティです。
+download/                           : 各種Downloadサービスを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
+upload/                             : 各種Uploadサービスを実行する際に、利用するデータファイルを格納するディレクトリです。
 
-・以下は直接実行できるサンプルプログラムです。
 
-- jp/co/yahoo/ad_api_sample配下
-  - accountSample/AccountSample.java                                        : AccountServiceによるアカウント参照、更新処理のサンプルです。
-  - accountTrackingURLSample/AccountTrackingUrlSample.java                  : AccountTrackingUrlServiceによるアカウントレイヤーのトラッキングURL参照、更新処理のサンプルです。
-  - adCustomizerSample/AdCustomizerSample.java                              : AdGroupAdService/FeedItemService/FeedFolderService/AdGroupCriterionService/AdGroupService/CampaignServiceによるデータ自動挿入機能の登録、参照、更新、削除処理のサンプルです。
-  - adCustomizerSample/FeedFolderServiceSample.java                         : FeedFolderServiceによるフィードフォルダーの登録、参照、更新、削除処理のサンプルです。
-  - adCustomizerSample/FeedItemServiceSample.java                           : FeedItemServiceによるフィードアイテムの登録、参照、更新、削除処理のサンプルです。
-  - adDisplayOptionSample/AdDisplayOptionSample.java                        : FeedItemService/CampaignFeedService/AdGroupFeedServiceによる広告表示オプションの登録、参照、更新処理のサンプルです。
-  - adSample/AdGroupAdServiceSample.java                                    : AdGroupAdServiceによる広告の登録、参照、更新、削除処理のサンプルです。
-  - adSample/AdGroupBidMultiplierServiceSample.java                         : AdGroupBidMultiplierServiceによる広告グループ入札価格調整率の参照、更新処理のサンプルです。
-  - adSample/AdGroupCriterionServiceSample.java                             : AdGroupCriterionServiceによる広告グループクライテリアの登録、参照、更新、削除処理のサンプルです。
-  - adSample/AdGroupServiceSample.java                                      : AdGroupServiceによる広告グループの登録、参照、更新、削除処理のサンプルです。
-  - adSample/AdSample.java                                                  : BiddingStrategyService/CampaignService/CampaignTargetService/CampaignCriterionService/AdGroupService/AdGroupCriterionService/AdGroupAdService/AdGroupBidMultiplierServiceによる入稿処理のサンプルです。
-  - adSample/BiddingStrategyServiceSample.java                              : BiddingStrategyServiceによる自動入札設定の登録、参照、更新、削除処理のサンプルです。
-  - adSample/CampaignCriterionServiceSample.java                            : CampaignCriterionServiceによるキャンペーン除外クライテリアの登録、参照処理のサンプルです。
-  - adSample/CampaignServiceSample.java                                     : CampaignServiceによるキャンペーンの登録、参照、更新、削除処理のサンプルです。
-  - adSample/CampaignTargetServiceSample.java                               : CampaignTargetServiceによるキャンペーンターゲティング設定の登録、参照、更新、削除処理のサンプルです。
-  - advancedURLSample/advancedURLSample.java                                : AccountTrackingUrlService/CampaignService/AdGroupService/AdGroupCriterionService/AdGroupAdService/FeedItemServiceによるアドバンスドURLシステムを利用した入稿処理のサンプルです。
-  - balanceSample/BalanceSample.java                                        : BalanceServiceによるアカウント残高を参照する処理のサンプルです。
-  - bidLandscapeSample/BidLandscapeSample.java                              : BidLandscapeServiceによるビットのシュミレート情報を参照する処理のサンプルです。
-  - conversionTrackerSample/ConversionTrackerSample.java                    : ConversionTrackerServiceによるコンバージョントラック情報の登録、参照、更新処理のサンプルです。
-  - dictionarySample/DictionarySample.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のサンプルです。
-  - dynamicAdsForSearchSample/PageFeedItemServiceSample.java                : PageFeedItemServiceによるPageFeedItemのアップロード/ダウンロード処理、審査状況確認、設定参照処理のサンプルです。
-  - dynamicAdsForSearchSample/CampaignWebpageServiceSample.java             : CampaignWebpageServiceによるPageFeed除外設定の参照、登録、削除処理のサンプルです。
-  - dynamicAdsForSearchSample/AdGroupWebpageServiceSample.java              : AdGroupWebpageServiceによるPageFeed配信/除外設定の参照、登録、更新、削除処理のサンプルです。
-  - dynamicAdsForSearchSample/DynamicAdsForSearchSample.java                : FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageServiceによる動的検索連動型広告の処理サンプルです。
-  - keywordEstimatorSample/KeywordEstimatorSample.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のサンプルです。
-  - reportDownloadSample/ReportDownloadSample.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のサンプルです。
-  - sharedCriterionSample/AccountSharedServiceSample.java                   : AccountSharedServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、更新、削除処理のサンプルです。
-  - sharedCriterionSample/CampaignSharedSetServiceSample.java               : AccountSharedService/CampaignService/CampaignSharedSetServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のサンプルです。
-  - sharedCriterionSample/SharedCriterionServiceSample.java                 : AccountSharedService/SharedCriterionServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のサンプルです。
-  - siteRetargetingSample/AdGroupRetargetingListServiceSample.java          : AdGroupRetargetingListServiceによる広告グループ用リターゲティングリストの登録、参照、更新、削除処理のサンプルです。
-  - siteRetargetingSample/CampaignRetargetingListServiceSample.java         : CampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のサンプルです。
-  - siteRetargetingSample/RetargetingListServiceSample.java                 : RetargetingListServiceによるリターゲティングリストの登録、参照、更新処理のサンプルです。
-  - siteRetargetingSample/SiteRetargetingSample.java                        : RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のサンプルです。
-  - targetingIdeaSample/TargetingIdeaSample.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のサンプルです。
-  - campaignExportSample/CampaignExportSample.java                          : CampaignExportServiceによるExportジョブ登録、CSVダウンロードのサンプルです。
-  - auditLogDownloadSample/AuditLogDownloadSample.java                      : AuditLogServiceによるジョブ登録、CSVダウンロードのサンプルです。
-
-・以下は各サンプルプログラムから利用されるクラスです。
-
-- jp/co/yahoo/ad_api_sample配下
-  - util/SoapUtils.java       : LocationServiceを使用したリクエスト先の取得処理のサンプル及びその他共通処理です。
-  - jp/yahooapis/ss/V6配下    : JAX-WSを使用してWSDLから生成したスタブ、スケルトンクラス群です。
-
-■src/main/resourceディレクトリ
-以下の内容物が格納されています。
-
-- binディレクトリ : コンパイルされたサンプルプログラムの実行ファイルと、Windows上で実行するためのバッチファイルが格納されています。
-  - run_sample.bat                ： Windows上でサンプルプログラムを実行するためのバッチファイルです。
-  - ad-api-sample-SS-API-V201808.jar ： コンパイルされたサンプルプログラムがまとめたjarファイルです。
-
-- confディレクトリ : サンプルプログラム実行時の各種設定を記述するプロパティファイルが格納されています。
-  - api_config.properties：各種IDを記述する設定ファイルです。
-
-- downloadディレクトリ：ReportDownloadSample,CampaignExportSample,AuditLogSample,PageFeedItemService,DynamicAdsForSearchSampleを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
-
-- uploadディレクトリ：PageFeedItemServiceSample, DynamicAdsForSearchSampleでアップロードするファイルをあらかじめ格納しておくディレクトリです。
-
-■src/test/javaディレクトリ
-以下の各テストケースが格納されています。
-
-・以下はsrc/main/java/jp/co/yahoo/ad_api_sample配下のサンプルプログラムをJUnitで実行できるテストケースです。
-
-- jp/co/yahoo/ad_api_sample配下
-  - accountSample/AccountSampleTest.java                                        : AccountServiceによるアカウント参照、更新処理のテストケースです。
-  - accountTrackingURLSample/AccountTrackingUrlSampleTest.java                  : AccountTrackingUrlServiceによるアカウントレイヤーのトラッキングURL参照、更新処理のテストケースです。
-  - adCustomizerSample/AdCustomizerSampleTest.java                              : BiddingStrategyService/CampaignService/AdGroupService/AdGroupCriterionService/FeedFolderService/FeedItemService/AdGroupAdServiceによるデータ自動挿入機能の登録、参照、更新、削除処理のテストケースです。
-  - adCustomizerSample/FeedFolderServiceSampleTest.java                         : FeedFolderServiceによるフィードフォルダーの登録、参照、更新、削除処理のテストケースです。
-  - adCustomizerSample/FeedItemServiceSampleTest.java                           : FeedItemServiceによるフィードアイテムの登録、参照、更新、削除処理のテストケースです。
-  - adDisplayOptionSample/AdDisplayOptionSampleTest.java                        : FeedItemService/CampaignFeedService/AdGroupFeedServiceによる広告表示オプションの登録、参照、更新処理のテストケースです。
-  - adSample/AdGroupAdServiceSampleTest.java                                    : AdGroupAdServiceによる広告の登録、参照、更新、削除処理のテストケースです。
-  - adSample/AdGroupBidMultiplierServiceSampleTest.java                         : AdGroupBidMultiplierServiceによる広告グループ入札価格調整率の参照、更新処理のテストケースです。
-  - adSample/AdGroupCriterionServiceSampleTest.java                             : AdGroupCriterionServiceによる広告グループクライテリアの登録、参照、更新、削除処理のテストケースです。
-  - adSample/AdGroupServiceSampleTest.java                                      : AdGroupServiceによる広告グループの登録、参照、更新、削除処理のテストケースです。
-  - adSample/AdSampleTest.java                                                  : BiddingStrategyService/CampaignService/CampaignTargetService/CampaignCriterionService/AdGroupService/AdGroupCriterionService/AdGroupAdService/AdGroupBidMultiplierServiceによる入稿処理のテストケースです。
-  - adSample/BiddingStrategyServiceSampleTest.java                              : BiddingStrategyServiceによる自動入札設定の登録、参照、更新、削除処理のテストケースです。
-  - adSample/CampaignCriterionServiceSampleTest.java                            : CampaignCriterionServiceによるキャンペーン除外クライテリアの登録、参照処理のテストケースです。
-  - adSample/CampaignServiceSampleTest.java                                     : CampaignServiceによるキャンペーンの登録、参照、更新、削除処理のテストケースです。
-  - adSample/CampaignTargetServiceSampleTest.java                               : CampaignTargetServiceによるキャンペーンターゲティング設定の登録、参照、更新、削除処理のテストケースです。 
-  - advancedURLSample/advancedURLSampleTest.java                                : AccountTrackingUrlService/CampaignService/AdGroupService/AdGroupCriterionService/AdGroupAdService/FeedItemServiceによるアドバンスドURLシステムを利用した入稿処理のテストケースです。
-  - balanceSample/BalanceSampleTest.java                                        : BalanceServiceによるアカウント残高を参照する処理のテストケースです。
-  - bidLandscapeSample/BidLandscapeSampleTest.java                              : BidLandscapeServiceによるビットのシュミレート情報を参照する処理のテストケースです。
-  - conversionTrackerSample/ConversionTrackerSampleTest.java                    : ConversionTrackerServiceによるコンバージョントラック情報の登録、参照、更新処理のテストケースです。
-  - dictionarySample/DictionarySampleTest.java                                  : DictionaryServiceによる審査否認理由の参照、地域コード参照処理のテストケースです。
-  - dynamicAdsForSearchSample/PageFeedItemServiceSampleTest.java                : PageFeedItemServiceによるPageFeedItemのアップロード/ダウンロード処理、審査状況確認、設定参照処理のテストケースです。
-  - dynamicAdsForSearchSample/CampaignWebpageServiceSampleTest.java             : CampaignWebpageServiceによるPageFeed除外設定の参照、登録、削除処理のテストケースです。
-  - dynamicAdsForSearchSample/AdGroupWebpageServiceSampleTest.java              : AdGroupWebpageServiceによるPageFeed除外設定の参照、登録、更新、削除処理のテストケースです。
-  - dynamicAdsForSearchSample/DynamicAdsForSearchSampleTest.java                : FeedFolderService/PageFeedItemService/CampaignService/AdGroupService/AdGroupAdService/CampaignWebpageService/AdGroupWebpageServiceによる動的検索連動型広告の処理テストケースです。
-  - keywordEstimatorSample/KeywordEstimatorSampleTest.java                      : KeywordEstimatorServiceによるキャンペーン及び広告グループのキーワードのクリック単価や掲載順位などの予測値を参照する処理のテストケースです。
-  - reportDownloadSample/ReportDownloadSampleTest.java                          : ReportDefinitionService, ReportServiceを使用したレポートダウンロード処理のテストケースです。
-  - sharedCriterionSample/AccountSharedServiceSampleTest.java                   : AccountSharedServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、更新、削除処理のテストケースです。
-  - sharedCriterionSample/CampaignSharedSetServiceSampleTest.java               : AccountSharedService/CampaignService/CampaignSharedSetServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のテストケースです。
-  - sharedCriterionSample/SharedCriterionServiceSampleTest.java                 : AccountSharedService/SharedCriterionServiceによるアカウント配下のキャンペーンで除外キーワードの共有リスト情報の登録、参照、削除処理のテストケースです。
-  - siteRetargetingSample/AdGroupRetargetingListServiceSampleTest.java          : AdGroupRetargetingListServiceによる広告グループ用リターゲティングリストの登録、参照、更新、削除処理のテストケースです。
-  - siteRetargetingSample/CampaignRetargetingListServiceSampleTest.java         : CampaignRetargetingListServiceによるキャンペーン用リターゲティングリストの登録、参照、更新、削除処理のテストケースです。
-  - siteRetargetingSample/RetargetingListServiceSampleTest.java                 : RetargetingListServiceによるリターゲティングリストの登録、参照、更新処理のテストケースです。
-  - siteRetargetingSample/SiteRetargetingSampleTest.java                        : RetargetingListService/BiddingStrategyService/CampaignService/CampaignRetargetingListService/AdGroupService/AdGroupRetargetingListServiceによるサイトリターゲティング機能の登録、参照、更新、削除処理のテストケースです。
-  - targetingIdeaSample/TargetingIdeaSampleTest.java                            : TargetingIdeaServiceによる推奨キーワードを参照する処理のテストケースです。
-  - campaignExportSample/CampaignExportSampleTest.java                          : CampaignExportServiceによるExportジョブ登録、ダウンロード処理のテストケースです。
-  - auditLogDownloadSample/AuditLogDownloadSampleTest.java                      : AuditLogServiceによるジョブ登録、CSVダウンロード処理のテストケースです。
-
-■src/test/resourceディレクトリ
-以下の内容物が格納されています。
-
-- confディレクトリ : テストケース実行時の各種設定を記述するプロパティファイルが格納されています。
-  - api_config.properties：各種IDを記述する設定ファイルです。
-
-- downloadディレクトリ：ReportDownloadSample,CampaignExportSample,AuditLogSample,PageFeedItemService,DynamicAdsForSearchSampleを実行した際に、ダウンロードしたデータがファイルとして格納されるディレクトリです。
-
-- uploadディレクトリ：PageFeedItemServiceSample, DynamicAdsForSearchSampleでアップロードするファイルをあらかじめ格納しておくディレクトリです。
+--------------------------------
+【Feature説明】
+--------------------------------
+src/main/java/jp/yahooapis/ss/adapisample/feature/
+  - AdCustomizerSample.java                     : データ自動挿入機能を利用した入稿処理のサンプルです。
+  - AdDisplayOptionSample.java                  : 広告表示オプションを利用した入稿処理のサンプルです。
+  - AdSample.java                               : アドバンスドURLシステムを利用した入稿処理のサンプルです。
+  - DynamicAdsForSearchSample.java              : 動的検索連動型広告を利用した入稿処理のサンプルです。
+  - LabelSample.java                            : ラベル機能を利用した処理のサンプルです。
+  - SharedNegativeCampaignCriterionSample.java  : 対象外キーワード共有機能を利用した処理のサンプルです。
+  - SiteRetargetingSample.java                  : サイトリターゲティング機能を利用した処理のサンプルです。
+  - StructuredSnippetSample.java                : カテゴリ補足オプションを利用した入稿処理のサンプルです。
 
 
 --------------------------------
@@ -187,91 +51,26 @@ JAX-WSを使用してAPIを呼び出す形になっています。
 --------------------------------
 Java環境を構築するために、以下をインストールしてください。
 
-[Java 1.8(Java SE Development Kit 8)]
-http://www.oracle.com/technetwork/java/javase/downloads/index.html
-
-Maven環境を構築するために、以下をインストールしてください。
-
-[Apache Maven 3.1.1]
-https://maven.apache.org/download.cgi
-
-confディレクトリ配下にあるapi_config.propertiesに各IDを記述します。
-LOCATION            : リクエスト先毎にコメントアウトを外してください。
-LICENSE             : APIライセンスを記述(必須)
-APIACCOUNTID        : APIアカウントIDを記述(必須)
-APIACCOUNTPASSWORD  : APIアカウントパスワードを記述(必須)
-ONBEHALFOFACCOUNTID : 代行アカウントを記述(任意)
-ONBEHALFOFPASSWORD  : 代行アカウントパスワードを記述(任意)
-ACCOUNTID           : アカウントIDを記述(必須)
-
-以下、IDはBidLandscapeSampleを動作させる際に必要となります。
-BIDDINGSTRATEGYID        : 自動入札IDを記述（必須）
-CAMPAIGNID,APPCAMPAIGNID : キャンペーンIDを記述（必須）
-ADGROUPID,APPADGROUPID   : 広告グループIDを記述（必須）
-ADGROUPCRITERIONIDS      : 広告グループのクライテリアIDを記述（必須）
-                           ※カンマ区切りで複数IDを指定することができます。
-
-以下、IDはAdCustomizerSampleを動作させる際に必要となります。
-FEEDFOLDERID            : フィードフォルダーIDを記述（必須）
-INTEGERFEEDATTRIBUTEID  : PlaceholderFieldがAD_CUSTOMIZER_INTEGERで登録されたフィードアトリビュートIDを記述（必須）
-PRICEFEEDFOLDERID       : PlaceholderFieldがAD_CUSTOMIZER_PRICEで登録されたフィードアトリビュートIDを記述（必須）
-DATEFEEDFOLDERID        : PlaceholderFieldがAD_CUSTOMIZER_DATEで登録されたフィードアトリビュートIDを記述（必須）
-STRINGFEEDFOLDERID      : PlaceholderFieldがAD_CUSTOMIZER_STRINGで登録されたフィードアトリビュートIDを記述（必須）
-
-以下、IDはSiteRetargetingSampleを動作させる際に必要となります。
-TARGETLISTID  : ターゲットリストID（任意、存在しない場合は新規作成を試みます）
+1. Java 1.8 Java SE Development Kit 8、またはそれ以上のバージョン
+2. Apache Maven 3.1.1、またはそれ以上のバージョン
+3. resourcesディレクトリ配下にあるapi_config.propertiesに各IDを記述します。
+  - LOCATION            : リクエスト先ごとにコメントアウトを外してください。
+  - LICENSE             : APIライセンスを記述してください。
+  - APIACCOUNTID        : APIアカウントIDを記述してください。
+  - APIACCOUNTPASSWORD  : APIアカウントパスワードを記述してください。
+  - ONBEHALFOFACCOUNTID : 代行アカウントを記述してください（任意）。
+  - ONBEHALFOFPASSWORD  : 代行アカウントパスワードを記述してください（任意）。
+  - ACCOUNTID           : アカウントIDを記述してください(必須)。
 
 
 --------------------------------
 【実行】
 --------------------------------
-set SAMPLE_HOME={ad-api-sample}
-set PACKAGE_NAME=jp.co.yahoo.ad_api_sample
-set CLASS_PATH=%SAMPLE_HOME%\bin\ad-api-sample-SS-API-V201808.jar;%SAMPLE_HOME%;%SAMPLE_HOME%\src\main\resources
+cloneしたサンプルプログラムのディレクトリに移動し、以下のコマンドを実行します。
+$ mvn clean install
+
+各サンプルプログラムを実行します。
 
 ■実行例
----------------------------------------
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.accountSample.AccountSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.accountTrackingURLSample.AccountTrackingUrlSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adCustomizerSample.AdCustomizerSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adCustomizerSample.FeedFolderServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adCustomizerSample.FeedItemServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adDisplayOptionSample.AdDisplayOptionSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupAdServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupBidMultiplierServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupCriterionServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdGroupServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.AdSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.BiddingStrategyServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.CampaignCriterionServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.CampaignServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.adSample.CampaignTargetServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.advancedURLSample.advancedURLSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.balanceSample.BalanceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.bidLandscapeSample.BidLandscapeSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.conversionTrackerSample.ConversionTrackerSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dictionarySample.DictionarySample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.PageFeedItemServiceSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.CampaignWebpageServiceSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.AdGroupWebpageServiceSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.dynamicAdsForSearchSample.DynamicAdsForSearchSample.java
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.keywordEstimatorSample.KeywordEstimatorSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.reportDownloadSample.ReportDownloadSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/AccountSharedServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/CampaignSharedSetServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.sharedCriterionSample/SharedCriterionServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.AdGroupRetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.CampaignRetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.RetargetingListServiceSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.siteRetargetingSample.SiteRetargetingSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.targetingIdeaSample.TargetingIdeaSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.campaignExportSample.CampaignExportSample
-java -classpath %CLASS_PATH% %PACKAGE_NAME%.auditLogDownloadSample.AuditLogDownloadSample
----------------------------------------
-
-データをダウンロードする処理を実行した場合には、downloadディレクトリにファイルが格納されます。
-
-データをアップロードする処理を実行する場合には、あらかじめuploadディレクトリ配下にアップロードしたいファイルを格納しておく必要があります。
-サンプルプログラムごとにファイル名は固定です。
-
-・PageFeedItemServiceSample, DynamicAdsForSearchSampleの場合　　　 ：pageFeedItemUploadSample.csv
+$ java -classpath ./target/classes jp.yahooapis.ss.adapisample.basic.account.AccountServiceSample
+$ java -classpath ./target/classes jp.yahooapis.ss.adapisample.feature.AdSample

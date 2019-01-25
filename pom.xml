@@ -3,8 +3,8 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>jp.co.yahoo</groupId>
-  <artifactId>ad-api-sample</artifactId>
-  <version>SS-API-V201808</version>
+  <artifactId>adapisample</artifactId>
+  <version>SS-API-V201901</version>
   <packaging>jar</packaging>
 
   <name>ad-api-sample</name>
@@ -17,20 +17,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.11</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-all</artifactId>
-      <version>1.3</version>
-    </dependency>
-    <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
-      <version>2.8.6</version>
+      <version>2.9.8</version>
     </dependency>
   </dependencies>
 
