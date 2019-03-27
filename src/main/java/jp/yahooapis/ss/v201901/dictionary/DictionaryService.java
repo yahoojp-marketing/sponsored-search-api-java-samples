@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "DictionaryService", targetNamespace = "http://ss.yahooapis.jp/V201901/Dictionary", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V201901/DictionaryService?wsdl")
+@WebServiceClient(name = "DictionaryService", targetNamespace = "http://ss.yahooapis.jp/V201901/Dictionary", wsdlLocation = "https://ss.yahooapis.jp/services/V201901/DictionaryService?wsdl")
 public class DictionaryService
     extends Service
 {
@@ -30,7 +30,7 @@ public class DictionaryService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V201901/DictionaryService?wsdl");
+            url = new URL("https://ss.yahooapis.jp/services/V201901/DictionaryService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

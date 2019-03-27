@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "FeedFolderService", targetNamespace = "http://ss.yahooapis.jp/V201901/FeedFolder", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V201901/FeedFolderService?wsdl")
+@WebServiceClient(name = "FeedFolderService", targetNamespace = "http://ss.yahooapis.jp/V201901/FeedFolder", wsdlLocation = "https://ss.yahooapis.jp/services/V201901/FeedFolderService?wsdl")
 public class FeedFolderService
     extends Service
 {
@@ -30,7 +30,7 @@ public class FeedFolderService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V201901/FeedFolderService?wsdl");
+            url = new URL("https://ss.yahooapis.jp/services/V201901/FeedFolderService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "AdGroupCriterionLabelService", targetNamespace = "http://ss.yahooapis.jp/V201901/AdGroupCriterionLabel", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V201901/AdGroupCriterionLabelService?wsdl")
+@WebServiceClient(name = "AdGroupCriterionLabelService", targetNamespace = "http://ss.yahooapis.jp/V201901/AdGroupCriterionLabel", wsdlLocation = "https://ss.yahooapis.jp/services/V201901/AdGroupCriterionLabelService?wsdl")
 public class AdGroupCriterionLabelService
     extends Service
 {
@@ -30,7 +30,7 @@ public class AdGroupCriterionLabelService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V201901/AdGroupCriterionLabelService?wsdl");
+            url = new URL("https://ss.yahooapis.jp/services/V201901/AdGroupCriterionLabelService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

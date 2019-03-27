@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "RetargetingListService", targetNamespace = "http://ss.yahooapis.jp/V201901/RetargetingList", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V201901/RetargetingListService?wsdl")
+@WebServiceClient(name = "RetargetingListService", targetNamespace = "http://ss.yahooapis.jp/V201901/RetargetingList", wsdlLocation = "https://ss.yahooapis.jp/services/V201901/RetargetingListService?wsdl")
 public class RetargetingListService
     extends Service
 {
@@ -30,7 +30,7 @@ public class RetargetingListService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V201901/RetargetingListService?wsdl");
+            url = new URL("https://ss.yahooapis.jp/services/V201901/RetargetingListService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
