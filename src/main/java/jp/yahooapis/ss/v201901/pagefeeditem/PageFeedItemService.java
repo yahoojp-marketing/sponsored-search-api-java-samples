@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "PageFeedItemService", targetNamespace = "http://ss.yahooapis.jp/V201901/PageFeedItem", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V201901/PageFeedItemService?wsdl")
+@WebServiceClient(name = "PageFeedItemService", targetNamespace = "http://ss.yahooapis.jp/V201901/PageFeedItem", wsdlLocation = "https://ss.yahooapis.jp/services/V201901/PageFeedItemService?wsdl")
 public class PageFeedItemService
     extends Service
 {
@@ -30,7 +30,7 @@ public class PageFeedItemService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V201901/PageFeedItemService?wsdl");
+            url = new URL("https://ss.yahooapis.jp/services/V201901/PageFeedItemService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

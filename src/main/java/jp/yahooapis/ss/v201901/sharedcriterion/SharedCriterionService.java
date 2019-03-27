@@ -17,7 +17,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "SharedCriterionService", targetNamespace = "http://ss.yahooapis.jp/V201901/SharedCriterion", wsdlLocation = "https://sandbox.ss.yahooapis.jp/services/V201901/SharedCriterionService?wsdl")
+@WebServiceClient(name = "SharedCriterionService", targetNamespace = "http://ss.yahooapis.jp/V201901/SharedCriterion", wsdlLocation = "https://ss.yahooapis.jp/services/V201901/SharedCriterionService?wsdl")
 public class SharedCriterionService
     extends Service
 {
@@ -30,7 +30,7 @@ public class SharedCriterionService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("https://sandbox.ss.yahooapis.jp/services/V201901/SharedCriterionService?wsdl");
+            url = new URL("https://ss.yahooapis.jp/services/V201901/SharedCriterionService?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
