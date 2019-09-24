@@ -8,17 +8,18 @@ import jp.yahooapis.ss.adapisample.basic.label.LabelServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.adgrouplabel.AdGroupLabel;
-import jp.yahooapis.ss.v201901.adgrouplabel.AdGroupLabelOperation;
-import jp.yahooapis.ss.v201901.adgrouplabel.AdGroupLabelReturnValue;
-import jp.yahooapis.ss.v201901.adgrouplabel.AdGroupLabelService;
-import jp.yahooapis.ss.v201901.adgrouplabel.AdGroupLabelServiceInterface;
-import jp.yahooapis.ss.v201901.adgrouplabel.AdGroupLabelValues;
-import jp.yahooapis.ss.v201901.adgrouplabel.Operator;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.adgrouplabel.AdGroupLabel;
+import jp.yahooapis.ss.v201909.adgrouplabel.AdGroupLabelOperation;
+import jp.yahooapis.ss.v201909.adgrouplabel.AdGroupLabelReturnValue;
+import jp.yahooapis.ss.v201909.adgrouplabel.AdGroupLabelService;
+import jp.yahooapis.ss.v201909.adgrouplabel.AdGroupLabelServiceInterface;
+import jp.yahooapis.ss.v201909.adgrouplabel.AdGroupLabelValues;
+import jp.yahooapis.ss.v201909.adgrouplabel.Operator;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -56,9 +57,9 @@ public class AdGroupLabelServiceSample {
       // AdGroupLabelService ADD
       // =================================================================
       // create request.
-      AdGroupLabelOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AdGroupLabel>() {{
-        add(createExampleAdGroupLabel(campaignId, adGroupId, lavelId));
-      }});
+      AdGroupLabelOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleAdGroupLabel(campaignId, adGroupId, lavelId)) //
+      );
 
       // run
       mutate(addRequest);

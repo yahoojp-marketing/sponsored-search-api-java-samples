@@ -7,18 +7,18 @@ import jp.yahooapis.ss.adapisample.basic.adgroupcriterion.AdGroupCriterionServic
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionUse;
-import jp.yahooapis.ss.v201901.bidlandscape.BidLandscapePage;
-import jp.yahooapis.ss.v201901.bidlandscape.BidLandscapeSelector;
-import jp.yahooapis.ss.v201901.bidlandscape.BidLandscapeService;
-import jp.yahooapis.ss.v201901.bidlandscape.BidLandscapeServiceInterface;
-import jp.yahooapis.ss.v201901.bidlandscape.BidLandscapeValues;
-import jp.yahooapis.ss.v201901.bidlandscape.SimType;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201909.bidlandscape.BidLandscapePage;
+import jp.yahooapis.ss.v201909.bidlandscape.BidLandscapeSelector;
+import jp.yahooapis.ss.v201909.bidlandscape.BidLandscapeService;
+import jp.yahooapis.ss.v201909.bidlandscape.BidLandscapeServiceInterface;
+import jp.yahooapis.ss.v201909.bidlandscape.BidLandscapeValues;
+import jp.yahooapis.ss.v201909.bidlandscape.SimType;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -32,7 +32,6 @@ public class BidLandscapeServiceSample {
    * example BidLandscapeService operation.
    *
    * @param args command line arguments
-   * @throws Exception
    */
   public static void main(String[] args) throws Exception {
     ValuesHolder valuesHolder = new ValuesHolder();
@@ -57,7 +56,7 @@ public class BidLandscapeServiceSample {
       // BidLandscapeService GET
       // =================================================================
       // create request.
-      BidLandscapeSelector selector = buildExampleGetRequest(accountId, campaignId, adGroupId, Arrays.asList(criterionId));
+      BidLandscapeSelector selector = buildExampleGetRequest(accountId, campaignId, adGroupId, Collections.singletonList(criterionId));
 
       // run
       get(selector);
@@ -73,9 +72,9 @@ public class BidLandscapeServiceSample {
   /**
    * example get request.
    *
-   * @param accountId long
-   * @param campaignId Long
-   * @param adGroupId Long
+   * @param accountId    long
+   * @param campaignId   Long
+   * @param adGroupId    Long
    * @param criterionIds List<Long>
    * @return BidLandscapeSelector
    */
@@ -110,7 +109,6 @@ public class BidLandscapeServiceSample {
    *
    * @param selector BidLandscapeSelector
    * @return List<BidLandscapeValues>
-   * @throws Exception
    */
   public static List<BidLandscapeValues> get(BidLandscapeSelector selector) throws Exception {
 

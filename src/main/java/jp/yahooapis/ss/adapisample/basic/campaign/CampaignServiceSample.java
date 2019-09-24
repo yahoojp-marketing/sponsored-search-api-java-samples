@@ -8,37 +8,37 @@ import jp.yahooapis.ss.adapisample.basic.feedfolder.FeedFolderServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.campaign.AppStore;
-import jp.yahooapis.ss.v201901.campaign.BiddingStrategyType;
-import jp.yahooapis.ss.v201901.campaign.Budget;
-import jp.yahooapis.ss.v201901.campaign.BudgetDeliveryMethod;
-import jp.yahooapis.ss.v201901.campaign.BudgetPeriod;
-import jp.yahooapis.ss.v201901.campaign.Campaign;
-import jp.yahooapis.ss.v201901.campaign.CampaignBiddingStrategy;
-import jp.yahooapis.ss.v201901.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201901.campaign.CampaignPage;
-import jp.yahooapis.ss.v201901.campaign.CampaignReturnValue;
-import jp.yahooapis.ss.v201901.campaign.CampaignSelector;
-import jp.yahooapis.ss.v201901.campaign.CampaignService;
-import jp.yahooapis.ss.v201901.campaign.CampaignServiceInterface;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.campaign.CustomParameter;
-import jp.yahooapis.ss.v201901.campaign.CustomParameters;
-import jp.yahooapis.ss.v201901.campaign.DynamicAdsForSearchSetting;
-import jp.yahooapis.ss.v201901.campaign.EnhancedCpcEnabled;
-import jp.yahooapis.ss.v201901.campaign.GeoTargetType;
-import jp.yahooapis.ss.v201901.campaign.GeoTargetTypeSetting;
-import jp.yahooapis.ss.v201901.campaign.ManualCpcBiddingScheme;
-import jp.yahooapis.ss.v201901.campaign.Operator;
-import jp.yahooapis.ss.v201901.campaign.SettingType;
-import jp.yahooapis.ss.v201901.campaign.TargetAll;
-import jp.yahooapis.ss.v201901.campaign.TargetSpendBiddingScheme;
-import jp.yahooapis.ss.v201901.campaign.TargetingSetting;
-import jp.yahooapis.ss.v201901.campaign.UserStatus;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.campaign.AppStore;
+import jp.yahooapis.ss.v201909.campaign.BiddingStrategyType;
+import jp.yahooapis.ss.v201909.campaign.Budget;
+import jp.yahooapis.ss.v201909.campaign.BudgetDeliveryMethod;
+import jp.yahooapis.ss.v201909.campaign.BudgetPeriod;
+import jp.yahooapis.ss.v201909.campaign.Campaign;
+import jp.yahooapis.ss.v201909.campaign.CampaignBiddingStrategy;
+import jp.yahooapis.ss.v201909.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201909.campaign.CampaignPage;
+import jp.yahooapis.ss.v201909.campaign.CampaignReturnValue;
+import jp.yahooapis.ss.v201909.campaign.CampaignSelector;
+import jp.yahooapis.ss.v201909.campaign.CampaignService;
+import jp.yahooapis.ss.v201909.campaign.CampaignServiceInterface;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.campaign.CustomParameter;
+import jp.yahooapis.ss.v201909.campaign.CustomParameters;
+import jp.yahooapis.ss.v201909.campaign.DynamicAdsForSearchSetting;
+import jp.yahooapis.ss.v201909.campaign.EnhancedCpcEnabled;
+import jp.yahooapis.ss.v201909.campaign.GeoTargetType;
+import jp.yahooapis.ss.v201909.campaign.GeoTargetTypeSetting;
+import jp.yahooapis.ss.v201909.campaign.ManualCpcBiddingScheme;
+import jp.yahooapis.ss.v201909.campaign.Operator;
+import jp.yahooapis.ss.v201909.campaign.SettingType;
+import jp.yahooapis.ss.v201909.campaign.TargetAll;
+import jp.yahooapis.ss.v201909.campaign.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201909.campaign.TargetingSetting;
+import jp.yahooapis.ss.v201909.campaign.UserStatus;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderPlaceholderType;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -72,7 +72,7 @@ public class CampaignServiceSample {
       // =================================================================
       valuesHolder = setup();
       ValuesRepositoryFacade valuesRepositoryFacade = new ValuesRepositoryFacade(valuesHolder);
-      Long biddingStrategyId = valuesRepositoryFacade.getBiddingStrategyValuesRepository().findBiddingStrategyId(jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyType.PAGE_ONE_PROMOTED);
+      Long biddingStrategyId = valuesRepositoryFacade.getBiddingStrategyValuesRepository().findBiddingStrategyId(jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyType.TARGET_CPA);
 
       // =================================================================
       // CampaignService::ADD
@@ -209,7 +209,6 @@ public class CampaignServiceSample {
     TargetSpendBiddingScheme targetSpendBiddingScheme = new TargetSpendBiddingScheme();
     targetSpendBiddingScheme.setBiddingStrategyType(BiddingStrategyType.TARGET_SPEND);
     targetSpendBiddingScheme.setBidCeiling((long) 700);
-    targetSpendBiddingScheme.setSpendTarget((long) 10);
 
     CampaignBiddingStrategy campaignBiddingStrategy = new CampaignBiddingStrategy();
     campaignBiddingStrategy.setBiddingStrategyType(BiddingStrategyType.TARGET_SPEND);

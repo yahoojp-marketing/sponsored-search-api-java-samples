@@ -3,17 +3,17 @@
  */
 package jp.yahooapis.ss.adapisample.util;
 
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedValues;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionValues;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderValues;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemValues;
-import jp.yahooapis.ss.v201901.label.LabelValues;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionValues;
-import jp.yahooapis.ss.v201901.retargetinglist.RetargetingListValues;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedValues;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201909.label.LabelValues;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionValues;
+import jp.yahooapis.ss.v201909.retargetinglist.RetargetingListValues;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -224,26 +224,6 @@ public class ValuesHolder {
       this.feedItemValuesList = feedItemValuesList;
     } else {
       this.feedItemValuesList.addAll(feedItemValuesList);
-    }
-  }
-
-  private List<ReportDefinitionValues> reportDefinitionValuesList = new ArrayList<>();
-
-  /**
-   * @return ReportDefinitionValuesList
-   */
-  public List<ReportDefinitionValues> getReportDefinitionValuesList() {
-    return reportDefinitionValuesList;
-  }
-
-  /**
-   * @param reportDefinitionValuesList FeedItemValuesList
-   */
-  public void setReportDefinitionValuesList(List<ReportDefinitionValues> reportDefinitionValuesList) {
-    if (this.reportDefinitionValuesList.size() == 0) {
-      this.reportDefinitionValuesList = reportDefinitionValuesList;
-    } else {
-      this.reportDefinitionValuesList.addAll(reportDefinitionValuesList);
     }
   }
 }

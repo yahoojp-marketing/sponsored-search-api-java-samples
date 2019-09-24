@@ -4,19 +4,19 @@
 package jp.yahooapis.ss.adapisample.basic.targetingidea;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.targetingidea.CriterionType;
-import jp.yahooapis.ss.v201901.targetingidea.KeywordMatchType;
-import jp.yahooapis.ss.v201901.targetingidea.ProposalKeyword;
-import jp.yahooapis.ss.v201901.targetingidea.RelatedToKeywordSearchParameter;
-import jp.yahooapis.ss.v201901.targetingidea.RelatedToUrlSearchParameter;
-import jp.yahooapis.ss.v201901.targetingidea.SearchParameterUse;
-import jp.yahooapis.ss.v201901.targetingidea.TargetingIdeaPage;
-import jp.yahooapis.ss.v201901.targetingidea.TargetingIdeaSelector;
-import jp.yahooapis.ss.v201901.targetingidea.TargetingIdeaService;
-import jp.yahooapis.ss.v201901.targetingidea.TargetingIdeaServiceInterface;
-import jp.yahooapis.ss.v201901.targetingidea.TargetingIdeaValues;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.targetingidea.CriterionType;
+import jp.yahooapis.ss.v201909.targetingidea.KeywordMatchType;
+import jp.yahooapis.ss.v201909.targetingidea.ProposalKeyword;
+import jp.yahooapis.ss.v201909.targetingidea.RelatedToKeywordSearchParameter;
+import jp.yahooapis.ss.v201909.targetingidea.RelatedToUrlSearchParameter;
+import jp.yahooapis.ss.v201909.targetingidea.SearchParameterUse;
+import jp.yahooapis.ss.v201909.targetingidea.TargetingIdeaPage;
+import jp.yahooapis.ss.v201909.targetingidea.TargetingIdeaSelector;
+import jp.yahooapis.ss.v201909.targetingidea.TargetingIdeaService;
+import jp.yahooapis.ss.v201909.targetingidea.TargetingIdeaServiceInterface;
+import jp.yahooapis.ss.v201909.targetingidea.TargetingIdeaValues;
 
 import java.util.ArrayList;
 import java.util.Arrays;

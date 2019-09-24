@@ -8,20 +8,21 @@ import jp.yahooapis.ss.adapisample.basic.campaign.CampaignServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSet;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetOperation;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetPage;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetReturnValue;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetSelector;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetService;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetServiceInterface;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetValues;
-import jp.yahooapis.ss.v201901.campaignsharedset.Operator;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSet;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetOperation;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetPage;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetReturnValue;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetSelector;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetService;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetServiceInterface;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetValues;
+import jp.yahooapis.ss.v201909.campaignsharedset.Operator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -57,9 +58,9 @@ public class CampaignSharedSetServiceSample {
       // CampaignSharedSetService ADD
       // =================================================================
       // create request.
-      CampaignSharedSetOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<CampaignSharedSet>() {{
-        add(createExampleCampaignSharedSet(sharedListId, campaignId));
-      }});
+      CampaignSharedSetOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleCampaignSharedSet(sharedListId, campaignId)) //
+      );
 
       // run
       List<CampaignSharedSetValues> addResponse = mutate(addRequest);
@@ -72,7 +73,7 @@ public class CampaignSharedSetServiceSample {
       // CampaignSharedSetService GET
       // =================================================================
       // create request.
-      CampaignSharedSetSelector getRequest = buildExampleGetRequest(accountId, new ArrayList<Long>(){{add(sharedListId);}}, new ArrayList<Long>(){{add(campaignId);}});
+      CampaignSharedSetSelector getRequest = buildExampleGetRequest(accountId, Collections.singletonList(sharedListId), Collections.singletonList(campaignId));
 
       // run
       get(getRequest);

@@ -7,35 +7,36 @@ import jp.yahooapis.ss.adapisample.basic.adgroup.AdGroupServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterion;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionAdditionalAdvancedMobileUrls;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionAdditionalAdvancedUrls;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionAdditionalUrl;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionOperation;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionPage;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionReturnValue;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionSelector;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionService;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionServiceInterface;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionUse;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionValues;
-import jp.yahooapis.ss.v201901.adgroupcriterion.ApprovalStatus;
-import jp.yahooapis.ss.v201901.adgroupcriterion.Bid;
-import jp.yahooapis.ss.v201901.adgroupcriterion.BiddableAdGroupCriterion;
-import jp.yahooapis.ss.v201901.adgroupcriterion.CriterionType;
-import jp.yahooapis.ss.v201901.adgroupcriterion.CustomParameter;
-import jp.yahooapis.ss.v201901.adgroupcriterion.CustomParameters;
-import jp.yahooapis.ss.v201901.adgroupcriterion.Keyword;
-import jp.yahooapis.ss.v201901.adgroupcriterion.KeywordMatchType;
-import jp.yahooapis.ss.v201901.adgroupcriterion.NegativeAdGroupCriterion;
-import jp.yahooapis.ss.v201901.adgroupcriterion.Operator;
-import jp.yahooapis.ss.v201901.adgroupcriterion.UserStatus;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterion;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionAdditionalAdvancedMobileUrls;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionAdditionalAdvancedUrls;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionAdditionalUrl;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionPage;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionReturnValue;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionSelector;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionService;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionServiceInterface;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201909.adgroupcriterion.ApprovalStatus;
+import jp.yahooapis.ss.v201909.adgroupcriterion.Bid;
+import jp.yahooapis.ss.v201909.adgroupcriterion.BiddableAdGroupCriterion;
+import jp.yahooapis.ss.v201909.adgroupcriterion.CriterionType;
+import jp.yahooapis.ss.v201909.adgroupcriterion.CustomParameter;
+import jp.yahooapis.ss.v201909.adgroupcriterion.CustomParameters;
+import jp.yahooapis.ss.v201909.adgroupcriterion.Keyword;
+import jp.yahooapis.ss.v201909.adgroupcriterion.KeywordMatchType;
+import jp.yahooapis.ss.v201909.adgroupcriterion.NegativeAdGroupCriterion;
+import jp.yahooapis.ss.v201909.adgroupcriterion.Operator;
+import jp.yahooapis.ss.v201909.adgroupcriterion.UserStatus;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -222,7 +223,7 @@ public class AdGroupCriterionServiceSample {
     parameter.setKey("id1");
     parameter.setValue("1234");
     CustomParameters customParameters = new CustomParameters();
-    customParameters.getParameters().addAll(Arrays.asList(parameter));
+    customParameters.getParameters().addAll(Collections.singletonList(parameter));
 
     // Set BiddableAdGroupCriterion
     BiddableAdGroupCriterion biddableAdGroupCriterion = new BiddableAdGroupCriterion();
@@ -372,9 +373,9 @@ public class AdGroupCriterionServiceSample {
 
 
     // create request.
-    AdGroupCriterionOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AdGroupCriterion>() {{
-      add(createExampleBiddableAdGroupCriterion(campaignId, adGroupId));
-    }});
+    AdGroupCriterionOperation addRequest = buildExampleMutateRequest( //
+        Operator.ADD, accountId, Collections.singletonList(createExampleBiddableAdGroupCriterion(campaignId, adGroupId)) //
+    );
 
     // run
     List<AdGroupCriterionValues> addResponse = mutate(addRequest);

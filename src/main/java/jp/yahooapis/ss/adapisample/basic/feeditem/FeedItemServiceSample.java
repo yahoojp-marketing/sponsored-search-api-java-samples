@@ -7,45 +7,44 @@ import jp.yahooapis.ss.adapisample.basic.adgroup.AdGroupServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.feeditem.ApprovalStatus;
-import jp.yahooapis.ss.v201901.feeditem.CriterionTypeFeedItem;
-import jp.yahooapis.ss.v201901.feeditem.CustomParameter;
-import jp.yahooapis.ss.v201901.feeditem.CustomParameters;
-import jp.yahooapis.ss.v201901.feeditem.DayOfWeek;
-import jp.yahooapis.ss.v201901.feeditem.DevicePreference;
-import jp.yahooapis.ss.v201901.feeditem.FeedAttributeValue;
-import jp.yahooapis.ss.v201901.feeditem.FeedItem;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemAttribute;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemGeoRestriction;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemPage;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemPlaceholderField;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemReturnValue;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemSchedule;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemScheduling;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemService;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemServiceInterface;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemValues;
-import jp.yahooapis.ss.v201901.feeditem.IsRemove;
-import jp.yahooapis.ss.v201901.feeditem.KeywordMatchType;
-import jp.yahooapis.ss.v201901.feeditem.Location;
-import jp.yahooapis.ss.v201901.feeditem.MinuteOfHour;
-import jp.yahooapis.ss.v201901.feeditem.MultipleFeedItemAttribute;
-import jp.yahooapis.ss.v201901.feeditem.Operator;
-import jp.yahooapis.ss.v201901.feeditem.SimpleFeedItemAttribute;
-import jp.yahooapis.ss.v201901.feeditem.TargetingAdGroup;
-import jp.yahooapis.ss.v201901.feeditem.TargetingCampaign;
-import jp.yahooapis.ss.v201901.feeditem.TargetingKeyword;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.feeditem.ApprovalStatus;
+import jp.yahooapis.ss.v201909.feeditem.CriterionTypeFeedItem;
+import jp.yahooapis.ss.v201909.feeditem.CustomParameter;
+import jp.yahooapis.ss.v201909.feeditem.CustomParameters;
+import jp.yahooapis.ss.v201909.feeditem.DayOfWeek;
+import jp.yahooapis.ss.v201909.feeditem.DevicePreference;
+import jp.yahooapis.ss.v201909.feeditem.FeedAttributeValue;
+import jp.yahooapis.ss.v201909.feeditem.FeedItem;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemGeoRestriction;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemPage;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemPlaceholderField;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemReturnValue;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemSchedule;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemScheduling;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemService;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemServiceInterface;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201909.feeditem.IsRemove;
+import jp.yahooapis.ss.v201909.feeditem.KeywordMatchType;
+import jp.yahooapis.ss.v201909.feeditem.Location;
+import jp.yahooapis.ss.v201909.feeditem.MinuteOfHour;
+import jp.yahooapis.ss.v201909.feeditem.MultipleFeedItemAttribute;
+import jp.yahooapis.ss.v201909.feeditem.Operator;
+import jp.yahooapis.ss.v201909.feeditem.SimpleFeedItemAttribute;
+import jp.yahooapis.ss.v201909.feeditem.TargetingAdGroup;
+import jp.yahooapis.ss.v201909.feeditem.TargetingCampaign;
+import jp.yahooapis.ss.v201909.feeditem.TargetingKeyword;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -75,9 +74,9 @@ public class FeedItemServiceSample {
       // FeedItemService ADD (QUICKLINK)
       // =================================================================
       // create request.
-      FeedItemOperation addRequestQuicklink = buildExampleMutateRequest(Operator.ADD, accountId, FeedItemPlaceholderType.QUICKLINK, new ArrayList<FeedItem>() {{
-        add(createExampleQuicklink());
-      }});
+      FeedItemOperation addRequestQuicklink = buildExampleMutateRequest( //
+          Operator.ADD, accountId, FeedItemPlaceholderType.QUICKLINK, Collections.singletonList(createExampleQuicklink()) //
+      );
 
       // run
       List<FeedItemValues> addResponseQuicklink = mutate(addRequestQuicklink);
@@ -87,9 +86,9 @@ public class FeedItemServiceSample {
       // FeedItemService ADD (CALLEXTENSION)
       // =================================================================
       // create request.
-      FeedItemOperation addRequestCallextension = buildExampleMutateRequest(Operator.ADD, accountId, FeedItemPlaceholderType.CALLEXTENSION, new ArrayList<FeedItem>() {{
-        add(createExampleCallextension());
-      }});
+      FeedItemOperation addRequestCallextension = buildExampleMutateRequest( //
+          Operator.ADD, accountId, FeedItemPlaceholderType.CALLEXTENSION, Collections.singletonList(createExampleCallextension()) //
+      );
 
       // run
       List<FeedItemValues> addResponseCallextension = mutate(addRequestCallextension);
@@ -99,9 +98,9 @@ public class FeedItemServiceSample {
       // FeedItemService ADD (CALLOUT)
       // =================================================================
       // create request.
-      FeedItemOperation addRequestCallout = buildExampleMutateRequest(Operator.ADD, accountId, FeedItemPlaceholderType.CALLOUT, new ArrayList<FeedItem>() {{
-        add(createExampleCallout());
-      }});
+      FeedItemOperation addRequestCallout = buildExampleMutateRequest( //
+          Operator.ADD, accountId, FeedItemPlaceholderType.CALLOUT, Collections.singletonList(createExampleCallout()) //
+      );
 
       // run
       List<FeedItemValues> addResponseCallout = mutate(addRequestCallout);
@@ -144,7 +143,7 @@ public class FeedItemServiceSample {
       // FeedItemService GET
       // =================================================================
       // create request.
-      FeedItemSelector feedItemSelector = buildExampleGetRequest(accountId, valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds());
+      FeedItemSelector feedItemSelector = buildExampleGetRequest(accountId, valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds(), Collections.emptyList());
 
       // run
       get(feedItemSelector);
@@ -153,9 +152,9 @@ public class FeedItemServiceSample {
       // FeedItemService REMOVE (QUICKLINK)
       // =================================================================
       // create request.
-      FeedItemOperation removeRequestQuicklink = buildExampleMutateRequest(Operator.REMOVE, accountId, FeedItemPlaceholderType.QUICKLINK, new ArrayList<FeedItem>() {{
-        add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.QUICKLINK));
-      }});
+      FeedItemOperation removeRequestQuicklink = buildExampleMutateRequest( //
+          Operator.REMOVE, accountId, FeedItemPlaceholderType.QUICKLINK, Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.QUICKLINK)) //
+      );
 
       // run
       mutate(removeRequestQuicklink);
@@ -164,9 +163,9 @@ public class FeedItemServiceSample {
       // FeedItemService REMOVE (CALLEXTENSION)
       // =================================================================
       // create request.
-      FeedItemOperation removeRequestCallextension = buildExampleMutateRequest(Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLEXTENSION, new ArrayList<FeedItem>() {{
-        add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLEXTENSION));
-      }});
+      FeedItemOperation removeRequestCallextension = buildExampleMutateRequest( //
+          Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLEXTENSION, Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLEXTENSION)) //
+      );
 
       // run
       mutate(removeRequestCallextension);
@@ -175,9 +174,9 @@ public class FeedItemServiceSample {
       // FeedItemService REMOVE (CALLOUT)
       // =================================================================
       // create request.
-      FeedItemOperation removeRequestCallout = buildExampleMutateRequest(Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLOUT, new ArrayList<FeedItem>() {{
-        add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLOUT));
-      }});
+      FeedItemOperation removeRequestCallout = buildExampleMutateRequest( //
+          Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLOUT, Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLOUT)) //
+      );
 
       // run
       mutate(removeRequestCallout);
@@ -331,6 +330,14 @@ public class FeedItemServiceSample {
     feedAttributeValue6.setFeedAttributeValue("http://www.quicklink.sample.co.jp/AdditionalAdvanced3/mobile");
     feedItemAttributeAdditionalAdvancedMobileUrls.getFeedAttributeValues().addAll(Arrays.asList(feedAttributeValue4, feedAttributeValue5, feedAttributeValue6));
 
+    SimpleFeedItemAttribute feedItemAttributeLinkDescription1 = new SimpleFeedItemAttribute();
+    feedItemAttributeLinkDescription1.setPlaceholderField(FeedItemPlaceholderField.LINK_DESCRIPTION_1);
+    feedItemAttributeLinkDescription1.setFeedAttributeValue("sampledescription1");
+
+    SimpleFeedItemAttribute feedItemAttributeLinkDescription2 = new SimpleFeedItemAttribute();
+    feedItemAttributeLinkDescription2.setPlaceholderField(FeedItemPlaceholderField.LINK_DESCRIPTION_2);
+    feedItemAttributeLinkDescription2.setFeedAttributeValue("sampledescription2");
+
     // scheduling
     FeedItemSchedule schedule1 = new FeedItemSchedule();
     schedule1.setDayOfWeek(DayOfWeek.SUNDAY);
@@ -365,7 +372,9 @@ public class FeedItemServiceSample {
         feedItemAttributeAdvancedMobileUrl, //
         feedItemAttributeTrackingUrl, //
         feedItemAttributeAdditionalAdvancedUrls, //
-        feedItemAttributeAdditionalAdvancedMobileUrls //
+        feedItemAttributeAdditionalAdvancedMobileUrls, //
+        feedItemAttributeLinkDescription1, //
+        feedItemAttributeLinkDescription2 //
     ));
     feedItem.setScheduling(scheduling);
     feedItem.setCustomParameters(customParameters);
@@ -535,9 +544,10 @@ public class FeedItemServiceSample {
    *
    * @param accountId   long
    * @param feedItemIds Long
+   * @param feedFolderIds Long
    * @return FeedItemSelector
    */
-  public static FeedItemSelector buildExampleGetRequest(long accountId, List<Long> feedItemIds) {
+  public static FeedItemSelector buildExampleGetRequest(long accountId, List<Long> feedItemIds, List<Long> feedFolderIds) {
 
     // Set Selector
     FeedItemSelector selector = new FeedItemSelector();
@@ -545,6 +555,10 @@ public class FeedItemServiceSample {
 
     if (feedItemIds.size() > 0) {
       selector.getFeedItemIds().addAll(feedItemIds);
+    }
+
+    if (feedFolderIds.size() > 0) {
+      selector.getFeedFolderIds().addAll(feedFolderIds);
     }
 
     selector.getPlaceholderTypes().addAll(Arrays.asList( //
@@ -600,7 +614,6 @@ public class FeedItemServiceSample {
    *
    * @param selector FeedItemSelector
    * @return FeedItemValues
-   * @throws Exception
    */
   public static List<FeedItemValues> get(FeedItemSelector selector) throws Exception {
 
@@ -624,7 +637,6 @@ public class FeedItemServiceSample {
    * check & create upper service object.
    *
    * @return ValuesHolder
-   * @throws Exception
    */
   private static ValuesHolder setup() throws Exception {
     return AdGroupServiceSample.create();
@@ -635,7 +647,6 @@ public class FeedItemServiceSample {
    * cleanup service object.
    *
    * @param valuesHolder ValuesHolder
-   * @throws Exception
    */
   public static void cleanup(ValuesHolder valuesHolder) throws Exception {
     if (valuesHolder.getFeedItemValuesList().size() > 0) {
@@ -651,16 +662,15 @@ public class FeedItemServiceSample {
    * create basic FeedItem.
    *
    * @return ValuesHolder
-   * @throws Exception
    */
   public static ValuesHolder create() throws Exception {
 
     ValuesHolder parentValuesHolder = setup();
     long accountId = SoapUtils.getAccountId();
 
-    FeedItemOperation addRequestQuicklink = buildExampleMutateRequest(Operator.ADD, accountId, FeedItemPlaceholderType.QUICKLINK, new ArrayList<FeedItem>() {{
-      add(createExampleQuicklink());
-    }});
+    FeedItemOperation addRequestQuicklink = buildExampleMutateRequest( //
+        Operator.ADD, accountId, FeedItemPlaceholderType.QUICKLINK, Collections.singletonList(createExampleQuicklink()) //
+    );
 
     List<FeedItemValues> addResponseQuicklink = mutate(addRequestQuicklink);
 

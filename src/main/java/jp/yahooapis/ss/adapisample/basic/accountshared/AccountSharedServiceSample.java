@@ -6,19 +6,20 @@ package jp.yahooapis.ss.adapisample.basic.accountshared;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.accountshared.AccountShared;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedOperation;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedPage;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedReturnValue;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedSelector;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedService;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedServiceInterface;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedValues;
-import jp.yahooapis.ss.v201901.accountshared.Operator;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.accountshared.AccountShared;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedOperation;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedPage;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedReturnValue;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedSelector;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedService;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedServiceInterface;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedValues;
+import jp.yahooapis.ss.v201909.accountshared.Operator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -46,9 +47,9 @@ public class AccountSharedServiceSample {
       // AccountSharedService ADD
       // =================================================================
       // create request.
-      AccountSharedOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AccountShared>() {{
-        add(createExampleAccountShared());
-      }});
+      AccountSharedOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleAccountShared()) //
+      );
 
       // Run
       List<AccountSharedValues> addResponse = mutate(addRequest);
@@ -91,15 +92,14 @@ public class AccountSharedServiceSample {
    * check & create upper service object.
    *
    * @return ValuesHolder
-   * @throws Exception
    */
   public static ValuesHolder create() throws Exception {
     long accountId = SoapUtils.getAccountId();
     ValuesHolder valuesHolder = new ValuesHolder();
 
-    AccountSharedOperation request = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AccountShared>() {{
-      add(createExampleAccountShared());
-    }});
+    AccountSharedOperation request = buildExampleMutateRequest( //
+        Operator.ADD, accountId, Collections.singletonList(createExampleAccountShared())
+    );
 
     List<AccountSharedValues> response = mutate(request);
     valuesHolder.setAccountSharedValuesList(response);
@@ -108,9 +108,6 @@ public class AccountSharedServiceSample {
 
   /**
    * cleanup service object.
-   *
-   * @param valuesHolder
-   * @throws Exception
    */
   public static void cleanup(ValuesHolder valuesHolder) throws Exception {
     long accountId = SoapUtils.getAccountId();
@@ -118,8 +115,7 @@ public class AccountSharedServiceSample {
 
       ValuesRepositoryFacade valuesRepositoryFacade = new ValuesRepositoryFacade(valuesHolder);
 
-      AccountSharedOperation removeAccountSharedOperation =
-          buildExampleMutateRequest(Operator.REMOVE, accountId, valuesRepositoryFacade.getAccountSharedValuesRepository().getAccountShareds());
+      AccountSharedOperation removeAccountSharedOperation = buildExampleMutateRequest(Operator.REMOVE, accountId, valuesRepositoryFacade.getAccountSharedValuesRepository().getAccountShareds());
 
       mutate(removeAccountSharedOperation);
     }
@@ -199,7 +195,6 @@ public class AccountSharedServiceSample {
   /**
    * example shared account list set request.
    *
-   * @param accountShareds
    * @return List<AccountShared>
    */
   public static List<AccountShared> createExampleSetRequest(List<AccountShared> accountShareds) {
@@ -220,7 +215,7 @@ public class AccountSharedServiceSample {
   /**
    * example get request.
    *
-   * @param accountId long
+   * @param accountId     long
    * @param sharedListIds long
    * @return AccountSharedSelector
    */

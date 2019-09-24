@@ -8,18 +8,19 @@ import jp.yahooapis.ss.adapisample.basic.label.LabelServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionUse;
-import jp.yahooapis.ss.v201901.adgroupcriterionlabel.AdGroupCriterionLabel;
-import jp.yahooapis.ss.v201901.adgroupcriterionlabel.AdGroupCriterionLabelOperation;
-import jp.yahooapis.ss.v201901.adgroupcriterionlabel.AdGroupCriterionLabelReturnValue;
-import jp.yahooapis.ss.v201901.adgroupcriterionlabel.AdGroupCriterionLabelService;
-import jp.yahooapis.ss.v201901.adgroupcriterionlabel.AdGroupCriterionLabelServiceInterface;
-import jp.yahooapis.ss.v201901.adgroupcriterionlabel.AdGroupCriterionLabelValues;
-import jp.yahooapis.ss.v201901.adgroupcriterionlabel.Operator;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201909.adgroupcriterionlabel.AdGroupCriterionLabel;
+import jp.yahooapis.ss.v201909.adgroupcriterionlabel.AdGroupCriterionLabelOperation;
+import jp.yahooapis.ss.v201909.adgroupcriterionlabel.AdGroupCriterionLabelReturnValue;
+import jp.yahooapis.ss.v201909.adgroupcriterionlabel.AdGroupCriterionLabelService;
+import jp.yahooapis.ss.v201909.adgroupcriterionlabel.AdGroupCriterionLabelServiceInterface;
+import jp.yahooapis.ss.v201909.adgroupcriterionlabel.AdGroupCriterionLabelValues;
+import jp.yahooapis.ss.v201909.adgroupcriterionlabel.Operator;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -58,9 +59,9 @@ public class AdGroupCriterionLabelServiceSample {
       // AdGroupCriterionLabelService ADD
       // =================================================================
       // create request.
-      AdGroupCriterionLabelOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AdGroupCriterionLabel>() {{
-        add(createExampleAdGroupCriterionLabel(campaignId, adGroupId, criterionId, lavelId));
-      }});
+      AdGroupCriterionLabelOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleAdGroupCriterionLabel(campaignId, adGroupId, criterionId, lavelId)) //
+      );
 
       // run
       mutate(addRequest);

@@ -4,21 +4,21 @@
 package jp.yahooapis.ss.adapisample.basic.account;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.account.Account;
-import jp.yahooapis.ss.v201901.account.AccountOperation;
-import jp.yahooapis.ss.v201901.account.AccountPage;
-import jp.yahooapis.ss.v201901.account.AccountReturnValue;
-import jp.yahooapis.ss.v201901.account.AccountSelector;
-import jp.yahooapis.ss.v201901.account.AccountService;
-import jp.yahooapis.ss.v201901.account.AccountServiceInterface;
-import jp.yahooapis.ss.v201901.account.AccountStatus;
-import jp.yahooapis.ss.v201901.account.AccountType;
-import jp.yahooapis.ss.v201901.account.AccountValues;
-import jp.yahooapis.ss.v201901.account.AutoTaggingEnabled;
-import jp.yahooapis.ss.v201901.account.DeliveryStatus;
-import jp.yahooapis.ss.v201901.account.Operator;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.account.Account;
+import jp.yahooapis.ss.v201909.account.AccountOperation;
+import jp.yahooapis.ss.v201909.account.AccountPage;
+import jp.yahooapis.ss.v201909.account.AccountReturnValue;
+import jp.yahooapis.ss.v201909.account.AccountSelector;
+import jp.yahooapis.ss.v201909.account.AccountService;
+import jp.yahooapis.ss.v201909.account.AccountServiceInterface;
+import jp.yahooapis.ss.v201909.account.AccountStatus;
+import jp.yahooapis.ss.v201909.account.AccountType;
+import jp.yahooapis.ss.v201909.account.AccountValues;
+import jp.yahooapis.ss.v201909.account.AutoTaggingEnabled;
+import jp.yahooapis.ss.v201909.account.DeliveryStatus;
+import jp.yahooapis.ss.v201909.account.Operator;
 
 import java.util.Arrays;
 import java.util.List;

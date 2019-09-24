@@ -11,29 +11,30 @@ import jp.yahooapis.ss.adapisample.basic.retargetinglist.RetargetingListServiceS
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201901.adgroupretargetinglist.AdGroupRetargetingList;
-import jp.yahooapis.ss.v201901.adgroupretargetinglist.AdGroupRetargetingListOperation;
-import jp.yahooapis.ss.v201901.adgroupretargetinglist.AdGroupRetargetingListSelector;
-import jp.yahooapis.ss.v201901.adgroupretargetinglist.AdGroupRetargetingListValues;
-import jp.yahooapis.ss.v201901.campaign.AppStore;
-import jp.yahooapis.ss.v201901.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.campaignretargetinglist.CampaignRetargetingList;
-import jp.yahooapis.ss.v201901.campaignretargetinglist.CampaignRetargetingListOperation;
-import jp.yahooapis.ss.v201901.campaignretargetinglist.CampaignRetargetingListSelector;
-import jp.yahooapis.ss.v201901.campaignretargetinglist.CampaignRetargetingListValues;
-import jp.yahooapis.ss.v201901.retargetinglist.CustomKey;
-import jp.yahooapis.ss.v201901.retargetinglist.GetCustomKeySelector;
-import jp.yahooapis.ss.v201901.retargetinglist.RetargetingListOperation;
-import jp.yahooapis.ss.v201901.retargetinglist.RetargetingListSelector;
-import jp.yahooapis.ss.v201901.retargetinglist.RetargetingListValues;
-import jp.yahooapis.ss.v201901.retargetinglist.TargetListType;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201909.adgroupretargetinglist.AdGroupRetargetingList;
+import jp.yahooapis.ss.v201909.adgroupretargetinglist.AdGroupRetargetingListOperation;
+import jp.yahooapis.ss.v201909.adgroupretargetinglist.AdGroupRetargetingListSelector;
+import jp.yahooapis.ss.v201909.adgroupretargetinglist.AdGroupRetargetingListValues;
+import jp.yahooapis.ss.v201909.campaign.AppStore;
+import jp.yahooapis.ss.v201909.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.campaignretargetinglist.CampaignRetargetingList;
+import jp.yahooapis.ss.v201909.campaignretargetinglist.CampaignRetargetingListOperation;
+import jp.yahooapis.ss.v201909.campaignretargetinglist.CampaignRetargetingListSelector;
+import jp.yahooapis.ss.v201909.campaignretargetinglist.CampaignRetargetingListValues;
+import jp.yahooapis.ss.v201909.retargetinglist.CustomKey;
+import jp.yahooapis.ss.v201909.retargetinglist.GetCustomKeySelector;
+import jp.yahooapis.ss.v201909.retargetinglist.RetargetingListOperation;
+import jp.yahooapis.ss.v201909.retargetinglist.RetargetingListSelector;
+import jp.yahooapis.ss.v201909.retargetinglist.RetargetingListValues;
+import jp.yahooapis.ss.v201909.retargetinglist.TargetListType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -43,9 +44,6 @@ public class SiteRetargetingSample {
 
   /**
    * example SiteRetargeting operation.
-   *
-   * @param args
-   * @throws Exception
    */
   public static void main(String[] args) throws Exception {
     // =================================================================
@@ -66,7 +64,7 @@ public class SiteRetargetingSample {
       // =================================================================
       // ADD
       CampaignOperation addCampaignOperation = CampaignServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaign.Operator.ADD,  //
+          jp.yahooapis.ss.v201909.campaign.Operator.ADD,  //
           accountId,  //
           Arrays.asList( //
               CampaignServiceSample.createExampleStandardCampaign( //
@@ -91,7 +89,7 @@ public class SiteRetargetingSample {
       // =================================================================
       // ADD
       AdGroupOperation addAdGroupOperation = AdGroupServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroup.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroup.Operator.ADD, //
           accountId, //
           Arrays.asList( //
               AdGroupServiceSample.createExampleStandardAdGroup(campaignIdStandard), //
@@ -109,7 +107,7 @@ public class SiteRetargetingSample {
       // RetargetingListService
       // =================================================================
       // GET (DefaultTargetList)
-      RetargetingListSelector getRetargetingListSelector = RetargetingListServiceSample.buildExampleGetRequest(accountId, Arrays.asList());
+      RetargetingListSelector getRetargetingListSelector = RetargetingListServiceSample.buildExampleGetRequest(accountId, Collections.emptyList());
       getRetargetingListSelector.getTargetListTypes().clear();
       getRetargetingListSelector.getTargetListTypes().add(TargetListType.DEFAULT);
       List<RetargetingListValues> getRetargetingListValuesList = RetargetingListServiceSample.get(getRetargetingListSelector);
@@ -123,7 +121,7 @@ public class SiteRetargetingSample {
 
       // ADD (RuleBaseTargetList)
       RetargetingListOperation addRetargetingListOperationRuleBase = RetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.retargetinglist.Operator.ADD, //
+          jp.yahooapis.ss.v201909.retargetinglist.Operator.ADD, //
           accountId, //
           Arrays.asList( //
               RetargetingListServiceSample.createExampleRuleBaseTargetListUrlRuleItem(accountId), //
@@ -142,9 +140,9 @@ public class SiteRetargetingSample {
 
       // ADD (LogicalTargetList)
       RetargetingListOperation addRetargetingListOperationLogical = RetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.retargetinglist.Operator.ADD, //
+          jp.yahooapis.ss.v201909.retargetinglist.Operator.ADD, //
           accountId, //
-          Arrays.asList(RetargetingListServiceSample.createExampleLogicalTargetList(accountId, targetListIdDefault, ruleBaseTargetListIds)) //
+          Collections.singletonList(RetargetingListServiceSample.createExampleLogicalTargetList(accountId, targetListIdDefault, ruleBaseTargetListIds)) //
       );
       List<RetargetingListValues> addRetargetingListValuesListLogical = RetargetingListServiceSample.mutate(addRetargetingListOperationLogical);
 
@@ -157,7 +155,7 @@ public class SiteRetargetingSample {
 
       // SET
       RetargetingListOperation retargetingListOperation = RetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.retargetinglist.Operator.SET, //
+          jp.yahooapis.ss.v201909.retargetinglist.Operator.SET, //
           accountId, //
           RetargetingListServiceSample.createExampleSetRequest(valuesRepositoryFacade.getRetargetingListValuesRepository().getTargetLists()) //
       );
@@ -168,7 +166,7 @@ public class SiteRetargetingSample {
       // =================================================================
       // ADD
       CampaignRetargetingListOperation addCampaignRetargetingListOperation = CampaignRetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaignretargetinglist.Operator.ADD, //
+          jp.yahooapis.ss.v201909.campaignretargetinglist.Operator.ADD, //
           accountId, //
           Arrays.asList( //
               CampaignRetargetingListServiceSample.createExampleIncludedCampaignRetargetingList(campaignIdStandard, targetListIdDefault), //
@@ -184,7 +182,7 @@ public class SiteRetargetingSample {
 
       // SET
       CampaignRetargetingListOperation setCampaignRetargetingListOperation = CampaignRetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaignretargetinglist.Operator.SET, //
+          jp.yahooapis.ss.v201909.campaignretargetinglist.Operator.SET, //
           accountId, CampaignRetargetingListServiceSample.createExampleSetRequest(campaignRetargetingLists) //
       );
       CampaignRetargetingListServiceSample.mutate(setCampaignRetargetingListOperation);
@@ -193,13 +191,13 @@ public class SiteRetargetingSample {
       CampaignRetargetingListSelector campaignRetargetingListSelector = CampaignRetargetingListServiceSample.buildExampleGetRequest( //
           accountId, //
           Arrays.asList(campaignIdStandard, campaignIdMobileApp), //
-          Arrays.asList(targetListIdDefault) //
+          Collections.singletonList(targetListIdDefault) //
       );
       CampaignRetargetingListServiceSample.get(campaignRetargetingListSelector);
 
       // REMOVE
       CampaignRetargetingListOperation removeCampaignRetargetingListOperation = CampaignRetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaignretargetinglist.Operator.REMOVE, accountId, //
+          jp.yahooapis.ss.v201909.campaignretargetinglist.Operator.REMOVE, accountId, //
           campaignRetargetingLists //
       );
       CampaignRetargetingListServiceSample.mutate(removeCampaignRetargetingListOperation);
@@ -210,7 +208,7 @@ public class SiteRetargetingSample {
       // =================================================================
       // ADD
       AdGroupRetargetingListOperation addAdGroupRetargetingListOperation = AdGroupRetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupretargetinglist.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroupretargetinglist.Operator.ADD, //
           accountId, //
           Arrays.asList( //
               AdGroupRetargetingListServiceSample.createExampleIncludedAdGroupRetargetingList( //
@@ -234,7 +232,7 @@ public class SiteRetargetingSample {
 
       // SET
       AdGroupRetargetingListOperation setAdGroupRetargetingListOperation = AdGroupRetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupretargetinglist.Operator.SET, //
+          jp.yahooapis.ss.v201909.adgroupretargetinglist.Operator.SET, //
           accountId, //
           AdGroupRetargetingListServiceSample.createExampleSetRequest(adGroupRetargetingLists) //
       );
@@ -245,13 +243,13 @@ public class SiteRetargetingSample {
           accountId, //
           Arrays.asList(campaignIdStandard, campaignIdMobileApp), //
           Arrays.asList(adGroupIdStandard, adGroupIdMobileApp), //
-          Arrays.asList(targetListIdDefault) //
+          Collections.singletonList(targetListIdDefault) //
       );
       AdGroupRetargetingListServiceSample.get(adGroupRetargetingListSelector);
 
       // REMOVE
       AdGroupRetargetingListOperation removeAdGroupRetargetingListOperation = AdGroupRetargetingListServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupretargetinglist.Operator.REMOVE, //
+          jp.yahooapis.ss.v201909.adgroupretargetinglist.Operator.REMOVE, //
           accountId, //
           adGroupRetargetingLists //
       );

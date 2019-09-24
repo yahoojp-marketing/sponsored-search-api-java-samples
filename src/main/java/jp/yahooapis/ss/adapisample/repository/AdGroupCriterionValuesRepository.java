@@ -4,9 +4,9 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterion;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionUse;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterion;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionValues;
 
 import java.util.ArrayList;
 import java.util.List;

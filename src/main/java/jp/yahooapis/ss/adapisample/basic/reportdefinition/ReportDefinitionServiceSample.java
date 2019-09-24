@@ -6,34 +6,33 @@ package jp.yahooapis.ss.adapisample.basic.reportdefinition;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.reportdefinition.Operator;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportCompressType;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDateRangeType;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinition;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionFieldValue;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionOperation;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionPage;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionReturnValue;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionSelector;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionService;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionServiceInterface;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDefinitionValues;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDownloadEncode;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportDownloadFormat;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportFieldAttribute;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportIncludeDeleted;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportIncludeZeroImpressions;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportIntervalType;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportIsTemplate;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportLanguage;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportSortField;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportSortType;
-import jp.yahooapis.ss.v201901.reportdefinition.ReportType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.reportdefinition.Operator;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportCompressType;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDateRangeType;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinition;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionFieldValue;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionOperation;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionPage;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionReturnValue;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionSelector;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionService;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionServiceInterface;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDefinitionValues;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDownloadEncode;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportDownloadFormat;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportFieldAttribute;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportIncludeDeleted;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportIncludeZeroImpressions;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportLanguage;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportSortField;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportSortType;
+import jp.yahooapis.ss.v201909.reportdefinition.ReportType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -43,7 +42,8 @@ import javax.xml.ws.Holder;
  */
 public class ReportDefinitionServiceSample {
 
-  private static final List<String> CAMPAIGN_REPORT_FIELDS = Arrays.asList("CAMPAIGN_ID", //
+  private static final List<String> CAMPAIGN_REPORT_FIELDS = Arrays.asList( //
+      "CAMPAIGN_ID", //
       "CAMPAIGN_NAME", //
       "CAMPAIGN_DISTRIBUTION_SETTINGS", //
       "CAMPAIGN_DISTRIBUTION_STATUS", //
@@ -73,7 +73,6 @@ public class ReportDefinitionServiceSample {
       "CAMPAIGN_TYPE" //
   );
 
-
   /**
    * main method for ReportDefinitionService
    *
@@ -84,9 +83,7 @@ public class ReportDefinitionServiceSample {
     // =================================================================
     // Setting
     // =================================================================
-    ValuesRepositoryFacade valuesRepositoryFacade = new ValuesRepositoryFacade(new ValuesHolder());
     long accountId = SoapUtils.getAccountId();
-
 
     try {
       // =================================================================
@@ -99,29 +96,46 @@ public class ReportDefinitionServiceSample {
       // ReportDefinitionService ADD
       // =================================================================
       // create request.
-      ReportDefinitionOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<ReportDefinition>() {{
-        add(createExampleReportDefinition(accountId));
-      }});
-
+      ReportDefinitionOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleReportDefinition()) //
+      );
 
       // run
       List<ReportDefinitionValues> addResponse = mutate(addRequest);
-      valuesRepositoryFacade.getValuesHolder().setReportDefinitionValuesList(addResponse);
+      List<ReportDefinition> reportDefinitionList = new ArrayList<>();
+      List<Long> reportJobIds = new ArrayList<>();
+      for (ReportDefinitionValues values : addResponse) {
+        reportDefinitionList.add(values.getReportDefinition());
+        reportJobIds.add(values.getReportDefinition().getReportJobId());
+      }
 
       // =================================================================
       // ReportDefinitionService GET
       // =================================================================
+      // check job status
+      checkStatus(reportJobIds);
+
       // create request.
-      ReportDefinitionSelector selector = buildExampleGetRequest(accountId, valuesRepositoryFacade.getReportDefinitionValuesRepository().getReportIds());
+      ReportDefinitionSelector selector = buildExampleGetRequest(accountId, reportJobIds);
 
       // run
-      get(selector);
+      List<ReportDefinitionValues> getResponse = get(selector);
+
+      String downloadUrl = null;
+      for (ReportDefinitionValues values : getResponse) {
+        downloadUrl = values.getReportDefinition().getReportDownloadURL();
+      }
+
+      // =================================================================
+      // ReportDefinitionService download (http request)
+      // =================================================================
+      SoapUtils.download(downloadUrl, "reportDownloadSample.csv");
 
       // =================================================================
       // ReportDefinitionService REMOVE
       // =================================================================
       // create request.
-      ReportDefinitionOperation removeRequest = buildExampleMutateRequest(Operator.REMOVE, accountId, valuesRepositoryFacade.getReportDefinitionValuesRepository().getReportDefinitions());
+      ReportDefinitionOperation removeRequest = buildExampleMutateRequest(Operator.REMOVE, accountId, reportDefinitionList);
 
       // run
       mutate(removeRequest);
@@ -149,7 +163,7 @@ public class ReportDefinitionServiceSample {
     ReportDefinitionServiceInterface reportDefinitionService = SoapUtils.createServiceInterface(ReportDefinitionServiceInterface.class, ReportDefinitionService.class);
     reportDefinitionService.getReportFields(reportType, reportDefinitionFieldValueHolder, errorHolder);
 
-    SoapUtils.checkSoapError(errorHolder, Arrays.asList(reportDefinitionFieldValueHolder.value));
+    SoapUtils.checkSoapError(errorHolder, Collections.singletonList(reportDefinitionFieldValueHolder.value));
 
     return reportDefinitionFieldValueHolder.value.getFields();
   }
@@ -158,15 +172,15 @@ public class ReportDefinitionServiceSample {
    * example get request.
    *
    * @param accountId long
-   * @param reportIds List<Long>
+   * @param reportJobIds List<Long>
    * @return get
    */
-  public static ReportDefinitionSelector buildExampleGetRequest(long accountId, List<Long> reportIds) {
+  public static ReportDefinitionSelector buildExampleGetRequest(long accountId, List<Long> reportJobIds) {
     ReportDefinitionSelector selector = new ReportDefinitionSelector();
     selector.setAccountId(accountId);
 
-    if (!reportIds.isEmpty()) {
-      selector.getReportIds().addAll(reportIds);
+    if (!reportJobIds.isEmpty()) {
+      selector.getReportJobIds().addAll(reportJobIds);
     }
     Paging paging = new Paging();
     paging.setStartIndex(1);
@@ -191,15 +205,16 @@ public class ReportDefinitionServiceSample {
   /**
    * example ReportDefinition request.
    *
-   * @param accountId int
    * @return ReportDefinition
    */
-  public static ReportDefinition createExampleReportDefinition(long accountId) {
+  public static ReportDefinition createExampleReportDefinition() {
+
     ReportDefinition reportDefinition = new ReportDefinition();
-    reportDefinition.setAccountId(accountId);
-    reportDefinition.setReportName("sampleReport");
+    reportDefinition.setReportName("sampleReport_"+SoapUtils.getCurrentTimestamp());
     reportDefinition.setReportType(ReportType.CAMPAIGN);
+
     reportDefinition.setDateRangeType(ReportDateRangeType.YESTERDAY);
+
     reportDefinition.getFields().addAll(CAMPAIGN_REPORT_FIELDS);
 
     ReportSortField reportSortField = new ReportSortField();
@@ -207,8 +222,6 @@ public class ReportDefinitionServiceSample {
     reportSortField.setField(CAMPAIGN_REPORT_FIELDS.get(0));
     reportDefinition.setSortFields(reportSortField);
 
-    reportDefinition.setIsTemplate(ReportIsTemplate.TRUE);
-    reportDefinition.setIntervalType(ReportIntervalType.ONETIME);
     reportDefinition.setFormat(ReportDownloadFormat.CSV);
     reportDefinition.setEncode(ReportDownloadEncode.UTF_8);
     reportDefinition.setLanguage(ReportLanguage.EN);
@@ -267,43 +280,48 @@ public class ReportDefinitionServiceSample {
   }
 
   /**
-   * create basic ReportDefinition.
+   * example check Report job status.
    *
-   * @return ValuesHolder
-   * @throws Exception
+   * @param reportJobIds    List<Long>
+   * @return void
    */
-  public static ValuesHolder create() throws Exception {
+  public static void checkStatus(List<Long> reportJobIds) throws Exception {
 
-    ValuesHolder valuesHolder = new ValuesHolder();
-    long accountId = SoapUtils.getAccountId();
-    ReportDefinitionOperation addReportDefinitionOperation = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<ReportDefinition>() {{
-      add(createExampleReportDefinition(accountId));
-    }});
+    // call 30sec sleep * 30 = 15minute
+    for (int i = 0; i < 30; i++) {
 
-    // Run
-    List<ReportDefinitionValues> biddingStrategyValues = mutate(addReportDefinitionOperation);
-    valuesHolder.setReportDefinitionValuesList(biddingStrategyValues);
-    return valuesHolder;
-  }
+      // sleep 30 second.
+      System.out.println("***** sleep 30 seconds for Report Job Status Check *****");
+      Thread.sleep(30000);
 
-  /**
-   * cleanup service object.
-   *
-   * @param valuesHolder ValuesHolder
-   */
-  public static void cleanup(ValuesHolder valuesHolder) throws Exception {
+      // get
+      ReportDefinitionSelector selector = buildExampleGetRequest(SoapUtils.getAccountId(), reportJobIds);
+      List<ReportDefinitionValues> reportDefinitionValues = get(selector);
 
-    long accountId = SoapUtils.getAccountId();
-    if (valuesHolder.getReportDefinitionValuesList().size() == 0) {
-      return;
+      int completedCount = 0;
+
+      // check status
+      for (ReportDefinitionValues values : reportDefinitionValues) {
+        if (values.getReportDefinition().getReportJobStatus() == null) {
+          throw new Exception("Fail to get Report.");
+        }
+        switch (values.getReportDefinition().getReportJobStatus()) {
+          default:
+          case WAIT:
+          case IN_PROGRESS:
+            continue;
+          case FAILED:
+            throw new Exception("Report Job Status failed.");
+          case COMPLETED:
+            completedCount++;
+            continue;
+        }
+      }
+
+      if (reportDefinitionValues.size() == completedCount) {
+        return;
+      }
     }
-    ValuesRepositoryFacade valuesRepositoryFacade = new ValuesRepositoryFacade(valuesHolder);
-
-    ReportDefinitionOperation removeReportDefinitionOperation =
-        buildExampleMutateRequest(Operator.REMOVE, accountId, valuesRepositoryFacade.getReportDefinitionValuesRepository().getReportDefinitions());
-
-    // Run
-    mutate(removeReportDefinitionOperation);
+    throw new Exception("Fail to get Report.");
   }
-
 }

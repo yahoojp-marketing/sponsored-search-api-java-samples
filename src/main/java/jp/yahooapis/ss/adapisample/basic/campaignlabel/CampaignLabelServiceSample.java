@@ -8,17 +8,18 @@ import jp.yahooapis.ss.adapisample.basic.label.LabelServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaignlabel.CampaignLabel;
-import jp.yahooapis.ss.v201901.campaignlabel.CampaignLabelOperation;
-import jp.yahooapis.ss.v201901.campaignlabel.CampaignLabelReturnValue;
-import jp.yahooapis.ss.v201901.campaignlabel.CampaignLabelService;
-import jp.yahooapis.ss.v201901.campaignlabel.CampaignLabelServiceInterface;
-import jp.yahooapis.ss.v201901.campaignlabel.CampaignLabelValues;
-import jp.yahooapis.ss.v201901.campaignlabel.Operator;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaignlabel.CampaignLabel;
+import jp.yahooapis.ss.v201909.campaignlabel.CampaignLabelOperation;
+import jp.yahooapis.ss.v201909.campaignlabel.CampaignLabelReturnValue;
+import jp.yahooapis.ss.v201909.campaignlabel.CampaignLabelService;
+import jp.yahooapis.ss.v201909.campaignlabel.CampaignLabelServiceInterface;
+import jp.yahooapis.ss.v201909.campaignlabel.CampaignLabelValues;
+import jp.yahooapis.ss.v201909.campaignlabel.Operator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -55,9 +56,9 @@ public class CampaignLabelServiceSample {
       // CampaignLabelService ADD
       // =================================================================
       // create request.
-      CampaignLabelOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<CampaignLabel>() {{
-        add(createExampleCampaignLabel(campaignId, lavelId));
-      }});
+      CampaignLabelOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleCampaignLabel(campaignId, lavelId)) //
+      );
 
       // run
       mutate(addRequest);

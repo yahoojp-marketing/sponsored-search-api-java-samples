@@ -11,26 +11,26 @@ import jp.yahooapis.ss.adapisample.basic.feeditem.FeedItemServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.adgroup.AdGroup;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedList;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedOperation;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedPlaceholderType;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedSelector;
-import jp.yahooapis.ss.v201901.campaign.Campaign;
-import jp.yahooapis.ss.v201901.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.campaign.Operator;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedList;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedOperation;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedPlaceholderType;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedSelector;
-import jp.yahooapis.ss.v201901.feeditem.FeedItem;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201909.adgroup.AdGroup;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedList;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedOperation;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedPlaceholderType;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedSelector;
+import jp.yahooapis.ss.v201909.campaign.Campaign;
+import jp.yahooapis.ss.v201909.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.campaign.Operator;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedList;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedOperation;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedPlaceholderType;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedSelector;
+import jp.yahooapis.ss.v201909.feeditem.FeedItem;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemValues;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -88,7 +88,7 @@ public class AdDisplayOptionSample {
       // =================================================================
       // ADD
       AdGroupOperation addRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.adgroup.Operator.ADD, accountId, new ArrayList<AdGroup>() {{
+          jp.yahooapis.ss.v201909.adgroup.Operator.ADD, accountId, new ArrayList<AdGroup>() {{
             add(AdGroupServiceSample.createExampleStandardAdGroup(campaignIds.get(0)));
             add(AdGroupServiceSample.createExampleStandardAdGroup(campaignIds.get(1)));
             add(AdGroupServiceSample.createExampleStandardAdGroup(campaignIds.get(2)));
@@ -104,7 +104,7 @@ public class AdDisplayOptionSample {
 
       // SET
       AdGroupOperation setRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.adgroup.Operator.SET, accountId,
+          jp.yahooapis.ss.v201909.adgroup.Operator.SET, accountId,
           AdGroupServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupValuesRepository().getAdGroups())
       );
       AdGroupServiceSample.mutate(setRequestAdGroup);
@@ -113,26 +113,20 @@ public class AdDisplayOptionSample {
       // FeedItemService ADD
       //=================================================================
       // QUICKLINK
-      FeedItemOperation addRequestQuicklink = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.QUICKLINK, new ArrayList<FeedItem>() {{
-            add(FeedItemServiceSample.createExampleQuicklink());
-          }}
+      FeedItemOperation addRequestQuicklink = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.QUICKLINK, Collections.singletonList(FeedItemServiceSample.createExampleQuicklink()) //
       );
       List<FeedItemValues> addResponseQuicklink = FeedItemServiceSample.mutate(addRequestQuicklink);
 
       // CALLEXTENSION
-      FeedItemOperation addRequestCallextension = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.CALLEXTENSION, new ArrayList<FeedItem>() {{
-            add(FeedItemServiceSample.createExampleCallextension());
-          }}
+      FeedItemOperation addRequestCallextension = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.CALLEXTENSION, Collections.singletonList(FeedItemServiceSample.createExampleCallextension()) //
       );
       List<FeedItemValues> addResponseCallextension = FeedItemServiceSample.mutate(addRequestCallextension);
 
       // CALLOUT
-      FeedItemOperation addRequestCallout = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.CALLOUT, new ArrayList<FeedItem>() {{
-            add(FeedItemServiceSample.createExampleCallout());
-          }}
+      FeedItemOperation addRequestCallout = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.CALLOUT, Collections.singletonList(FeedItemServiceSample.createExampleCallout()) //
       );
       List<FeedItemValues> addResponseCallout = FeedItemServiceSample.mutate(addRequestCallout);
 
@@ -147,34 +141,38 @@ public class AdDisplayOptionSample {
       //=================================================================
       // FeedItemService GET
       //=================================================================
-      FeedItemSelector getRequestFeedItem = FeedItemServiceSample.buildExampleGetRequest(accountId, valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds());
+      FeedItemSelector getRequestFeedItem = FeedItemServiceSample.buildExampleGetRequest( //
+          accountId, //
+          valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds(), //
+          Collections.emptyList() //
+      );
       FeedItemServiceSample.get(getRequestFeedItem);
 
       //=================================================================
       // FeedItemService SET
       //=================================================================
       // QUICKLINK
-      FeedItemOperation setRequestQuicklink = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.QUICKLINK, FeedItemServiceSample.createExampleSetRequest(
-              new ArrayList<FeedItem>() {{
-                add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.QUICKLINK));
-      }}));
+      FeedItemOperation setRequestQuicklink = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.QUICKLINK, FeedItemServiceSample.createExampleSetRequest( //
+              Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.QUICKLINK)) //
+          )
+      );
       FeedItemServiceSample.mutate(setRequestQuicklink);
 
       // CALLEXTENSION
-      FeedItemOperation setRequestCallextension = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.CALLEXTENSION, FeedItemServiceSample.createExampleSetRequest(
-              new ArrayList<FeedItem>() {{
-                add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLEXTENSION));
-      }}));
+      FeedItemOperation setRequestCallextension = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.CALLEXTENSION, FeedItemServiceSample.createExampleSetRequest( //
+              Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLEXTENSION)) //
+          )
+      );
       FeedItemServiceSample.mutate(setRequestCallextension);
 
       // CALLOUT
-      FeedItemOperation setRequestCallout = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.CALLOUT, FeedItemServiceSample.createExampleSetRequest(
-              new ArrayList<FeedItem>() {{
-                add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLOUT));
-      }}));
+      FeedItemOperation setRequestCallout = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.CALLOUT, FeedItemServiceSample.createExampleSetRequest( //
+              Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLOUT)) //
+          )
+      );
       FeedItemServiceSample.mutate(setRequestCallout);
 
       // =================================================================
@@ -182,7 +180,7 @@ public class AdDisplayOptionSample {
       // =================================================================
       // SET
       CampaignFeedOperation setRequestCampaignFeedQuicklink = CampaignFeedServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.campaignfeed.Operator.SET, accountId, new ArrayList<CampaignFeedList>() {{
+          jp.yahooapis.ss.v201909.campaignfeed.Operator.SET, accountId, new ArrayList<CampaignFeedList>() {{
             add(CampaignFeedServiceSample.createExampleSetRequest(accountId, campaignIds.get(0), feedItemIdQuicklink, CampaignFeedPlaceholderType.QUICKLINK));
             add(CampaignFeedServiceSample.createExampleSetRequest(accountId, campaignIds.get(1), feedItemIdCallextension, CampaignFeedPlaceholderType.CALLEXTENSION));
             add(CampaignFeedServiceSample.createExampleSetRequest(accountId, campaignIds.get(2), feedItemIdCallout, CampaignFeedPlaceholderType.CALLOUT));
@@ -201,7 +199,7 @@ public class AdDisplayOptionSample {
       //=================================================================
       // SET
       AdGroupFeedOperation setRequestAdGroupFeedQuicklink = AdGroupFeedServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.adgroupfeed.Operator.SET, accountId, new ArrayList<AdGroupFeedList>() {{
+          jp.yahooapis.ss.v201909.adgroupfeed.Operator.SET, accountId, new ArrayList<AdGroupFeedList>() {{
             add(AdGroupFeedServiceSample.createExampleSetRequest(accountId, campaignIds.get(0), adGroupIds.get(0), feedItemIdQuicklink, AdGroupFeedPlaceholderType.QUICKLINK));
             add(AdGroupFeedServiceSample.createExampleSetRequest(accountId, campaignIds.get(1), adGroupIds.get(1), feedItemIdCallextension, AdGroupFeedPlaceholderType.CALLEXTENSION));
             add(AdGroupFeedServiceSample.createExampleSetRequest(accountId, campaignIds.get(2), adGroupIds.get(2), feedItemIdCallout, AdGroupFeedPlaceholderType.CALLOUT));
@@ -219,27 +217,27 @@ public class AdDisplayOptionSample {
       // FeedItemService REMOVE
       //=================================================================
       // QUICKLINK
-      FeedItemOperation removeRequestQuicklink = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.QUICKLINK, FeedItemServiceSample.createExampleSetRequest(
-              new ArrayList<FeedItem>() {{
-                add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.QUICKLINK));
-      }}));
+      FeedItemOperation removeRequestQuicklink = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.QUICKLINK, FeedItemServiceSample.createExampleSetRequest( //
+              Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.QUICKLINK)) //
+          )
+      );
       FeedItemServiceSample.mutate(removeRequestQuicklink);
 
       // CALLEXTENSION
-      FeedItemOperation removeRequestCallextension = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLEXTENSION, FeedItemServiceSample.createExampleSetRequest(
-              new ArrayList<FeedItem>() {{
-                add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLEXTENSION));
-      }}));
+      FeedItemOperation removeRequestCallextension = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLEXTENSION, FeedItemServiceSample.createExampleSetRequest( //
+              Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLEXTENSION)) //
+          )
+      );
       FeedItemServiceSample.mutate(removeRequestCallextension);
 
       // CALLOUT
-      FeedItemOperation removeRequestCallout = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLOUT, FeedItemServiceSample.createExampleSetRequest(
-              new ArrayList<FeedItem>() {{
-                add(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLOUT));
-      }}));
+      FeedItemOperation removeRequestCallout = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.CALLOUT, FeedItemServiceSample.createExampleSetRequest( //
+              Collections.singletonList(valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItem(FeedItemPlaceholderType.CALLOUT)) //
+          )
+      );
       FeedItemServiceSample.mutate(removeRequestCallout);
 
     } catch (Exception ex) {

@@ -1,12 +1,12 @@
 --------------------------------
 【バージョン】
 --------------------------------
-Version 201901
+Version 201909
 
 ■変更履歴
 -----------
-2019/01/29:
-- Version 201901に対応しました。
+2019/09/25:
+- Version 201909に対応しました。
 
 --------------------------------
 【概要】
@@ -22,7 +22,7 @@ src/main/
   - resources/
     - api_config.properties.dist    : 各種IDを記述する設定ファイルです、api_config.propertiesにリネームして下さい。
   - java/jp/yahooapis/ss/
-    - v201901/                      : 対象のAPIバージョンのJava用EntityサンプルClassです。
+    - v201909/                      : 対象のAPIバージョンのJava用EntityサンプルClassです。
     - adapisample/
       - basic/                      : プロモーション広告APIの各種Serviceサンプル集です。
       - feature/                    : プロモーション広告APIを利用した広告入稿、ターゲティングなどのサンプル集です。

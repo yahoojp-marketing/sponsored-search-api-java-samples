@@ -4,23 +4,24 @@
 package jp.yahooapis.ss.adapisample.basic.campaignexport;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.campaignexport.CampaignExportFieldAttribute;
-import jp.yahooapis.ss.v201901.campaignexport.CampaignExportFieldValue;
-import jp.yahooapis.ss.v201901.campaignexport.CampaignExportPage;
-import jp.yahooapis.ss.v201901.campaignexport.CampaignExportReturnValue;
-import jp.yahooapis.ss.v201901.campaignexport.CampaignExportService;
-import jp.yahooapis.ss.v201901.campaignexport.CampaignExportServiceInterface;
-import jp.yahooapis.ss.v201901.campaignexport.CampaignExportValues;
-import jp.yahooapis.ss.v201901.campaignexport.Encoding;
-import jp.yahooapis.ss.v201901.campaignexport.EntityType;
-import jp.yahooapis.ss.v201901.campaignexport.ExportSetting;
-import jp.yahooapis.ss.v201901.campaignexport.JobSelector;
-import jp.yahooapis.ss.v201901.campaignexport.Lang;
-import jp.yahooapis.ss.v201901.campaignexport.Output;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.campaignexport.CampaignExportFieldAttribute;
+import jp.yahooapis.ss.v201909.campaignexport.CampaignExportFieldValue;
+import jp.yahooapis.ss.v201909.campaignexport.CampaignExportPage;
+import jp.yahooapis.ss.v201909.campaignexport.CampaignExportReturnValue;
+import jp.yahooapis.ss.v201909.campaignexport.CampaignExportService;
+import jp.yahooapis.ss.v201909.campaignexport.CampaignExportServiceInterface;
+import jp.yahooapis.ss.v201909.campaignexport.CampaignExportValues;
+import jp.yahooapis.ss.v201909.campaignexport.Encoding;
+import jp.yahooapis.ss.v201909.campaignexport.EntityType;
+import jp.yahooapis.ss.v201909.campaignexport.ExportSetting;
+import jp.yahooapis.ss.v201909.campaignexport.JobSelector;
+import jp.yahooapis.ss.v201909.campaignexport.Lang;
+import jp.yahooapis.ss.v201909.campaignexport.Output;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -74,10 +75,10 @@ public class CampaignExportServiceSample {
       // CampaignExportService GET
       // =================================================================
       // check job status
-      checkStatus(Arrays.asList(jobId));
+      checkStatus(Collections.singletonList(jobId));
 
       // create request.
-      JobSelector selector = buildExampleGetRequest(accountId, Arrays.asList(jobId));
+      JobSelector selector = buildExampleGetRequest(accountId, Collections.singletonList(jobId));
 
       // run
       List<CampaignExportValues> campaignExportValuesList = get(selector);

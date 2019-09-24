@@ -4,13 +4,13 @@
 package jp.yahooapis.ss.adapisample.basic.balance;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.balance.BalancePage;
-import jp.yahooapis.ss.v201901.balance.BalanceSelector;
-import jp.yahooapis.ss.v201901.balance.BalanceService;
-import jp.yahooapis.ss.v201901.balance.BalanceServiceInterface;
-import jp.yahooapis.ss.v201901.balance.BalanceValues;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.balance.BalancePage;
+import jp.yahooapis.ss.v201909.balance.BalanceSelector;
+import jp.yahooapis.ss.v201909.balance.BalanceService;
+import jp.yahooapis.ss.v201909.balance.BalanceServiceInterface;
+import jp.yahooapis.ss.v201909.balance.BalanceValues;
 
 import java.util.List;
 

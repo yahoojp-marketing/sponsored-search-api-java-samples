@@ -7,25 +7,26 @@ import jp.yahooapis.ss.adapisample.basic.campaign.CampaignServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterion;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionOperation;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionPage;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionReturnValue;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionSelector;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionService;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionServiceInterface;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionUse;
-import jp.yahooapis.ss.v201901.campaigncriterion.CampaignCriterionValues;
-import jp.yahooapis.ss.v201901.campaigncriterion.CriterionType;
-import jp.yahooapis.ss.v201901.campaigncriterion.Keyword;
-import jp.yahooapis.ss.v201901.campaigncriterion.KeywordMatchType;
-import jp.yahooapis.ss.v201901.campaigncriterion.NegativeCampaignCriterion;
-import jp.yahooapis.ss.v201901.campaigncriterion.Operator;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterion;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionOperation;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionPage;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionReturnValue;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionSelector;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionService;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionServiceInterface;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionUse;
+import jp.yahooapis.ss.v201909.campaigncriterion.CampaignCriterionValues;
+import jp.yahooapis.ss.v201909.campaigncriterion.CriterionType;
+import jp.yahooapis.ss.v201909.campaigncriterion.Keyword;
+import jp.yahooapis.ss.v201909.campaigncriterion.KeywordMatchType;
+import jp.yahooapis.ss.v201909.campaigncriterion.NegativeCampaignCriterion;
+import jp.yahooapis.ss.v201909.campaigncriterion.Operator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -60,9 +61,9 @@ public class CampaignCriterionServiceSample {
       // CampaignCriterionService ADD
       // =================================================================
       // create request.
-      CampaignCriterionOperation addCampaignCriterionOperation = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<CampaignCriterion>() {{
-        add(createExampleNegativeCampaignCriterion(campaignId));
-      }});
+      CampaignCriterionOperation addCampaignCriterionOperation = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleNegativeCampaignCriterion(campaignId)) //
+      );
 
       // run
       List<CampaignCriterionValues> addCampaignCriterionValues = mutate(addCampaignCriterionOperation);

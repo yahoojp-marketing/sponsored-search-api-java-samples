@@ -4,18 +4,18 @@
 package jp.yahooapis.ss.adapisample.basic.keywordestimator;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.keywordestimator.AdGroupEstimateRequest;
-import jp.yahooapis.ss.v201901.keywordestimator.CampaignEstimateRequest;
-import jp.yahooapis.ss.v201901.keywordestimator.EstimateKeyword;
-import jp.yahooapis.ss.v201901.keywordestimator.IsNegativeBool;
-import jp.yahooapis.ss.v201901.keywordestimator.KeywordEstimateRequest;
-import jp.yahooapis.ss.v201901.keywordestimator.KeywordEstimateValues;
-import jp.yahooapis.ss.v201901.keywordestimator.KeywordEstimatorPage;
-import jp.yahooapis.ss.v201901.keywordestimator.KeywordEstimatorSelector;
-import jp.yahooapis.ss.v201901.keywordestimator.KeywordEstimatorService;
-import jp.yahooapis.ss.v201901.keywordestimator.KeywordEstimatorServiceInterface;
-import jp.yahooapis.ss.v201901.keywordestimator.KeywordMatchType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.keywordestimator.AdGroupEstimateRequest;
+import jp.yahooapis.ss.v201909.keywordestimator.CampaignEstimateRequest;
+import jp.yahooapis.ss.v201909.keywordestimator.EstimateKeyword;
+import jp.yahooapis.ss.v201909.keywordestimator.IsNegativeBool;
+import jp.yahooapis.ss.v201909.keywordestimator.KeywordEstimateRequest;
+import jp.yahooapis.ss.v201909.keywordestimator.KeywordEstimateValues;
+import jp.yahooapis.ss.v201909.keywordestimator.KeywordEstimatorPage;
+import jp.yahooapis.ss.v201909.keywordestimator.KeywordEstimatorSelector;
+import jp.yahooapis.ss.v201909.keywordestimator.KeywordEstimatorService;
+import jp.yahooapis.ss.v201909.keywordestimator.KeywordEstimatorServiceInterface;
+import jp.yahooapis.ss.v201909.keywordestimator.KeywordMatchType;
 
 import java.util.Arrays;
 import java.util.List;

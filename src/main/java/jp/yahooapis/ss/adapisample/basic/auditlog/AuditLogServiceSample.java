@@ -4,24 +4,25 @@
 package jp.yahooapis.ss.adapisample.basic.auditlog;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogEncoding;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogEventType;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogJob;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogJobStatus;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogLang;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogOperation;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogOutput;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogPage;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogReturnValue;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogSelector;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogService;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogServiceInterface;
-import jp.yahooapis.ss.v201901.auditlog.AuditLogValues;
-import jp.yahooapis.ss.v201901.auditlog.DateRange;
-import jp.yahooapis.ss.v201901.auditlog.EventSelector;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogEncoding;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogEventType;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogJob;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogJobStatus;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogLang;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogOperation;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogOutput;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogPage;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogReturnValue;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogSelector;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogService;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogServiceInterface;
+import jp.yahooapis.ss.v201909.auditlog.AuditLogValues;
+import jp.yahooapis.ss.v201909.auditlog.DateRange;
+import jp.yahooapis.ss.v201909.auditlog.EventSelector;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -63,10 +64,10 @@ public class AuditLogServiceSample {
       // AuditLogService GET
       // =================================================================
       // check job status
-      checkStatus(Arrays.asList(jobId));
+      checkStatus(Collections.singletonList(jobId));
 
       // create request.
-      AuditLogSelector selector = buildExampleGetRequest(accountId, Arrays.asList(jobId));
+      AuditLogSelector selector = buildExampleGetRequest(accountId, Collections.singletonList(jobId));
 
       // run
       List<AuditLogValues> getResponse = get(selector);
@@ -168,7 +169,7 @@ public class AuditLogServiceSample {
     operand.getEventSelector().add(eventSelector);
 
     DateRange dateRange = new DateRange();
-    dateRange.setStartDate("20190101000000");
+    dateRange.setStartDate("20190901000000");
     dateRange.setEndDate("20201231000000");
     operand.setDateRange(dateRange);
 

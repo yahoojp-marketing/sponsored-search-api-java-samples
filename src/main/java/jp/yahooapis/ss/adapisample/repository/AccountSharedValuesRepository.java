@@ -4,8 +4,8 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.accountshared.AccountShared;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedValues;
+import jp.yahooapis.ss.v201909.accountshared.AccountShared;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedValues;
 
 import java.util.ArrayList;
 import java.util.List;

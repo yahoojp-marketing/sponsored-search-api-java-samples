@@ -1,12 +1,12 @@
 --------------------------------
 [Version]
 --------------------------------
-Version 201901
+Version 201909
 
 - Change logs
 -----------
-2019/01/29:
-- 201901 is now available.
+2019/09/25:
+- 201909 is now available.
 
 --------------------------------
 [Overview]
@@ -21,7 +21,7 @@ src/main/
   - resources/
     - api_config.properties.dist    : Config files to specify Ids. Rename this file to "api_config.properties"
   - java/jp/yahooapis/ss/
-    - v201901/                      : Java Entity classes for written versions(V201901).
+    - v201909/                      : Java Entity classes for written versions(V201909).
     - adapisample/
       - basic/                      : Examples of each services.
       - feature/                    : Examples of how to create ads, set targeting.
