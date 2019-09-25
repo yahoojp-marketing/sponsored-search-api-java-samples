@@ -9,33 +9,33 @@ import jp.yahooapis.ss.adapisample.basic.feedfolder.FeedFolderServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderPlaceholderType;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemDownloadJob;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemDownloadJobOperation;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemDownloadJobReturnValue;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemDownloadJobValues;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemJobStatusPage;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemJobStatusSelector;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemJobType;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemJobValues;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemPage;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemReturnValues;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemReviewSummaryPage;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemReviewSummarySelector;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemReviewSummaryValues;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemSelector;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemService;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemServiceInterface;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadJob;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadType;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadUrl;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadUrlOperation;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadUrlPage;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadUrlValues;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemDownloadJob;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemDownloadJobOperation;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemDownloadJobReturnValue;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemDownloadJobValues;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemJobStatusPage;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemJobStatusSelector;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemJobType;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemJobValues;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemPage;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemReturnValues;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemReviewSummaryPage;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemReviewSummarySelector;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemReviewSummaryValues;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemSelector;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemService;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemServiceInterface;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadJob;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadType;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadUrl;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadUrlOperation;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadUrlPage;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadUrlValues;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -87,13 +87,13 @@ public class PageFeedItemServiceSample {
       // PageFeedItemService getJobStatus
       //=================================================================
       // check job status
-      checkJobStatus(accountId, PageFeedItemJobType.UPLOAD, Arrays.asList(uploadJobId));
+      checkJobStatus(accountId, PageFeedItemJobType.UPLOAD, Collections.singletonList(uploadJobId));
 
       //=================================================================
       // PageFeedItemService getReviewSummary
       //=================================================================
       // create request.
-      PageFeedItemReviewSummarySelector pageFeedItemReviewSummarySelector = buildExampleGetReviewSummary(accountId, Arrays.asList(feedFolderId));
+      PageFeedItemReviewSummarySelector pageFeedItemReviewSummarySelector = buildExampleGetReviewSummary(accountId, Collections.singletonList(feedFolderId));
 
       // run
       getReviewSummary(pageFeedItemReviewSummarySelector);
@@ -102,7 +102,7 @@ public class PageFeedItemServiceSample {
       // PageFeedItemService get
       //=================================================================
       // create request.
-      PageFeedItemSelector pageFeedItemSelector = buildExampleGetRequest(accountId, Arrays.asList(feedFolderId));
+      PageFeedItemSelector pageFeedItemSelector = buildExampleGetRequest(accountId, Collections.singletonList(feedFolderId));
 
       // run
       get(pageFeedItemSelector);
@@ -111,7 +111,7 @@ public class PageFeedItemServiceSample {
       // PageFeedItemService addDownloadJob
       //=================================================================
       // create request.
-      PageFeedItemDownloadJobOperation operation = buildExampleAddDownloadJob(accountId, Arrays.asList(feedFolderId));
+      PageFeedItemDownloadJobOperation operation = buildExampleAddDownloadJob(accountId, Collections.singletonList(feedFolderId));
 
       // run
       List<PageFeedItemDownloadJobValues> pageFeedItemDownloadJobValues = addDownloadJob(operation);
@@ -124,10 +124,10 @@ public class PageFeedItemServiceSample {
       // PageFeedItemService getJobStatus
       //=================================================================
       // check job status
-      checkJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Arrays.asList(jobId));
+      checkJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Collections.singletonList(jobId));
 
       // create request.
-      PageFeedItemJobStatusSelector selector = buildExampleGetJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Arrays.asList(jobId));
+      PageFeedItemJobStatusSelector selector = buildExampleGetJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Collections.singletonList(jobId));
 
       // run
       List<PageFeedItemJobValues> pageFeedItemJobValues = getJobStatus(selector);

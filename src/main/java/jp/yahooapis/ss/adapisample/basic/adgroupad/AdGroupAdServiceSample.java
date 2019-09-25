@@ -7,33 +7,34 @@ import jp.yahooapis.ss.adapisample.basic.adgroup.AdGroupServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAd;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdAdditionalAdvancedMobileUrls;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdAdditionalAdvancedUrls;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdPage;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdReturnValue;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdService;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdServiceInterface;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201901.adgroupad.AdType;
-import jp.yahooapis.ss.v201901.adgroupad.AppAd;
-import jp.yahooapis.ss.v201901.adgroupad.ApprovalStatus;
-import jp.yahooapis.ss.v201901.adgroupad.CustomParameter;
-import jp.yahooapis.ss.v201901.adgroupad.CustomParameters;
-import jp.yahooapis.ss.v201901.adgroupad.DevicePreference;
-import jp.yahooapis.ss.v201901.adgroupad.DynamicSearchLinkedAd;
-import jp.yahooapis.ss.v201901.adgroupad.ExtendedTextAd;
-import jp.yahooapis.ss.v201901.adgroupad.Operator;
-import jp.yahooapis.ss.v201901.adgroupad.UserStatus;
-import jp.yahooapis.ss.v201901.campaign.AppStore;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAd;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdAdditionalAdvancedMobileUrls;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdAdditionalAdvancedUrls;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdPage;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdReturnValue;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdService;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdServiceInterface;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201909.adgroupad.AdType;
+import jp.yahooapis.ss.v201909.adgroupad.AppAd;
+import jp.yahooapis.ss.v201909.adgroupad.ApprovalStatus;
+import jp.yahooapis.ss.v201909.adgroupad.CustomParameter;
+import jp.yahooapis.ss.v201909.adgroupad.CustomParameters;
+import jp.yahooapis.ss.v201909.adgroupad.DevicePreference;
+import jp.yahooapis.ss.v201909.adgroupad.DynamicSearchLinkedAd;
+import jp.yahooapis.ss.v201909.adgroupad.ExtendedTextAd;
+import jp.yahooapis.ss.v201909.adgroupad.Operator;
+import jp.yahooapis.ss.v201909.adgroupad.UserStatus;
+import jp.yahooapis.ss.v201909.campaign.AppStore;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -500,9 +501,9 @@ public class AdGroupAdServiceSample {
     Long adGroupId = parentValuesRepositoryFacade.getAdGroupValuesRepository().findAdGroupId(campaignId);
 
     // create request.
-    AdGroupAdOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AdGroupAd>() {{
-      add(createExampleExtendedTextAd(campaignId, adGroupId));
-    }});
+    AdGroupAdOperation addRequest = buildExampleMutateRequest( //
+        Operator.ADD, accountId, Collections.singletonList(createExampleExtendedTextAd(campaignId, adGroupId)) //
+    );
 
     // run
     List<AdGroupAdValues> addResponse = mutate(addRequest);

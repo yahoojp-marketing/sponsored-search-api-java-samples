@@ -4,20 +4,21 @@
 package jp.yahooapis.ss.adapisample.basic.accounttrackingurl;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrl;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrlOperation;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrlPage;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrlReturnValue;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrlSelector;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrlService;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrlServiceInterface;
-import jp.yahooapis.ss.v201901.accounttrackingurl.AccountTrackingUrlValues;
-import jp.yahooapis.ss.v201901.accounttrackingurl.Operator;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrl;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrlOperation;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrlPage;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrlReturnValue;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrlSelector;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrlService;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrlServiceInterface;
+import jp.yahooapis.ss.v201909.accounttrackingurl.AccountTrackingUrlValues;
+import jp.yahooapis.ss.v201909.accounttrackingurl.Operator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -44,9 +45,7 @@ public class AccountTrackingUrlServiceSample {
       // AccountTrackingUrlService GET
       // =================================================================
       // create request.
-      AccountTrackingUrlSelector getRequest = buildExampleGetRequest(new ArrayList<Long>(){{
-        add(accountId);
-      }});
+      AccountTrackingUrlSelector getRequest = buildExampleGetRequest(Collections.singletonList(accountId));
 
       // Run
       get(getRequest);
@@ -55,9 +54,9 @@ public class AccountTrackingUrlServiceSample {
       // AccountTrackingUrlService SET
       // =================================================================
       // create request.
-      AccountTrackingUrlOperation setRequest = buildExampleMutateRequest(Operator.SET, new ArrayList<AccountTrackingUrl>() {{
-        add(createExampleSetRequest(accountId));
-      }});
+      AccountTrackingUrlOperation setRequest = buildExampleMutateRequest( //
+          Operator.SET, Collections.singletonList(createExampleSetRequest(accountId)) //
+      );
 
       // Run
       mutate(setRequest);

@@ -6,20 +6,21 @@ package jp.yahooapis.ss.adapisample.basic.label;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.label.CountLabeledEntity;
-import jp.yahooapis.ss.v201901.label.Label;
-import jp.yahooapis.ss.v201901.label.LabelOperation;
-import jp.yahooapis.ss.v201901.label.LabelPage;
-import jp.yahooapis.ss.v201901.label.LabelReturnValue;
-import jp.yahooapis.ss.v201901.label.LabelSelector;
-import jp.yahooapis.ss.v201901.label.LabelService;
-import jp.yahooapis.ss.v201901.label.LabelServiceInterface;
-import jp.yahooapis.ss.v201901.label.LabelValues;
-import jp.yahooapis.ss.v201901.label.Operator;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.label.CountLabeledEntity;
+import jp.yahooapis.ss.v201909.label.Label;
+import jp.yahooapis.ss.v201909.label.LabelOperation;
+import jp.yahooapis.ss.v201909.label.LabelPage;
+import jp.yahooapis.ss.v201909.label.LabelReturnValue;
+import jp.yahooapis.ss.v201909.label.LabelSelector;
+import jp.yahooapis.ss.v201909.label.LabelService;
+import jp.yahooapis.ss.v201909.label.LabelServiceInterface;
+import jp.yahooapis.ss.v201909.label.LabelValues;
+import jp.yahooapis.ss.v201909.label.Operator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -53,9 +54,9 @@ public class LabelServiceSample {
       // LabelService ADD
       // =================================================================
       // create request.
-      LabelOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<Label>() {{
-        add(createExampleLabel());
-      }});
+      LabelOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleLabel()) //
+      );
 
       // run
       List<LabelValues> addResponse = mutate(addRequest);
@@ -240,9 +241,9 @@ public class LabelServiceSample {
 
     ValuesHolder valuesHolder = new ValuesHolder();
 
-    LabelOperation addRequest = buildExampleMutateRequest(Operator.ADD, SoapUtils.getAccountId(), new ArrayList<Label>() {{
-      add(createExampleLabel());
-    }});
+    LabelOperation addRequest = buildExampleMutateRequest( //
+        Operator.ADD, SoapUtils.getAccountId(), Collections.singletonList(createExampleLabel()) //
+    );
 
     // run
     List<LabelValues> addResponse = mutate(addRequest);

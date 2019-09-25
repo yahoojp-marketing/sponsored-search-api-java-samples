@@ -4,8 +4,8 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.label.Label;
-import jp.yahooapis.ss.v201901.label.LabelValues;
+import jp.yahooapis.ss.v201909.label.Label;
+import jp.yahooapis.ss.v201909.label.LabelValues;
 
 import java.util.ArrayList;
 import java.util.List;

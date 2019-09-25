@@ -4,16 +4,16 @@
 package jp.yahooapis.ss.adapisample.basic.dictionary;
 
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.dictionary.DictionaryLang;
-import jp.yahooapis.ss.v201901.dictionary.DictionaryService;
-import jp.yahooapis.ss.v201901.dictionary.DictionaryServiceInterface;
-import jp.yahooapis.ss.v201901.dictionary.DisapprovalReasonPage;
-import jp.yahooapis.ss.v201901.dictionary.DisapprovalReasonSelector;
-import jp.yahooapis.ss.v201901.dictionary.DisapprovalReasonValues;
-import jp.yahooapis.ss.v201901.dictionary.GeographicLocationPage;
-import jp.yahooapis.ss.v201901.dictionary.GeographicLocationSelector;
-import jp.yahooapis.ss.v201901.dictionary.GeographicLocationValues;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.dictionary.DictionaryLang;
+import jp.yahooapis.ss.v201909.dictionary.DictionaryService;
+import jp.yahooapis.ss.v201909.dictionary.DictionaryServiceInterface;
+import jp.yahooapis.ss.v201909.dictionary.DisapprovalReasonPage;
+import jp.yahooapis.ss.v201909.dictionary.DisapprovalReasonSelector;
+import jp.yahooapis.ss.v201909.dictionary.DisapprovalReasonValues;
+import jp.yahooapis.ss.v201909.dictionary.GeographicLocationPage;
+import jp.yahooapis.ss.v201909.dictionary.GeographicLocationSelector;
+import jp.yahooapis.ss.v201909.dictionary.GeographicLocationValues;
 
 import java.util.List;
 

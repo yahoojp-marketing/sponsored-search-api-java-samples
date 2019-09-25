@@ -3,8 +3,8 @@
  */
 package jp.yahooapis.ss.adapisample.util;
 
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.ReturnValue;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.ReturnValue;
 
 import java.io.BufferedInputStream;
 import java.io.DataOutputStream;
@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 import javax.xml.namespace.QName;
@@ -45,7 +44,7 @@ public class SoapUtils {
   /**
    * location server name
    */
-  private static String LOCATION;
+  private static String LOCATION = "ss.yahooapis.jp";
   /**
    * API License
    */
@@ -70,14 +69,6 @@ public class SoapUtils {
    * Account ID
    */
   private static long ACCOUNT_ID;
-  /**
-   * location cache
-   */
-  private static Properties locationCacheProp;
-  /**
-   * file for location cache
-   */
-  private static File locationCacheFile;
 
   /*
    * static initializer
@@ -107,9 +98,6 @@ public class SoapUtils {
       }
       if (bundle.containsKey("LOCATION")) {
         LOCATION = bundle.getString("LOCATION");
-      } else {
-        errorMessages.add("Error : Fail to get LOCATION from api_config.properties.");
-        failed = true;
       }
       if (bundle.containsKey("LICENSE")) {
         API_LICENSE = bundle.getString("LICENSE");
@@ -147,15 +135,6 @@ public class SoapUtils {
         throw new ApiConfigException(String.join("\n", errorMessages));
       }
 
-      /*
-       * read location cache
-       */
-      // read cache properties file
-      locationCacheProp = new Properties();
-      locationCacheFile = new File(new File(".").getAbsolutePath(), "location_cache.properties");
-      if (locationCacheFile.exists()) {
-        locationCacheProp.load(new FileInputStream(locationCacheFile));
-      }
     } catch (Exception e) {
       throw new ApiConfigException("Error : Fail to get api_config.properties file.", e);
     }
@@ -186,6 +165,15 @@ public class SoapUtils {
    */
   public static String getAPI_NAMESPACE() {
     return API_NAMESPACE;
+  }
+
+  /**
+   * get LOCATION from config file.
+   *
+   * @return LOCATION.
+   */
+  public static String getLOCATION() {
+    return LOCATION;
   }
 
   /**
@@ -240,53 +228,18 @@ public class SoapUtils {
    * @return endpoint URL
    */
   public static URL getServiceEndPointURL(String serviceName) throws Exception {
-    URL url = new URL("https://" + getLocation(getAccountId()) + "/services/" + getAPI_VERSION() + "/" + serviceName);
+    URL url = new URL("https://" + getLOCATION() + "/services/" + getAPI_VERSION() + "/" + serviceName);
     return url;
-  }
-
-  /**
-   * get location for accountId.
-   *
-   * @return colocation server name for accountId.
-   */
-  public static String getLocation(long accountId) throws Exception {
-    String cachedLocation = locationCacheProp.getProperty(Long.toString(accountId));
-    if (cachedLocation != null) {
-      // return cached location
-      return cachedLocation;
-    }
-    // save location to cache
-    cachedLocation = new SoapLocationFactory(getAccountId()).getSoapLocation();
-    locationCacheProp.setProperty(Long.toString(accountId), cachedLocation);
-    locationCacheProp.store(new FileOutputStream(locationCacheFile), "cache of location for accountId.");
-    // display response
-    System.out.println("accountId:[" + accountId + "]/Location:[" + cachedLocation + "]");
-    System.out.println("---------");
-    return cachedLocation;
-  }
-
-  /**
-   * get location server url
-   *
-   * @return https://LOCATION/services/API_VERSION/serviceName
-   * @see LOCATION
-   * @see API_VERSION
-   */
-  public static String getLocationServer(String serviceName) {
-    return "https://" + LOCATION + "/services/" + getAPI_VERSION() + "/" + serviceName;
   }
 
   /**
    * get wsdl url
    *
    * @return https://LOCATION/services/API_VERSION/serviceName?wsdl
-   * @see LOCATION
-   * @see API_VERSION
    */
   public static String getWsdlUrl(String serviceName) {
-    return getLocationServer(serviceName) + "?wsdl";
+    return "https://" + getLOCATION() + "/services/" + getAPI_VERSION() + "/" + serviceName + "?wsdl";
   }
-
 
   /**
    * ServiceInterface object create

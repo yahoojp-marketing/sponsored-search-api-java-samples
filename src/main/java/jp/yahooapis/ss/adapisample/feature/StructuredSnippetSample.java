@@ -11,27 +11,27 @@ import jp.yahooapis.ss.adapisample.basic.feeditem.FeedItemServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.adgroup.AdGroup;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedList;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedOperation;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedPlaceholderType;
-import jp.yahooapis.ss.v201901.adgroupfeed.AdGroupFeedSelector;
-import jp.yahooapis.ss.v201901.campaign.Campaign;
-import jp.yahooapis.ss.v201901.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.campaign.Operator;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedList;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedOperation;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedPlaceholderType;
-import jp.yahooapis.ss.v201901.campaignfeed.CampaignFeedSelector;
-import jp.yahooapis.ss.v201901.feeditem.FeedItem;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201909.adgroup.AdGroup;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedList;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedOperation;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedPlaceholderType;
+import jp.yahooapis.ss.v201909.adgroupfeed.AdGroupFeedSelector;
+import jp.yahooapis.ss.v201909.campaign.Campaign;
+import jp.yahooapis.ss.v201909.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.campaign.Operator;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedList;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedOperation;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedPlaceholderType;
+import jp.yahooapis.ss.v201909.campaignfeed.CampaignFeedSelector;
+import jp.yahooapis.ss.v201909.feeditem.FeedItem;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemValues;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,7 +44,6 @@ public class StructuredSnippetSample {
 
   /**
    * example StructuredSnippet operation.
-   * @throws Exception
    */
   public static void main(String[] args) throws Exception {
 
@@ -63,9 +62,9 @@ public class StructuredSnippetSample {
       // CampaignService
       // =================================================================
       // ADD
-      CampaignOperation addRequestCampaign = CampaignServiceSample.buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<Campaign>() {{
-        add(CampaignServiceSample.createExampleStandardCampaign("SampleStandardCampaign_", CampaignServiceSample.createManualBiddingCampaignBiddingStrategy()));
-      }});
+      CampaignOperation addRequestCampaign = CampaignServiceSample.buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(CampaignServiceSample.createExampleStandardCampaign("SampleStandardCampaign_", CampaignServiceSample.createManualBiddingCampaignBiddingStrategy()))) //
+          ;
 
       List<CampaignValues> addResponseCampaign = CampaignServiceSample.mutate(addRequestCampaign);
 
@@ -76,19 +75,16 @@ public class StructuredSnippetSample {
       CampaignServiceSample.checkStatus(valuesRepositoryFacade.getCampaignValuesRepository().getCampaignIds());
 
       // SET
-      CampaignOperation setRequestCampaign = CampaignServiceSample.buildExampleMutateRequest(
-          Operator.SET, accountId, CampaignServiceSample.createExampleSetRequest(valuesRepositoryFacade.getCampaignValuesRepository().getCampaigns())
-      );
+      CampaignOperation setRequestCampaign =
+          CampaignServiceSample.buildExampleMutateRequest(Operator.SET, accountId, CampaignServiceSample.createExampleSetRequest(valuesRepositoryFacade.getCampaignValuesRepository().getCampaigns()));
       CampaignServiceSample.mutate(setRequestCampaign);
 
       // =================================================================
       // AdGroupService
       // =================================================================
       // ADD
-      AdGroupOperation addRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.adgroup.Operator.ADD, accountId, new ArrayList<AdGroup>() {{
-            add(AdGroupServiceSample.createExampleStandardAdGroup(campaignId));
-          }}
+      AdGroupOperation addRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.adgroup.Operator.ADD, accountId, Collections.singletonList(AdGroupServiceSample.createExampleStandardAdGroup(campaignId)) //
       );
       List<AdGroupValues> addResponseAdGroup = AdGroupServiceSample.mutate(addRequestAdGroup);
 
@@ -99,21 +95,16 @@ public class StructuredSnippetSample {
       AdGroupServiceSample.checkStatus(valuesRepositoryFacade.getAdGroupValuesRepository().getAdGroups());
 
       // SET
-      AdGroupOperation setRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.adgroup.Operator.SET, accountId,
-          AdGroupServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupValuesRepository().getAdGroups())
-      );
+      AdGroupOperation setRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201909.adgroup.Operator.SET, accountId,
+          AdGroupServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupValuesRepository().getAdGroups()));
       AdGroupServiceSample.mutate(setRequestAdGroup);
 
       // =================================================================
       // FeedItemService
       // =================================================================
       // ADD
-      FeedItemOperation addRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.STRUCTURED_SNIPPET,
-          new ArrayList<FeedItem>() {{
-            add(FeedItemServiceSample.createExampleStructuredSnippet());
-          }}
+      FeedItemOperation addRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.feeditem.Operator.ADD, accountId, FeedItemPlaceholderType.STRUCTURED_SNIPPET, Collections.singletonList(FeedItemServiceSample.createExampleStructuredSnippet()) //
       );
       List<FeedItemValues> addResponseFeedItem = FeedItemServiceSample.mutate(addRequestFeedItem);
 
@@ -121,25 +112,24 @@ public class StructuredSnippetSample {
       feedItemId = valuesRepositoryFacade.getFeedItemValuesRepository().findFeedItemId(FeedItemPlaceholderType.STRUCTURED_SNIPPET);
 
       // GET
-      FeedItemSelector getRequestFeedItem = FeedItemServiceSample.buildExampleGetRequest(accountId, valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds());
+      FeedItemSelector getRequestFeedItem = FeedItemServiceSample.buildExampleGetRequest( //
+          accountId, //
+          valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds(), //
+          Collections.emptyList() //
+      );
       FeedItemServiceSample.get(getRequestFeedItem);
 
       // SET
-      FeedItemOperation setRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.STRUCTURED_SNIPPET,
-          FeedItemServiceSample.createExampleSetRequest(valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItems())
-      );
+      FeedItemOperation setRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201909.feeditem.Operator.SET, accountId, FeedItemPlaceholderType.STRUCTURED_SNIPPET,
+          FeedItemServiceSample.createExampleSetRequest(valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItems()));
       FeedItemServiceSample.mutate(setRequestFeedItem);
 
       // =================================================================
       // CampaignFeedService
       // =================================================================
       // SET
-      CampaignFeedOperation setRequestCampaignFeed = CampaignFeedServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.campaignfeed.Operator.SET, accountId,
-          new ArrayList<CampaignFeedList>() {{
-            add(CampaignFeedServiceSample.createExampleSetRequest(accountId, campaignId, feedItemId, CampaignFeedPlaceholderType.STRUCTURED_SNIPPET));
-          }}
+      CampaignFeedOperation setRequestCampaignFeed = CampaignFeedServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.campaignfeed.Operator.SET, accountId, Collections.singletonList(CampaignFeedServiceSample.createExampleSetRequest(accountId, campaignId, feedItemId, CampaignFeedPlaceholderType.STRUCTURED_SNIPPET)) //
       );
       CampaignFeedServiceSample.mutate(setRequestCampaignFeed);
 
@@ -151,11 +141,8 @@ public class StructuredSnippetSample {
       // AdGroupFeedService
       // =================================================================
       // SET
-      AdGroupFeedOperation setRequestAdGroupFeed = AdGroupFeedServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.adgroupfeed.Operator.SET, accountId,
-          new ArrayList<AdGroupFeedList>() {{
-            add(AdGroupFeedServiceSample.createExampleSetRequest(accountId, campaignId, adGroupId, feedItemId, AdGroupFeedPlaceholderType.STRUCTURED_SNIPPET));
-          }}
+      AdGroupFeedOperation setRequestAdGroupFeed = AdGroupFeedServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.adgroupfeed.Operator.SET, accountId, Collections.singletonList(AdGroupFeedServiceSample.createExampleSetRequest(accountId, campaignId, adGroupId, feedItemId, AdGroupFeedPlaceholderType.STRUCTURED_SNIPPET)) //
       );
       AdGroupFeedServiceSample.mutate(setRequestAdGroupFeed);
 
@@ -167,10 +154,8 @@ public class StructuredSnippetSample {
       // FeedItemService REMOVE
       //=================================================================
       // REMOVE
-      FeedItemOperation removeRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest(
-          jp.yahooapis.ss.v201901.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.STRUCTURED_SNIPPET,
-          valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItems()
-      );
+      FeedItemOperation removeRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201909.feeditem.Operator.REMOVE, accountId, FeedItemPlaceholderType.STRUCTURED_SNIPPET,
+          valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItems());
       FeedItemServiceSample.mutate(removeRequestFeedItem);
 
     } catch (Exception ex) {

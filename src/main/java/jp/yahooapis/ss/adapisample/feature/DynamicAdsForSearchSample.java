@@ -13,41 +13,41 @@ import jp.yahooapis.ss.adapisample.basic.pagefeedItem.PageFeedItemServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201901.adgroupwebpage.AdGroupWebpage;
-import jp.yahooapis.ss.v201901.adgroupwebpage.AdGroupWebpageOperation;
-import jp.yahooapis.ss.v201901.adgroupwebpage.AdGroupWebpageSelector;
-import jp.yahooapis.ss.v201901.adgroupwebpage.AdGroupWebpageValues;
-import jp.yahooapis.ss.v201901.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.campaignwebpage.CampaignWebpage;
-import jp.yahooapis.ss.v201901.campaignwebpage.CampaignWebpageOperation;
-import jp.yahooapis.ss.v201901.campaignwebpage.CampaignWebpageSelector;
-import jp.yahooapis.ss.v201901.campaignwebpage.CampaignWebpageValues;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderOperation;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderPlaceholderType;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderSelector;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderValues;
-import jp.yahooapis.ss.v201901.feedfolder.Operator;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemDownloadJob;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemDownloadJobOperation;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemDownloadJobValues;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemJobStatusSelector;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemJobType;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemJobValues;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemReviewSummarySelector;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemSelector;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadUrlOperation;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadUrlPage;
-import jp.yahooapis.ss.v201901.pagefeeditem.PageFeedItemUploadUrlValues;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201909.adgroupwebpage.AdGroupWebpage;
+import jp.yahooapis.ss.v201909.adgroupwebpage.AdGroupWebpageOperation;
+import jp.yahooapis.ss.v201909.adgroupwebpage.AdGroupWebpageSelector;
+import jp.yahooapis.ss.v201909.adgroupwebpage.AdGroupWebpageValues;
+import jp.yahooapis.ss.v201909.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.campaignwebpage.CampaignWebpage;
+import jp.yahooapis.ss.v201909.campaignwebpage.CampaignWebpageOperation;
+import jp.yahooapis.ss.v201909.campaignwebpage.CampaignWebpageSelector;
+import jp.yahooapis.ss.v201909.campaignwebpage.CampaignWebpageValues;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderSelector;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201909.feedfolder.Operator;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemDownloadJob;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemDownloadJobOperation;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemDownloadJobValues;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemJobStatusSelector;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemJobType;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemJobValues;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemReviewSummarySelector;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemSelector;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadUrlOperation;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadUrlPage;
+import jp.yahooapis.ss.v201909.pagefeeditem.PageFeedItemUploadUrlValues;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -80,14 +80,14 @@ public class DynamicAdsForSearchSample {
       // =================================================================
       // ADD
       FeedFolderOperation addRequestFeedFolder = FeedFolderServiceSample.buildExampleMutateRequest( //
-          Operator.ADD, accountId, Arrays.asList(FeedFolderServiceSample.createExampleDynamicAdForSearchFeedFolder(accountId)));
+          Operator.ADD, accountId, Collections.singletonList(FeedFolderServiceSample.createExampleDynamicAdForSearchFeedFolder(accountId)));
 
       List<FeedFolderValues> addResponseFeedFolder = FeedFolderServiceSample.mutate(addRequestFeedFolder);
       valuesRepositoryFacade.getValuesHolder().setFeedFolderValuesList(addResponseFeedFolder);
       Long feedFolderId = valuesRepositoryFacade.getFeedFolderValuesRepository().findFeedFolderId(FeedFolderPlaceholderType.DYNAMIC_AD_FOR_SEARCH_PAGE_FEEDS);
 
       // GET
-      FeedFolderSelector getRequestFeedFolder = FeedFolderServiceSample.buildExampleGetRequest(accountId, Arrays.asList(feedFolderId));
+      FeedFolderSelector getRequestFeedFolder = FeedFolderServiceSample.buildExampleGetRequest(accountId, Collections.singletonList(feedFolderId));
       FeedFolderServiceSample.get(getRequestFeedFolder);
 
       //=================================================================
@@ -104,18 +104,18 @@ public class DynamicAdsForSearchSample {
       long uploadJobId = PageFeedItemServiceSample.upload(uploadUrl, uploadFileName);
 
       // check job status
-      PageFeedItemServiceSample.checkJobStatus(accountId, PageFeedItemJobType.UPLOAD, Arrays.asList(uploadJobId));
+      PageFeedItemServiceSample.checkJobStatus(accountId, PageFeedItemJobType.UPLOAD, Collections.singletonList(uploadJobId));
 
       // getReviewSummary
-      PageFeedItemReviewSummarySelector getReviewSummaryRequest = PageFeedItemServiceSample.buildExampleGetReviewSummary(accountId, Arrays.asList(feedFolderId));
+      PageFeedItemReviewSummarySelector getReviewSummaryRequest = PageFeedItemServiceSample.buildExampleGetReviewSummary(accountId, Collections.singletonList(feedFolderId));
       PageFeedItemServiceSample.getReviewSummary(getReviewSummaryRequest);
 
       // get
-      PageFeedItemSelector getRequest = PageFeedItemServiceSample.buildExampleGetRequest(accountId, Arrays.asList(feedFolderId));
+      PageFeedItemSelector getRequest = PageFeedItemServiceSample.buildExampleGetRequest(accountId, Collections.singletonList(feedFolderId));
       PageFeedItemServiceSample.get(getRequest);
 
       // addDownloadJob
-      PageFeedItemDownloadJobOperation addDownloadJobRequest = PageFeedItemServiceSample.buildExampleAddDownloadJob(accountId, Arrays.asList(feedFolderId));
+      PageFeedItemDownloadJobOperation addDownloadJobRequest = PageFeedItemServiceSample.buildExampleAddDownloadJob(accountId, Collections.singletonList(feedFolderId));
       List<PageFeedItemDownloadJobValues> addDownloadJobResponse = PageFeedItemServiceSample.addDownloadJob(addDownloadJobRequest);
       long jobId = -1L;
       for (PageFeedItemDownloadJobValues values : addDownloadJobResponse) {
@@ -123,10 +123,10 @@ public class DynamicAdsForSearchSample {
       }
 
       // check job status
-      PageFeedItemServiceSample.checkJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Arrays.asList(jobId));
+      PageFeedItemServiceSample.checkJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Collections.singletonList(jobId));
 
       // getJobStatus
-      PageFeedItemJobStatusSelector getJobStatusRequest = PageFeedItemServiceSample.buildExampleGetJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Arrays.asList(jobId));
+      PageFeedItemJobStatusSelector getJobStatusRequest = PageFeedItemServiceSample.buildExampleGetJobStatus(accountId, PageFeedItemJobType.DOWNLOAD, Collections.singletonList(jobId));
       List<PageFeedItemJobValues> getJobStatusResponse = PageFeedItemServiceSample.getJobStatus(getJobStatusRequest);
       for (PageFeedItemJobValues values : getJobStatusResponse) {
         if (values.getJob() instanceof PageFeedItemDownloadJob) {
@@ -142,11 +142,11 @@ public class DynamicAdsForSearchSample {
       // =================================================================
       // ADD
       CampaignOperation addRequestCampaign = CampaignServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaign.Operator.ADD, //
+          jp.yahooapis.ss.v201909.campaign.Operator.ADD, //
           accountId, //
-          Arrays.asList(CampaignServiceSample.createExampleDynamicAdsForSearchCampaign( //
+          Collections.singletonList(CampaignServiceSample.createExampleDynamicAdsForSearchCampaign( //
               "SampleManualCpcDynamicAdsForSearchCampaign_", //
-              Arrays.asList(feedFolderId), //
+              Collections.singletonList(feedFolderId), //
               CampaignServiceSample.createManualBiddingCampaignBiddingStrategy()) //
           ));
       List<CampaignValues> addResponseCampaign = CampaignServiceSample.mutate(addRequestCampaign);
@@ -154,11 +154,11 @@ public class DynamicAdsForSearchSample {
       Long campaignId = valuesRepositoryFacade.getCampaignValuesRepository().findCampaignId(CampaignType.DYNAMIC_ADS_FOR_SEARCH);
 
       // GET
-      CampaignServiceSample.checkStatus(Arrays.asList(campaignId));
+      CampaignServiceSample.checkStatus(Collections.singletonList(campaignId));
 
       // SET
       CampaignOperation setRequestCampaign = CampaignServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaign.Operator.SET, //
+          jp.yahooapis.ss.v201909.campaign.Operator.SET, //
           accountId, //
           CampaignServiceSample.createExampleSetRequest(valuesRepositoryFacade.getCampaignValuesRepository().getCampaigns()) //
       );
@@ -169,9 +169,9 @@ public class DynamicAdsForSearchSample {
       // =================================================================
       // ADD
       AdGroupOperation addRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroup.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroup.Operator.ADD, //
           accountId, //
-          Arrays.asList(AdGroupServiceSample.createExampleStandardAdGroup(campaignId)) //
+          Collections.singletonList(AdGroupServiceSample.createExampleStandardAdGroup(campaignId)) //
       );
       List<AdGroupValues> addResponseAdGroup = AdGroupServiceSample.mutate(addRequestAdGroup);
       valuesRepositoryFacade.getValuesHolder().setAdGroupValuesList(addResponseAdGroup);
@@ -182,7 +182,7 @@ public class DynamicAdsForSearchSample {
 
       // SET
       AdGroupOperation setRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroup.Operator.SET, //
+          jp.yahooapis.ss.v201909.adgroup.Operator.SET, //
           accountId, //
           AdGroupServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupValuesRepository().getAdGroups()) //
       );
@@ -193,16 +193,16 @@ public class DynamicAdsForSearchSample {
       // =================================================================
       // ADD
       AdGroupAdOperation addRequestAdGroupAd = AdGroupAdServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupad.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroupad.Operator.ADD, //
           accountId, //
-          Arrays.asList(AdGroupAdServiceSample.createExampleDynamicSearchLinkedAd(campaignId, adGroupId)) //
+          Collections.singletonList(AdGroupAdServiceSample.createExampleDynamicSearchLinkedAd(campaignId, adGroupId)) //
       );
       List<AdGroupAdValues> addResponseAdGroupAd = AdGroupAdServiceSample.mutate(addRequestAdGroupAd);
       valuesRepositoryFacade.getValuesHolder().setAdGroupAdValuesList(addResponseAdGroupAd);
 
       // SET
       AdGroupAdOperation setRequestAdGroupAd = AdGroupAdServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupad.Operator.SET, //
+          jp.yahooapis.ss.v201909.adgroupad.Operator.SET, //
           accountId, //
           AdGroupAdServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupAdValuesRepository().getAdGroupAds())  //
       );
@@ -217,9 +217,9 @@ public class DynamicAdsForSearchSample {
       // =================================================================
       // ADD
       CampaignWebpageOperation addRequestCampaignWebpage = CampaignWebpageServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaignwebpage.Operator.ADD, //
+          jp.yahooapis.ss.v201909.campaignwebpage.Operator.ADD, //
           accountId, //
-          Arrays.asList(CampaignWebpageServiceSample.createExampleCampaignWebpage(campaignId)) //
+          Collections.singletonList(CampaignWebpageServiceSample.createExampleCampaignWebpage(campaignId)) //
       );
       List<CampaignWebpageValues> addResponseCampaignWebpage = CampaignWebpageServiceSample.mutate(addRequestCampaignWebpage);
       List<CampaignWebpage> campaignWebpages = new ArrayList<>();
@@ -236,9 +236,9 @@ public class DynamicAdsForSearchSample {
       // =================================================================
       // ADD
       AdGroupWebpageOperation addRequestAdGroupWebpage = AdGroupWebpageServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupwebpage.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroupwebpage.Operator.ADD, //
           accountId, //
-          Arrays.asList(AdGroupWebpageServiceSample.createExampleAdGroupWebpage(campaignId, adGroupId)) //
+          Collections.singletonList(AdGroupWebpageServiceSample.createExampleAdGroupWebpage(campaignId, adGroupId)) //
       );
 
       List<AdGroupWebpageValues> addResponseAdGroupWebpage = AdGroupWebpageServiceSample.mutate(addRequestAdGroupWebpage);
@@ -249,7 +249,7 @@ public class DynamicAdsForSearchSample {
 
       // SET
       AdGroupWebpageOperation setRequestAdGroupWebpage = AdGroupWebpageServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupwebpage.Operator.SET, //
+          jp.yahooapis.ss.v201909.adgroupwebpage.Operator.SET, //
           accountId, //
           AdGroupWebpageServiceSample.createExampleSetRequest(adGourpWebpages) //
       );

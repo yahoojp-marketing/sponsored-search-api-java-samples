@@ -7,31 +7,32 @@ import jp.yahooapis.ss.adapisample.basic.campaign.CampaignServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.adgroup.AdGroup;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupAdRotationMode;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupPage;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupReturnValue;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupSelector;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupService;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupServiceInterface;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201901.adgroup.AdRotationMode;
-import jp.yahooapis.ss.v201901.adgroup.Bid;
-import jp.yahooapis.ss.v201901.adgroup.CriterionType;
-import jp.yahooapis.ss.v201901.adgroup.CustomParameter;
-import jp.yahooapis.ss.v201901.adgroup.CustomParameters;
-import jp.yahooapis.ss.v201901.adgroup.Operator;
-import jp.yahooapis.ss.v201901.adgroup.TargetAll;
-import jp.yahooapis.ss.v201901.adgroup.TargetingSetting;
-import jp.yahooapis.ss.v201901.adgroup.UrlApprovalStatus;
-import jp.yahooapis.ss.v201901.adgroup.UserStatus;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.adgroup.AdGroup;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupAdRotationMode;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupPage;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupReturnValue;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupSelector;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupService;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupServiceInterface;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201909.adgroup.AdRotationMode;
+import jp.yahooapis.ss.v201909.adgroup.Bid;
+import jp.yahooapis.ss.v201909.adgroup.CriterionType;
+import jp.yahooapis.ss.v201909.adgroup.CustomParameter;
+import jp.yahooapis.ss.v201909.adgroup.CustomParameters;
+import jp.yahooapis.ss.v201909.adgroup.Operator;
+import jp.yahooapis.ss.v201909.adgroup.TargetAll;
+import jp.yahooapis.ss.v201909.adgroup.TargetingSetting;
+import jp.yahooapis.ss.v201909.adgroup.UrlApprovalStatus;
+import jp.yahooapis.ss.v201909.adgroup.UserStatus;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -67,9 +68,9 @@ public class AdGroupServiceSample {
       // AdGroupService ADD
       // =================================================================
       // create request.
-      AdGroupOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AdGroup>() {{
-        add(createExampleStandardAdGroup(campaignId));
-      }});
+      AdGroupOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleStandardAdGroup(campaignId)) //
+      );
 
       // run
       List<AdGroupValues> addResponse = mutate(addRequest);
@@ -142,7 +143,6 @@ public class AdGroupServiceSample {
    *
    * @param selector AdGroupSelector
    * @return AdGroupValues
-   * @throws Exception
    */
   public static List<AdGroupValues> get(AdGroupSelector selector) throws Exception {
 
@@ -333,7 +333,7 @@ public class AdGroupServiceSample {
    * create sample request.
    *
    * @param accountId long
-   * @param adGroups AdGroup
+   * @param adGroups  AdGroup
    * @return AdGroupSelector
    */
   public static AdGroupSelector buildExampleGetRequest(long accountId, List<AdGroup> adGroups) {
@@ -359,7 +359,6 @@ public class AdGroupServiceSample {
   /**
    * example adGroup set request.
    *
-   * @param adGroups
    * @return List<AdGroup>
    */
   public static List<AdGroup> createExampleSetRequest(List<AdGroup> adGroups) {
@@ -409,7 +408,6 @@ public class AdGroupServiceSample {
    * example check adGroup review status.
    *
    * @param adGroups List<AdGroup>
-   * @throws Exception
    */
   public static void checkStatus(List<AdGroup> adGroups) throws Exception {
 
@@ -457,7 +455,6 @@ public class AdGroupServiceSample {
    * check & create upper service object.
    *
    * @return ValuesHolder
-   * @throws Exception
    */
   private static ValuesHolder setup() throws Exception {
     return CampaignServiceSample.create();
@@ -465,9 +462,6 @@ public class AdGroupServiceSample {
 
   /**
    * cleanup service object.
-   *
-   * @param valuesHolder
-   * @throws Exception
    */
   public static void cleanup(ValuesHolder valuesHolder) throws Exception {
     CampaignServiceSample.cleanup(valuesHolder);
@@ -475,9 +469,6 @@ public class AdGroupServiceSample {
 
   /**
    * create AdGroup.
-   *
-   * @return
-   * @throws Exception
    */
   public static ValuesHolder create() throws Exception {
 

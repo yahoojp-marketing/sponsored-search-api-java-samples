@@ -21,7 +21,6 @@ public class ValuesRepositoryFacade {
   private AdGroupAdValuesRepository adGroupAdValuesRepository;
   private AdGroupCriterionValuesRepository adGroupCriterionValuesRepository;
   private FeedItemValuesRepository feedItemValuesRepository;
-  private ReportDefinitionValuesRepository reportDefinitionValuesRepository;
 
   /**
    * ValuesRepositoryFacade constructor.
@@ -40,7 +39,6 @@ public class ValuesRepositoryFacade {
     this.adGroupAdValuesRepository = new AdGroupAdValuesRepository(this.valuesHolder);
     this.adGroupCriterionValuesRepository = new AdGroupCriterionValuesRepository(this.valuesHolder);
     this.feedItemValuesRepository = new FeedItemValuesRepository(this.valuesHolder);
-    this.reportDefinitionValuesRepository = new ReportDefinitionValuesRepository(this.valuesHolder);
   }
 
   /**
@@ -118,12 +116,5 @@ public class ValuesRepositoryFacade {
    */
   public FeedItemValuesRepository getFeedItemValuesRepository() {
     return this.feedItemValuesRepository;
-  }
-
-  /**
-   * @return ReportDefinitionValuesRepository
-   */
-  public ReportDefinitionValuesRepository getReportDefinitionValuesRepository() {
-    return this.reportDefinitionValuesRepository;
   }
 }

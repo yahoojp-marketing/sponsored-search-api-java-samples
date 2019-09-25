@@ -4,9 +4,9 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategy;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyType;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategy;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyType;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyValues;
 
 import java.util.ArrayList;
 import java.util.List;

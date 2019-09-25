@@ -4,10 +4,10 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.campaign.AppStore;
-import jp.yahooapis.ss.v201901.campaign.Campaign;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.campaign.AppStore;
+import jp.yahooapis.ss.v201909.campaign.Campaign;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
 
 import java.util.ArrayList;
 import java.util.List;

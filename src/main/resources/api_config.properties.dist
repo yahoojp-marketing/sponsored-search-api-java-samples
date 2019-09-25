@@ -1,16 +1,13 @@
 #-----------------------------------------------------------------
 # common defines
 #-----------------------------------------------------------------
-API_VERSION = V201901
-API_NS = http://ss.yahooapis.jp/V201901
+API_VERSION = V201909
+API_NS = http://ss.yahooapis.jp/V201909
 
 #-----------------------------------------------------------------
-# location
+# location (for sandbox setting)
 #-----------------------------------------------------------------
-#for sandbox
-LOCATION = sandbox.ss.yahooapis.jp
-#for production
-#LOCATION=ss.yahooapis.jp
+#LOCATION = sandbox.ss.yahooapis.jp
 
 #-----------------------------------------------------------------
 # API Account

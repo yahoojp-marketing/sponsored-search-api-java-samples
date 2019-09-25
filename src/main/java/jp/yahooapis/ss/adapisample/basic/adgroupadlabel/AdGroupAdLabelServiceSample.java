@@ -8,18 +8,19 @@ import jp.yahooapis.ss.adapisample.basic.label.LabelServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.adgroupad.AdType;
-import jp.yahooapis.ss.v201901.adgroupadlabel.AdGroupAdLabel;
-import jp.yahooapis.ss.v201901.adgroupadlabel.AdGroupAdLabelOperation;
-import jp.yahooapis.ss.v201901.adgroupadlabel.AdGroupAdLabelReturnValue;
-import jp.yahooapis.ss.v201901.adgroupadlabel.AdGroupAdLabelService;
-import jp.yahooapis.ss.v201901.adgroupadlabel.AdGroupAdLabelServiceInterface;
-import jp.yahooapis.ss.v201901.adgroupadlabel.AdGroupAdLabelValues;
-import jp.yahooapis.ss.v201901.adgroupadlabel.Operator;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.adgroupad.AdType;
+import jp.yahooapis.ss.v201909.adgroupadlabel.AdGroupAdLabel;
+import jp.yahooapis.ss.v201909.adgroupadlabel.AdGroupAdLabelOperation;
+import jp.yahooapis.ss.v201909.adgroupadlabel.AdGroupAdLabelReturnValue;
+import jp.yahooapis.ss.v201909.adgroupadlabel.AdGroupAdLabelService;
+import jp.yahooapis.ss.v201909.adgroupadlabel.AdGroupAdLabelServiceInterface;
+import jp.yahooapis.ss.v201909.adgroupadlabel.AdGroupAdLabelValues;
+import jp.yahooapis.ss.v201909.adgroupadlabel.Operator;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -58,9 +59,9 @@ public class AdGroupAdLabelServiceSample {
       // AdGroupAdLabelService ADD
       // =================================================================
       // create request.
-      AdGroupAdLabelOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<AdGroupAdLabel>() {{
-        add(createExampleAdGroupAdLabel(campaignId, adGroupId, adId, lavelId));
-      }});
+      AdGroupAdLabelOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleAdGroupAdLabel(campaignId, adGroupId, adId, lavelId)) //
+      );
 
       // run
       mutate(addRequest);

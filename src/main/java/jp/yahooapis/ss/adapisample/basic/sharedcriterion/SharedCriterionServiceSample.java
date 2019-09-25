@@ -7,20 +7,21 @@ import jp.yahooapis.ss.adapisample.basic.accountshared.AccountSharedServiceSampl
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.sharedcriterion.KeywordMatchType;
-import jp.yahooapis.ss.v201901.sharedcriterion.Operator;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterion;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionOperation;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionPage;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionReturnValue;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionSelector;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionService;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionServiceInterface;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionValues;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.sharedcriterion.KeywordMatchType;
+import jp.yahooapis.ss.v201909.sharedcriterion.Operator;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterion;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionOperation;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionPage;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionReturnValue;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionSelector;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionService;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionServiceInterface;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionValues;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -55,9 +56,9 @@ public class SharedCriterionServiceSample {
       // SharedCriterionService ADD
       // =================================================================
       // create request.
-      SharedCriterionOperation addRequest = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<SharedCriterion>() {{
-        add(createExampleSharedCriterion(sharedListId));
-      }});
+      SharedCriterionOperation addRequest = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleSharedCriterion(sharedListId)) //
+      );
 
       // run
       List<SharedCriterionValues> addResponse = mutate(addRequest);
@@ -72,7 +73,7 @@ public class SharedCriterionServiceSample {
       // SharedCriterionService GET
       // =================================================================
       // create request.
-      SharedCriterionSelector getRequest = buildExampleGetRequest(accountId, new ArrayList<Long>(){{add(sharedListId);}}, criterionIds);
+      SharedCriterionSelector getRequest = buildExampleGetRequest(accountId, Collections.singletonList(sharedListId), criterionIds);
 
       // run
       get(getRequest);

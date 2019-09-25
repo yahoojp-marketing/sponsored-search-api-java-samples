@@ -6,28 +6,25 @@ package jp.yahooapis.ss.adapisample.basic.biddingstrategy;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.Error;
-import jp.yahooapis.ss.v201901.Paging;
-import jp.yahooapis.ss.v201901.biddingstrategy.BidChangesForRaisesOnly;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategy;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyOperation;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyPage;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyReturnValue;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategySelector;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyService;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyServiceInterface;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyType;
-import jp.yahooapis.ss.v201901.biddingstrategy.BiddingStrategyValues;
-import jp.yahooapis.ss.v201901.biddingstrategy.Operator;
-import jp.yahooapis.ss.v201901.biddingstrategy.PageOnePromotedBiddingScheme;
-import jp.yahooapis.ss.v201901.biddingstrategy.RaiseBidWhenBudgetConstrained;
-import jp.yahooapis.ss.v201901.biddingstrategy.RaiseBidWhenLowQualityScore;
-import jp.yahooapis.ss.v201901.biddingstrategy.TargetCpaBiddingScheme;
-import jp.yahooapis.ss.v201901.biddingstrategy.TargetRoasBiddingScheme;
-import jp.yahooapis.ss.v201901.biddingstrategy.TargetSpendBiddingScheme;
+import jp.yahooapis.ss.v201909.Error;
+import jp.yahooapis.ss.v201909.Paging;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategy;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyOperation;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyPage;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyReturnValue;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategySelector;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyService;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyServiceInterface;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyType;
+import jp.yahooapis.ss.v201909.biddingstrategy.BiddingStrategyValues;
+import jp.yahooapis.ss.v201909.biddingstrategy.Operator;
+import jp.yahooapis.ss.v201909.biddingstrategy.TargetCpaBiddingScheme;
+import jp.yahooapis.ss.v201909.biddingstrategy.TargetRoasBiddingScheme;
+import jp.yahooapis.ss.v201909.biddingstrategy.TargetSpendBiddingScheme;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.xml.ws.Holder;
@@ -55,9 +52,9 @@ public class BiddingStrategyServiceSample {
       // BiddingStrategyService::ADD
       // =================================================================
       // create request.
-      BiddingStrategyOperation addBiddingStrategyOperation = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<BiddingStrategy>() {{
-        add(createExamplePageOnePromotedBidding());
-      }});
+      BiddingStrategyOperation addBiddingStrategyOperation = buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(createExampleTargetCpaBidding()) //
+      );
 
       // run
       List<BiddingStrategyValues> biddingStrategyValues = mutate(addBiddingStrategyOperation);
@@ -108,9 +105,9 @@ public class BiddingStrategyServiceSample {
 
     ValuesHolder valuesHolder = new ValuesHolder();
     long accountId = SoapUtils.getAccountId();
-    BiddingStrategyOperation addBiddingStrategyOperation = buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<BiddingStrategy>() {{
-      add(createExamplePageOnePromotedBidding());
-    }});
+    BiddingStrategyOperation addBiddingStrategyOperation = buildExampleMutateRequest( //
+        Operator.ADD, accountId, Collections.singletonList(createExampleTargetCpaBidding()) //
+    );
 
     // Run
     List<BiddingStrategyValues> biddingStrategyValues = mutate(addBiddingStrategyOperation);
@@ -200,27 +197,6 @@ public class BiddingStrategyServiceSample {
   }
 
   /**
-   * example PageOnePromotedBidding request.
-   *
-   * @return BiddingStrategy
-   */
-  public static BiddingStrategy createExamplePageOnePromotedBidding() {
-    PageOnePromotedBiddingScheme addPageOnePromotedBiddingScheme = new PageOnePromotedBiddingScheme();
-    addPageOnePromotedBiddingScheme.setBiddingStrategyType(BiddingStrategyType.PAGE_ONE_PROMOTED);
-    addPageOnePromotedBiddingScheme.setBidCeiling((long) 500);
-    addPageOnePromotedBiddingScheme.setBidMultiplier(1.00);
-    addPageOnePromotedBiddingScheme.setBidChangesForRaisesOnly(BidChangesForRaisesOnly.ACTIVE);
-    addPageOnePromotedBiddingScheme.setRaiseBidWhenBudgetConstrained(RaiseBidWhenBudgetConstrained.ACTIVE);
-    addPageOnePromotedBiddingScheme.setRaiseBidWhenLowQualityScore(RaiseBidWhenLowQualityScore.ACTIVE);
-
-    BiddingStrategy pageOnePromotedBidding = new BiddingStrategy();
-    pageOnePromotedBidding.setBiddingStrategyName("SamplePageOnePromoted_CreateOn_" + SoapUtils.getCurrentTimestamp());
-    pageOnePromotedBidding.setBiddingScheme(addPageOnePromotedBiddingScheme);
-
-    return pageOnePromotedBidding;
-  }
-
-  /**
    * example TargetCpaBidding request.
    *
    * @return BiddingStrategy
@@ -248,7 +224,6 @@ public class BiddingStrategyServiceSample {
     TargetSpendBiddingScheme addTargetSpendBiddingScheme = new TargetSpendBiddingScheme();
     addTargetSpendBiddingScheme.setBiddingStrategyType(BiddingStrategyType.TARGET_SPEND);
     addTargetSpendBiddingScheme.setBidCeiling((long) 700);
-    addTargetSpendBiddingScheme.setSpendTarget((long) 10);
 
     BiddingStrategy targetSpendBidding = new BiddingStrategy();
     targetSpendBidding.setBiddingStrategyName("SampleTargetSpend_CreateOn_" + SoapUtils.getCurrentTimestamp());
@@ -290,19 +265,8 @@ public class BiddingStrategyServiceSample {
       operand.setBiddingStrategyId(biddingStrategy.getBiddingStrategyId());
       operand.setBiddingStrategyName("Sample_UpdateOn_" + biddingStrategy.getBiddingStrategyId() + "_" + SoapUtils.getCurrentTimestamp());
 
-      // PageOnePromotedBiddingScheme
-      if (biddingStrategy.getBiddingScheme() instanceof PageOnePromotedBiddingScheme) {
-        PageOnePromotedBiddingScheme setPageOnePromotedBiddingScheme = new PageOnePromotedBiddingScheme();
-        setPageOnePromotedBiddingScheme.setBiddingStrategyType(BiddingStrategyType.PAGE_ONE_PROMOTED);
-        setPageOnePromotedBiddingScheme.setBidCeiling((long) 550);
-        setPageOnePromotedBiddingScheme.setBidMultiplier(5.00);
-        setPageOnePromotedBiddingScheme.setBidChangesForRaisesOnly(BidChangesForRaisesOnly.DEACTIVE);
-        setPageOnePromotedBiddingScheme.setRaiseBidWhenBudgetConstrained(RaiseBidWhenBudgetConstrained.DEACTIVE);
-        setPageOnePromotedBiddingScheme.setRaiseBidWhenLowQualityScore(RaiseBidWhenLowQualityScore.DEACTIVE);
-        operand.setBiddingScheme(setPageOnePromotedBiddingScheme);
-
-        // TargetCpaBiddingScheme
-      } else if (biddingStrategy.getBiddingScheme() instanceof TargetCpaBiddingScheme) {
+      // TargetCpaBiddingScheme
+      if (biddingStrategy.getBiddingScheme() instanceof TargetCpaBiddingScheme) {
         TargetCpaBiddingScheme setTargetCpaBiddingScheme = new TargetCpaBiddingScheme();
         setTargetCpaBiddingScheme.setBiddingStrategyType(BiddingStrategyType.TARGET_CPA);
         setTargetCpaBiddingScheme.setTargetCpa((long) 550);
@@ -315,7 +279,6 @@ public class BiddingStrategyServiceSample {
         TargetSpendBiddingScheme setTargetSpendBiddingScheme = new TargetSpendBiddingScheme();
         setTargetSpendBiddingScheme.setBiddingStrategyType(BiddingStrategyType.TARGET_SPEND);
         setTargetSpendBiddingScheme.setBidCeiling((long) 750);
-        setTargetSpendBiddingScheme.setSpendTarget((long) 20);
         operand.setBiddingScheme(setTargetSpendBiddingScheme);
 
         // TargetRoasBiddingScheme
@@ -348,7 +311,6 @@ public class BiddingStrategyServiceSample {
       selector.getBiddingStrategyIds().addAll(biddingStrategyIds);
     }
     selector.getBiddingStrategyTypes().addAll(Arrays.asList( //
-        BiddingStrategyType.PAGE_ONE_PROMOTED, //
         BiddingStrategyType.TARGET_CPA, //
         BiddingStrategyType.TARGET_SPEND, //
         BiddingStrategyType.TARGET_ROAS //
@@ -360,5 +322,4 @@ public class BiddingStrategyServiceSample {
 
     return selector;
   }
-
 }

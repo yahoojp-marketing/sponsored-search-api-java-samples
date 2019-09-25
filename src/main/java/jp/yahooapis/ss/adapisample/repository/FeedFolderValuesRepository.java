@@ -4,11 +4,11 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.feedfolder.FeedAttribute;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolder;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderPlaceholderField;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderPlaceholderType;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201909.feedfolder.FeedAttribute;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolder;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderPlaceholderField;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderValues;
 
 import java.util.ArrayList;
 import java.util.List;

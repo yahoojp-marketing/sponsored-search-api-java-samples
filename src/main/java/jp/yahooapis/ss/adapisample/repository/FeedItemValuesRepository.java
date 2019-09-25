@@ -4,9 +4,9 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.feeditem.FeedItem;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201909.feeditem.FeedItem;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemValues;
 
 import java.util.ArrayList;
 import java.util.List;

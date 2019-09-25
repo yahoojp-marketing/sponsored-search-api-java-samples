@@ -12,30 +12,30 @@ import jp.yahooapis.ss.adapisample.basic.feeditem.FeedItemServiceSample;
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupOperation;
-import jp.yahooapis.ss.v201901.adgroup.AdGroupValues;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdOperation;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdSelector;
-import jp.yahooapis.ss.v201901.adgroupad.AdGroupAdValues;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionOperation;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionSelector;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionUse;
-import jp.yahooapis.ss.v201901.adgroupcriterion.AdGroupCriterionValues;
-import jp.yahooapis.ss.v201901.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderOperation;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderPlaceholderField;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderPlaceholderType;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderSelector;
-import jp.yahooapis.ss.v201901.feedfolder.FeedFolderValues;
-import jp.yahooapis.ss.v201901.feedfolder.Operator;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemOperation;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemPlaceholderType;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemSelector;
-import jp.yahooapis.ss.v201901.feeditem.FeedItemValues;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupOperation;
+import jp.yahooapis.ss.v201909.adgroup.AdGroupValues;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdOperation;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdSelector;
+import jp.yahooapis.ss.v201909.adgroupad.AdGroupAdValues;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionOperation;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionSelector;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionUse;
+import jp.yahooapis.ss.v201909.adgroupcriterion.AdGroupCriterionValues;
+import jp.yahooapis.ss.v201909.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderOperation;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderPlaceholderField;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderPlaceholderType;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderSelector;
+import jp.yahooapis.ss.v201909.feedfolder.FeedFolderValues;
+import jp.yahooapis.ss.v201909.feedfolder.Operator;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemOperation;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemPlaceholderType;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemSelector;
+import jp.yahooapis.ss.v201909.feeditem.FeedItemValues;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,7 +50,7 @@ public class AdCustomizerSample {
    *
    * @param args command line arguments
    */
-  public static void main(String[] args) throws Exception{
+  public static void main(String[] args) throws Exception {
     // =================================================================
     // Setting
     // =================================================================
@@ -78,7 +78,7 @@ public class AdCustomizerSample {
       FeedFolderOperation addRequestFeedFolder = FeedFolderServiceSample.buildExampleMutateRequest( //
           Operator.ADD, //
           accountId, //
-          Arrays.asList(FeedFolderServiceSample.createExampleAdCustomizerFeedFolder(accountId)) //
+          Collections.singletonList(FeedFolderServiceSample.createExampleAdCustomizerFeedFolder(accountId)) //
       );
       List<FeedFolderValues> addResponseFeedFolder = FeedFolderServiceSample.mutate(addRequestFeedFolder);
       valuesHolder.setFeedFolderValuesList(addResponseFeedFolder);
@@ -104,7 +104,7 @@ public class AdCustomizerSample {
       FeedFolderServiceSample.mutate(setRequestFeedFolder);
 
       // GET
-      FeedFolderSelector getRequestFeedFolder = FeedFolderServiceSample.buildExampleGetRequest(accountId, Arrays.asList(feedFolderId));
+      FeedFolderSelector getRequestFeedFolder = FeedFolderServiceSample.buildExampleGetRequest(accountId, Collections.singletonList(feedFolderId));
       FeedFolderServiceSample.get(getRequestFeedFolder);
 
       // =================================================================
@@ -112,9 +112,9 @@ public class AdCustomizerSample {
       // =================================================================
       // ADD
       CampaignOperation addRequestCampaign = CampaignServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaign.Operator.ADD, //
+          jp.yahooapis.ss.v201909.campaign.Operator.ADD, //
           accountId, //
-          Arrays.asList(CampaignServiceSample.createExampleStandardCampaign( //
+          Collections.singletonList(CampaignServiceSample.createExampleStandardCampaign( //
               "SampleStandardCampaign_", //
               CampaignServiceSample.createManualBiddingCampaignBiddingStrategy()) //
           ));
@@ -124,11 +124,11 @@ public class AdCustomizerSample {
       Long campaignId = valuesRepositoryFacade.getCampaignValuesRepository().findCampaignId(CampaignType.STANDARD);
 
       // GET
-      CampaignServiceSample.checkStatus(Arrays.asList(campaignId));
+      CampaignServiceSample.checkStatus(Collections.singletonList(campaignId));
 
       // SET
       CampaignOperation setRequestCampaign = CampaignServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.campaign.Operator.SET, //
+          jp.yahooapis.ss.v201909.campaign.Operator.SET, //
           accountId, //
           CampaignServiceSample.createExampleSetRequest(valuesRepositoryFacade.getCampaignValuesRepository().getCampaigns()) //
       );
@@ -139,9 +139,9 @@ public class AdCustomizerSample {
       // =================================================================
       // ADD
       AdGroupOperation addRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroup.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroup.Operator.ADD, //
           accountId, //
-          Arrays.asList(AdGroupServiceSample.createExampleStandardAdGroup(campaignId)) //
+          Collections.singletonList(AdGroupServiceSample.createExampleStandardAdGroup(campaignId)) //
       );
       List<AdGroupValues> addResponseAdGroup = AdGroupServiceSample.mutate(addRequestAdGroup);
       valuesHolder.setAdGroupValuesList(addResponseAdGroup);
@@ -152,7 +152,7 @@ public class AdCustomizerSample {
 
       // SET
       AdGroupOperation setRequestAdGroup = AdGroupServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroup.Operator.SET, //
+          jp.yahooapis.ss.v201909.adgroup.Operator.SET, //
           accountId, //
           AdGroupServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupValuesRepository().getAdGroups()) //
       );
@@ -163,9 +163,9 @@ public class AdCustomizerSample {
       // =================================================================
       // ADD
       AdGroupCriterionOperation addRequestAdGroupCriterion = AdGroupCriterionServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupcriterion.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroupcriterion.Operator.ADD, //
           accountId, //
-          Arrays.asList(AdGroupCriterionServiceSample.createExampleBiddableAdGroupCriterion(campaignId, adGroupId)) //
+          Collections.singletonList(AdGroupCriterionServiceSample.createExampleBiddableAdGroupCriterion(campaignId, adGroupId)) //
       );
       List<AdGroupCriterionValues> addResponseAdGroupCriterion = AdGroupCriterionServiceSample.mutate(addRequestAdGroupCriterion);
       valuesHolder.setAdGroupCriterionValuesList(addResponseAdGroupCriterion);
@@ -180,7 +180,7 @@ public class AdCustomizerSample {
 
       // SET
       AdGroupCriterionOperation setRequestAdGroupCriterion = AdGroupCriterionServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupcriterion.Operator.SET, //
+          jp.yahooapis.ss.v201909.adgroupcriterion.Operator.SET, //
           accountId, //
           AdGroupCriterionServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupCriterionValuesRepository().getAdGroupCriterions()) //
       );
@@ -191,24 +191,25 @@ public class AdCustomizerSample {
       //=================================================================
       // ADD
       FeedItemOperation addRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.feeditem.Operator.ADD, //
+          jp.yahooapis.ss.v201909.feeditem.Operator.ADD, //
           accountId, //
           FeedItemPlaceholderType.AD_CUSTOMIZER, //
-          Arrays.asList(FeedItemServiceSample.createExampleAdCustomizer(campaignId, adGroupId, feedFolderId, feedAttributeIds)) //
+          Collections.singletonList(FeedItemServiceSample.createExampleAdCustomizer(campaignId, adGroupId, feedFolderId, feedAttributeIds)) //
       );
       List<FeedItemValues> addResponseFeedItem = FeedItemServiceSample.mutate(addRequestFeedItem);
       valuesHolder.setFeedItemValuesList(addResponseFeedItem);
 
       // GET
       FeedItemSelector getRequestFeedItem = FeedItemServiceSample.buildExampleGetRequest( //
-          accountId,
-          valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds()
+          accountId, //
+          valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItemIds(), //
+          Collections.emptyList() //
       );
       FeedItemServiceSample.get(getRequestFeedItem);
 
       // SET
       FeedItemOperation setRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.feeditem.Operator.SET, //
+          jp.yahooapis.ss.v201909.feeditem.Operator.SET, //
           accountId, //
           FeedItemPlaceholderType.AD_CUSTOMIZER, //
           FeedItemServiceSample.createExampleSetRequest(valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItems()) //
@@ -220,7 +221,7 @@ public class AdCustomizerSample {
       // =================================================================
       // ADD
       AdGroupAdOperation addRequestAdGroupAd = AdGroupAdServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupad.Operator.ADD, //
+          jp.yahooapis.ss.v201909.adgroupad.Operator.ADD, //
           accountId, //
           AdGroupAdServiceSample.createExampleAdCustomizerAds(campaignId, adGroupId, feedFolderName, feedAttributeNames) //
       );
@@ -229,7 +230,7 @@ public class AdCustomizerSample {
 
       // SET
       AdGroupAdOperation setRequestAdGroupAd = AdGroupAdServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.adgroupad.Operator.SET, //
+          jp.yahooapis.ss.v201909.adgroupad.Operator.SET, //
           accountId, //
           AdGroupAdServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAdGroupAdValuesRepository().getAdGroupAds())  //
       );
@@ -244,7 +245,7 @@ public class AdCustomizerSample {
       //=================================================================
       // REMOVE
       FeedItemOperation removeRequestFeedItem = FeedItemServiceSample.buildExampleMutateRequest( //
-          jp.yahooapis.ss.v201901.feeditem.Operator.REMOVE, //
+          jp.yahooapis.ss.v201909.feeditem.Operator.REMOVE, //
           accountId, //
           FeedItemPlaceholderType.AD_CUSTOMIZER, //
           valuesRepositoryFacade.getFeedItemValuesRepository().getFeedItems() //

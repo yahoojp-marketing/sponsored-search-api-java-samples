@@ -4,9 +4,9 @@
 package jp.yahooapis.ss.adapisample.repository;
 
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.retargetinglist.RetargetingListValues;
-import jp.yahooapis.ss.v201901.retargetinglist.TargetListType;
-import jp.yahooapis.ss.v201901.retargetinglist.TargetingList;
+import jp.yahooapis.ss.v201909.retargetinglist.RetargetingListValues;
+import jp.yahooapis.ss.v201909.retargetinglist.TargetListType;
+import jp.yahooapis.ss.v201909.retargetinglist.TargetingList;
 
 import java.util.ArrayList;
 import java.util.List;

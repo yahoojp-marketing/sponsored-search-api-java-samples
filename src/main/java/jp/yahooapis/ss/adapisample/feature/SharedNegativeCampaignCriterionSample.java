@@ -10,25 +10,26 @@ import jp.yahooapis.ss.adapisample.basic.sharedcriterion.SharedCriterionServiceS
 import jp.yahooapis.ss.adapisample.repository.ValuesRepositoryFacade;
 import jp.yahooapis.ss.adapisample.util.SoapUtils;
 import jp.yahooapis.ss.adapisample.util.ValuesHolder;
-import jp.yahooapis.ss.v201901.accountshared.AccountShared;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedOperation;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedSelector;
-import jp.yahooapis.ss.v201901.accountshared.AccountSharedValues;
-import jp.yahooapis.ss.v201901.campaign.Campaign;
-import jp.yahooapis.ss.v201901.campaign.CampaignOperation;
-import jp.yahooapis.ss.v201901.campaign.CampaignType;
-import jp.yahooapis.ss.v201901.campaign.CampaignValues;
-import jp.yahooapis.ss.v201901.campaign.Operator;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSet;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetOperation;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetSelector;
-import jp.yahooapis.ss.v201901.campaignsharedset.CampaignSharedSetValues;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterion;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionOperation;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionSelector;
-import jp.yahooapis.ss.v201901.sharedcriterion.SharedCriterionValues;
+import jp.yahooapis.ss.v201909.accountshared.AccountShared;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedOperation;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedSelector;
+import jp.yahooapis.ss.v201909.accountshared.AccountSharedValues;
+import jp.yahooapis.ss.v201909.campaign.Campaign;
+import jp.yahooapis.ss.v201909.campaign.CampaignOperation;
+import jp.yahooapis.ss.v201909.campaign.CampaignType;
+import jp.yahooapis.ss.v201909.campaign.CampaignValues;
+import jp.yahooapis.ss.v201909.campaign.Operator;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSet;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetOperation;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetSelector;
+import jp.yahooapis.ss.v201909.campaignsharedset.CampaignSharedSetValues;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterion;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionOperation;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionSelector;
+import jp.yahooapis.ss.v201909.sharedcriterion.SharedCriterionValues;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -38,7 +39,6 @@ public class SharedNegativeCampaignCriterionSample {
 
   /**
    * example SharedNegativeCampaignCriterion operation.
-   * @throws Exception
    */
   public static void main(String[] args) throws Exception {
 
@@ -57,9 +57,9 @@ public class SharedNegativeCampaignCriterionSample {
       // CampaignService
       // =================================================================
       // ADD
-      CampaignOperation addRequestCampaign = CampaignServiceSample.buildExampleMutateRequest(Operator.ADD, accountId, new ArrayList<Campaign>() {{
-        add(CampaignServiceSample.createExampleStandardCampaign("SampleStandardCampaign_", CampaignServiceSample.createManualBiddingCampaignBiddingStrategy()));
-      }});
+      CampaignOperation addRequestCampaign = CampaignServiceSample.buildExampleMutateRequest( //
+          Operator.ADD, accountId, Collections.singletonList(CampaignServiceSample.createExampleStandardCampaign("SampleStandardCampaign_", CampaignServiceSample.createManualBiddingCampaignBiddingStrategy())) //
+      );
 
       List<CampaignValues> addResponseCampaign = CampaignServiceSample.mutate(addRequestCampaign);
       valuesRepositoryFacade.getValuesHolder().setCampaignValuesList(addResponseCampaign);
@@ -69,17 +69,16 @@ public class SharedNegativeCampaignCriterionSample {
       // AccountSharedService
       // =================================================================
       // ADD
-      AccountSharedOperation addRequestAccountShared =
-          AccountSharedServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201901.accountshared.Operator.ADD, accountId, new ArrayList<AccountShared>() {{
-            add(AccountSharedServiceSample.createExampleAccountShared());
-          }});
+      AccountSharedOperation addRequestAccountShared = AccountSharedServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.accountshared.Operator.ADD, accountId, Collections.singletonList(AccountSharedServiceSample.createExampleAccountShared()) //
+      );
 
       List<AccountSharedValues> addResponseAccountShared = AccountSharedServiceSample.mutate(addRequestAccountShared);
       valuesRepositoryFacade.getValuesHolder().setAccountSharedValuesList(addResponseAccountShared);
       sharedListIds = valuesRepositoryFacade.getAccountSharedValuesRepository().getSharedListIds();
 
       // SET
-      AccountSharedOperation setRequestAccountShared = AccountSharedServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201901.accountshared.Operator.SET, accountId,
+      AccountSharedOperation setRequestAccountShared = AccountSharedServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201909.accountshared.Operator.SET, accountId,
           AccountSharedServiceSample.createExampleSetRequest(valuesRepositoryFacade.getAccountSharedValuesRepository().getAccountShareds()));
 
       // run
@@ -93,10 +92,9 @@ public class SharedNegativeCampaignCriterionSample {
       // CampaignSharedSetService
       // =================================================================
       // ADD
-      CampaignSharedSetOperation addRequestCampaignSharedSet =
-          CampaignSharedSetServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201901.campaignsharedset.Operator.ADD, accountId, new ArrayList<CampaignSharedSet>() {{
-            add(CampaignSharedSetServiceSample.createExampleCampaignSharedSet(sharedListIds.get(0), campaignId));
-          }});
+      CampaignSharedSetOperation addRequestCampaignSharedSet = CampaignSharedSetServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.campaignsharedset.Operator.ADD, accountId, Collections.singletonList(CampaignSharedSetServiceSample.createExampleCampaignSharedSet(sharedListIds.get(0), campaignId)) //
+      );
       List<CampaignSharedSetValues> addResponseCampaignSharedSet = CampaignSharedSetServiceSample.mutate(addRequestCampaignSharedSet);
 
       List<CampaignSharedSet> campaignSharedSets = new ArrayList<>();
@@ -105,19 +103,16 @@ public class SharedNegativeCampaignCriterionSample {
       }
 
       // GET
-      CampaignSharedSetSelector getRequestCampaignSharedSet = CampaignSharedSetServiceSample.buildExampleGetRequest(accountId, sharedListIds, new ArrayList<Long>() {{
-        add(campaignId);
-      }});
+      CampaignSharedSetSelector getRequestCampaignSharedSet = CampaignSharedSetServiceSample.buildExampleGetRequest(accountId, sharedListIds, Collections.singletonList(campaignId));
       CampaignSharedSetServiceSample.get(getRequestCampaignSharedSet);
 
       // =================================================================
       // SharedCriterionService
       // =================================================================
       // ADD
-      SharedCriterionOperation addRequestSharedCriterion =
-          SharedCriterionServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201901.sharedcriterion.Operator.ADD, accountId, new ArrayList<SharedCriterion>() {{
-            add(SharedCriterionServiceSample.createExampleSharedCriterion(sharedListIds.get(0)));
-          }});
+      SharedCriterionOperation addRequestSharedCriterion = SharedCriterionServiceSample.buildExampleMutateRequest( //
+          jp.yahooapis.ss.v201909.sharedcriterion.Operator.ADD, accountId, Collections.singletonList(SharedCriterionServiceSample.createExampleSharedCriterion(sharedListIds.get(0))) //
+      );
       List<SharedCriterionValues> addResponseSharedCriterion = SharedCriterionServiceSample.mutate(addRequestSharedCriterion);
 
       for (SharedCriterionValues sharedCriterionValues : addResponseSharedCriterion) {
@@ -133,7 +128,7 @@ public class SharedNegativeCampaignCriterionSample {
       // =================================================================
       // REMOVE
       CampaignSharedSetOperation removeRequestCampaignSharedSet =
-          CampaignSharedSetServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201901.campaignsharedset.Operator.REMOVE, accountId, campaignSharedSets);
+          CampaignSharedSetServiceSample.buildExampleMutateRequest(jp.yahooapis.ss.v201909.campaignsharedset.Operator.REMOVE, accountId, campaignSharedSets);
       CampaignSharedSetServiceSample.mutate(removeRequestCampaignSharedSet);
 
       // =================================================================
@@ -141,7 +136,7 @@ public class SharedNegativeCampaignCriterionSample {
       // =================================================================
       // REMOVE
       AccountSharedOperation removeRequestAccountShared = AccountSharedServiceSample
-          .buildExampleMutateRequest(jp.yahooapis.ss.v201901.accountshared.Operator.REMOVE, accountId, valuesRepositoryFacade.getAccountSharedValuesRepository().getAccountShareds());
+          .buildExampleMutateRequest(jp.yahooapis.ss.v201909.accountshared.Operator.REMOVE, accountId, valuesRepositoryFacade.getAccountSharedValuesRepository().getAccountShareds());
       AccountSharedServiceSample.mutate(removeRequestAccountShared);
 
     } catch (Exception ex) {
